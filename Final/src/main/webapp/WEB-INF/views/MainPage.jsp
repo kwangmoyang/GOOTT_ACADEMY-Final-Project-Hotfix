@@ -22,6 +22,8 @@
 <body>
 
       <%@ include file="/WEB-INF/views/header/header.jsp" %>
+
+      <h1> 아아아아아아아아 </h1>
     <div class="container">
         <!-- ======================== 작업 섹션 ======================= -->
         <!-- <div class="common_section"> -->
