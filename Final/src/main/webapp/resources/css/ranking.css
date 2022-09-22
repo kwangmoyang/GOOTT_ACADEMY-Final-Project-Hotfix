@@ -1,0 +1,165 @@
+:root{
+    --teamlist-border: 1px solid gainsboro;
+    --ranking-border: 1px solid gainsboro;
+    --border-btn-radius: 5px;
+    --btn-color: rgba(255, 95, 47, 0.906);
+
+    --border-radius:10px;
+    --box-shadow:rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+
+    --thead-color:gainsboro;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.rankingcontanier{
+    width: 100%;
+    height: 100%;
+}
+
+/* 게시판 타이틀 */
+.ranking_title {
+    width: 100%;
+    height: 6%;
+    text-align: center;
+    line-height: 100px;
+}
+.ranking_title > h1 {
+ font-size: 35px;
+}
+/* 게시판 목록  */
+.ranking_category {
+    font-size: 20px;
+    margin-bottom: 20px;
+    height: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ranking_category > ul > li {
+    display: inline;
+    list-style: none;
+    margin: 30px;
+}
+.ranking_category > ul > li a {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+.ranking_category > ul > li a:hover{
+    color: tomato;
+    cursor: pointer;
+
+    transition: all .5s;
+}
+/* 검색기능 틀 */
+.ranking_nav {
+    width: 100%;
+    height: 5vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ranking_nav_search{
+    width: 80%;
+    height: 100%;
+}
+/* 검색창 */
+.search-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 130px;
+}
+.search-box form{
+    width: 65%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.search-box input[type="text"]{
+    border: var(--teamlist-border);
+    border-radius: 50px;
+    width: 65%;
+    height: 100%;
+    padding: 0 20px;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+ }
+.search-box form input[type="text"]:focus{
+    outline: none;
+}
+.searchbtn{
+    position: relative;
+    right: 6%;
+    
+    border: none;
+    background-color: white;
+}
+/* 셀렉트박스 */
+.rankingtypediv{
+    width: 20%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+}
+.rankingtypediv select{
+    background-color: var(--btn-color);
+    border-radius: var(--border-btn-radius);
+    border: none;
+    color: white;
+}
+.rankingtypediv select option{
+    background-color: white;
+    color: black;
+}
+
+/* 순위테이블 */
+.rankingtopdiv{
+    margin-top: 50px;
+    /* 나중에 높이 조절 */
+    height: 20%;
+    display: flex;
+    justify-content: center;
+}
+.rankingtop{
+    margin: 0 1%;
+    width: 20%;
+    border: 3px solid gold;
+    border-radius: var(--border-radius);
+}
+.rankingdiv{
+    /* 나중에 높이 조절 */
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+.rankingdiv table{
+    border-collapse: collapse;
+    width: 100%;
+}
+.rankingdiv table thead{
+    background-color: var(--thead-color);
+    height: 8%;
+}
+.rankingdiv table td{
+    border: var(--ranking-border);
+}
+.rankingpaging{
+    border: 1px solid black;
+    /* 나중에 높이 조절 */
+    height: 5%;
+}

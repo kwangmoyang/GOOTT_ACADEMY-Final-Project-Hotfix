@@ -1,0 +1,249 @@
+:root{
+    --teamlist-border: 1px solid gainsboro;
+    --border-btn-radius: 5px;
+    --btn-color: rgba(255, 95, 47, 0.906);
+}
+
+
+.RmContainer {
+    width: 100%;
+    height: 100%;
+}
+.RmHeader {
+    text-align: center;
+    line-height: 100px;
+    height: 100px;
+}
+.RmHeader > h1 {
+    font-size: 30px;
+    font-weight: bolder;
+}
+/* 버튼, 서치바 */
+.RmSubtitle {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px;
+}
+/* 검색기능 틀 */
+.RmSearchbar{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+.search{
+    width: 100%;
+    height: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+/* 검색창 */
+.search-box{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.search-box form{
+    width: 65%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    position: relative;
+}
+.search-box input[type="text"]{
+    border: var(--teamlist-border);
+    border-radius: 50px;
+    width: 80%;
+    height: 100%;
+    padding: 0 20px;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+ }
+.search-box form input[type="text"]:focus{
+    outline: none;
+}
+.searchbtn{
+    position: relative;
+    right: 8%;
+    
+    border: none;
+    background-color: white;
+}
+
+/* 요청서 작성 */
+.RmWriteRequest {
+    width: 33%;
+}
+.RmWriteRequest > button {
+    border: none;
+    background: var(--btn-color);
+    color: white;
+    border-radius: var(--border-btn-radius);
+    padding: 10px 20px;
+}
+
+/* 전체 드롭다운 */
+.Rmlist {
+    width: 33%;
+    position: relative;
+	display: inline-block;
+    text-align: right;
+}
+.Rmlist > select {
+    padding: 10px 20px;
+    border: none;
+    background: var(--btn-color);
+    border-radius: var(--border-btn-radius);
+    color: white;
+}
+.Rmlist > select > option {
+    background: white;
+    color: black;
+}
+
+/* 해결 게시판 */
+.RmBoard {
+    margin: 30px auto;
+    width: 95%;
+    height: 180px;
+    background-color: #ccc;
+    border-radius: 5px;
+    display: flex;
+
+}
+/* 해결 게시판 왼쪽 */
+.RmBoardLeft {
+    width: 70%;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    border-right: 1px solid #aaa;
+}
+
+.RmBoardLeft > p {
+    margin: 15px 20px;
+}
+.RmBoardLeft > p:nth-child(1) {
+    font-size: 30px;
+    color: red;
+}
+/* 해결 게시판 오른쪽 */
+.RmBoardRight {
+    display: flex;
+    justify-content:center;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 30%;
+}
+.RmBoardRight > p {
+    margin: 5px 30px;
+}
+.RmBoardRight > button {
+    margin: 10px 30px;
+    padding: 12px 20px;
+    border: none;
+    color: white;
+    background-color: var(--btn-color);
+    border-radius: var(--border-btn-radius);
+}
+/* --------모달------------- */
+/* 스크롤막기 */
+html, body {
+    overflow: auto;
+    height: 100%;
+  }
+
+.RmContainer {
+    position: relative;
+}
+
+.RmModal_wrap {
+    display: none;
+    width: 60%;
+    height: 80%;
+    position: absolute;
+    border: 2px solid black;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background:#eee;
+    z-index: 2;
+    overflow: auto;
+    
+}
+.RmModal_background {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0,0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+.RmModal_close {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.RmModal_close i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 50px;
+}
+
+.RmModal_wrap .ModalText {
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+.modal_close .closeImg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.ModalText > h1 {
+    font-size: 35px;
+    color: red;
+    text-align: center;
+}
+.ModalHeader {
+    margin: 10px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ModalHeader > p:nth-child(1) {
+    margin-right: 10px;
+}
+.Modaltitle > p {
+    padding: 10px;
+}
+.ModalCon img {
+    margin: 10px 0px;
+    width: 100%;
+}
+.ModalFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+}
+.ModalFooter >button {
+    padding: 10px 25px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    background-color: var(--btn-color);
+}

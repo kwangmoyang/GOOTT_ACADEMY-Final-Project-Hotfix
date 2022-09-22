@@ -1,0 +1,12 @@
+/*08-29 HIKARI 제작*/
+
+@font-face {
+    font-family: 'NanumSquareR';
+    src: url(/resource/font/NanumSquareR.ttf) format('truetype');
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'NanumSquareR';
+    font-size: 16.5px;
+}

@@ -1,0 +1,354 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+:root{
+    --main-black-color: rgb(29,32,34); /* 메인 블랙칼라 */
+    --main-white-color:rgb(247,247,247);  /* 메인 화이트칼라 */
+    --main-red-color: rgb(238,43,42);  /* 메인 레드 칼라 */
+    --main-text-color: rgb(247,247,247);
+
+    --teamlist-border: 1px solid gainsboro;
+    --ex-border-color: crimson;  /* 보드 테스트 레드 칼라 */
+    --new-border-orange: solid 1px rgb(235, 117, 48);
+    
+    --border-btn-radius: 5px;
+    --btn-color: rgba(255, 95, 47, 0.906);
+
+}
+input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+}
+
+/* 왼쪽 사이드 */
+.sideLeft{
+    background-color: white;
+    /* border: solid 2px var(--ex-border-color); */
+    height: 150vh;
+    width: 15%;
+    
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+
+    margin-right: 10px;
+}
+
+/* 메인섹션 */
+.main{
+    border: solid 2px #ccc;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    border-radius: 10px;
+}
+
+/* 오른쪽 사이드 */
+.sideRight{
+    background-color: white;
+    /* border: solid 2px var(--ex-border-color); */
+    /* height: 150vh; */
+    width: 15%;
+}
+
+
+
+/* ============================= */
+/* 내 프로필 및 마이페이지 내역  */
+
+
+/*! 사이드바 */
+
+/* 사이드바 리스트 */
+.myList{
+    width: 100%;
+    height: 100%;
+    border: solid 2px #ccc;
+    border-radius: 10px;
+}
+
+.myList>ul{
+    margin: 0; padding: 0;
+}
+.myList>ul>li{
+    width: 100%;
+    height: 10vh;
+    /* border: solid 3px var(--ex-border-color); */
+
+    list-style-type: none;
+    text-align: center;
+    font-size: 15px;
+
+}
+/* 프로필 이미지 부분 사이즈 조정 */
+.myList>ul>li:nth-child(1){
+    height: 30vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: nowrap;
+}
+/* 사이드바 이미지와 텍스트의 간격 */
+.myList>ul>li:nth-child(2){
+    margin-bottom: 50px;
+}
+
+/* 사이드바 이미지의 사이즈 */
+.myList>ul>li:nth-child(1)>div{
+   width: 200px;
+   height: 200px;
+
+   background-image: url(/resource/img/pepe.png);
+   border-radius: 50%;
+}
+
+
+/* 글자 간격 */
+.mypage_title{
+    margin: 15px 0;
+}
+/* ================================= */
+.myPage{
+    width: 100%;
+    height: 150vh;
+    /* border: solid 3px blue; */
+
+    padding: 0% 10%;
+
+    /* display: flex; */
+    flex-wrap: wrap;
+}
+
+.myli>a{
+    color: black;
+    text-decoration-line: none;
+}
+
+/* ================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 게시판 전체 컨테이너 */
+.board_container {
+    width: 90%;
+    height: 1050px;
+    margin: 0 auto;
+}
+/* 게시판 타이틀 */
+.board_title {
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    line-height: 100px;
+
+    /* margin-bottom: 5%; */
+}
+.board_title > h1 {
+ font-size: 35px;
+}
+
+/* 게시판 목록  */
+.board_category {
+    font-size: 20px;
+    margin-bottom: 20px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.board_category > ul > li {
+    display: inline;
+    list-style: none;
+    margin: 30px;
+}
+.board_category > ul > li a {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+.board_category > ul > li a:hover{
+    color: tomato;
+    cursor: pointer;
+}
+/* 작성하기, 검색, 최신  */
+.board_nav {
+    width: 100%;
+    height: 5vh;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+/* 검색기능 틀 */
+.board_nav_search{
+    width: 75%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid blue; */
+}
+.search{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    /* border: 1px solid green; */
+}
+/* 검색창 */
+.search-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-box form{
+    width: 65%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.search-box input[type="text"]{
+    border: var(--teamlist-border);
+    border-radius: 50px;
+    width: 65%;
+    height: 100%;
+    padding: 0 20px;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+ }
+.search-box form input[type="text"]:focus{
+    outline: none;
+}
+.searchbtn{
+    position: relative;
+    right: 6%;
+    
+    border: none;
+    background-color: white;
+}
+
+
+.board_nav>button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border: none;
+    background: var(--btn-color);
+    border-radius: 5px;
+}
+
+.board_nav_btn > select {
+    padding: 10px 20px;
+    border: none;
+    background: var(--btn-color);
+    border-radius: 5px;
+    color: white;
+}
+.board_nav_btn > select > option {
+    color: black;
+}
+
+/* 게시글 메인 컨텐츠 시작 */
+.board_main {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    border-radius: 10px;
+}
+.board_header {
+    height: 30px;
+    line-height: 30px;
+}
+.board_write {
+    width: 400px;
+    float: left;
+}
+
+.board_write>span {
+    margin: 2px;
+}
+
+.board_view {
+    float: right;
+}
+
+.board_content {
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    
+   
+}
+.board_content > span a {
+    text-decoration: none;
+    color: black;
+}
+.board_tag>span {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    margin: 5px;
+}
+
+
+/* 페이징 */
+.page_wrap {
+	text-align:center;
+	font-size:0;
+ }
+.page_nation {
+	display:inline-block;
+}
+.page_nation .none {
+	display:none;
+}
+.page_nation a {
+	display:block;
+	margin:0 3px;
+	float:left;
+	border:1px solid #e6e6e6;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#fff;
+	font-size:13px;
+	color:#999999;
+	text-decoration:none;
+}
+.page_nation .arrow {
+	border:1px solid #ccc;
+}
+.page_nation .pprev {
+	background:#f8f8f8 url('/img/arrow/page_pprev.png') no-repeat center center;
+	margin-left:0;
+}
+.page_nation .prev {
+	background:#f8f8f8 url('/img/arrow/page_prev.png') no-repeat center center;
+	margin-right:7px;
+}
+.page_nation .next {
+	background:#f8f8f8 url('/img/arrow/page_next.png') no-repeat center center;
+	margin-left:7px;
+}
+.page_nation .nnext {
+	background:#f8f8f8 url('/img/arrow/page_nnext.png') no-repeat center center;
+	margin-right:0;
+}
+.page_nation a.active {
+	background-color:#42454c;
+	color:#fff;
+	border:1px solid #42454c;
+}

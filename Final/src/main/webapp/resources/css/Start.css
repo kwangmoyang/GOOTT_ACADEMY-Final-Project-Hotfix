@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 100%;
+    display: grid;
+    grid-template-areas: 
+    "header"
+    "section"
+    "footer";
+}
+header {
+    width: 100%;
+    grid-area: header;
+    border: 1px solid red;
+}
+#mainSection{
+    width: 100%;
+    display: grid;
+    grid-area: section;
+    grid-template-areas: 
+    "Section1"
+    "Section2"
+    "Section3";
+    border: 1px solid red;
+}
+#mainSection1 {
+    width: 100%;
+    grid-area: Section1;
+    border: 1px solid red;
+}
+#mainSection2 {
+    width: 100%;
+    grid-area: Section2;
+    border: 1px solid red;
+}
+#mainSection3 {
+    width: 100%;
+    grid-area: Section3;
+    border: 1px solid red;
+}
+
+footer {
+    width: 100%;
+    grid-area: footer;
+    border: 1px solid red;
+}

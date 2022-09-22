@@ -1,0 +1,547 @@
+:root{
+    --modal-bg-color: rgba(0, 0, 0, 0.4);
+    --border-color: #e5e4e9;
+    --dark-border-color:#ccc;
+
+    --basic-white-color:white;
+    --basic-gainsboro-color:gainsboro;
+    --basic-gray-color:gray;
+    --basic-black-color:#333;
+    
+    --hover-btn-color:#e4e6f5;
+    --basic-border-radius:5px;
+    --main-border: 1px solid gainsboro;
+}
+
+/* ==========================팀정보 모달================================ */
+.modal-div{
+    background-color: var(--modal-bg-color);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+
+    display: none;
+}
+#xicon{
+    font-size: 1.5rem;
+    border-radius: var(--basic-border-radius);
+    box-shadow: 1px 1px 3px 1px var(--basic-gray-color);
+    background-color: var(--basic-white-color);
+    position: relative;
+    top: -46%;
+    left: 1%;
+    cursor: pointer;
+
+    display: none;
+
+    animation-name: opacity;
+    animation-duration: 1s;
+
+}
+#teammodal-div{
+    width: 60%;
+    height: 95%;
+    background-color: var(--basic-white-color);
+
+    animation-name: opacity;
+    animation-duration: 1s;
+}
+#team-navbar{
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+}
+#teamname a{
+    text-decoration: none;
+    color: var(--basic-black-color);
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+#teamname{
+    /* border: 1px solid red; */
+    width: 30%;
+    text-align: center;
+    padding: 5px 10px;
+}
+#team-category{
+    /* border: 1px solid red; */
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#team-category button{
+    text-decoration: none;
+    color: var(--basic-black-color);
+    letter-spacing: 1.2px;
+    background-color: var(--basic-gainsboro-color);
+    padding: 5px 10px;
+    border-radius: var(--basic-border-radius);
+    border: none;
+}
+#team-category button a{
+    color: var(--basic-black-color);
+    text-decoration: none;
+}
+#team-category button:hover{
+    background-color: var(--hover-btn-color);
+}
+#team-content{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 3px solid red;
+}
+/* 공지사항 미리보기 */
+.content-team-date{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    width: 95%;
+    height: 30%;
+    margin-top: 5%;
+}
+.content-team-date table{
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
+.content-team-date table td{
+    border: 1px solid var(--dark-border-color);
+}
+.team-content-date-detail{
+    width: 95%;
+    margin-top: 1%;
+    display: flex;
+    justify-content: flex-end;
+}
+.team-content-date-detail a{
+    text-decoration: none;
+    color: var(--basic-black-color);
+    padding: 5px 10px;
+    background-color: var(--basic-gainsboro-color);
+    border-radius: var(--basic-border-radius);
+    cursor: pointer;
+}
+
+.team-content-date-detail a:hover{
+    background-color: var(--hover-btn-color);
+}
+
+/* 팀정보 */
+.content-team-profile{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    border-radius: var(--basic-border-radius);
+    width: 95%;
+    height: 30%;
+    margin-top: 5%;
+}
+.content-team-profile div{
+    border-bottom: 1px solid var(--dark-border-color);
+    width: 100%;
+    height: 33.3%;
+    display: flex;
+    align-items: center;
+}
+/* 팀원정보 */
+.content-team-member{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    border-radius: var(--basic-border-radius);
+    width: 95%;
+    height: 60%;
+    margin-top: 5%;
+}
+.content-team-member table{
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
+.content-team-member td{
+    border: 1px solid var(--dark-border-color);
+}
+/* 페이징 */
+#teammember-paging{
+    margin-top: 2%;
+}
+#teammember-paging ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+#teammember-paging ul li{
+    padding: 0 10px;
+    margin: 0 5px;
+    background-color: var(--basic-gainsboro-color);
+    border-radius: var(--basic-border-radius);
+    cursor: pointer;
+    padding: 5px 10px;
+}
+#teammember-paging ul li:hover{
+    background-color: var(--hover-btn-color);
+}
+/* 링크 아이콘 */
+.teamicons{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 20px;
+    width: 100%;
+}
+/* 링크 */
+.linkcopy{
+    cursor: pointer;
+    border: none;
+    position: relative;
+}
+.linkcopy ion-icon{
+    font-size: 1.8rem;
+}
+
+/* 툴팁 */
+.tooltip{
+    position: absolute;
+    top: 100%;
+    left: -40%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--main-text-color);
+    border-radius: 5px;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+
+    transition: all .2s;
+    opacity: 0;
+}
+.tooltip.ani{
+    animation-name: copy;
+    animation-duration: .1s;
+}
+
+@keyframes copy {
+    0%{
+        opacity: 0.2;
+        top: 120%;
+    }
+    30%{
+        opacity: 0.5;
+        top: 115%;
+    }
+    50%{
+        opacity: 0.7;
+        top: 110%;
+    }
+    70%{
+        opacity: 0.9;
+        top: 105%;
+    }
+    100%{
+        opacity: 1;
+        top: 100%;
+    }
+}
+
+.tooltip::after{
+    content: "";
+    position: absolute;
+    top: -63%;
+    left: 35%;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.5) transparent;
+}
+
+.tooltiptwo{
+    position: absolute;
+    top: 100%;
+    left: -50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--main-text-color);
+    border-radius: 5px;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+
+    transition: all .2s;
+    opacity: 0;
+}
+
+.tooltiptwo::after{
+    content: "";
+    position: absolute;
+    top: -63%;
+    left: 35%;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
+}
+
+
+
+
+/* =============================팀만들기 모달========================================= */
+.modal2-div{
+    background-color: var(--modal-bg-color);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+
+
+    display: none;
+}
+
+#xicon2{
+    font-size: 1.5rem;
+    border-radius: var(--basic-border-radius);
+    box-shadow: 1px 1px 3px 1px var(--basic-gray-color);
+    background-color: var(--basic-white-color);
+    position: relative;
+    top: -30%;
+    left: 1%;
+    cursor: pointer;
+
+    display: none;
+
+    animation-name: opacity;
+    animation-duration: 1s;
+}
+.teammodal2-div{
+    width: 450px;
+    height: 600px;
+    background-color: var(--basic-white-color);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+
+    animation-name: opacity;
+    animation-duration: 1s;
+}
+.teammodal2-div div{
+    display: flex;
+    justify-content: center;
+}
+/* 제목 */
+.toptitle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toptitle p{
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding-bottom: 30px;
+}
+.team{
+    padding: 10px 0;
+}
+input[id="teaminput"]{
+    border: var(--main-border);
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+}
+input[id="teaminput"]:focus{
+    outline: none;
+}
+.make-btn form{
+    width: 100%;
+}
+.make-btn form button{
+    width: 100%;
+    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+    color: whitesmoke;
+    border: none;
+    padding: 15px 0;
+    cursor: pointer;
+}
+
+@keyframes opacity {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.profile, .divtwo{
+    border: 1px solid red;
+}
+.profile form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.profile form div{
+    background-color: var(--basic-gainsboro-color);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+
+    position: relative;
+}
+#teamlogoicon{
+    position: absolute;
+    top: 25%;
+    font-size: 2.5rem;
+}
+
+/* =========================팀가입 모달=============================== */
+.modal3-div{
+    background-color: var(--modal-bg-color);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+
+
+    display: none;
+}
+
+#xicon3{
+    font-size: 1.5rem;
+    border-radius: var(--basic-border-radius);
+    box-shadow: 1px 1px 3px 1px var(--basic-gray-color);
+    background-color: var(--basic-white-color);
+    position: relative;
+    top: -11.5%;
+    left: 1%;
+    cursor: pointer;
+
+    display: none;
+
+    animation-name: opacity;
+    animation-duration: 1s;
+}
+.teammodal3-div{
+    width: 450px;
+    height: 250px;
+    background-color: var(--basic-white-color);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+
+    animation-name: opacity;
+    animation-duration: 1s;
+}
+.toptitle2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toptitle2 p{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.teamjoincheck{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+    margin-top: 30px;
+}
+.teamjoincheck p{
+    font-size: 1.1rem;
+}
+.join-btn form{
+    width: 100%;
+}
+.join-btn form button{
+    width: 100%;
+    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+    color: whitesmoke;
+    border: none;
+    padding: 15px 0;
+    cursor: pointer;
+
+}
+
+/* =========================팀탈퇴 모달=============================== */
+.modal4-div{
+    background-color: var(--modal-bg-color);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+
+
+    display: none;
+}
+
+#xicon4{
+    font-size: 1.5rem;
+    border-radius: var(--basic-border-radius);
+    box-shadow: 1px 1px 3px 1px var(--basic-gray-color);
+    background-color: var(--basic-white-color);
+    position: relative;
+    top: -11.5%;
+    left: 1%;
+    cursor: pointer;
+
+    display: none;
+
+    animation-name: opacity;
+    animation-duration: 1s;
+}
+.teammodal4-div{
+    width: 450px;
+    height: 250px;
+    background-color: var(--basic-white-color);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+
+    animation-name: opacity;
+    animation-duration: 1s;
+}
+.toptitle3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toptitle3 p{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.teamsecssioncheck{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+    margin-top: 30px;
+}
+.teamsecssioncheck p{
+    font-size: 1.1rem;
+}
+.secssion-btn form{
+    width: 100%;
+}
+.secssion-btn form button{
+    width: 100%;
+    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+    color: whitesmoke;
+    border: none;
+    padding: 15px 0;
+    cursor: pointer;
+
+}

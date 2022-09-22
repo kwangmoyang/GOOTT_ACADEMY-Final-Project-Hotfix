@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="login">
+	
+	<!-- 
+	* 22-09-19 HIKARI 쿼리 작성
+	Login 진행시 사용됨
+	
+	 -->
+	
+	<!-- 아이디&비밀번호 일치 확인  -->
+	<select id="UserInfo_Chk" resultType="String">
+		select User_code, User_id, User_pw, User_name,User_nickname from 
+		User where User_id=#{User_id} and User_pw=#{User_pw};
+	</select>
+	
+	<!-- 회원정보중 일치하는 id가 있는지? -->
+	<select id="UserOnlyId_Chk" resultType="String">
+		select User_code, User_id, User_pw, User_name,User_nickname from 
+		User where User_id=#{User_id};
+	</select>
+	
+	<!-- 해당 회원의 비밀번호 틀린 cnt 호출 -->
+	<select id="Pw_Mistake_cnt" resultType="int">
+		select Pw_Mistake_cnt from User where User_id=#{User_id};
+	</select>
+	
+	<!-- 비밀번호 오류시 회원의 Pw_Mistake_cnt 증가 -->
+	<update id="Mistake_cnt_Up" parameterType="hashMap">
+		update User set Pw_Mistake_cnt = Pw_Mistake_cnt+1 where User_id=#{User_id};
+	</update>
+	
+	<!-- 비밀번호 5회 오류시 강제 비밀번호 변경 (areyouhacker?)-->
+	<update id="Change_User_pw" parameterType="hashMap">
+		update User set User_pw = "areyouhacker?" where User_id=#{User_id};
+	</update>
+	
+	
+	
+	
+	
+	
+	<!-- 가입 정보 입력 
+	<insert id="join">
+		insert into gojoin(userId, passwd, passChk, email, name,nickname)
+		values(#{userId}, #{passwd},#{passChk},#{email},#{name},#{nickname});
+	</insert>-->
+	
+</mapper>

@@ -1,0 +1,169 @@
+/* ================================================ */
+/* 메인 섹션(조원 작업존) */
+.common_section{
+    width: 100%;
+    /* height: 150vh; */
+    background-color: white;
+    min-width: 1280px;
+    /* border: 3px solid red; */
+    
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* 왼쪽 사이드 */
+.sideLeft{
+    background-color: white;
+    border: solid 2px var(--ex-border-color);
+    border: solid 2px #ccc;
+    height: 150vh;
+    width: 15%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    margin-right: 10px;
+}
+
+/* 메인섹션 */
+.main{
+    background-color: white;
+    border: solid 2px #ccc;
+    border-radius: 10px;
+    height: 150vh;
+    width: 70%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+}
+
+a {
+    /* text-decoration: none; */
+    color: black;
+}
+
+/* 관리자페이지 왼쪽 카테고리 */
+.adminList {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    /* border: 2px solid blue; */
+}
+
+.adminList > li {
+    height: 4vh;
+    line-height: 4vh;
+    list-style: none;
+    margin-top: 3vh;
+    border-radius: 5px;
+    /* border: 1px solid blue; */
+}
+
+.adminList > li > a {
+    height: 4vh;
+    text-decoration: none;
+    color: black;
+    /* border: 1px solid rgb(210, 85, 18); */
+}
+
+/* 상단 관리자페이지 카테고리 타이틀영역 */
+.adminTitle {
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vh;
+    padding-left: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+}
+/* 관리자페이지 상단 오른쪽 삭제버튼 */
+.removeBtn {
+    height: 25px;
+    border: none;
+    margin-right: 15px;
+    border-radius: 5px;
+    background: var(--btn-color);
+    color: white;
+    cursor: pointer;
+}
+/* 관리자페이지 상단 오른쪽 등록버튼 */
+.setBtn {
+    height: 25px;
+    border: none;
+    margin-right: 15px;
+    border-radius: 5px;
+    background: var(--btn-color);
+    color: white;
+    cursor: pointer;
+}
+
+/* 관리자페이지 각 카테고리별 테이블영역 */
+.adminT {
+    height: 55vh;
+    padding: 15px;
+    /* border: solid 3px rgb(77, 241, 44); */
+    
+}
+/* 관리자페이지 각 카테고리별 세부사항 수치표시버튼 */
+.adminCbtn, .admin_Membtn, .admin_Boardbtn, 
+.admin_RepBtn, .admin_AskBtn {
+    width: 105px;
+    height: 35px;
+    border: none;
+    margin-left: 8px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background: var(--btn-color);
+    color: white;
+    cursor: pointer;
+}
+.Figure, .Rep_Figure, .Ask_Figure {
+    width: 50px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    margin-left: -10px;
+    background: rgb(225, 222, 222);
+}
+.admin_Boardbtn > a {
+    text-decoration: none;
+}
+.Boardbtn_Slt {
+    width: 80px;
+    height: 30px;
+    border: none;
+    margin-right: 15px;
+    border-radius: 5px;
+    background: rgb(238, 236, 236);
+    cursor: pointer;
+}
+
+/* 카테고리별 정보 관리영역 */
+.admin_Customer {
+   width: 100%;
+   height: 40vh;
+   text-align: center;
+   border-collapse: collapse;
+}
+
+/* 회원정보 페이징 영역 */
+.admin_Paging {
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1vh;
+    /* border: 2px solid blue; */
+}
+.admin_Paging > a {
+    width: 35px;
+    height: 35px;
+    display: block;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    font-size: 13px;
+    color: black;
+    border: 1px solid grey;
+}
+

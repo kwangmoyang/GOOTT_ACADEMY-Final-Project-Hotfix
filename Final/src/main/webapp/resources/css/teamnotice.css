@@ -1,0 +1,54 @@
+:root{
+    --modal-bg-color: rgba(0, 0, 0, 0.4);
+    --border-color: #e5e4e9;
+    --dark-border-color:#ccc;
+
+    --basic-white-color:white;
+    --basic-gainsboro-color:gainsboro;
+    --basic-gray-color:gray;
+    --basic-black-color:#333;
+    --basic-border-radius:5px;
+
+    --hover-btn-color:#e4e6f5;
+}
+
+.content-team-date{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    width: 95%;
+    height: 30%;
+    /* margin-top: 5%; */
+}
+.content-team-date table{
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
+.content-team-date table td{
+    border: 1px solid var(--dark-border-color);
+}
+
+.team-content-date-detail a:hover{
+    background-color: var(--hover-btn-color);
+}
+
+/* 페이징 */
+#teammember-paging{
+    margin-top: 2%;
+    /* border: 1px solid black; */
+}
+#teammember-paging ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+#teammember-paging ul li{
+    padding: 0 10px;
+    margin: 0 5px;
+    background-color: var(--basic-gainsboro-color);
+    border-radius: var(--basic-border-radius);
+    cursor: pointer;
+}
+#teammember-paging ul li:hover{
+    background-color: var(--hover-btn-color);
+}

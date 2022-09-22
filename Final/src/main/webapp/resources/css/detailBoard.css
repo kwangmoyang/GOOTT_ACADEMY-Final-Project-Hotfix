@@ -1,0 +1,89 @@
+.detailBoard_container {
+    width: 80%;
+    height: 800px;
+    margin: 0 auto;
+}
+.detailSubTitle{
+    margin: 20px;
+}
+.detailContent {
+    margin: 0 20px;
+}
+.detailContent > p {
+    margin-top: 15px;
+}
+/* 언어 태그 */
+.detailTag {
+    height: 30px;
+    margin-top: 20px;
+} 
+.detailTag > span:first-child {
+    margin-left: 20px;
+}
+.detailTag > span:not(:first-child) {
+    margin-left: 10px;
+}
+/* 추천 비추천 */
+.detailLike {
+    width: 150px;
+    height: 30px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+.detailLike > span {
+    border: 1px solid #aaa;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+.detailLike > span:hover  {
+    border: 1px solid black;
+}
+.detailLike > span:nth-child(2) {
+    width: 50px;
+}
+.detailLike > span i {
+    font-size: 25px;
+    }
+/* 댓글 작성란 */
+.detailCommentBox {
+    width: 95%;
+    margin: 50px auto;
+}
+.detailCommentBox > textarea {
+    margin-top: 30px;
+}
+.detailCommentBox > button {
+    padding: 5px 20px;
+    font-size: 20px;
+    margin-top: 10px;
+    float: right;
+    border-radius: 5px;
+    border: none;
+    background: rgb(235, 117, 48);
+    color: white;
+}
+.commentCon {
+    border-bottom: 1px solid black;
+    height: 50px;
+}
+/* 삭제 수정 버튼 */
+.detail_btn {
+    display: flex;
+    justify-content: right;
+    
+}
+.detail_btn > button, input[type="submit"] {
+    padding: 5px 20px;
+    font-size: 20px;
+    margin: 10px 5px;
+    float: right;
+    border-radius: 5px;
+    border: none;
+    background: rgb(235, 117, 48);
+    color: white;
+}

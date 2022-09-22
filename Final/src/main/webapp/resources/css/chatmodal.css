@@ -1,0 +1,85 @@
+.modalbackground{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.modalview{
+    background-color: whitesmoke;
+    width: 55%;
+    height: 90%; 
+    border-radius: 5px;
+}
+.topbar{
+    width: 100%;
+    height: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-bottom: 1px solid gray;
+}
+.xicon{
+    font-size: 1.5rem;
+}
+.content{
+    width: 100%;
+    height: 97%;
+    display: flex;
+}
+.profilediv{
+    width: 25%;
+    height: 100%;
+}
+.requester{
+    height: 50%;
+    border-bottom: 1px solid gray;
+}
+.solution{
+    height: 50%;
+}
+.profile{
+    height: 85%;
+}
+.chating{
+    width: 75%;
+    overflow-y: scroll;
+}
+.chat{
+    height: 95%;
+    display: flex;
+    border-left: 1px solid gray;
+}
+.chatbar{
+    width: 100%;
+    height: 5%;
+}
+.chatinput{
+    width: 99%;
+    height: 85%;
+    border: 1px solid gray;
+}
+/* 말풍선 */
+.balloon{
+    list-style: none;
+    border-radius: 5px;
+    padding: 1%;
+    color: white;
+    margin-bottom: 1vh;
+}
+.chatmessage{
+    margin: 0;
+    padding: 1%;
+}
+.right{
+    background-color: #94C2ED;
+    float: right;
+}
+.left{
+    background-color: #86BB71;
+    float: left;
+}

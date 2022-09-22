@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*========== 회원가입 페이지 전체 컨테이너 ==========*/
+.join_Container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 3px solid black; */
+}
+.join_Div, #join_Form, #SNSjoin_Form {
+    width: 70%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-width: 1280px;
+    /* border: 2px solid red; */
+}
+
+/*========== 상단 핫픽스 로고 ==========*/
+.joinLogo {
+    height: 10vh;
+    margin-top: 8vh;
+    /* border: 2px solid blue; */
+}
+.joinLogo>img {
+    height: 10vh;
+    /* border: 1px solid green; */
+}
+.join_header {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid rgb(191, 104, 47); */
+}
+
+/*========== 회원일경우 로그인하기 연결 ==========*/
+.join_Login {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid violet; */
+}
+.join_Login > a {
+    color: rgb(234, 126, 18);
+}
+
+/*========== 회원가입 영역 ==========*/
+.join_id {
+    width: 33%;
+    justify-content: center;
+    /* border: 2px solid crimson; */
+}
+.join_pw, .join_pwcheck, .join_email, 
+.join_name, .join_nickname, .join_phone {
+    width: 33%;
+    margin-top: 2vh;
+    justify-content: center;
+    /* border: 2px solid crimson; */
+}
+.join_id input, .join_pw input, .join_pwcheck input,
+.join_email input, .join_name input, .join_nickname input,
+.join_phone input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 0px 20px;
+    border: 1px solid rgb(175, 175, 175);
+    outline: none;
+    font-size: 20px;
+}
+#phone1 {
+    width: 25%;
+}
+#phone2 {
+    width: 33%;
+}
+#phone3 {
+    width: 33%;
+}
+#phone_check, #number_Check {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 0;
+    outline: none;
+    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+    color: white;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer; 
+}
+
+/* ========== 회원가입 약관내용 ========== */
+.join_consent {
+    width: 33%;
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid goldenrod; */
+}
+.join_consent > a > span {
+    display: inline-block;
+    margin: 0 10px 0 10px;
+    color: rgb(234, 126, 18);
+}
+
+/*========== 회원가입 제출 영역 ==========*/
+.join_Btn {
+    width: 33%;
+    height: 6vh;
+    display: flex;
+    margin-top: 2vh;
+    /* border: 2px solid orangered; */
+}
+.join_Btn input {
+    width: 100%;
+    height: 50px;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+    color: white;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+/*========== sns 계정 회원가입 영역 ==========*/
+.sns_header {
+    width: 33%;
+    margin-top: 1vh;
+    /* border: 2px solid rgb(25, 25, 137); */
+}
+
+.join_sns {
+    width: 30%;
+    height: 12vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    /* border: 2px solid rgb(13, 184, 56); */
+}
+.join_sns>li {
+    list-style: none;
+}
+.join_sns>li>a>img{
+    width: 60px;
+    height: 60px;
+}

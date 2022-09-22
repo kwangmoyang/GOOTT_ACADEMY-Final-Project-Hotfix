@@ -1,0 +1,176 @@
+:root{
+    --main-black-color: rgb(29,32,34); /* 메인 블랙칼라 */
+    --main-text-color: rgb(247,247,247);
+
+    --teamlist-border: 1px solid gainsboro;
+    --btn-hover-gray-color:rgb(190, 189, 189);
+
+    --border-btn-radius: 5px;
+    --btn-color: rgba(255, 95, 47, 0.906);
+
+}
+/* a태그 기본 설정 */
+.main a{
+    text-decoration: none;
+    color: var(--main-black-color);
+}
+/* 제목 */
+.RmHeader{
+    text-align: center;
+    line-height: 100px;
+    height: 100px;
+}
+.RmHeader > h1 {
+    font-size: 30px;
+    font-weight: bolder;
+}
+/* 검색기능 틀 */
+.teamlistsearch{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 25px;
+}
+.search{
+    width: 100%;
+    height: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+/* 검색창 */
+.search-box{
+    width: 90%;
+    height: 75%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 70px;
+}
+.search-box form{
+    width: 45%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    position: relative;
+}
+.search-box input[type="text"]{
+    border: var(--teamlist-border);
+    border-radius: 50px;
+    width: 80%;
+    height: 100%;
+    padding: 0 20px;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+ }
+.search-box form input[type="text"]:focus{
+    outline: none;
+}
+.searchbtn{
+    position: relative;
+    right: 8%;
+    
+    border: none;
+    background-color: white;
+}
+
+/* 팀만들기 버튼 */
+.teammakingbtn{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.teammakingbtn button{
+    padding: 10px;
+    color: white;
+    background: var(--btn-color);
+    border: none;
+    border-radius: var(--border-btn-radius);
+    cursor: pointer;
+}
+/* 팀목록 가장 큰 틀 */
+.teamlistbox{
+    border-top: var(--teamlist-border);
+    border-bottom: var(--teamlist-border);
+    display: flex;
+    width: 100%;
+    min-height: 10vh;
+}
+/* 팀목록 박스 큰 틀 */
+.teamlistboxleft{
+    width: 72%;
+    padding: 2vh 0 0 0;
+}
+.teamlistboxright{
+    width: 20%;
+    border-left: var(--teamlist-border);
+    /* border: 1px solid black; */
+}
+/* 팀 프로필 이미지 */
+.img{
+    padding: 2vh 1% 1% 1%;
+    width: 8%;
+    height: 50%;
+}
+.img img{
+    width: 100%;
+    height: 100%;
+}
+/* 팀이름 */
+.teamtitle{
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 550;
+}
+.teamtitle:hover{
+    color: #0064CD;
+}
+/* 내용 */
+.teamdescription{
+    font-size: 1rem;
+    padding: 2vh 0;
+}
+/* 태그 */
+.tagbtn{
+    background-color: gainsboro;
+    border-radius: var(--border-btn-radius);
+    border: none;
+    padding: 5px 1vh;
+}
+.tagbtn:hover{
+    background-color: var(--btn-hover-gray-color);
+}
+/* 날짜 */
+.teamcreationdate{
+    padding: 1vh 0;
+}
+/* 버튼 div */
+.btndiv{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid black; */
+}
+/* 버튼들 */
+.btn{
+    border: none;
+    border-radius: var(--border-btn-radius);
+    padding: 10px 20px; 
+}
+/* 모집인원 */
+.join{
+    background: var(--btn-color);
+    color: var(--main-text-color);
+    cursor: pointer;
+}
+/* 페이징 */
+.teamlistpaging{
+    height: 5%;
+}
+

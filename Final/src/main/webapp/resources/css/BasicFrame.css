@@ -1,0 +1,307 @@
+*{ box-sizing: border-box;  margin: 0px; }
+
+:root{
+    --main-black-color: rgb(29,32,34); /* 硫붿씤 釉붾옓移쇰씪 */
+    --main-white-color:rgb(247,247,247);  /* 硫붿씤 �솕�씠�듃移쇰씪 */
+    --main-red-color: rgb(238,43,42);  /* 硫붿씤 �젅�뱶 移쇰씪 */
+    --main-text-color: rgb(247,247,247);
+
+    --ex-border-color: crimson;  /* 蹂대뱶 �뀒�뒪�듃 �젅�뱶 移쇰씪 */
+}
+
+.container{
+  padding-top: 5%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* =============�뿤�뜑 �쟾泥댄�============ */
+.common_header{
+    width: 100%;
+    height: 8vh; 
+    min-width: 1280px;
+    
+    /* fixed 二쇱꽍 泥섎━�븯硫� �썝�옒�긽�깭濡� 諛붾�� */
+    position: fixed;
+    z-index: 100;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: solid 2px #ccc; */
+
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+}
+
+
+
+/* �뿤�뜑 �쇊履� */
+.common_header_left{
+    width: 10%;
+    height: 100%;
+    /* border: 2px solid pink; */
+
+    /* color: black; */
+    /* 09.05 濡쒓퀬 而ㅼ꽌:�룷�씤�꽣 異붽� -SEO */
+}
+.common_header_left>a>img{
+    width: 80%;
+    height: 100%;
+    cursor: pointer;
+    object-fit: contain;
+}
+/* �뿤�뜑 媛��슫�뜲 */
+.common_header_center{
+    width: 60%;
+    height: 100%;
+    /* border: 2px solid pink; */
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* �뿤�뜑 移댄뀒怨좊━ */
+.header_menu{
+    display: flex;
+    align-items: center;
+    line-height: 45px;
+    margin: 0; padding: 0;
+}
+.header_menu>li{
+    width: 130px;
+    height: 50px;
+    /* border: 2px solid pink; */
+
+
+    font-size: 20px;
+    list-style-type: none;
+    text-align: center;
+}
+
+.header_menu>li>a{
+    color:rgba(25, 25, 25, 1) ;
+    text-decoration: none;
+}
+
+.header_menu>li>a:hover{
+    color:  rgba(248,58,37,1);
+}
+
+/* �뿤�뜑 �삤瑜몄そ */
+.common_header_right{
+    width: 10%;
+    height: 100%;
+    /* border: 2px solid pink; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* 留덉씠�럹�씠吏�, �븣�엺湲곕뒫 */
+
+.user,.alarm{
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: nowrap;
+    position: relative;
+    /* border: solid 2px red;   */
+
+}
+
+.user>div,.alarm>div{
+    width: 4.5vh;
+    height: 4.5vh;
+  
+    border: solid 2px red;  
+    border-radius: 50%;
+   
+    position: absolute;
+    /* 09.05 濡쒓퀬 而ㅼ꽌:�룷�씤�꽣 異붽� -SEO */
+    cursor: pointer;
+    
+}
+/* �뿤�뜑 �쑀�� �뱶濡��떎�슫 */
+/* 0905 而ㅼ꽌�룷�씤�꽣 異붽� SEO */
+.user>ul{   
+    border: solid 2px #ccc;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin: 0; padding: 0;
+
+    width: 200px;
+    height: 300px;
+
+    position: absolute;
+    z-index: 100;
+    top: 75px;
+    right: -98px;
+    cursor: pointer;
+
+    display: none;
+}
+/* �샇踰꾩떆 諛깃렇�씪�슫�뱶 而щ윭 蹂�寃� SEO*/
+.user>ul>li:hover{
+    background-color: rgb(242, 242, 242);
+    /* color: var(--main-red-color); */
+}   
+
+.user>ul>li,.alarm>ul>li{   
+    /* border: solid 2px red;   */
+
+    width: 100%;
+    /* height 移섏슦怨� �옄�룞�쑝濡� �넂�씠 留욎텛�뒗寃� 源붾걫�빐�꽌 �씪�떒 二쇱꽍泥섎━ �뻽�뒾�떎 -SEO */
+    /* height: 20%; */
+
+    list-style-type: none;
+    line-height: 40px;
+    padding-left: 10px;   
+}
+
+.user>ul>li>a{
+    color: black;
+    text-decoration-line: none;
+}
+
+
+
+/* �뿤�뜑 �븣�엺 �뱶濡��떎�슫 */
+/* 0905 而ㅼ꽌�룷�씤�꽣 異붽� SEO */
+.alarm>ul{   
+    border: solid 2px #ccc;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin: 0; padding: 0;
+    
+    width: 400px;
+    height: 300px;
+    
+    position: absolute;
+    z-index: 100;
+    top: 75px;
+    right: 0px;
+    
+    display: none;
+    overflow-y: scroll;
+    cursor: pointer;
+}
+
+.alarm>ul>li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.alarm>ul>li>span:nth-child(1){
+    /* border: 1px solid blue; */
+    width: 250px;
+    height: 30px;
+    font-size: 15px;
+    /* text-align: center; */
+    overflow: hidden;
+    
+    line-height: 30px;
+}
+.alarm>ul>li>span:nth-child(2){
+    border: 1px solid #ccc;
+    background-color: pink;
+    border-radius: 5px;
+    width: 50px;
+    height: 30px;   
+    
+    font-size: 10px;
+    text-align: center;
+
+    padding: 0;
+    line-height: 30px;
+}
+
+/* �샇踰꾩떆 諛깃렇�씪�슫�뱶 而щ윭 蹂�寃� SEO*/
+.alarm>ul>:hover {
+    background-color: rgb(242, 242, 242);
+}
+
+
+
+/* ================================================ */
+
+/* 硫붿씤 �꽮�뀡(議곗썝 �옉�뾽議�) */
+.common_section{
+    width: 100%;
+    /* height: 150vh; */
+    background-color: white;
+    min-width: 1280px;
+
+    /* border: 3px solid red; */
+    
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* 硫붿씤�꽮�뀡 */
+.main{
+    background-color: white;
+    border: solid 2px var(--ex-border-color);
+    
+    /* height: 100%; */
+    width: 70%;
+}
+
+/* �삤瑜몄そ �궗�씠�뱶 */
+.sideRight{
+    background-color: white;
+    border: solid 2px var(--ex-border-color);
+    /* height: 150vh; */
+    width: 15%;
+}
+
+/* ====================�뫖�꽣=================== */
+/* SEO �뫖�꽣�옉�뾽�븿 �븘吏� �븞�걹�궓 議곗죱�쓬*/
+.common_footer{
+    width: 100vw;
+    height: 20vh;
+    min-width: 1280px;
+    border: solid 2px #ccc;
+    background-color: white;
+    display: grid;
+    grid-template-areas: 
+    "foter footer footer";
+
+    /* HIKARI 硫붿씤�꽮�뀡�씠�옉 �쓣�뼱�넃�쓬 */
+    margin-top: 3%;
+}
+.common_footer :nth-child(1){
+    background-color: lightblue;
+    width: 15vw;
+    height: 20vh;
+    grid-area: foter;
+}
+.common_footer :nth-child(2){
+    background-color: lightcoral;
+    width: 70vw;
+    height: 20vh;
+    grid-area: footer;
+}
+.common_footer :nth-child(3){
+    background-color: lightgreen;
+    width: 15vw;
+    height: 20vh;
+    grid-area: footer;
+}
+
+

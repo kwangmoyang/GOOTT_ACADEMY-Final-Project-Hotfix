@@ -1,0 +1,120 @@
+
+
+/* ------------------------------------------결제페이지 */
+/* 전체 컨테이너 */
+.CashContainer {
+    margin: auto;
+    width: 1200px;
+    height: 100vh;
+}
+/* 헤더 */
+.CashHeader {
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.CashFixWrap {
+    height: 300px;
+    position: relative;
+}
+.CashFixCon {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 100%;
+    width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.CashFix {
+    width: 250px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.Fix {
+    font-size: 20px;
+    height: 75px;
+    line-height: 75px;
+}
+.Fix > i{
+    margin-right: 15px;
+}
+.Fix > button {
+    width: 140px;
+    height: 40px;
+}
+/* 결제 수단 선택 */
+.CashOption {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.CashPayment{
+    height: 100px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(155, 152, 152);
+}
+.CashPayment:last-child {
+    margin-left: 280px;
+}
+.CashPayment input {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+.CashPayment img {
+    width: 200px;
+}
+/* 결제인 정보 */
+.CashInpo {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.CashPhone {
+    height: 150px;
+    width: 800px;
+    margin-left: 40px;
+}
+
+.CashPhone span input {
+    width: 60px;
+    padding: 5px;
+    margin-left: 5px;
+}
+.CashPhone span:nth-child(2) {
+    margin-left: 30px;
+}
+.CashPhone span:nth-child(2) input {
+    width: 250px;
+    padding: 5px;
+}
+.CashPhone p {
+    margin-top: 30px;
+    font-size: 15px;
+}
+.PayBtnBox {
+    display: flex;
+    justify-content: center;
+}
+.PayBtn {
+    padding: 10px 30px;
+    background: rgb(235, 117, 48);
+    color: white;
+    font-size: 20px;
+    border: none;
+    width: 200px;
+    margin-top: 20px;
+}
+

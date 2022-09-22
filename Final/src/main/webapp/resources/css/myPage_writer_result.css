@@ -1,0 +1,473 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+:root{
+    --main-black-color: rgb(29,32,34); /* 메인 블랙칼라 */
+    --main-white-color:rgb(247,247,247);  /* 메인 화이트칼라 */
+    --main-red-color: rgb(238,43,42);  /* 메인 레드 칼라 */
+    --main-text-color: rgb(247,247,247);
+    
+    --teamlist-border: 1px solid gainsboro;
+    --ex-border-color: crimson;  /* 보드 테스트 레드 칼라 */
+    --new-border-orange: solid 1px rgb(235, 117, 48);
+    
+    --border-btn-radius: 5px;
+    --btn-color: rgba(255, 95, 47, 0.906);
+
+}
+input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+}
+
+.guide{
+    text-align: center;
+    margin-bottom: 3%;
+    color: var(--main-red-color);
+}
+
+/* 왼쪽 사이드 */
+.sideLeft{
+    background-color: white;
+    /* border: solid 2px var(--ex-border-color); */
+    height: 150vh;
+    width: 15%;
+    
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+
+    margin-right: 10px;
+}
+
+/* 메인섹션 */
+.main{
+    border: solid 2px #ccc;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    border-radius: 10px;
+}
+
+/* 오른쪽 사이드 */
+.sideRight{
+    background-color: white;
+    /* border: solid 2px var(--ex-border-color); */
+    /* height: 150vh; */
+    width: 15%;
+}
+
+
+
+/* ============================= */
+/* 내 프로필 및 마이페이지 내역  */
+
+
+/*! 사이드바 */
+
+/* 사이드바 리스트 */
+.myList{
+    width: 100%;
+    height: 100%;
+    border: solid 2px #ccc;
+    border-radius: 10px;
+}
+
+.myList>ul{
+    margin: 0; padding: 0;
+}
+.myList>ul>li{
+    width: 100%;
+    height: 10vh;
+    /* border: solid 3px var(--ex-border-color); */
+
+    list-style-type: none;
+    text-align: center;
+    font-size: 15px;
+
+}
+/* 프로필 이미지 부분 사이즈 조정 */
+.myList>ul>li:nth-child(1){
+    height: 30vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: nowrap;
+}
+/* 사이드바 이미지와 텍스트의 간격 */
+.myList>ul>li:nth-child(2){
+    margin-bottom: 50px;
+}
+
+/* 사이드바 이미지의 사이즈 */
+.myList>ul>li:nth-child(1)>div{
+   width: 200px;
+   height: 200px;
+
+   background-image: url(/resource/img/pepe.png);
+   border-radius: 50%;
+}
+
+
+/* 글자 간격 */
+.mypage_title{
+    margin: 15px 0;
+}
+/* ================================= */
+.myPage{
+    width: 100%;
+    height: 150vh;
+    /* border: solid 3px blue; */
+
+    padding: 0% 10%;
+
+    /* display: flex; */
+    flex-wrap: wrap;
+}
+
+.myli>a{
+    color: black;
+    text-decoration-line: none;
+}
+
+/* ================================= */
+
+/* 게시판 전체 컨테이너 */
+.board_container {
+    width: 90%;
+    height: 1050px;
+    margin: 0 auto;
+}
+/* 게시판 타이틀 */
+.board_title {
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    line-height: 100px;
+
+    /* margin-bottom: 5%; */
+}
+.board_title > h1 {
+ font-size: 35px;
+}
+
+/* 게시판 목록  */
+.board_category {
+    font-size: 20px;
+    margin-bottom: 20px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.board_category > ul > li {
+    display: inline;
+    list-style: none;
+    margin: 30px;
+}
+.board_category > ul > li a {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+.board_category > ul > li a:hover{
+    color: tomato;
+    cursor: pointer;
+}
+/* 작성하기, 검색, 최신  */
+.board_nav {
+    width: 100%;
+    height: 5vh;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+/* 검색기능 틀 */
+.board_nav_search{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid blue; */
+}
+.search{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    /* border: 1px solid green; */
+}
+/* 검색창 */
+.search-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-box form{
+    width: 65%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.search-box input[type="text"]{
+    border: var(--teamlist-border);
+    border-radius: 50px;
+    width: 65%;
+    height: 100%;
+    padding: 0 20px;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+ }
+.search-box form input[type="text"]:focus{
+    outline: none;
+}
+.searchbtn{
+    position: relative;
+    right: 6%;
+    
+    border: none;
+    background-color: white;
+}
+
+.board_nav>button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border: none;
+    background: var(--btn-color);
+    border-radius: 5px;
+}
+
+
+.board_nav_btn > select {
+    padding: 10px 20px;
+    border: none;
+    background: var(--btn-color);
+    border-radius: 5px;
+    color: white;
+}
+.board_nav_btn > select > option {
+    color: black;
+}
+
+/* ==============게시판 내용=================== */
+.RmContainer {
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+}
+.RmHeader {
+    text-align: center;
+    line-height: 100px;
+    height: 100px;
+}
+.RmHeader > h1 {
+    font-size: 30px;
+    font-weight: bolder;
+}
+/* 버튼, 서치바 */
+.RmSubtitle {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px;
+}
+.RmSubtitle button {
+    padding: 5px 20px;
+}
+
+/* 요청서 작성 */
+.RmWriteRequest {
+    width: 33%;
+}
+.RmWriteRequest > button {
+    border: none;
+    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+/* 전체 드롭다운 */
+.Rmlist {
+    width: 33%;
+    position: relative;
+	display: inline-block;
+    text-align: right;
+}
+.Rmlist > select {
+    padding: 10px 20px;
+    border: none;
+    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+    border-radius: 5px;
+    color: white;
+}
+.Rmlist > select > option {
+    color: black;
+}
+
+/* 서치바 */
+.RmSearchbar {
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 33%;
+    padding: 5px;
+}
+.RmSearchbar > i {
+    padding-right: 5px;
+}
+.RmSearchbar>input {
+    border: none;
+    outline: none;
+}
+
+
+/* 해결 게시판 */
+.RmBoard {
+    margin: 30px auto;
+    width: 95%;
+    height: 180px;
+    background-color: #ccc;
+    border-radius: 5px;
+    display: flex;
+
+}
+/* 해결 게시판 왼쪽 */
+.RmBoardLeft {
+    width: 70%;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    border-right: 1px solid #aaa;
+}
+
+.RmBoardLeft > p {
+    margin: 15px 20px;
+}
+.RmBoardLeft > p:nth-child(1) {
+    font-size: 30px;
+    color: red;
+}
+/* 해결 게시판 오른쪽 */
+.RmBoardRight {
+    display: flex;
+    justify-content:center;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 30%;
+}
+.RmBoardRight > p {
+    margin: 5px 30px;
+}
+.RmBoardRight > button {
+    margin: 10px 30px;
+    padding: 12px 20px;
+    border: none;
+    color: white;
+    background-color: rgb(234, 126, 18);
+    border-radius: 5px;
+}
+/* --------모달------------- */
+/* 스크롤막기 */
+html, body {
+    overflow: auto;
+    height: 100%;
+  }
+
+.RmContainer {
+    position: relative;
+}
+
+.RmModal_wrap {
+    display: none;
+    width: 60%;
+    height: 80%;
+    position: absolute;
+    border: 2px solid black;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background:#eee;
+    z-index: 2;
+    overflow: auto;
+    
+}
+.RmModal_background {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0,0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+.RmModal_close {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.RmModal_close i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 50px;
+}
+
+.RmModal_wrap .ModalText {
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+.modal_close .closeImg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.ModalText > h1 {
+    font-size: 35px;
+    color: red;
+    text-align: center;
+}
+.ModalHeader {
+    margin: 10px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ModalHeader > p:nth-child(1) {
+    margin-right: 10px;
+}
+.Modaltitle > p {
+    padding: 10px;
+}
+.ModalCon img {
+    margin: 10px 0px;
+    width: 100%;
+}
+.ModalFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+}
+.ModalFooter >button {
+    padding: 10px 25px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    background-color: rgb(234, 126, 18);
+}

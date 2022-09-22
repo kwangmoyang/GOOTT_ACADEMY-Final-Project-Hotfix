@@ -1,0 +1,130 @@
+.dpContainer {
+    width: 90%;
+    margin: 0 auto;
+}
+.dpSubBox {
+    height: 150px;
+    display: flex;
+    justify-content: space-around;
+}
+.dpGetPoint {
+    border-right: 1px solid #aaa;
+    height: 100px;
+    margin-top: 30px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.dpGetPoint > span {
+    font-size: 30px;
+    font-weight: bolder;
+    color: black;
+}
+.dpGetPoint:nth-child(3) {
+    border-right: none;
+}
+.dpGetPoint button {
+    padding: 5px 15px;
+    color: white;
+    background-color: blueviolet;
+    border: none;
+    border-radius: 5px;
+}
+/* 내역 조회 */
+.dpListDate {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.dpListDate span {
+    font-weight: bolder;
+    margin-right: 5px;
+    border-bottom: 1px solid #bbb;
+}
+.dpListDate > input {
+    padding: 1px 15px;
+    margin: 0 5px;
+}
+.dpListDate > select {
+    margin: 0 20px;
+    padding: 3px 25px;
+}
+.dpListDate button {
+    padding: 0 20px;
+    background: rgb(235, 117, 48);
+    border: none;
+}
+/* 내역 리스트 목록 */
+.dpListTitle {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.dpList {
+    height: 150px;
+    display: flex;
+}
+.dpListLeft {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dpListCir {
+    border: 1px solid red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    color: red;
+}
+.dpListMid {
+    width: 60%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 40px;
+}
+.dpListMid > span:nth-child(1) {
+    opacity: 0.5;
+}
+.dpListMid > span:nth-child(3) {
+    opacity: 0.5;
+    margin-top: 10px;
+    font-size: 13px;
+}
+.dpListRight{
+    width: 20%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    padding-right: 30px;
+}
+.dpListRight > button{
+    margin-top: 5px;
+    opacity: 0.6;
+    width: 60px;
+    height: 20px;
+    font-size: 10px;
+}
+/* 적립 */
+.save > .dpListLeft .dpListCir {
+    border: 1px solid blue;
+    color: blue;
+}
+.charge > .dpListLeft .dpListCir {
+    border: 1px solid green;
+    color: green;
+}
+.get > .dpListLeft .dpListCir {
+    border: 1px solid violet;
+    color: violet;
+}

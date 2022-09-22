@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hotfix">
+	<insert id="insert" parameterType="hashMap" useGeneratedKeys="true" keyProperty="">  
+	    <![CDATA[
+	    insert into Board()
+   		values()
+	    ]]>
+	</insert>
+	
+	<select id="list" parameterType="hashMap" resultType="hashMap">
+		select Team_code, Team_name, Team_intro, Team_cr_date from Team
+		<if test="keyword != null and keyword != ''">
+			where 1=1 and (Team_name like CONCAT('%', #{keyword}, '%')) or (Team_intro like CONCAT('%', #{keyword}, '%')) or (Team_cr_date like CONCAT('%', #{keyword}, '%'))
+		</if>
+		order by Team_cr_date DESC;    
+	</select>
+	
+	<select id="taglist" parameterType="hashMap" resultType="hashMap">
+		 select s.Skill_name, t.Team_name from Skilldate_has_Team sh 
+			inner join Skilldate s on s.Skill_code = sh.Skilldate_Skill_code
+			right outer join Team t on t.Team_code = sh.Team_Team_code
+			
+			<if test="Team_name != null and Team_name != ''">
+				where t.Team_name = #{Team_name}		
+			</if>
+	</select>
+	
+</mapper>

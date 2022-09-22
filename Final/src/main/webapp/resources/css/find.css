@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*========== 계정찾기 페이지 전체 컨테이너 ==========*/
+.find_Container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 3px solid black; */
+}
+.find_Div {
+    width: 70%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-width: 1280px;
+    /* border: 2px solid red; */
+}
+
+/*========== 상단 핫픽스 로고 ==========*/
+.findLogo {
+    height: 10vh;
+    margin-top: 8vh;
+    /* border: 2px solid blue; */
+}
+.findLogo>img {
+    height: 10vh;
+    /* border: 1px solid green; */
+}
+.find_Header {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid rgb(191, 104, 47); */
+}
+
+/*========== 아이디, 비밀번호 찾기 영역 ========== */
+.find_Area {
+    width: 33%;
+    height: 7vh;
+    display: flex;
+    margin-top: 2vh;
+}
+.find_Area input {
+    width: 100%;
+    height: 50px;
+    margin-left: 3px;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    background: rgb(235, 117, 48);
+    color: white;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+/*======= 방법 선택해서 아이디 or 비밀번호 찾기 영역 =======*/
+.find_ChoiceId, .find_ChoicePw, .find_ID, 
+.find_Email, .find_Phone {
+    width: 33%;
+    justify-content: center;
+    margin-bottom: 2vh;
+    /* border: 2px solid crimson; */
+}
+.find_ChoiceId > h4, .find_ChoicePw > h4 {
+    font-weight: lighter;
+}
+.find_ID input, .find_Email input, .find_Phone input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 0px 20px;
+    border: 1px solid rgb(175, 175, 175);
+    outline: none;
+    font-size: 20px;
+}
+#find_Phone1 {
+    width: 25%;
+}
+#find_Phone2 {
+    width: 33%;
+}
+#find_Phone3 {
+    width: 33%;
+}
+
+/*========== 계정찾기 제출 영역 ==========*/
+.find_BtnId, .find_BtnPw {
+    width: 33%;
+    height: 7vh;
+    display: flex;
+    margin-bottom: 2vh;
+    /* border: 2px solid orangered; */
+}
+.find_BtnId input, .find_BtnPw input {
+    width: 100%;
+    height: 50px;
+    margin-left: 3px;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    background: rgb(235, 117, 48);
+    color: white;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}

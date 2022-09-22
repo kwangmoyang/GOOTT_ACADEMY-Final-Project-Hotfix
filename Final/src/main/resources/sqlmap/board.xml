@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+<select id="list" parameterType="hashMap" resultType="hashMap">
+		select Board_code, Board_name, Post_writer, Post_num, Post_title, Post_content, Post_like, Post_cr_date,
+		Post_up_date, Post_de_date, User_code, Post_hit, Post_tag from Board;
+		
+</select>
+
+<insert id="insert" parameterType="hashMap">
+	INSERT INTO Board (Board_code, Board_name, Post_writer, Post_title, Post_content, Post_like, post_cr_date, post_up_date, post_de_date, User_code, Post_hit, Post_tag)
+ VALUES (#{Board_code},#{Board_name},#{Post_writer},#{Post_title},#{Post_content},#{Post_like},#{post_cr_date},#{post_up_date},#{post_de_date},#{User_code},#{Post_hit},#{Post_tag})
+<!--  1, '공지', '수근', '타이틀', '내용' ,1, now() , now() , now(), 1, 1, 'tag'); -->
+</insert>
+	
+	
+</mapper>
