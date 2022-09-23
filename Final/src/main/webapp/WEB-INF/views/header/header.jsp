@@ -13,7 +13,7 @@
                 <li><a href="../resolveMain.html">HOTFIX</a></li>
                 <li><a href="../team/teamlist.html">팀페이지</a></li>
                 <li><a href="../ranking/ranking.html">랭킹</a></li>
-                <li><a href="../board/lifeBoard.html">커뮤니티</a></li>
+                <li><a href="/list">커뮤니티</a></li>
             </ul>
             
         </div>

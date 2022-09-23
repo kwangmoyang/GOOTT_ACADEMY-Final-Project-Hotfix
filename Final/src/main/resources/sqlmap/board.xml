@@ -3,16 +3,38 @@
 <mapper namespace="board">
 
 <select id="list" parameterType="hashMap" resultType="hashMap">
-		select Board_code, Board_name, Post_writer, Post_num, Post_title, Post_content, Post_like, Post_cr_date,
-		Post_up_date, Post_de_date, User_code, Post_hit, Post_tag from Board;
-		
+		select Board_code, Post_num, Post_writer, Post_title, Post_contents,
+		 Post_view, Post_like, Post_cr_date, Post_up_date, Post_de_date, 
+		 Post_status from Board 
+</select>
+<!--태그 눌렀을떄 select-->
+<select id="TopicList" parameterType="hashMap" resultType="hashMap">
+		select Board_code, Post_num, Post_writer, Post_title, Post_contents,
+		 Post_view, Post_like, Post_cr_date, Post_up_date, Post_de_date, 
+		 Post_status from Board where Board_code = #{Board_code}
 </select>
 
 <insert id="insert" parameterType="hashMap">
-	INSERT INTO Board (Board_code, Board_name, Post_writer, Post_title, Post_content, Post_like, post_cr_date, post_up_date, post_de_date, User_code, Post_hit, Post_tag)
- VALUES (#{Board_code},#{Board_name},#{Post_writer},#{Post_title},#{Post_content},#{Post_like},#{post_cr_date},#{post_up_date},#{post_de_date},#{User_code},#{Post_hit},#{Post_tag})
-<!--  1, '공지', '수근', '타이틀', '내용' ,1, now() , now() , now(), 1, 1, 'tag'); -->
+	INSERT INTO Board (Board_code, Post_writer, Post_title, Post_contents) 
+ VALUES (#{Board_code},#{Post_writer},#{Post_title},#{Post_contents})
 </insert>
-	
+<select id ="detail" parameterType="hashMap" resultType="hashMap">
+ 	select Board_code, Post_num, Post_writer, Post_title, Post_contents,
+		 Post_view, Post_like, Post_cr_date, Post_up_date, Post_de_date, 
+		 Post_status from Board where Post_num = #{Post_num};
+</select>
+<update id="update" parameterType="hashMap">
+		update Board
+		set Board_code=#{Board_code}, Post_title=#{Post_title}, Post_contents=#{Post_contents}
+		where Post_num=#{Post_num}
+</update>
+
+<update id="viewCount">
+	UPDATE Board SET post_view = post_view + 1 WHERE post_num = #{post_num}
+</update>
+
+<delete id ="delete" parameterType="hashMap">
+	delete from Board where Post_num = #{Post_num};
+</delete>	
 	
 </mapper>
