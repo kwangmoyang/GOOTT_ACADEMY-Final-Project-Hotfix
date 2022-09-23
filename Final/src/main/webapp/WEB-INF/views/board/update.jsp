@@ -47,7 +47,7 @@
                 <div class="WF_topic_box">
                     <p>토픽</p>
                     <select name="Board_code">
-                        <option value="" selected="selected">토픽을 선택해주세요</option>
+                        <option value="" selected="selected">${data.Board_code}</option>
                         <option value="일상">일상</option>
                         <option value="컬럼">컬럼</option>
                         <option value="커리어">커리어</option>
@@ -56,18 +56,18 @@
                 </div>
                  <div class="WF_input_box">
                     <p>작성자</p>
-                    <input type="text" placeholder="작성자를 입력하세요" name="Post_writer" id="Post_writer" >
+                    <input type="text" placeholder="작성자를 입력하세요" name="Post_writer" id="Post_writer" value="${ data.Post_writer }" >
                 </div>
                 <div class="WF_input_box">
                     <p>제목</p>
-                    <input type="text" placeholder="제목을 입력하세요" name="Post_title" id="Post_title" >
+                    <input type="text" placeholder="제목을 입력하세요" name="Post_title" id="Post_title" value="${ data.Post_title }">
                 </div>
                 <div class="WF_detail_box">
                     <p>상세정보</p>
                   
                        
                        <textarea name="Post_contents" id="Post_contents" rows="20" cols="100" placeholder="내용을 입력해주세요"
-                           style="width: 100%"></textarea>
+                           style="width: 100%">${data.Post_contents }</textarea>
                       
 		               <script type="text/javascript">   // 글쓰기 editor
 					   CKEDITOR.replace('Post_contents',

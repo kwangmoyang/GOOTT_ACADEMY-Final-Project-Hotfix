@@ -1,5 +1,5 @@
 :root{
-    --main-black-color: rgb(29,32,34); /* 메인 블랙칼라 */
+    --main-black-color: rgb(29,32,34); /* 筌롫뗄�뵥 �뇡遺얠삌燁살눖�뵬 */
     --main-text-color: rgb(247,247,247);
 
     --teamlist-border: 1px solid gainsboro;
@@ -9,12 +9,12 @@
     --btn-color: rgba(255, 95, 47, 0.906);
 
 }
-/* a태그 기본 설정 */
+/* a占쎄묶域뱄옙 疫꿸퀡�궚 占쎄퐬占쎌젟 */
 .main a{
     text-decoration: none;
     color: var(--main-black-color);
 }
-/* 제목 */
+/* 占쎌젫筌륅옙 */
 .RmHeader{
     text-align: center;
     line-height: 100px;
@@ -24,7 +24,7 @@
     font-size: 30px;
     font-weight: bolder;
 }
-/* 검색기능 틀 */
+/* 野껓옙占쎄퉳疫꿸퀡�뮟 占쏙옙 */
 .teamlistsearch{
     width: 100%;
     height: 10vh;
@@ -39,7 +39,7 @@
     align-items: center;
     justify-content: center; 
 }
-/* 검색창 */
+/* 野껓옙占쎄퉳筌∽옙 */
 .search-box{
     width: 90%;
     height: 75%;
@@ -75,9 +75,10 @@ input:-webkit-autofill {
     
     border: none;
     background-color: white;
+    cursor: pointer;
 }
 
-/* 팀만들기 버튼 */
+/* 占쏙옙筌띾슢諭얏묾占� 甕곌쑵�뱣 */
 .teammakingbtn{
     width: 10%;
     display: flex;
@@ -92,7 +93,7 @@ input:-webkit-autofill {
     border-radius: var(--border-btn-radius);
     cursor: pointer;
 }
-/* 팀목록 가장 큰 틀 */
+/* 占쏙옙筌뤴뫖以� 揶쏉옙占쎌삢 占쎄쿃 占쏙옙 */
 .teamlistbox{
     border-top: var(--teamlist-border);
     border-bottom: var(--teamlist-border);
@@ -100,7 +101,7 @@ input:-webkit-autofill {
     width: 100%;
     min-height: 10vh;
 }
-/* 팀목록 박스 큰 틀 */
+/* 占쏙옙筌뤴뫖以� 獄쏅벡�뮞 占쎄쿃 占쏙옙 */
 .teamlistboxleft{
     width: 72%;
     padding: 2vh 0 0 0;
@@ -110,7 +111,7 @@ input:-webkit-autofill {
     border-left: var(--teamlist-border);
     /* border: 1px solid black; */
 }
-/* 팀 프로필 이미지 */
+/* 占쏙옙 占쎈늄嚥≪뮉釉� 占쎌뵠沃섎챷占� */
 .img{
     padding: 2vh 1% 1% 1%;
     width: 8%;
@@ -120,7 +121,7 @@ input:-webkit-autofill {
     width: 100%;
     height: 100%;
 }
-/* 팀이름 */
+/* 占쏙옙占쎌뵠�뵳占� */
 .teamtitle{
     display: inline-block;
     cursor: pointer;
@@ -130,26 +131,24 @@ input:-webkit-autofill {
 .teamtitle:hover{
     color: #0064CD;
 }
-/* 내용 */
+/* 占쎄땀占쎌뒠 */
 .teamdescription{
     font-size: 1rem;
     padding: 2vh 0;
 }
-/* 태그 */
+/* 占쎄묶域뱄옙 */
 .tagbtn{
     background-color: gainsboro;
     border-radius: var(--border-btn-radius);
     border: none;
     padding: 5px 1vh;
 }
-.tagbtn:hover{
-    background-color: var(--btn-hover-gray-color);
-}
-/* 날짜 */
+
+/* 占쎄텊筌욑옙 */
 .teamcreationdate{
     padding: 1vh 0;
 }
-/* 버튼 div */
+/* 甕곌쑵�뱣 div */
 .btndiv{
     height: 100%;
     display: flex;
@@ -157,19 +156,19 @@ input:-webkit-autofill {
     justify-content: center;
     /* border: 1px solid black; */
 }
-/* 버튼들 */
+/* 甕곌쑵�뱣占쎈굶 */
 .btn{
     border: none;
     border-radius: var(--border-btn-radius);
     padding: 10px 20px; 
 }
-/* 모집인원 */
+/* 筌뤴뫁彛쏉옙�뵥占쎌뜚 */
 .join{
     background: var(--btn-color);
     color: var(--main-text-color);
     cursor: pointer;
 }
-/* 페이징 */
+/* 占쎈읂占쎌뵠筌욑옙 */
 .teamlistpaging{
     height: 5%;
 }

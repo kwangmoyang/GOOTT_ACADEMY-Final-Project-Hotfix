@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../resources/css/BasicFrame.css">
-    <link rel="stylesheet" href="../resources/css/myPage.css">
-    <link rel="stylesheet" href="../resources/css/global.css">
-    <link rel="stylesheet" href="../resources/css/MainPage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/BasicFrame.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/MainPage.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <!-- 유니콘 아이콘 사이트 -->
@@ -23,7 +23,7 @@
 
       <%@ include file="/WEB-INF/views/header/header.jsp" %>
 
-      <h1> 아아아아아아아아 </h1>
+
     <div class="container">
         <!-- ======================== 작업 섹션 ======================= -->
   
