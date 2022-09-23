@@ -9,9 +9,11 @@ public interface Teamlistservice {
 
 	int insert(Map<String, Object> map);
 
-	List<TeamlistDTO> list(Map<String, Object> map);
+	List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword);
 
-	List<TeamlistDTO> taglist(Map<String, Object> map);
+	List<Map<String, Object>> taglist(Map<String, Object> map, String search_option, String keyword);
+
+	List<Map<String, Object>> click_taglist(Map<String, Object> map, String tagname);
 
 	
 }

@@ -1,6 +1,7 @@
 package com.Final.Final1.team.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,31 +20,45 @@ public class Teamlistcontroller {
 	@Autowired
 	Teamlistservice teamlistservice;
 	
-	@RequestMapping(value="/teamlist", method = RequestMethod.GET)
-	public ModelAndView teamlist(@RequestParam Map<String, Object> map) {
-
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/team/teamlist");
-		mv.addObject("list", teamlistservice.list(map));
-		mv.addObject("taglist", teamlistservice.taglist(map));
+	@RequestMapping(value="/teamlist")
+	public ModelAndView teamlist(@RequestParam Map<String, Object> map,@RequestParam(defaultValue = "all") String search_option, 
+			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "") String tagname) {
 		
-		return mv;
-	}
-	
-	@RequestMapping(value="/teamlist", method = RequestMethod.POST)
-	public ModelAndView teamlist2(@RequestParam Map<String, Object> map) {
+		System.out.println("tt");
+		System.out.println("tagname ="+ tagname);
 	
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/team/teamlist");
-		mv.addObject("list", teamlistservice.list(map));
-		mv.addObject("taglist", teamlistservice.taglist(map));
 		
-		//검색기능
-		if (map.containsKey("keyword")) {
-			mv.addObject("keyword", map.get("keyword"));
+		if(tagname == "") {			
+			List<Map<String, Object>> click_taglist = teamlistservice.click_taglist(map, tagname);
+			mv.addObject("clcik_taglist", click_taglist); //클릭했을 때
+			
+			System.out.println("click_taglist"+click_taglist.toString());
+			
+			return mv;
 		}
-		
-		return mv;
+		else if(tagname != "") {
+			List<TeamlistDTO> teamlist = teamlistservice.list(map, search_option, keyword); //팀목록 전체
+			List<Map<String, Object>> taglist = teamlistservice.taglist(map, search_option, keyword); //태그
+			
+			//select box + 검색 추가
+			Map<String, Object> map2 = new HashMap<>();
+			
+			
+			map2.put("teamlist", teamlist); //팀목록 전체
+			map2.put("taglist", taglist); //태그
+			
+			System.out.println("map2"+map2.toString());
+			
+			mv.addObject("map",map2);
+
+			
+			return mv;
+		}
+		else {
+			return mv;
+		}
 	}
 	
 }

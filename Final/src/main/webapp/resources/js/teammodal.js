@@ -69,7 +69,27 @@ modaldiv2.addEventListener('click', function(e){
     }
 })
 
-// ==========================팀가입 모달========================
+//태그
+const teamtag = document.querySelector('.teamtag'); //div
+const tagbtn = document.querySelectorAll('.teamtag button');
+
+for(let i=0 ; i<tagbtn.length ; i++){
+    tagbtn[i].addEventListener('click', function(e){
+
+        if(e.target.className == 'normalbtn'){
+            tagbtn[i].style.backgroundColor = 'rgb(251, 171, 79)';
+            tagbtn[i].className = 'clickbtn';
+        }
+
+        else if(tagbtn[i].className = 'clickbtn'){
+            tagbtn[i].style.backgroundColor = 'rgb(255, 232, 205)';
+            tagbtn[i].className = 'normalbtn';
+        }
+    })
+}
+
+
+//==========================팀가입 모달========================
 
 const teamjoinbtn = document.querySelector('.teamjoin-btn');
 const modaldiv3 = document.querySelector('.modal3-div');
