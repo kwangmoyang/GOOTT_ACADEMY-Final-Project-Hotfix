@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userinfo">
+	
+	<!-- 
+	* 22-09-23 HIKARI 쿼리 작성
+	유저 정보 모두 뽑아올수 있음
+		
+	 -->
+	<!-- 유저의 회원정보 수정을 위한 부가적인 정보를 다 뽑아온다 -->
+	<select id="Userinfo" resultType="hashMap">
+		select User_code, User_id, User_pw, User_name,User_nickname,User_score,
+		User_point,commission,Phone_num,Email_address,Team_name,User_introduce,
+		User_contact1,User_contact2,User_contact3 from User where 
+		User_id=#{User_id};
+	</select>
+	
+
+</mapper>
