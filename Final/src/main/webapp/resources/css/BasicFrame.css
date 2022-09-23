@@ -1,12 +1,12 @@
 *{ box-sizing: border-box;  margin: 0px; }
 
 :root{
-    --main-black-color: rgb(29,32,34); /* 硫붿씤 釉붾옓移쇰씪 */
-    --main-white-color:rgb(247,247,247);  /* 硫붿씤 �솕�씠�듃移쇰씪 */
-    --main-red-color: rgb(238,43,42);  /* 硫붿씤 �젅�뱶 移쇰씪 */
+    --main-black-color: rgb(29,32,34); /* 메인 블랙칼라 */
+    --main-white-color:rgb(247,247,247);  /* 메인 화이트칼라 */
+    --main-red-color: rgb(238,43,42);  /* 메인 레드 칼라 */
     --main-text-color: rgb(247,247,247);
 
-    --ex-border-color: crimson;  /* 蹂대뱶 �뀒�뒪�듃 �젅�뱶 移쇰씪 */
+    --ex-border-color: crimson;  /* 보드 테스트 레드 칼라 */
 }
 
 .container{
@@ -16,13 +16,13 @@
   justify-content: center;
   align-items: center;
 }
-/* =============�뿤�뜑 �쟾泥댄�============ */
+/* =============헤더 전체틀============ */
 .common_header{
     width: 100%;
     height: 8vh; 
     min-width: 1280px;
     
-    /* fixed 二쇱꽍 泥섎━�븯硫� �썝�옒�긽�깭濡� 諛붾�� */
+    /* fixed 주석 처리하면 원래상태로 바뀜 */
     position: fixed;
     z-index: 100;
     
@@ -37,14 +37,14 @@
 
 
 
-/* �뿤�뜑 �쇊履� */
+/* 헤더 왼쪽 */
 .common_header_left{
     width: 10%;
     height: 100%;
     /* border: 2px solid pink; */
 
     /* color: black; */
-    /* 09.05 濡쒓퀬 而ㅼ꽌:�룷�씤�꽣 異붽� -SEO */
+    /* 09.05 로고 커서:포인터 추가 -SEO */
 }
 .common_header_left>a>img{
     width: 80%;
@@ -52,7 +52,7 @@
     cursor: pointer;
     object-fit: contain;
 }
-/* �뿤�뜑 媛��슫�뜲 */
+/* 헤더 가운데 */
 .common_header_center{
     width: 60%;
     height: 100%;
@@ -63,7 +63,7 @@
     align-items: center;
 }
 
-/* �뿤�뜑 移댄뀒怨좊━ */
+/* 헤더 카테고리 */
 .header_menu{
     display: flex;
     align-items: center;
@@ -90,9 +90,10 @@
     color:  rgba(248,58,37,1);
 }
 
-/* �뿤�뜑 �삤瑜몄そ */
+/* 헤더 오른쪽 */
 .common_header_right{
-    width: 10%;
+    /* 09-21 10%->14% 변경 HIKARI */
+    width: 14%;
     height: 100%;
     /* border: 2px solid pink; */
 
@@ -103,7 +104,7 @@
 
 
 
-/* 留덉씠�럹�씠吏�, �븣�엺湲곕뒫 */
+/* 마이페이지, 알람기능 */
 
 .user,.alarm{
     width: 50%;
@@ -127,12 +128,12 @@
     border-radius: 50%;
    
     position: absolute;
-    /* 09.05 濡쒓퀬 而ㅼ꽌:�룷�씤�꽣 異붽� -SEO */
+    /* 09.05 로고 커서:포인터 추가 -SEO */
     cursor: pointer;
     
 }
-/* �뿤�뜑 �쑀�� �뱶濡��떎�슫 */
-/* 0905 而ㅼ꽌�룷�씤�꽣 異붽� SEO */
+/* 헤더 유저 드롭다운 */
+/* 0905 커서포인터 추가 SEO */
 .user>ul{   
     border: solid 2px #ccc;
     background-color: white;
@@ -151,7 +152,7 @@
 
     display: none;
 }
-/* �샇踰꾩떆 諛깃렇�씪�슫�뱶 而щ윭 蹂�寃� SEO*/
+/* 호버시 백그라운드 컬러 변경 SEO*/
 .user>ul>li:hover{
     background-color: rgb(242, 242, 242);
     /* color: var(--main-red-color); */
@@ -161,7 +162,7 @@
     /* border: solid 2px red;   */
 
     width: 100%;
-    /* height 移섏슦怨� �옄�룞�쑝濡� �넂�씠 留욎텛�뒗寃� 源붾걫�빐�꽌 �씪�떒 二쇱꽍泥섎━ �뻽�뒾�떎 -SEO */
+    /* height 치우고 자동으로 높이 맞추는게 깔끔해서 일단 주석처리 했슴다 -SEO */
     /* height: 20%; */
 
     list-style-type: none;
@@ -176,8 +177,8 @@
 
 
 
-/* �뿤�뜑 �븣�엺 �뱶濡��떎�슫 */
-/* 0905 而ㅼ꽌�룷�씤�꽣 異붽� SEO */
+/* 헤더 알람 드롭다운 */
+/* 0905 커서포인터 추가 SEO */
 .alarm>ul{   
     border: solid 2px #ccc;
     background-color: white;
@@ -229,16 +230,38 @@
     line-height: 30px;
 }
 
-/* �샇踰꾩떆 諛깃렇�씪�슫�뱶 而щ윭 蹂�寃� SEO*/
+/* 호버시 백그라운드 컬러 변경 SEO*/
 .alarm>ul>:hover {
     background-color: rgb(242, 242, 242);
 }
 
+/* 비로그인시 css 효과 적용틀 09-21 HIKARI*/
+.mainToLogin,.mainToJoin{
+    width: 50%;
+    height: 100%;
+    /* border: 1px solid red; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    background-color: rgb(238,43,42);
+    border-radius: 10px;
+    /* padding: 0 5px; */
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.mainToJoin{
+     margin-left: 5%;
+}
+
+.mainToLogin>a,.mainToJoin>a{
+    text-decoration-line: none;
+    color: rgb(29,32,34);
+}
 
 
 /* ================================================ */
 
-/* 硫붿씤 �꽮�뀡(議곗썝 �옉�뾽議�) */
+/* 메인 섹션(조원 작업존) */
 .common_section{
     width: 100%;
     /* height: 150vh; */
@@ -253,16 +276,16 @@
     justify-content: center;
 }
 
-/* 硫붿씤�꽮�뀡 */
+/* 메인섹션 */
 .main{
     background-color: white;
     border: solid 2px var(--ex-border-color);
     
-    /* height: 100%; */
+    height: 100%; 
     width: 70%;
 }
 
-/* �삤瑜몄そ �궗�씠�뱶 */
+/* 오른쪽 사이드 */
 .sideRight{
     background-color: white;
     border: solid 2px var(--ex-border-color);
@@ -270,8 +293,8 @@
     width: 15%;
 }
 
-/* ====================�뫖�꽣=================== */
-/* SEO �뫖�꽣�옉�뾽�븿 �븘吏� �븞�걹�궓 議곗죱�쓬*/
+/* ====================푸터=================== */
+/* SEO 푸터작업함 아직 안끝남 조졌음*/
 .common_footer{
     width: 100vw;
     height: 20vh;
@@ -282,7 +305,7 @@
     grid-template-areas: 
     "foter footer footer";
 
-    /* HIKARI 硫붿씤�꽮�뀡�씠�옉 �쓣�뼱�넃�쓬 */
+    /* HIKARI 메인섹션이랑 띄어놓음 */
     margin-top: 3%;
 }
 .common_footer :nth-child(1){

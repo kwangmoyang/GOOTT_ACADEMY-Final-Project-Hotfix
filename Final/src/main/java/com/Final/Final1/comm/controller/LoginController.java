@@ -15,138 +15,105 @@ import com.Final.Final1.comm.model.LoginDAO;
 import com.Final.Final1.comm.model.LoginDTO;
 import com.Final.Final1.comm.service.LoginService;
 
-
 @Controller
 public class LoginController {
-	
+
 	@Inject
 	LoginDAO loginDao;
-
-
-	
 	@Autowired
 	LoginService loginService;
-	
-	//로그인페이지
+
+	// 로그인페이지
 	@RequestMapping("/login")
-	public String main() {
+	public String login() {
+
 		return "/login_etc/login";
 	}
-	
-	//로그아웃페이지
-	@RequestMapping("/logout")
-	public String logout() {
-		
-		return "/login_etc/login";
-	}
-	
-	//회원가입페이지
-	@RequestMapping("/join")
-	public String join() {
-		
+
+//	//로그아웃페이지
+//	@RequestMapping("/logout")
+//	public String logout() {
+//
+//		return "/login_etc/login";
+//	}
+
+	// 회원가입페이지
+	@RequestMapping("/join_test")
+	public String join_test() {
+
 		return "/login_etc/join";
 	}
-	
-	//로그인 체크 
+
+	// 아이디 비밀번호 찾기
+	@RequestMapping("/find_user_idpw")
+	public String find_user_idpw() {
+
+		return "/login_etc/find_id";
+	}
+
 	@RequestMapping("/loginChk")
-	public ModelAndView loginChk(LoginDTO dto, HttpSession session, 
-			@RequestParam Map<String, Object> map) {
-		
+	public ModelAndView loginChk2(LoginDTO dto, HttpSession session, @RequestParam Map<String, Object> map) {
+
 		ModelAndView mv = new ModelAndView();
+
+		// 유저 ID, PW 일치여부 확인
+		Map<String, Object> UserInfo_Chk = loginService.UserInfo_Chk(map);
+		// 유저 ID 가입여부 확인
+		Map<String, Object> UserOnlyId_Chk = loginService.UserOnlyId_Chk(map);
+
 		
-		System.out.println(dto.toString());
 		
-		
-		String UserInfo_Chk = loginService.UserInfo_Chk(map);
-		String UserOnlyId_Chk = loginService.UserOnlyId_Chk(map);
-		
-//		user ID PW 둘다 일치시 정상 로그인
-		if(UserInfo_Chk != null) {
-			mv.setViewName("/login_etc/login");
-			System.out.println("환영합니다");
-		}else if(UserOnlyId_Chk != null) {
-			int Pw_Mistake_cnt = dto.getPw_Mistake_cnt();
-			loginService.Mistake_cnt_Up(map); // pw 불일치시 mistake_cnt가 1씩 증가
+		// 유저 ID PW 둘다 일치시 정상 로그인
+		if (UserInfo_Chk != null) {
+			mv.setViewName("/MainPage");
+			// 로그인 완료시 세션 생성
+			session.setAttribute("User_id", UserOnlyId_Chk.get("User_id"));
 			
-			if(Pw_Mistake_cnt>=0) {
-				loginService.Change_User_pw(map);
-				session.setAttribute("admin", "니 비번 틀려서 이제 안댐");
+			UserOnlyId_Chk.forEach((strKey, strValue)->{
+				System.out.println("되냐?"+ strKey +":"+ strValue );
+				session.setAttribute(strKey, strValue);
+			});
+
+			
+			
+			
+			// 유저 PW 오류시
+		} else if (UserOnlyId_Chk != null) {
+			// 유저 PW 오류 카운트 +
+			int Pw_Mistake_cnt = loginService.Pw_Mistake_cnt(dto);
+			loginService.Mistake_cnt_Up(dto); // 유저 PW 오류시 mistake_cnt 1 증가
+			// 사용자 입장 오류 카운트 - (~번 남았습니다.)
+			int Pw_Mistake_cnt2 = loginService.Pw_Mistake_cnt2(dto)-1;
+			loginService.Mistake_cnt_Up2(dto); // 사용자 입장 ~번 남았습니다 cnt
+
+			// 유저 PW 오류시 view단 메세지표시
+			if (Pw_Mistake_cnt2 > 0) {
+				mv.addObject("forgotPw", "비밀번호를 잊으셨나요?");
+				mv.addObject("chk", "앞으로 " + Pw_Mistake_cnt2);
+				mv.addObject("guide", "번 더 틀리면 비밀번호 변경이 필요합니다.");
+				// Pw_Mistake_cnt2 카운트 0 변경시 오류시 메세지 사라지고 계정정지 메세지 출력(다음 if문)
+			} else {
+				mv.addObject("forgotPw", "");
+				mv.addObject("chk", "");
+				mv.addObject("guide", "");
+			}
+
+			// 유저 PW 5회 오류시 비밀번호 변경 메세지 표시
+			if (Pw_Mistake_cnt >= 5) {
+				loginService.Change_User_pw(map); // 유저 PW 변경 (암호화 예정)
+				mv.addObject("forgotff", "5회 이상 틀려서 계정이 정지되었습니다. 관리자에게 문의하세요");
+				System.out.println("비번틀려서 관리자 문의");
 			}
 			mv.setViewName("/login_etc/login");
-			
-		}else if(UserOnlyId_Chk == null) {
+
+			// 사이트에 등록되지않은 ID일 경우
+		} else if (UserOnlyId_Chk == null) {
 			mv.setViewName("/login_etc/login");
-			mv.addObject("notid", dto.getUser_id()); //해당 아이디 없습니다 jsp설정
-			
-			System.out.println("아이디 혹은 비번이 불일치");
-			System.out.println(dto.getUser_id());
+			// 등록되지 않은 메세지 표시
+			mv.addObject("notid", dto.getUser_id() + "는 존재하지 않는 아이디입니다.");
+
 		}
 		return mv;
-		
 	}
-	
-	
-	
-	
-//
-//	// 로그인 체크 
-//	@RequestMapping("/loginChk")
-//	public ModelAndView loginChk(UserDTO dto, HttpSession session) {
-//			
-//		ModelAndView mv = new ModelAndView();
-////		System.out.println(dto.toString());
-//
-//		String loginChk = userDao.loginChk(dto); // (id,pw) 정보 부름
-//		String loginChk_id = userDao.loginChk_onlyId(dto); // id 정보만
-//			
-//		
-//			
-//		// user ID PW 둘다 일치시 정상 로그인
-//		if(loginChk != null) {
-//			mv.setViewName("/hotmain");
-//			System.out.println("환영합니다");
-//			// user ID는 존재하나 PW 불 일치시
-//			}else if(loginChk_id != null) {
-//				// mistake_cnt 컬럼 불러옴
-//				int mistake_cnt = userDao.mistake_cnt(dto);
-//				userDao.up_cnt(dto); // pw 불일치시 mistake_cnt가 1씩 증가
-//				System.out.println("아이디는 있는데 비번 틀림 ㅄ ㅋ");
-//				System.out.println(mistake_cnt);
-//				
-//				// mistake_cnt(비밀번호) 5회 오류시 if문 실행
-//				if(mistake_cnt>=5) {
-//					System.out.println("5회 틀려서 관리자 문의바람");
-//					userDao.changeUserPw(dto);
-//					session.setAttribute("admin", "니 비번 틀려서 이제 안댐");
-//
-//				}
-//				mv.setViewName("/login");
-//				
-//			}else if(loginChk_id==null){
-//				mv.setViewName("/login");
-//				mv.addObject("notid", dto.getUserId()); //해당 아이디 없습니다 jsp설정
-//				
-//				System.out.println("아이디 혹은 비번이 불일치");
-//				System.out.println(dto.getUserId());
-//				
-//			}
-//			return mv;
-//		}
-//	
-//	// 회원가입 인설트 
-//	@RequestMapping("/newuser")
-//	public ModelAndView join(JoinDTO dto, HttpSession session) {
-//		
-//		ModelAndView mv = new ModelAndView();
-//		System.out.println(dto.toString());
-//		joinDao.join(dto);
-//		session.setAttribute("userId", dto.getName());
-//		
-//		mv.setViewName("/welcome");
-//
-//		return mv;
-//	}
-	
-	
-	
 }
+

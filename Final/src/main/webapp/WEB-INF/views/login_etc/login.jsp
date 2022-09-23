@@ -27,30 +27,32 @@
             </div>
 
             <div class="login_Join">
-                회원이 아니신가요? &nbsp;<a href="/view/login_etc/join.html">회원가입 하기</a>
+                회원이 아니신가요? &nbsp;<a href="/join_test">회원가입 하기</a>
             </div>
             <!-- ========== 로그인영역 ========== -->
-            <form id="login_Form" method="POST" action="">
+            <form id="login_Form" method="POST" action="/loginChk">
 
                 <!-- 아이디 입력란 -->
                 <div class="login_id">
                     <h4>아이디</h4>
-                    <input type="text" name="hotID" id="hotID" placeholder="아이디를 입력해주세요" value="">
+                    <input type="text" name="User_id" id="hotID" placeholder="아이디를 입력해주세요" value="">
                     <p id="idalert"></p>
                 </div>
 
                 <!-- 비밀번호 입력란 -->
                 <div class="login_pw">
                     <h4>비밀번호</h4>
-                    <input type="password" name="hotPW" id="hotPW" placeholder="비밀번호를 입력해주세요" value="" autocomplete="on">
-                    <p id="pwalert"></p>
+                    <input type="password" name="User_pw" id="hotPW" placeholder="비밀번호를 입력해주세요" value="" autocomplete="on">
+                    <p id="pwalert">${forgotPw }  ${forgotff }</p>
+                    <p id="pwalert">${chk } ${guide } </p>
+                    <p id="pwalert">${notid } </p>
                 </div>
 
                 <!-- 아이디 저장 및 찾기영역 -->
                 <div class="login_Forgot">
                     <label><input type="checkbox" name="rememberId" ${empty cookie.id.value ? "" :"checked" }> 아이디
                         저장</label>
-                    <a href="/view/login_etc/find_id.html">아이디 / 비밀번호 찾기</a>
+                    <a href="/find_user_idpw">아이디 / 비밀번호 찾기</a>
                 </div>
 
                 <!-- 로그인 제출 영역 -->
