@@ -24,14 +24,20 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	}
 
 	@Override
-	public List<TeamlistDTO> list(Map<String, Object> map) {
+	public List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword) {
 
-		return this.teamlistdao.list(map);
+		return this.teamlistdao.list(map, search_option, keyword);
 	}
 
 	@Override
-	public List<TeamlistDTO> taglist(Map<String, Object> map) {
-		return this.teamlistdao.taglist(map);
+	public List<Map<String, Object>> taglist(Map<String, Object> map, String search_option, String keyword) {
+		return this.teamlistdao.taglist(map, search_option, keyword);
 	}
+
+	@Override
+	public List<Map<String, Object>> click_taglist(Map<String, Object> map, String tagname) {
+		return this.teamlistdao.click_taglist(map, tagname);
+	}
+
 	
 }

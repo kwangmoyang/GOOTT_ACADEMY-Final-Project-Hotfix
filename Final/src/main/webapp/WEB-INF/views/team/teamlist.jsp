@@ -5,7 +5,6 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +15,7 @@
    <!-- 팀목록 css -->
    <link rel="stylesheet" href="${path}/resources/css/teamlist.css">
    <!-- modal css -->
-   <link rel="stylesheet" href="${path}/resources/css/teammodal.css">
+   <link rel="stylesheet" href="${path}/resources/css/teammodal.css?after">
    <!-- 유니콘 아이콘 사이트 -->
    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -24,7 +23,6 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <title>HotFix</title>
 </head>
-<!-- ㅎㅇ -->
 <body>
 
 <%@ include file="/WEB-INF/views/header/header.jsp" %>
@@ -52,67 +50,67 @@
                 <div class="search">
                     <div class="search-box">
                         <form method="POST">
-                          <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요" name="keyword" />
-                          <button type="submit" class="searchbtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+	                        <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요" name="keyword" value="" />
+	                        <button type="submit" class="searchbtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+	                        <select name="search_option">
+								<option value="all"<c:out value="${map.search_option == 'all' ? 'selected' : ''}"/> >전체</option>
+								<option value="Teamname"<c:out value="${map.search_option == 'Teamname' ? 'selected' : ''}"/> >팀이름</option>
+							</select>	
                         </form>
                     </div>
                     <div class="teammakingbtn">
-                        <a href="#"><button id="teammakebtn">팀만들기</button></a>
+                        <button id="teammakebtn">팀만들기</button>
                     </div>
                 </div>
         	</div>
     
-            <c:forEach var="row" items="${list}" begin="0" end="9">
-		       <div class="teamlistbox">
-		            <div class="img">
-		            <!-- 사진 불러오는 거 -->
-		                <img src="/resources/img/pIiRs.jpg" alt="">
-		            </div>
-		            <div class="teamlistboxleft">
-		                <div class="teamtitle">${row.Team_name}</div>
-		                <div class="teamdescription">${row.Team_intro}</div>
-		   
-					    <div class="languagetag">
-			                <c:forEach var="row1" items="${taglist}">
-			                	  <c:if test="${row.Team_name eq row1.Team_name}">
-								          <button type="button" class="tagbtn">
-								            ${row1.Skill_name}
-								          </button>
-								   </c:if>
-							</c:forEach>
-					    </div>
-						      
-		                <div class="teamcreationdate">
-		                <fmt:timeZone value="UTC">
-		                	<fmt:formatDate value="${row.Team_cr_date}" pattern="yyyy년 MM월 dd일" />
-		                </fmt:timeZone>
-		                </div>
-		           </div>
-		           <div class="teamlistboxright">
-		                <div class="btndiv">
-		                    <button class="join btn">팀정보보기</button>
-		                </div>
-		           </div>
-	        	</div>
-	         </c:forEach>
-    
+           	
+			<form id="tagform" method="POST">
+            	<c:forEach var="row" items="${map.teamlist}" begin="0" end="9">
+				  <div class="teamlistbox">
+				      <div class="img">
+				          <!-- 사진 불러오는 거 -->
+				          <img src="/resources/img/pIiRs.jpg" alt="">
+				      </div>
+				      <div class="teamlistboxleft">
+				         <div class="teamtitle">${row.Team_name}</div>
+				         <div class="teamdescription">${row.Team_intro}</div>
+				                
+							<div class="languagetag">
+								<c:forEach var="row1" items="${map.taglist}">
+							        <c:if test="${row.Team_name eq row1.Team_name}">
+										<button class="tagbtn">
+											${row1.Tags_Tag_Name}
+										</button>
+									</c:if>
+								</c:forEach>
+							 </div>
+							    
+				        <div class="teamcreationdate">
+				             <fmt:parseDate value="${row.Team_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 
+				              <fmt:formatDate value="${date1}" pattern="yyyy-MM-dd"/>
+				           </div>
+				     </div>
+				     <div class="teamlistboxright">
+				       <div class="btndiv">
+				            <button class="join btn">팀정보보기</button>
+				       </div>
+				     </div>
+			       </div>
+			   </c:forEach>
+			</form>
+		   	
+		   	
             <div class="teamlistpaging">
                 <!-- 페이지 넘기기 -->
-               페이징처리
+              	 페이징처리
             </div>    
             <!-- ==============작업공간============== -->
         </div>
-
-
     </div>
-
-
-    
 </div>
 <!-- 푸터 -->
 <div class="common_footer">푸터임다</div>
-
-
 
 <!-- ===================================================팀정보 모달=====================================================-->
 	<div class="modal-div">
@@ -215,7 +213,7 @@
 	
 	
 	<!-- =========================================팀만들기 모달================================================= -->
-	
+
 	<div class="modal2-div">
 	        <div class="teammodal2-div">
 	            <div class="toptitle"><p>팀 만들기</p></div>
@@ -230,10 +228,17 @@
 	                <input type="text" id="teaminput" placeholder="팀이름">
 	            </div>
 	            <div class="team divtwo">
-	                약관넣기
+	                <input type="text" id="teaminput" placeholder="소개글">
 	            </div>
 	            <div class="team divthr">
-	                <input type="text" id="teaminput" placeholder="소개글">
+	                 <div class="teamtag">
+	                    <!-- insert방식으로 -->
+	                    <button class="normalbtn">html</button>
+                	</div>
+	            </div>
+	            <div class="team divfour">
+	                <p>약관넣기</p>
+	                <input type="checkbox">
 	            </div>
 	            <div class="team make-btn">
 	                <form action="">
@@ -243,8 +248,9 @@
 	        </div>
 	    <ion-icon name="close-outline" id="xicon2"></ion-icon>
 	</div>
+
 	
-	<!-- ====================================팀 가입 모달====================================== -->
+		<!-- ====================================팀 가입 모달====================================== -->
 	<div class="modal3-div">
 	    <div class="teammodal3-div">
 	        <div class="toptitle2"><p>팀 가입</p></div>

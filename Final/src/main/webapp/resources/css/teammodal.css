@@ -324,14 +324,17 @@
     background-color: var(--basic-white-color);
     border: 1px solid var(--border-color);
     padding: 30px;
+    /* 0920 추가 김양희 */
+    overflow: scroll;
 
     animation-name: opacity;
     animation-duration: 1s;
 }
-.teammodal2-div div{
-    display: flex;
-    justify-content: center;
+/* 0920 추가 김양희 */
+.teammodal2-div::-webkit-scrollbar {
+    display: none;
 }
+
 /* 제목 */
 .toptitle{
     display: flex;
@@ -343,17 +346,87 @@
     font-size: 1.2rem;
     padding-bottom: 30px;
 }
+/* 팀 틀 */
 .team{
+    /* border: 1px solid red; */
     padding: 10px 0;
 }
+/* 팀로고 */
+.profile form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.profile form div{
+    background-color: var(--basic-gainsboro-color);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+#teamlogoicon{
+    position: absolute;
+    top: 23%;
+    font-size: 2.5rem;
+}
+/* 인풋설정 */
 input[id="teaminput"]{
     border: var(--main-border);
     width: 100%;
     height: 100%;
-    padding: 10px 0;
+    padding: 10px 5px;
 }
 input[id="teaminput"]:focus{
     outline: none;
+}
+/* 태그목록 */
+.divthr{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.divthr select{
+   width: 25%;
+   margin-bottom: 10px;
+}
+.teamtag{
+    width: 100%;
+}
+.teamtag button{
+    border: none;
+    display: inline-block;
+
+    padding: 5px 15px;
+    border-radius: 10px;
+    margin: 5px 0;
+
+    position: relative;
+    cursor: pointer;
+}
+.teamtag .normalbtn{
+    background-color: rgb(255, 232, 205);
+}
+.teamtag .clickbtn{
+    background-color: rgb(255, 232, 205);
+}
+/* x icon */
+.fa-xmark{
+    font-size: .8rem;
+    cursor: pointer;
+    margin-right: 10px;
+}
+/* 약관 나중에삭제 */
+.divfour{
+    border: 1px solid red;
+}
+.divfour p{
+    padding: 10px 0;
 }
 .make-btn form{
     width: 100%;
@@ -375,28 +448,7 @@ input[id="teaminput"]:focus{
         opacity: 1;
     }
 }
-.profile, .divtwo{
-    border: 1px solid red;
-}
-.profile form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.profile form div{
-    background-color: var(--basic-gainsboro-color);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
 
-    position: relative;
-}
-#teamlogoicon{
-    position: absolute;
-    top: 25%;
-    font-size: 2.5rem;
-}
 
 /* =========================팀가입 모달=============================== */
 .modal3-div{
