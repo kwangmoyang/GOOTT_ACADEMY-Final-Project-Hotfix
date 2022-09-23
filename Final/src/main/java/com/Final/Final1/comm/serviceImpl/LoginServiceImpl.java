@@ -16,13 +16,13 @@ public class LoginServiceImpl implements LoginService{
 	LoginDAO loginDao;
 	
 	@Override
-	public String UserInfo_Chk(Map<String, Object> map) {
+	public Map<String, Object> UserInfo_Chk(Map<String, Object> map) {
 		
 		return loginDao.UserInfo_Chk(map);
 	}
 
 	@Override
-	public String UserOnlyId_Chk(Map<String, Object> map) {
+	public Map<String, Object> UserOnlyId_Chk(Map<String, Object> map) {
 		return loginDao.UserOnlyId_Chk(map);
 	}
 
@@ -33,15 +33,26 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public int Pw_Mistake_cnt(Map<String, Object> map) {
+	public int Pw_Mistake_cnt(LoginDTO dto) {
 		
-		return loginDao.Pw_Mistake_cnt(map);
+		return loginDao.Pw_Mistake_cnt(dto);
+	}
+	
+	@Override
+	public int Pw_Mistake_cnt2(LoginDTO dto) {
+		return loginDao.Pw_Mistake_cnt2(dto);
+	}
+	
+	@Override
+	public void Mistake_cnt_Up(LoginDTO dto) {
+		loginDao.Mistake_cnt_Up(dto);
 	}
 
+	
+
 	@Override
-	public void Mistake_cnt_Up(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		
+	public void Mistake_cnt_Up2(LoginDTO dto) {
+		loginDao.Mistake_cnt_Up2(dto);	
 	}
 
 }

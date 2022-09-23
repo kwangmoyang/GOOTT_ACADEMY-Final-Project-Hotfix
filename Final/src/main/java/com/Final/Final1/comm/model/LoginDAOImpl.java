@@ -14,30 +14,44 @@ public class LoginDAOImpl implements LoginDAO{
 	SqlSessionTemplate sqlSession;
 
 	@Override
-	public String UserInfo_Chk(Map<String, Object> map) {
-		return sqlSession.selectOne("UserInfo_Chk",map);
+	public Map<String, Object> UserInfo_Chk(Map<String, Object> map) {
+		return sqlSession.selectOne("login.UserInfo_Chk",map);
 	}
 
 	@Override
-	public String UserOnlyId_Chk(Map<String, Object> map) {
-		return sqlSession.selectOne("UserOnlyId_Chk",map);
+	public Map<String, Object> UserOnlyId_Chk(Map<String, Object> map) {
+		return sqlSession.selectOne("login.UserOnlyId_Chk",map);
 	}
 
 	@Override
 	public void Change_User_pw(Map<String, Object> map) {
-		sqlSession.selectOne("Change_User_pw",map);
+		sqlSession.selectOne("login.Change_User_pw",map);
 	}
 
 	@Override
-	public int Pw_Mistake_cnt(Map<String, Object> map) {
-		return sqlSession.selectOne("Pw_Mistake_cnt",map);
+	public int Pw_Mistake_cnt(LoginDTO dto) {
+		return sqlSession.selectOne("login.Pw_Mistake_cnt",dto);
+	}
+	
+	@Override
+	public int Pw_Mistake_cnt2(LoginDTO dto) {
+		return sqlSession.selectOne("login.Pw_Mistake_cnt2",dto);
 	}
 
 	@Override
 	public void Mistake_cnt_Up(LoginDTO dto) {
-		sqlSession.selectOne("Mistake_cnt_Up",dto);
+		sqlSession.selectOne("login.Mistake_cnt_Up",dto);
 		
 	}
+	
+	@Override
+	public void Mistake_cnt_Up2(LoginDTO dto) {
+		sqlSession.selectOne("login.Mistake_cnt_Up2",dto);
+	}
+
+	
+
+	
 	
 	
 

@@ -9,15 +9,17 @@
 	 -->
 	
 	<!-- 아이디&비밀번호 일치 확인  -->
-	<select id="UserInfo_Chk" resultType="String">
+	<select id="UserInfo_Chk" resultType="hashMap">
 		select User_code, User_id, User_pw, User_name,User_nickname from 
 		User where User_id=#{User_id} and User_pw=#{User_pw};
 	</select>
 	
 	<!-- 회원정보중 일치하는 id가 있는지? -->
-	<select id="UserOnlyId_Chk" resultType="String">
-		select User_code, User_id, User_pw, User_name,User_nickname from 
-		User where User_id=#{User_id};
+	<select id="UserOnlyId_Chk" resultType="hashMap">
+		select User_code, User_id, User_pw, User_name,User_nickname,User_score,
+		User_point,commission,Phone_num,Email_address,Team_name,User_introduce,
+		User_contact1,User_contact2,User_contact3 from User where 
+		User_id=#{User_id};
 	</select>
 	
 	<!-- 해당 회원의 비밀번호 틀린 cnt 호출 -->
@@ -25,9 +27,18 @@
 		select Pw_Mistake_cnt from User where User_id=#{User_id};
 	</select>
 	
+	<select id="Pw_Mistake_cnt2" resultType="int">
+		select Pw_Mistake_cnt2 from User where User_id=#{User_id};
+	</select>
+	
 	<!-- 비밀번호 오류시 회원의 Pw_Mistake_cnt 증가 -->
 	<update id="Mistake_cnt_Up" parameterType="hashMap">
 		update User set Pw_Mistake_cnt = Pw_Mistake_cnt+1 where User_id=#{User_id};
+	</update>
+	
+	<update id="Mistake_cnt_Up2" parameterType="hashMap">
+		update User set Pw_Mistake_cnt2 = Pw_Mistake_cnt2-1 where User_id=#{User_id};
+		
 	</update>
 	
 	<!-- 비밀번호 5회 오류시 강제 비밀번호 변경 (areyouhacker?)-->
