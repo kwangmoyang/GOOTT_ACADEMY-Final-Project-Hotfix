@@ -26,30 +26,7 @@
       <h1> 아아아아아아아아 </h1>
     <div class="container">
         <!-- ======================== 작업 섹션 ======================= -->
-        <!-- <div class="common_section"> -->
-        <!-- 왼쪽 사이드 -->
-        <!-- <div class="sideLeft">
-            <div class="myList">
-                <ul>
-                    <li>
-                        <div>
-
-                        </div>
-                    </li>
-                    <li>
-                        닉네임
-                        <p>잉잉잉의</p>
-                        회원 고유번호
-                        <p>#9877</p>
-                    </li>
-                    <li>마이페이지</li>
-                    <li>정보 수정</li>
-                    <li>나의 작성글</li>
-                    <li>결제 및 정산</li>
-                </ul>
-
-            </div>
-        </div> -->
+  
         <!-- 메인섹션 -->
         <div class="mains">
             <div id="main_big_preview">

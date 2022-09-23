@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 메인 프레임 연동-->
     <link rel="stylesheet" href="../../resources/css/BasicFrame.css">
-    <link rel="stylesheet" href="../../resources/css/myPage_set.css">
+    <link rel="stylesheet" href="../../resources/css/myPage_Set.css">
     <!-- 폰트 불러올라고-->
     <link rel="stylesheet" href="../../resources/css/global.css">
     <!-- 유니콘 아이콘 사이트 -->
@@ -23,25 +23,7 @@
     <!-- ======================== 작업 섹션 ======================= -->
     <div class="common_section">
         <!-- 왼쪽 사이드 -->
-        <div class="sideLeft">
-            <div class="myList">
-                <ul>
-                    <li>
-                        <div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <p>잉잉잉의</p>
-                        <p>#9877</p>
-                    </li>
-                    <li class="myli"><a href="mypage.html">마이페이지</a></li>
-                    <li class="myli"><a href="mypage_set.html">정보 수정</a></li>
-                    <li class="myli"><a href="mypage_writer.html">나의 작성글</a></li>
-                    <li class="myli"><a href="mypage_pay.html">결제 및 정산</a></li>
-                </ul>
-            </div>
-        </div>
+        <%@ include file="/WEB-INF/views/mypage/mypageSidebar.jsp"%>
         <!-- 메인섹션 -->
         <div class="main">
             <!-- 
@@ -52,24 +34,46 @@
            <!-- 마이 페이지부분 -->
 
            <div class="myPage">
-                
+            <p class="myPage_titleText">프로필 정보수정</p>
             <!-- 프로필사진 -->
             <p class="mypage_title">프로필사진 변경 <i class="uil uil-question-circle"></i></p>
             <div class="comition_1">
                 <div><input type="file"></div>
-                <div>수정하기 <i class="uil uil-angle-right-b"></i></div>
+                <div><a href="">수정<i class="uil uil-angle-right-b"></i></a></div>
             </div>
             <!-- 닉네임 -->
             <p class="mypage_title">닉네임 변경 <i class="uil uil-question-circle"></i></p>
             <div class="comition_1">
                 <div><input type="text" name="" id="" value="양광모모"></div>
-                <div>수정하기 <i class="uil uil-angle-right-b"></i></div>
+                <div><a href="">수정<i class="uil uil-angle-right-b"></i></a></div>
             </div>
+
+            <!-- 폰번호 수정 -->
+            <p class="mypage_title">핸드폰번호 변경 <i class="uil uil-question-circle"></i></p>
+            <div class="comition_1">
+                <div><input type="text" name="" id="" value="양광모모"></div>
+                <div><a href="">수정<i class="uil uil-angle-right-b"></i></a></div>
+            </div>
+            <!-- 이메일 수정 -->
+            <p class="mypage_title">이메일 변경 <i class="uil uil-question-circle"></i></p>
+            <div class="comition_1">
+                <div><input type="text" name="" id="" value="양광모모"></div>
+                <div><a href="">수정<i class="uil uil-angle-right-b"></i></a></div>
+            </div>
+            
+			<!-- 비번 수정 -->
+            <p class="mypage_title">비밀번호 변경 <i class="uil uil-question-circle"></i></p>
+            <div class="comition_1">
+                <div><input type="text" name="" id="" value="ㄴㅁㅇㄴㅇ"></div>
+                <div><a href="">수정<i class="uil uil-angle-right-b"></i></a></div>
+            </div>
+
+
             <!-- 자기소개 -->
             <p class="mypage_title">자기소개 수정 <i class="uil uil-question-circle"></i></p>
             <div class="comition_1">
                 <div><input type="text" name="" id="" value="학원댕깁니다"></div>
-                <div>수정하기 <i class="uil uil-angle-right-b"></i></div>
+                <div><a href="">수정<i class="uil uil-angle-right-b"></i></a></div>
             </div>
 
 
@@ -82,25 +86,25 @@
                     <p>home <input type="text" name="" id=""></p>
                     <p>velog <input type="text" name="" id=""></p>
                 </div>
-                <div>수정하기 <i class="uil uil-angle-right-b"></i></div>
+                <div><a href="">수정<i class="uil uil-angle-right-b"></i></a></div>
             </div>
             <!-- 계좌정보 -->
             <p class="mypage_title">계좌정보 변경 <i class="uil uil-question-circle"></i></p>
             <div class="comition_1">
                 <div>신한은행 110-427-341899</div>
-                <div>수정하기 <i class="uil uil-angle-right-b"></i></div>
+                <div><a href="">수정<i class="uil uil-angle-right-b"></i></a></div>
             </div>
             <!-- 알림설정 -->
             <p class="mypage_title">알림 설정 <i class="uil uil-question-circle"></i></p>
             <div class="comition_1">
                 <div>모든 알림끄기</div>
-                <div>수정하기 <i class="uil uil-angle-right-b"></i></div>
+                <div><a href="">수정<i class="uil uil-angle-right-b"></i></a></div>
             </div>
             <!-- 탈퇴 -->
             <p class="mypage_title">탈퇴하기 <i class="uil uil-question-circle"></i></p>
             <div class="comition_1">
                 <div>탈퇴시 회원의 모든정보가 삭제되며, 출금 처리를 끝내주셔아합니다</div>
-                <div>기부하고 탈퇴하기 <i class="uil uil-angle-right-b"></i></div>
+                <div><a href="">탈퇴<i class="uil uil-angle-right-b"></i></a></div>
             </div>
 
 

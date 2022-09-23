@@ -50,7 +50,10 @@ loginSubmit.addEventListener('click',function(){
         return false;
     }
     else{
-        location.href = "../MainPage.html";
+//        location.href = "/loginChk";
+    	login_Form.action = "/loginChk";
+    	login_Form.submit();
+        
     }
     // alert('로그인되었습니다');
 })
