@@ -23,6 +23,7 @@ public class BoardDTO  {
 	//검색키워드
 	private String keyword;
 	
+	
 	public String getBoardCode() {
 		return boardCode;
 	}

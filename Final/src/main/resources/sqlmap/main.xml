@@ -7,10 +7,7 @@
         FROM Request AS r LEFT OUTER JOIN User AS u on r.Requester = u.User_nickname ORDER BY Recruiting_time DESC;
     </select>
 
-    <select>
 
-
-    </select>
 
 </mapper>
 <!--    리퀘스트 >-->

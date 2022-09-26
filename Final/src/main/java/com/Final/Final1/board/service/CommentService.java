@@ -10,7 +10,8 @@ public interface CommentService {
 
 	List<CommentDTO> list(int postNum);
 
+	CommentDTO detail(int post_num);
 
-//	List<CommentDTO> list(int Post_num);
+
 
 }

@@ -46,7 +46,7 @@
              <form id="form1" name="form1" method="post">
                 <div class="WF_topic_box">
                     <p>토픽</p>
-                    <select name="Board_code">
+                    <select name="boardCode">
                         <option value="" selected="selected">토픽을 선택해주세요</option>
                         <option value="일상">일상</option>
                         <option value="컬럼">컬럼</option>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,6 +57,17 @@ function listReply(){
 	});
 	
 }
+function showModify(Post_num){
+	console.log(Post_num)
+	$.ajax({
+		url:"comment/detail/"+Post_num,
+		success:function(result){
+			$("#modifyReply").html(result);
+		}		
+	});
+}
+
+
 </script>
 
 </head>
@@ -135,11 +147,9 @@ function listReply(){
 					</div>
  -->
 
-
-					<div class="detailSubTitle">
-						<div id="listReply" class="commentCon"></div>
+						<div id="listReply" ></div>
 						<div id="modifyReply"></div>
-					</div>
+					
 
 				</div>
 			</div>

@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.ComTb {
+	margin: auto;
+	padding: 30px 0px;
+}
+
+.ComTd {
+	padding: 10px;
+	font-size: 20px;
+	border-top: 1px solid #ccc;
+}
+

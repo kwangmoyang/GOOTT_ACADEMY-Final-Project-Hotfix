@@ -27,4 +27,10 @@ public class CommentServiceImpl implements CommentService{
 		return commentDAO.list(Post_num);
 	}
 
+	@Override
+	public CommentDTO detail(int Post_num) {
+		// TODO Auto-generated method stub
+		return commentDAO.detail(Post_num);
+	}
+
 }
