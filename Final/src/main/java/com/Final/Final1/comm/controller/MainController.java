@@ -25,12 +25,15 @@ public class MainController {
 //		session.invalidate();
 
 		List<MainDTO> list = mainService.list();
+		List<MainDTO> listTeam = mainService.listTeam();
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("MainPage",list);
+		mav.addObject("Request",list);
+		mav.addObject("Teamlist",listTeam);
 		mav.setViewName("MainPage");
 
 		return mav;
 	}
+
 
 	@RequestMapping("/hotfix/index")
 	public String hotfixIndex() {

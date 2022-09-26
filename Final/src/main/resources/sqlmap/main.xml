@@ -8,6 +8,13 @@
     </select>
 
 
+    <select id="teamlist" parameterType="hashmap" resultType="hashmap">
+        SELECT distinct t.Team_intro, t.Team_leader, u.User_score, t.Team_cr_date,
+                        (SELECT COUNT(Team_member) FROM Team_Members WHERE Team_code = #{Team_code})AS 'Team_num_mem'
+        FROM Team AS t LEFT OUTER JOIN Team_Members AS tm ON t.Team_code = tm.Team_code
+                       LEFT OUTER JOIN User AS u ON t.Team_leader = u.User_nickname;
+    </select>
+
 
 </mapper>
 <!--    리퀘스트 >-->

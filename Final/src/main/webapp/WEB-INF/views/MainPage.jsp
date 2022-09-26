@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,10 +67,13 @@
                     <div id="request_preview">
                         <div class="preview_title"  onclick="location.href='hotfix/index'"><span>REQUEST(밋밋해서)</span></div>
                         <div class="preview_content">
-                            <c:forEach var="Req" items="${MainPage}">
+                            <c:forEach var="Req" items="${Request}" begin="0" end="5">
                             <div class="content_item">
-                                <div class="item_writer"><span>${Req.Requester}</span>&nbsp;<span><ion-icon name="flame-sharp"></ion-icon> ${Req.User_score}</span><span>${Req.ReadySolver_cnt}</span></div>
-                                <div class="item_info"><span>${Req.Recruiting_time}</span></div>
+                                <c:set var="Rec_time" value="${Req.Recruiting_time}"/>
+                                <c:set var="Rec_time_cut" value="${fn:substring(Rec_time,11 ,19)}"/>
+
+                                <div class="item_writer"><span>${Req.Requester}</span>&nbsp;<span><ion-icon name="flame-sharp"></ion-icon> ${Req.User_score}</span><span>해결신청자 수 : ${Req.ReadySolver_cnt}</span></div>
+                                <div class="item_info"><span>${Rec_time_cut}</span></div>
                                 <div class="item_title"><span>${Req.Request_title}</span></div>
                             </div>
                             </c:forEach>
@@ -91,11 +95,13 @@
                         <div class="preview_title" onclick="location.href='team/index'"><span>TEAM(디자인
                                 넣어야함)</span></div>
                         <div class="preview_content">
-                            <div class="content_item">
-                                <div class="item_writer"><span>구트1년차 </span><span>활동점수10 30분전</span></div>
-                                <div class="item_info"><span>0댓글</span></div>
-                                <div class="item_title"><span>초급개발자 서로 알려줘요</span></div>
-                            </div>
+                            <c:forEach var="Tea" items="${Teamlist}">
+                                <div class="content_item">
+                                    <div class="item_writer"><span>${Tea.Team_leader}</span>&nbsp;<span><ion-icon name="flame-sharp"></ion-icon> ${Tea.User_score}</span><span>${Tea.Team_num_mem}</span></div>
+                                    <div class="item_info"><span>${Tea.Team_cr_date}</span></div>
+                                    <div class="item_title"><span>${Tea.Team_intro}</span></div>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <div id="board2_preview">
