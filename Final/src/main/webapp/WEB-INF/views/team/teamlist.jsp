@@ -15,7 +15,7 @@
    <!-- 팀목록 css -->
    <link rel="stylesheet" href="${path}/resources/css/teamlist.css?after">
    <!-- modal css -->
-   <link rel="stylesheet" href="${path}/resources/css/teammodal.css?after">
+   <link rel="stylesheet" href="${path}/resources/css/teammodal.css">
    <!-- 유니콘 아이콘 사이트 -->
    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -50,7 +50,7 @@
                 <div class="search">
                     <div class="search-box">
                         <form method="POST" action="/teamlist">
-	                        <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요" name="keyword" value="" />
+	                        <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요" name="keyword" value=" "/>
 	                        <button type="submit" class="searchbtn"><i class="fa-solid fa-magnifying-glass"></i></button>
 	                        <select name="search_option">
 								<option value="all"<c:out value="${map.search_option == 'all' ? 'selected' : ''}"/> >전체</option>
@@ -88,9 +88,9 @@
 	            </div>
             
     
-			<form method="POST" action="/teamlist">
+			<form method="GET" action="/teamlist">
             	<c:forEach var="row" items="${map.teamlist}" begin="0" end="9">
-            	  <input type="hidden" value="${row.Team_code}" name="${row.Team_code}"/>
+            	  	<input type="hidden" value="${row.Team_code}"/>
 				  <div class="teamlistbox">
 				      <div class="img">
 				          <!-- 사진 불러오는 거 -->
@@ -103,7 +103,7 @@
 							<div class="languagetag">		
 									<c:forEach var="row1" items="${map.taglist}">
 								        <c:if test="${row.Team_name eq row1.Team_name}">
-											<button class="tagbtn" name="${row1.Tags_Tag_Name}">
+											<button class="tagbtn">
 												${row1.Tags_Tag_Name}
 											</button>
 										</c:if>
@@ -113,7 +113,7 @@
 				        <div class="teamcreationdate">
 				             <fmt:parseDate value="${row.Team_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 
 				              <fmt:formatDate value="${date1}" pattern="yyyy-MM-dd"/>
-				           </div>
+				        </div>
 				     </div>
 				     <div class="teamlistboxright">
 				       <div class="btndiv">
@@ -140,9 +140,7 @@
 	<div class="modal-div">
 	    <div id="teammodal-div">
 	        <div id="team-navbar">
-	            <div id="teamname">
-	                <a href="">팀이름</a>
-	            </div>
+	            <div id="teamname"></div>
 	            <div id="team-category">
 	                <button>팀정보</button>
 	                <!-- ajax처리 -->
@@ -277,26 +275,40 @@
 
 	
 		<!-- ====================================팀 가입 모달====================================== -->
-	<div class="modal3-div">
-	    <div class="teammodal3-div">
-	        <div class="toptitle2"><p>팀 가입</p></div>
-	        <div class="teamjoincheck"><p>${teamname} 팀에 가입하시겠습니까?</p></div>
-	        <div class="team join-btn">
-	            <form action="">
-	                <button>가입하기</button>
-	            </form>
-	        </div>
-	    </div>
-	<ion-icon name="close-outline" id="xicon3"></ion-icon>
-	</div>
+		
+	
+			<form method="POST" action="/teamjoin">
+				<c:if test="${sessionScope.Userid != null }">
+					<div class="modal3-div">
+					    <div class="teammodal3-div">
+					        <div class="toptitle2"><p>팀 가입</p></div>
+					        <div class="teamjoincheck"> <span></span> 팀에 가입하시겠습니까? </div>
+					        <div class="team join-btn">
+								<button>가입하기</button>
+					        </div>
+					    </div>
+						<ion-icon name="close-outline" id="xicon3"></ion-icon>
+					</div>
+				</c:if>
+				<c:if test="${sessionScope.Userid == null}">
+					<div class="modal3-div">
+					    <div class="teammodal3-div">
+					        <div class="teamjoincheck">로그인해주세요</div>
+					    </div>
+						<ion-icon name="close-outline" id="xicon3"></ion-icon>
+					</div>
+				</c:if>
+			</form>
+		
+	
 	
 	<!-- ====================================팀 탈퇴 모달====================================== -->
 	<div class="modal4-div">
 	    <div class="teammodal4-div">
 	        <div class="toptitle3"><p>팀 탈퇴</p></div>
-	        <div class="teamsecssioncheck"><p>${teamname} 팀을 탈퇴하시겠습니까?ㅠㅠ</p></div>
+	        <div class="teamsecssioncheck"> <span></span> 팀을 탈퇴하시겠습니까?ㅠㅠ </div>
 	        <div class="team secssion-btn">
-	            <form action="">
+	            <form method="POST" action="/teamsecession">
 	                <button>탈퇴하기</button>
 	            </form>
 	        </div>
