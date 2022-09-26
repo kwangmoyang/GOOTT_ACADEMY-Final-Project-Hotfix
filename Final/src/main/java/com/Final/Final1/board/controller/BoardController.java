@@ -22,8 +22,7 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(HttpServletRequest req, 
-			@RequestParam(defaultValue="1")int curPage) {
+	public ModelAndView list(HttpServletRequest req) {
 		BoardDTO dto = new BoardDTO();
 		dto.setBoardCode(req.getParameter("boardCode"));
 		dto.setKeyword(req.getParameter("keyword"));

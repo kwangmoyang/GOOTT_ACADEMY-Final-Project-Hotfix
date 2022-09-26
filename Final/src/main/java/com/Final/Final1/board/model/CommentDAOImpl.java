@@ -21,5 +21,10 @@ public class CommentDAOImpl implements CommentDAO {
 	public List<CommentDTO> list(int Post_num) {
 		return sqlSessionTemplate.selectList("Comment.list", Post_num);
 	}
+	@Override
+	public CommentDTO detail(int Post_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("Comment.detail", Post_num);
+	}
 
 }

@@ -44,7 +44,7 @@
                     <div class="RmSubtitle">
                         <!-- 요청서 버튼  -->
                         <div class="RmWriteRequest">
-                            <button type="button" onclick="location.href='resolveWriteForm.html' ">요청서 작성</button>
+                            <button type="button" onclick="location.href='/resolveWriteForm' ">요청서 작성</button>
                         </div>
 
                         <!-- 서치바 -->

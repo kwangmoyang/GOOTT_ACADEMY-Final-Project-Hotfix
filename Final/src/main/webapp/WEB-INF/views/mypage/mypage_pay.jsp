@@ -46,7 +46,7 @@
                  </div>
                  <div class="dpGetPoint">
                     <h2>총 보유 픽스</h2>
-                    <span>${money } Fix <span>   
+                    <span>${sessionScope.User_point } Fix <span>   
                  </div>
             
                 </div>

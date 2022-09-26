@@ -21,7 +21,7 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 		System.out.println("list"+search_option);		
 		System.out.println("list"+keyword);
 		
-		
+	
 		return sqlSessionTemplate.selectList("team.list", map);
 	}
 

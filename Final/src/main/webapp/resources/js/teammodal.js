@@ -39,6 +39,21 @@ modaldiv.addEventListener('click', function(e){
     }
 })
 
+//팀정보 모달에 표시된 팀이름
+const teamnameinfo = document.querySelectorAll('#teamname');
+//팀가입 모달에 표시된 팀이름
+const teamjoincheck = document.querySelectorAll('.teamjoincheck span');
+//팀탈퇴 모달에 표시된 팀이름
+const teamsecssioncheck = document.querySelectorAll('.teamsecssioncheck span');
+
+for(let i=0; i<teamname.length; i++){
+    teamname[i].addEventListener('click', function(){
+        teamnameinfo[i].innerHTML = teamname[i].textContent;
+        teamjoincheck[i].innerHTML = teamname[i].textContent;
+        teamsecssioncheck[i].innerHTML = teamname[i].textContent;
+    })
+}
+
 
 // ========================팀만들기 모달========================
 
@@ -158,7 +173,9 @@ modaldiv3.addEventListener('click', function(e){
     }
 })
 
-
+function testone(){
+	alert("로그인해주세요.");
+}
 // ==========================팀탈퇴 모달========================
 
 const teamsecssionbtn = document.querySelector('.teamsecession-btn');

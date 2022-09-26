@@ -1,6 +1,5 @@
 //자동실행함수
 $(function() {
-	
 	if(searchParam("boardCode") == null){
 		$(".tagHeader").html("전체");
 	}else{

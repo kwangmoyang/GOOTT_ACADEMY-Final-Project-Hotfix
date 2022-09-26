@@ -27,25 +27,7 @@
     <!-- ======================== 작업 섹션 ======================= -->
     <div class="common_section">
         <!-- 왼쪽 사이드 -->
-        <div class="sideLeft">
-            <div class="myList">
-                <ul>
-                    <li>
-                        <div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <p>잉잉잉의</p>
-                        <p>#9877</p>
-                    </li>
-                    <li class="myli"><a href="mypage.html">마이페이지</a></li>
-                    <li class="myli"><a href="mypage_set.html">정보 수정</a></li>
-                    <li class="myli"><a href="mypage_writer.html">나의 작성글</a></li>
-                    <li class="myli"><a href="mypage_pay.html">결제 및 정산</a></li>
-                </ul>
-            </div>
-        </div>
+        <%@ include file="/WEB-INF/views/mypage/mypageSidebar.jsp"%>
         <!-- 메인섹션 -->
         <div class="main">
             <!-- 
@@ -57,14 +39,7 @@
                 <div class="board_title">
                     <h1>나의 작성글</h1>
                 </div>
-                <div class="board_category">
-                    <ul>
-                        <li><a href="mypage_writer.html">작성글</a></li>
-                        <li><a href="mypage_comments.html">댓글</a></li>
-                        <li><a href="mypage_writer_request.html">해결요청 내역</a></li>
-                        <li><a href="mypage_writer_result.html">해결중인</a></li>
-                    </ul>
-                 </div>
+                <%@ include file="/WEB-INF/views/mypage/mypageWriterbar.jsp"%>
 
                 <div class="board_nav">
                     <button class="cancle">댓글 삭제하기</button>

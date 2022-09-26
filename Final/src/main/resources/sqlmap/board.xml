@@ -18,7 +18,7 @@
 
 <insert id="insert" parameterType="hashMap">
 	INSERT INTO Board (Board_code, Post_writer, Post_title, Post_contents) 
- VALUES (#{Board_code},#{Post_writer},#{Post_title},#{Post_contents})
+ VALUES (#{boardCode},#{Post_writer},#{Post_title},#{Post_contents})
 </insert>
 <select id ="detail" parameterType="hashMap" resultType="hashMap">
  	select Board_code, Post_num, Post_writer, Post_title, Post_contents,
@@ -27,7 +27,7 @@
 </select>
 <update id="update" parameterType="hashMap">
 		update Board
-		set Board_code=#{Board_code}, Post_title=#{Post_title}, Post_contents=#{Post_contents}
+		set Board_code=#{boardCode}, Post_title=#{Post_title}, Post_contents=#{Post_contents}
 		where Post_num=#{Post_num}
 </update>
 

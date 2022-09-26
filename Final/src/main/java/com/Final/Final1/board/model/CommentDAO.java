@@ -8,4 +8,6 @@ public interface CommentDAO {
 
 	List<CommentDTO> list(int Post_num);
 
+	CommentDTO detail(int Post_num);
+
 }

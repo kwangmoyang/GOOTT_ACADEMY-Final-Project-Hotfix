@@ -7,23 +7,19 @@
 		(#{Post_num}, #{Comment_contents}, #{Comment_writer});
 	</insert>
 	
-	<select id="list" parameterType="int" resultType="com.Final.Final1.board.model.CommentDTO">
-		select Comment_writer, Comment_contents, Comment_code,Comment_like, Comment_cr_date,
+	<select id="list" parameterType="int" resultType="hashMap">
+		select Post_num, Comment_writer, Comment_contents, Comment_code,Comment_like, Comment_cr_date,
 		 Comment_up_date, Comment_de_date from Comment where Post_num =#{Post_num};
 
 	</select>
-	
-<!-- 	
-	<select id="detail" parameterType="int" resultType="com.board.board1.model.ReplyDTO">
-		select replyer, reply_text, rep_idx, reg_date from reply
-		where rep_idx =#{idx};
+																			
+	<select id="detail" parameterType="int" resultType="com.Final.Final1.board.model.CommentDTO">
+		select Comment_code, Post_num, Comment_writer, Comment_contents, Comment_code,Comment_like, Comment_cr_date,
+		 Comment_up_date, Comment_de_date from Comment where Comment_code =#{Post_num};
 	</select>
-	<update id="update">
-		update reply
-		set reply_text=#{reply_text}
-		where rep_idx=#{rep_idx}	
-	</update>
-	  -->
+	
+
+	  
 </mapper>
 
 

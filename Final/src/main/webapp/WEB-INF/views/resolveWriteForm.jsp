@@ -37,39 +37,40 @@
                     <h1>에러 해결 요청하기</h1>
                     <p>에러해결 요청을 통해 개발자들과 궁금증도 해결하는 시간 되세요</p>
                 </div>
-                <div class="WF_topic_box">
-                    
-                </div>
+                
+                <form action="/resolveMain2" method="post">
+                
                 <div class="WF_input_box">
                     <p>제목</p>
-                    <input type="text" placeholder="제목을 입력하세요">
+                    <input type="text" placeholder="제목을 입력하세요" name="Request_title">
                 </div>
                 <div class="WF_detail_box">
                     <p>내용</p>
-                    <form action="insertStudentInfoForm" method="post">
+                
                         <div id="smarteditor">
-                            <textarea name="editorTxt" id="editorTxt" rows="20" cols="100" placeholder="내용을 입력해주세요"
+                            <textarea name="Request_contents" id="editorTxt" rows="20" cols="100" placeholder="내용을 입력해주세요"
                                 style="width: 100%"></textarea>
                         </div>
                 </div>
                 <div class="WF_input_box">
                     <p>모집 인원</p>
-                    <input type="text" placeholder="모집 인원을 입력하세요">
+                    <input type="text" placeholder="모집 인원을 입력하세요" name="ReadySolver_cnt">
                 </div>
                 <div class="WF_input_box">
                     <p>해결 커미션</p>
-                    <input type="text" placeholder="해결 커미션을 입력하세요">
+                    <input type="text" placeholder="해결 커미션을 입력하세요" name="Commission">
                 </div>
                 <div class="WF_input_box">
                     <p>모집 기한</p>
-                    <input type="text" placeholder="모집 기한을 입력하세요">
+                    <input type="text" placeholder="모집 기한을 입력하세요" name="Recruiting_time" 
+                    value="+ +">
                 </div>
                 <div class="boardWF_btn">
-                    <button>취소</button>
-                    <button>등록</button>
+                    <div class="hotfixCancleBtn">취소</div>
+                    <button class="hotfixSubmitBtn">등록</button>
                 </div>
-
-                </form>
+				</form>
+                	
             </div>
         </div>
 
@@ -84,11 +85,27 @@
 
 
     
-    </div>
+   
     <!-- 푸터 -->
     <div class="common_footer">푸터임다 d </div>
 
 </body>
+
+<script>
+let hotfixCancleBtn = document.querySelector(".hotfixCancleBtn");
+let hotfixSubmitBtn = document.querySelector(".hotfixSubmitBtn");
+
+hotfixCancleBtn.addEventListener('click',function(){
+	location.href = "/resolveMain";
+
+})
+
+hotfixSubmitBtn.addEventListener('click',function(){
+	hotfixSubmitBtn.action = "/resolveMain2";
+	hotfixSubmitBtn.submit();
+
+})
+</script>
 
 <script src="../resources/js/BasicFrame.js"></script>
 <!-- <script src="../resource/js/mypage_new_real.js"></script> -->
