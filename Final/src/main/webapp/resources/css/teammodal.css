@@ -58,14 +58,12 @@
     border-bottom: 1px solid var(--border-color);
     display: flex;
 }
-#teamname a{
+#teamname{
     text-decoration: none;
     color: var(--basic-black-color);
     font-weight: 700;
     letter-spacing: 1.2px;
     text-transform: uppercase;
-}
-#teamname{
     /* border: 1px solid red; */
     width: 30%;
     text-align: center;
@@ -348,7 +346,6 @@
 }
 /* 팀 틀 */
 .team{
-    border: 1px solid red;
     padding: 10px 0;
 }
 /* 팀로고 */
@@ -512,10 +509,7 @@ input[id="teaminput"]:focus{
 .teamjoincheck p{
     font-size: 1.1rem;
 }
-.join-btn form{
-    width: 100%;
-}
-.join-btn form button{
+.join-btn button{
     width: 100%;
     background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
     color: whitesmoke;
@@ -586,10 +580,7 @@ input[id="teaminput"]:focus{
 .teamsecssioncheck p{
     font-size: 1.1rem;
 }
-.secssion-btn form{
-    width: 100%;
-}
-.secssion-btn form button{
+.secssion-btn button{
     width: 100%;
     background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
     color: whitesmoke;

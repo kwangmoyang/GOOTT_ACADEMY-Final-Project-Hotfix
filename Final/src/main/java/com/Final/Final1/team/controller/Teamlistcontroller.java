@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,59 +23,34 @@ public class Teamlistcontroller {
 	Teamlistservice teamlistservice;
 	
 	//목록불러오기
-	//selectbox + 검색(팀이름, 소개글)
-	//태그 검색했을 때 -> 그냥 검색창에 검색했을 때
+	//selectbox
 	@RequestMapping(value="/teamlist")
 	public ModelAndView teamlist(@RequestParam Map<String, Object> map, @RequestParam(defaultValue = "all") String search_option, 
-			@RequestParam(defaultValue = "") String keyword) {
+			@RequestParam(defaultValue = " ") String keyword) {
 		
 			System.out.println(map.toString());
+			
 		
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("/team/teamlist");
 			
+			System.out.println("else면");
+			List<Map<String, Object>> taglist = teamlistservice.taglist(map, search_option, keyword); //태그 전체
+			List<TeamlistDTO> teamlist = teamlistservice.list(map, search_option, keyword); //팀목록 전체
+			List<Map<String, Object>> tags = teamlistservice.tags(map); //팀만들기
 			
-			if(search_option.equals("tagname")) {
-				System.out.println("if tagname이면");
-				List<TeamlistDTO> teamlist = teamlistservice.tagsearchlist(map, search_option, keyword); //태그 검색
-				List<Map<String, Object>> taglist = teamlistservice.taglist(map, search_option, keyword); //태그 전체
-				List<Map<String, Object>> tags = teamlistservice.tags(map); //팀만들기
-				
-				Map<String, Object> map2 = new HashMap<>();
-				
-				
-				map2.put("teamlist", teamlist); //태그+팀 조인
-				map2.put("taglist", taglist); //태그 전체
-				map2.put("tags", tags);
-				
-				mv.addObject("map",map2);
-				
-				return mv;
-				
-			} 
-			else if(search_option.equals("all") || search_option.equals("Teamname")) {
-				System.out.println("else면");
-				List<Map<String, Object>> taglist = teamlistservice.taglist(map, search_option, keyword); //태그 전체
-				List<TeamlistDTO> teamlist = teamlistservice.list(map, search_option, keyword); //팀목록 전체
-				List<Map<String, Object>> tags = teamlistservice.tags(map); //팀만들기
-				
-				
-				Map<String, Object> map2 = new HashMap<>();
-				
-				
-				map2.put("teamlist", teamlist); //팀목록 전체
-				map2.put("taglist", taglist); //태그 전체
-				map2.put("tags", tags);
-				
-				
-				mv.addObject("map",map2);
+			
+			Map<String, Object> map2 = new HashMap<>();
+			
+			
+			map2.put("teamlist", teamlist); //팀목록 전체
+			map2.put("taglist", taglist); //태그 전체
+			map2.put("tags", tags);
+			
+			
+			mv.addObject("map",map2);
 
-				return mv;
-			}
-			else {
-				return mv;
-			}
-			
+			return mv;
 	}
 	
 	//태그 검색했을 때 ->그 밑에 태그들을 선택해서 검색했을 때
@@ -99,12 +76,26 @@ public class Teamlistcontroller {
 	
 
 	//팀만들기
+	//태그선택 -> 선택한 태그들 insert
 	@RequestMapping(value="/teammake" , method= RequestMethod.POST)
 	public ModelAndView teammake2(@RequestParam Map<String, Object> map) {
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("redirect:/teamlist");
 			//팀 인서트
+			int teammake = teamlistservice.teammake(map);
+			mv.addObject("teammake", teammake); 
+			
+			return mv;
+
+	}
+	
+	@RequestMapping(value="/teamjoin" , method= RequestMethod.POST)
+	public ModelAndView teamjoin(@RequestParam Map<String, Object> map, HttpSession session) {
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("redirect:/teamlist");
+			
 			int teammake = teamlistservice.teammake(map);
 			mv.addObject("teammake", teammake); 
 			
