@@ -16,7 +16,6 @@
 				</li>
 				<li>
 					<p>${sessionScope.User_nickname }</p>
-					<p>#9877</p>
 				</li>
 				<li class="myli"><a href="/mypage/index">마이페이지</a></li>
 				<li class="myli"><a href="/mypage/setUserInfo">개인정보</a></li>

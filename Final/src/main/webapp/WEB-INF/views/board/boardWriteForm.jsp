@@ -86,7 +86,7 @@
                 <div class="boardWF_btn">
                     <!-- 해당부분 링크는 연결할곳이 없고 프론트단에서 할게 아니라서
                             ('토픽'칸의 설정에 따라서 다르게 이동되어야함) 정리했습니다 -SEO- -->
-                    <button>취소</button>
+                    <button >취소</button>
                     <button type="submit" >등록</button>
                 </div>
 
