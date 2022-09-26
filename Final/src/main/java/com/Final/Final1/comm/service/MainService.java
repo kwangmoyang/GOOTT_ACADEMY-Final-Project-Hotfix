@@ -7,4 +7,5 @@ import com.Final.Final1.comm.model.MainDTO;
 public interface MainService {
 
     List<MainDTO> list();
+    List<MainDTO> listTeam();
 }

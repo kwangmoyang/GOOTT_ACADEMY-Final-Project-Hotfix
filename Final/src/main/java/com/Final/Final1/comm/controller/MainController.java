@@ -22,12 +22,15 @@ public class MainController {
 	@RequestMapping(value = "/MainPage" , method = RequestMethod.GET)
 	public ModelAndView list() {
 		List<MainDTO> list = mainService.list();
+		List<MainDTO> listTeam = mainService.listTeam();
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("MainPage",list);
+		mav.addObject("Request",list);
+		mav.addObject("Teamlist",listTeam);
 		mav.setViewName("MainPage");
 
 		return mav;
 	}
+
 
 	@RequestMapping("/hotfix/index")
 	public String hotfixIndex() {
