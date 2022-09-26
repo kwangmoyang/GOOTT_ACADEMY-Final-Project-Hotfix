@@ -19,13 +19,7 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	TeamlistDAO teamlistdao;
 
 	@Override
-	public int insert(Map<String, Object> map) {
-		return this.teamlistdao.insert(map);
-	}
-
-	@Override
 	public List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword) {
-
 		return this.teamlistdao.list(map, search_option, keyword);
 	}
 
@@ -35,9 +29,24 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	}
 
 	@Override
-	public List<Map<String, Object>> click_taglist(Map<String, Object> map, String tagname) {
-		return this.teamlistdao.click_taglist(map, tagname);
+	public List<TeamlistDTO> tagsearchlist(Map<String, Object> map, String search_option, String keyword) {
+		
+		return this.teamlistdao.tagsearchlist(map, search_option, keyword);
 	}
+
+	@Override
+	public int teammake(Map<String, Object> map) {
+		return this.teamlistdao.teammake(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> tags(Map<String, Object> map) {
+		return this.teamlistdao.tags(map);
+	}
+
+
+
+
 
 	
 }

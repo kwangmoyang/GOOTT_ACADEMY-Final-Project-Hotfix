@@ -10,30 +10,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainPageController {
 	
 	
-	//핫픽스 메인페이지(로고 클릭시)
+	//�빂�뵿�뒪 硫붿씤�럹�씠吏�(濡쒓퀬 �겢由��떆)
 	@RequestMapping("/main/index")
 	public String mainIndex() {
 		return "MainPage";
 	}
 	
-	//해결 페이지(hotfix)
+	//�빐寃� �럹�씠吏�(hotfix)
 	@RequestMapping("/hotfix/index")
 	public String hotfixIndex() {
 		return "resolveMain";
 	}
 	
-	//팀페이지
+	//���럹�씠吏�
 	@RequestMapping("/team/index")
 	public String teamIndex() {
-		return "/team/teamlist";
+		return "/teamlist";
 	}
-	//랭킹
+	//�옲�궧
 	@RequestMapping("/ranking/index")
 	public String rankingIndex() {
 		return "/ranking/ranking";
 	}
 	
-	//커뮤니티
+	//而ㅻ�ㅻ땲�떚
 	@RequestMapping("/community/index")
 	public String communityIndex() {
 		return "/board/lifeBoard";
@@ -41,19 +41,19 @@ public class MainPageController {
 	
 	
 	
-	// 마이 페이지
+	// 留덉씠 �럹�씠吏�
 	@RequestMapping("/mypage/index")
 	public String mypageIndex() {
 		return "/mypage/mypage";
 	}
 	
-	//충전하기
+	//異⑹쟾�븯湲�
 	@RequestMapping("/charge/index")
 	public String chargeIndex() {
 		return "/mypage/mypage_pay";
 	}
 	
-	//로그아웃
+	//濡쒓렇�븘�썐
 	@RequestMapping("/logout/index")
 	public String logoutIndex(HttpSession session) {
 		session.invalidate();
@@ -61,15 +61,15 @@ public class MainPageController {
 	}
 	
 	//=====================================
-	//=========유저 권한 분류에 따라 아래의 페이지가 표시됨========
+	//=========�쑀�� 沅뚰븳 遺꾨쪟�뿉 �뵲�씪 �븘�옒�쓽 �럹�씠吏�媛� �몴�떆�맖========
 	
-	//관리자 페이지
+	//愿�由ъ옄 �럹�씠吏�
 	@RequestMapping("/admin/index")
 	public String adminIndex() {
 		return "/mypage/mypage";
 	}
 	
-	//팀장 페이지
+	//���옣 �럹�씠吏�
 	@RequestMapping("/teamLeader/index")
 	public String teamLeaderIndex() {
 		return "/mypage/mypage";

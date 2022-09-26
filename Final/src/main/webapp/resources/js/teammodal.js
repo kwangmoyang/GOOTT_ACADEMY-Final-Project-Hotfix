@@ -46,6 +46,12 @@ const teammakebtn = document.querySelectorAll('#teammakebtn');
 const modaldiv2 = document.querySelector('.modal2-div');
 const xicon2 = document.querySelector('#xicon2');
 
+const teamtag = document.querySelector('.teamtag'); //div
+const tagbtn = document.querySelectorAll('.teamtag button');
+
+const teamcheckbox = document.querySelector('#team-checkbox');
+const maketeamname = document.querySelector(".teamname");
+const maketeamintro = document.querySelector(".teamintro");
 
 //팀만들기버튼 누르면 모달창 키기
 for(let i=0; i<teammakebtn.length; i++){
@@ -59,20 +65,35 @@ for(let i=0; i<teammakebtn.length; i++){
 xicon2.addEventListener('click', function(){
     modaldiv2.style.display = 'none';
     xicon2.style.display = 'none';
-})
-
-//모달창 배경 눌러도 꺼질 수 있도록
-modaldiv2.addEventListener('click', function(e){    
-    if(e.target.className == 'modal2-div'){
-        modaldiv2.style.display = 'none';
-        xicon2.style.display = 'none';
+    
+    teamcheckbox.value = null;
+    maketeamname.value = null;
+    maketeamintro.value = null;
+    for(let i=0; i<tagbtn.length; i++){
+    	if(tagbtn[i].className == 'clickbtn'){
+            tagbtn[i].style.backgroundColor = 'rgb(255, 232, 205)';
+        }
     }
 })
 
-//태그
-const teamtag = document.querySelector('.teamtag'); //div
-const tagbtn = document.querySelectorAll('.teamtag button');
+//모달창 배경 눌러도 꺼질 수 있도록
+//modaldiv2.addEventListener('click', function(e){    
+//    if(e.target.className == 'modal2-div'){
+//        modaldiv2.style.display = 'none';
+//        xicon2.style.display = 'none';
+//        teamcheckbox.value = null;
+//        maketeamname.value = null;
+//        maketeamintro.value = null;
+//        for(let i=0; i<tagbtn.length; i++){
+//        	if(tagbtn[i].className == 'clickbtn'){
+//        		tagbtn[i].style.backgroundColor = 'rgb(255, 232, 205)';
+//        	}
+//        }
+//    }
+//    
+//})
 
+//태그
 for(let i=0 ; i<tagbtn.length ; i++){
     tagbtn[i].addEventListener('click', function(e){
 
@@ -88,6 +109,27 @@ for(let i=0 ; i<tagbtn.length ; i++){
     })
 }
 
+//체크가되어야 팀만들어지게
+function teamcheck(){
+
+    if(maketeamname.value == ''){
+        alert("팀이름을 입력해주세요.");
+        return false;
+    }
+    if(maketeamintro.value == ''){
+        alert("소개글을 입력해주세요.");
+        return false;
+    }
+    //tagbtn
+    
+    if(teamcheckbox.checked == false){
+        alert("약관에 동의해주세요.");
+        return false;
+    }
+    else if(teamcheckbox.checked == true){
+    	alert("제출");
+    }
+}
 
 //==========================팀가입 모달========================
 

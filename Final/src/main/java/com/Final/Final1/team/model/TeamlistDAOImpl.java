@@ -14,17 +14,13 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate; //root-context¿Í ¿¬°á
 
-	@Override
-	public int insert(Map<String, Object> map) {
-		return this.sqlSessionTemplate.insert("team.insert", map);
-	}
-
+	
 	@Override
 	public List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword) {
+		System.out.println("list"+map.toString());
+		System.out.println("list"+search_option);		
+		System.out.println("list"+keyword);
 		
-		System.out.println("listdao"+map.toString());
-		System.out.println("listdao"+search_option);		
-		System.out.println("listdao"+keyword);
 		
 		return sqlSessionTemplate.selectList("team.list", map);
 	}
@@ -40,17 +36,27 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> click_taglist(Map<String, Object> map, String tagname) {
-		System.out.println("taglistdao"+map.toString());
-		System.out.println("taglistdao"+tagname);		
+	public List<TeamlistDTO> tagsearchlist(Map<String, Object> map, String search_option, String keyword) {
 		
-//		Map<String, Object> map2 = new HashMap<>();
-//		map2.put("map", map);
-//		map2.put("tagname", tagname);
-
+		System.out.println("searchlist"+map.toString());
+		System.out.println("searchlist"+search_option);		
+		System.out.println("searchlist"+keyword);
 		
-		return sqlSessionTemplate.selectList("team.click_taglist", map);
+		
+		return sqlSessionTemplate.selectList("team.tagsearchlist", map);
 	}
+
+	@Override
+	public int teammake(Map<String, Object> map) {
+		return sqlSessionTemplate.insert("team.teammake", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> tags(Map<String, Object> map) {
+		System.out.println("tags");
+		return sqlSessionTemplate.selectList("team.tags", map);
+	}
+
 
 
 

@@ -13,7 +13,7 @@
     <!-- 폰트 -->
     <link rel="stylesheet" href="${path}/resources/css/global.css">
    <!-- 팀목록 css -->
-   <link rel="stylesheet" href="${path}/resources/css/teamlist.css">
+   <link rel="stylesheet" href="${path}/resources/css/teamlist.css?after">
    <!-- modal css -->
    <link rel="stylesheet" href="${path}/resources/css/teammodal.css?after">
    <!-- 유니콘 아이콘 사이트 -->
@@ -49,12 +49,13 @@
             <div class="teamlistsearch">
                 <div class="search">
                     <div class="search-box">
-                        <form method="POST">
+                        <form method="POST" action="/teamlist">
 	                        <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요" name="keyword" value="" />
 	                        <button type="submit" class="searchbtn"><i class="fa-solid fa-magnifying-glass"></i></button>
 	                        <select name="search_option">
 								<option value="all"<c:out value="${map.search_option == 'all' ? 'selected' : ''}"/> >전체</option>
 								<option value="Teamname"<c:out value="${map.search_option == 'Teamname' ? 'selected' : ''}"/> >팀이름</option>
+								<option value="tagname"<c:out value="${map.search_option == 'tagname' ? 'selected' : ''}"/> >태그</option>
 							</select>	
                         </form>
                     </div>
@@ -63,10 +64,33 @@
                     </div>
                 </div>
         	</div>
+        	
+        		
+                <div class="select-tagsearch">
+	                <div class="select-search-div">
+	                    <c:forEach var="row1" items="${map.tags}" begin="0" end="4">
+								<button class="searchtagbtn">
+									#${row1.Tag_Name}
+								</button>
+						</c:forEach>                    
+	                </div>
+	                <button class="plusbtn">...</button>
+            	</div>
+	            <div class="plustagdiv">
+	               <div class="plustag">
+	                    <c:forEach var="row1" items="${map.tags}" begin="5">
+								<button class="searchplusbtn">
+									#${row1.Tag_Name}
+								</button>
+						</c:forEach>
+	                    <button class="closebtn">접기</button>
+	                </div>
+	            </div>
+            
     
-           	
-			<form id="tagform" method="POST">
+			<form method="POST" action="/teamlist">
             	<c:forEach var="row" items="${map.teamlist}" begin="0" end="9">
+            	  <input type="hidden" value="${row.Team_code}" name="${row.Team_code}"/>
 				  <div class="teamlistbox">
 				      <div class="img">
 				          <!-- 사진 불러오는 거 -->
@@ -75,15 +99,15 @@
 				      <div class="teamlistboxleft">
 				         <div class="teamtitle">${row.Team_name}</div>
 				         <div class="teamdescription">${row.Team_intro}</div>
-				                
-							<div class="languagetag">
-								<c:forEach var="row1" items="${map.taglist}">
-							        <c:if test="${row.Team_name eq row1.Team_name}">
-										<button class="tagbtn">
-											${row1.Tags_Tag_Name}
-										</button>
-									</c:if>
-								</c:forEach>
+		
+							<div class="languagetag">		
+									<c:forEach var="row1" items="${map.taglist}">
+								        <c:if test="${row.Team_name eq row1.Team_name}">
+											<button class="tagbtn" name="${row1.Tags_Tag_Name}">
+												${row1.Tags_Tag_Name}
+											</button>
+										</c:if>
+									</c:forEach>
 							 </div>
 							    
 				        <div class="teamcreationdate">
@@ -214,40 +238,42 @@
 	
 	<!-- =========================================팀만들기 모달================================================= -->
 
-	<div class="modal2-div">
+	<form onsubmit="return teamcheck()" method = "POST" action="/teammake">
+	    <div class="modal2-div">
 	        <div class="teammodal2-div">
 	            <div class="toptitle"><p>팀 만들기</p></div>
 	            <div class="team profile">
-	                <form action="">
-	                    팀 로고 첨부파일
-	                    <div><img src="이미지가 들어올 것" alt=""><i class="fa-solid fa-user" id="teamlogoicon"></i></div>
+	                    	팀 로고 첨부파일
+	                    <div class="teamlogo"><img src="이미지가 들어올 것" alt=""><i class="fa-solid fa-user" id="teamlogoicon"></i></div>
 	                    <button><input type="file"></button>
-	                </form>
+	                
 	            </div>
 	            <div class="team divone">
-	                <input type="text" id="teaminput" placeholder="팀이름">
+	                <input type="text" id="teaminput" class="teamname" name="teamname" placeholder="팀이름" >
 	            </div>
 	            <div class="team divtwo">
-	                <input type="text" id="teaminput" placeholder="소개글">
+	                <input type="text" id="teaminput" class="teamintro" name="teamintro" placeholder="소개글">
 	            </div>
 	            <div class="team divthr">
-	                 <div class="teamtag">
-	                    <!-- insert방식으로 -->
-	                    <button class="normalbtn">html</button>
-                	</div>
+	                <div class="teamtag">
+	                    <c:forEach var="row1" items="${map.tags}">
+								<button class="normalbtn" name="teamtag">
+									#${row1.Tag_Name}
+								</button>
+						</c:forEach>
+	                </div>
 	            </div>
 	            <div class="team divfour">
 	                <p>약관넣기</p>
-	                <input type="checkbox">
+	                <input type="checkbox" id="team-checkbox">
 	            </div>
 	            <div class="team make-btn">
-	                <form action="">
-	                    <button>팀생성하기</button>
-	                </form>
+	                <button id="makingbtn">팀생성하기</button>
 	            </div>
 	        </div>
-	    <ion-icon name="close-outline" id="xicon2"></ion-icon>
-	</div>
+	        <ion-icon name="close-outline" id="xicon2"></ion-icon>
+	    </div>
+	</form>
 
 	
 		<!-- ====================================팀 가입 모달====================================== -->

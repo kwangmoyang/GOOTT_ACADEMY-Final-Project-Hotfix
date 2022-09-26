@@ -348,17 +348,17 @@
 }
 /* 팀 틀 */
 .team{
-    /* border: 1px solid red; */
+    border: 1px solid red;
     padding: 10px 0;
 }
 /* 팀로고 */
-.profile form{
+.profile{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.profile form div{
+.teamlogo{
     background-color: var(--basic-gainsboro-color);
     width: 80px;
     height: 80px;
@@ -408,12 +408,13 @@ input[id="teaminput"]:focus{
 
     position: relative;
     cursor: pointer;
+    background-color: rgb(255, 232, 205);
 }
 .teamtag .normalbtn{
-    background-color: rgb(255, 232, 205);
+    background-color: rgb(255, 232, 205);	
 }
 .teamtag .clickbtn{
-    background-color: rgb(255, 232, 205);
+	background-color: rgb(251, 171, 79);
 }
 /* x icon */
 .fa-xmark{
@@ -431,7 +432,7 @@ input[id="teaminput"]:focus{
 .make-btn form{
     width: 100%;
 }
-.make-btn form button{
+.make-btn button{
     width: 100%;
     background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
     color: whitesmoke;
