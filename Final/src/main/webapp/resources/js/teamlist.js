@@ -33,3 +33,69 @@ for(let i=0; i<tooltip.length; i++)
         tooltip[i].style.opacity = '0';
     })
 }
+
+//태그 검색 부분
+const plusbtn = document.querySelector(".plusbtn");
+const plustagdiv = document.querySelector(".plustagdiv");
+const closebtn = document.querySelector(".closebtn");
+
+const searchtagbtn = document.querySelectorAll(".select-search-div button");
+const searchtagplusbtn = document.querySelectorAll(".plustag button");
+
+
+plusbtn.addEventListener('click', function(){
+    plusbtn.style.display = 'none';
+    plustagdiv.style.display = 'flex';
+})
+
+closebtn.addEventListener('click', function(){
+    plustagdiv.style.display = 'none';
+    plusbtn.style.display = 'block';
+})
+
+var flag = true;
+
+//태그 5개
+for(let i=0; i<searchtagbtn.length; i++){
+    searchtagbtn[i].addEventListener('click', function(e){
+        
+        if(e.target.className == 'searchtagbtn'){
+            searchtagbtn[i].style.backgroundColor = 'rgba(255, 95, 47, 0.906)';
+            searchtagbtn[i].style.color = 'white';
+            searchtagbtn[i].className = 'tagclickbtn1';
+        }
+        
+        else if(e.target.className == 'tagclickbtn1'){
+            searchtagbtn[i].style.backgroundColor = 'buttonface';
+            searchtagbtn[i].style.color = 'black';
+            searchtagbtn[i].className = 'searchtagbtn';
+        }
+        
+    })
+}
+
+//나머지 태그
+for(let i=0; i<searchtagplusbtn.length; i++){
+    searchtagplusbtn[i].addEventListener('click', function(e){
+       if(e.target.className == 'searchplusbtn'){
+            searchtagplusbtn[i].style.backgroundColor = 'rgba(255, 95, 47, 0.906)';
+            searchtagplusbtn[i].style.color = 'white';
+
+            //closebtn도 같이 변해서 그거 방지하려고 설정
+            closebtn.style.backgroundColor = 'gainsboro';
+            closebtn.style.color = 'black';
+
+            searchtagplusbtn[i].className = 'tagclickbtn2';
+       }
+       else if(e.target.className == 'tagclickbtn2'){
+            searchtagplusbtn[i].style.backgroundColor = 'buttonface';
+            searchtagplusbtn[i].style.color = 'black';
+
+            //closebtn도 같이 변해서 그거 방지하려고 설정
+            closebtn.style.backgroundColor = 'gainsboro';
+
+            searchtagplusbtn[i].className = 'searchplusbtn';
+        }
+        
+    })
+}
