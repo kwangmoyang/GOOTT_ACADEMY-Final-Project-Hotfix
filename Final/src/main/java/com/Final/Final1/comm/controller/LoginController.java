@@ -1,5 +1,6 @@
 package com.Final.Final1.comm.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -13,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Final.Final1.comm.model.LoginDAO;
 import com.Final.Final1.comm.model.LoginDTO;
+import com.Final.Final1.comm.model.MainDTO;
 import com.Final.Final1.comm.service.LoginService;
+import com.Final.Final1.comm.service.MainService;
 import com.Final.Final1.mypage.model.MypageDTO;
 
 @Controller
@@ -23,6 +26,8 @@ public class LoginController {
 	LoginDAO loginDao;
 	@Autowired
 	LoginService loginService;
+	@Autowired
+	MainService mainService;
 
 	// 로그인페이지
 	@RequestMapping("/login")
@@ -53,7 +58,7 @@ public class LoginController {
 	}
 
 	@RequestMapping("/loginChk")
-	public ModelAndView loginChk2(LoginDTO dto, HttpSession session, @RequestParam Map<String, Object> map) {
+	public ModelAndView loginChk(LoginDTO dto, HttpSession session, @RequestParam Map<String, Object> map) {
 
 		ModelAndView mv = new ModelAndView();
 
@@ -66,6 +71,9 @@ public class LoginController {
 		
 		// 유저 ID PW 둘다 일치시 정상 로그인
 		if (UserInfo_Chk != null) {
+			
+			List<MainDTO> list = mainService.list();
+			mv.addObject("MainPage",list);
 			mv.setViewName("/MainPage");
 			// 로그인 완료시 세션 생성
 			session.setAttribute("User_id", UserOnlyId_Chk.get("User_id"));

@@ -20,7 +20,10 @@ public class MainController {
 	MainService mainService;
 	
 	@RequestMapping(value = "/MainPage" , method = RequestMethod.GET)
-	public ModelAndView list() {
+	public ModelAndView list(HttpSession session) {
+		//조건문 추가
+//		session.invalidate();
+
 		List<MainDTO> list = mainService.list();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("MainPage",list);
@@ -35,10 +38,10 @@ public class MainController {
 	}
 
 	//팀페이지
-	@RequestMapping("/team/index")
-	public String teamIndex() {
-		return "/team/teamlist";
-	}
+//	@RequestMapping("/team/index")
+//	public String teamIndex() {
+//		return "/team/teamlist";
+//	}
 	//랭킹
 	@RequestMapping("/ranking/index")
 	public String rankingIndex() {
@@ -67,9 +70,15 @@ public class MainController {
 
 	//로그아웃
 	@RequestMapping("/logout/index")
-	public String logoutIndex(HttpSession session) {
+	public ModelAndView logoutIndex(HttpSession session) {
 		session.invalidate();
-		return "MainPage";
+		
+		List<MainDTO> list = mainService.list();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("MainPage",list);
+		mv.setViewName("/MainPage");
+		
+		return mv;
 	}
 
 	//=====================================
