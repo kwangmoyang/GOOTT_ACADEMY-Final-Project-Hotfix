@@ -15,18 +15,11 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	
 	@Override
-	public List<BoardDTO> list() {
+	public List<BoardDTO> list(BoardDTO dto) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("board.list");
+		return sqlSessionTemplate.selectList("board.list",dto);
 	}
 	
-	@Override
-	public List<BoardDTO> list(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("board.TopicList", map);
-	}	
-
-
 	@Override
 	public Object insert(BoardDTO dto) {
 		// TODO Auto-generated method stub

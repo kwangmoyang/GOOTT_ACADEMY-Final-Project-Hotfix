@@ -18,14 +18,9 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	@Override
-	public List<BoardDTO> list() {
+	public List<BoardDTO> list(BoardDTO dto) {
 		// TODO Auto-generated method stub
-		return boardDAO.list();
-	}
-	@Override
-	public List<BoardDTO> list(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return boardDAO.list(map);
+		return boardDAO.list(dto);
 	}
 
 

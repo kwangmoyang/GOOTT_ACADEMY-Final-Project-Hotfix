@@ -21,8 +21,8 @@
 <script>
 window.onload = function(){
 	let btnReply = document.querySelector('#btnReply');
-	  btnReply.addEventListener('click', function(){
 		  listReply();
+	  btnReply.addEventListener('click', function(){
 		  let Post_num = "${data.Post_num}";
 			let Comment_contents = document.querySelector("#Comment_contents").value;
 			let Comment_writer = document.querySelector("#Comment_writer").value;	
@@ -96,15 +96,36 @@ function listReply(){
 						</div>
 					</div>
 
+
+
 					<div class="detailCommentBox">
+						<c:choose>
+							<c:when test="${sessionScope.User_id != null }">
+								<div class="detail_btn">
+									<button
+										onclick="location.href='/update?Post_num=${data.Post_num}'">수정</button>
+									<form method="POST" action="/delete">
+										<input type="hidden" name="Post_num" value="${data.Post_num}" />
+										<input type="submit" value="삭제" />
+									</form>
+								</div>
+							</c:when>
+
+							<c:otherwise>
+
+							</c:otherwise>
+						</c:choose>
+
+
 						<span>9개의 댓글</span>
 						<textarea name="Comment_contents" id="Comment_contents" rows="10"
 							cols="10" placeholder="댓글을 작성해주세요"
 							style="width: 100%; height: 100%;"></textarea>
-						<input type="text" id="Comment_writer">
+						<input type="hidden" value="${sessionScope.User_nickname}"
+							name="Comment_writer" id="Comment_writer">
 						<button type="button" id="btnReply">댓글쓰기</button>
 					</div>
-				
+
 
 					<!-- 	<span><i class="fas fa-feather-alt"></i></span> <span>200<i
 						class="fas fa-bolt"></i></span> <span>나나콘</span> <span>약 5시간전</span>
@@ -114,19 +135,12 @@ function listReply(){
 					</div>
  -->
 
-					<div class="detail_btn">
-						<button
-							onclick="location.href='/update?Post_num=${data.Post_num}'">수정</button>
-						<form method="POST" action="/delete">
-							<input type="hidden" name="Post_num" value="${data.Post_num}" />
-							<input type="submit" value="삭제" />
-						</form>
-					</div>
-						<div class="detailSubTitle">
+
+					<div class="detailSubTitle">
 						<div id="listReply" class="commentCon"></div>
 						<div id="modifyReply"></div>
 					</div>
-					
+
 				</div>
 			</div>
 

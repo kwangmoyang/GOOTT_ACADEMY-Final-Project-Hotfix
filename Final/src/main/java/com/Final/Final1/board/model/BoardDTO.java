@@ -4,10 +4,10 @@ import java.util.Date;
 
 import javax.swing.text.StyledEditorKit.BoldAction;
 
-public class BoardDTO {
+public class BoardDTO  {
 	
-	
-	private String Board_code;
+	//private String Board_code;
+	private String boardCode;
 	private int Post_num;
 	private String Post_writer;
 	private String Post_title;
@@ -20,11 +20,14 @@ public class BoardDTO {
 	private int Att_Board;
 	private String Tags_Board;
 	
-	public String getBoard_code() {
-		return Board_code;
+	//검색키워드
+	private String keyword;
+	
+	public String getBoardCode() {
+		return boardCode;
 	}
-	public void setBoard_code(String board_code) {
-		Board_code = board_code;
+	public void setBoardCode(String boardCode) {
+		this.boardCode = boardCode;
 	}
 	public int getPost_num() {
 		return Post_num;
@@ -91,6 +94,12 @@ public class BoardDTO {
 	}
 	public void setTags_Board(String tags_Board) {
 		Tags_Board = tags_Board;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	
 	

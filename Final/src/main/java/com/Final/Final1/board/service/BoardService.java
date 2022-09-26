@@ -7,10 +7,8 @@ import com.Final.Final1.board.model.BoardDTO;
 
 public interface BoardService {
 
-	List<BoardDTO> list();
+	List<BoardDTO> list(BoardDTO dto);
 	
-	List<BoardDTO> list(Map<String, Object> map);
-
 	void insert(BoardDTO dto);
 
 	Map<String, Object> detail(BoardDTO dto);
@@ -20,6 +18,8 @@ public interface BoardService {
 	boolean remove(BoardDTO dto);
 
 	void viewCount(BoardDTO dto);
+
+
 
 	
 

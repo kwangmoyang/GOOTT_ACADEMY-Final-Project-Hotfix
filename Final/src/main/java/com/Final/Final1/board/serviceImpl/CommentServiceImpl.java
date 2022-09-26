@@ -22,9 +22,9 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public List<CommentDTO> list(int post_num) {
+	public List<CommentDTO> list(int Post_num) {
 		// TODO Auto-generated method stub
-		return commentDAO.list(post_num);
+		return commentDAO.list(Post_num);
 	}
 
 }

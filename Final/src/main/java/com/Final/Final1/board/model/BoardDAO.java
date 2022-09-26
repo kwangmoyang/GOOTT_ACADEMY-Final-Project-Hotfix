@@ -5,10 +5,8 @@ import java.util.Map;
 
 public interface BoardDAO {
 
-	List<BoardDTO> list();
+	List<BoardDTO> list(BoardDTO dto);
 	
-	List<BoardDTO> list(Map<String, Object> map);
-
 	Object insert(BoardDTO dto);
 
 	Map<String, Object> detail(BoardDTO dto);

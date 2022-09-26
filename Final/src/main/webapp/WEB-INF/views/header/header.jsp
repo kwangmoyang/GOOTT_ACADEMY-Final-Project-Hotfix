@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- ======================== 헤더 ======================= -->
+    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
     <div class="common_header">
         <!-- 헤더 섹션 왼쪽 -->
         <div class="common_header_left">
@@ -14,7 +15,7 @@
                 <li><a href="/hotfix/index">HOTFIX</a></li>
                 <li><a href="/team/index">팀페이지</a></li>
                 <li><a href="/ranking/index">랭킹</a></li>
-                <li><a href="/community/index">커뮤니티</a></li>
+                <li><a href="/list">커뮤니티</a></li>
             </ul>
             
         </div>

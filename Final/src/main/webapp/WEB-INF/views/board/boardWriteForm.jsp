@@ -54,9 +54,12 @@
                         <option value="스터디">스터디</option>    
                     </select>
                 </div>
+                
                  <div class="WF_input_box">
-                    <p>작성자</p>
-                    <input type="text" placeholder="작성자를 입력하세요" name="Post_writer" id="Post_writer" >
+                 	
+                   <input type="hidden" value="${sessionScope.User_nickname}" name="Post_writer" id="Post_writer">  
+                    
+                  <!--    <input type="text" placeholder="작성자를 입력하세요" name="Post_writer" id="Post_writer" >-->
                 </div>
                 <div class="WF_input_box">
                     <p>제목</p>

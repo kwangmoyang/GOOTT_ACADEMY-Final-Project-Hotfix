@@ -28,8 +28,9 @@ public class CommentController {
 	
 	@RequestMapping("comment/list")
 	public ModelAndView list(int Post_num, ModelAndView mv) {
-		List<CommentDTO> list = commentService.list(Post_num);
 		
+		List<CommentDTO> list = commentService.list(Post_num);
+		System.out.println(Post_num);
 		System.out.println(list.toString());
 		mv.setViewName("board/comment_list");
 		mv.addObject("list", list);
