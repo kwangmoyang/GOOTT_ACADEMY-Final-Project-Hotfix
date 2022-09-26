@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,13 +10,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/BasicFrame.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage.css">
+<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage.css">--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/MainPage.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <!-- 유니콘 아이콘 사이트 -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <title>HOTFIX</title>
 
 </head>
@@ -22,7 +25,6 @@
 <body>
 
       <%@ include file="/WEB-INF/views/header/header.jsp" %>
-
 
     <div class="container">
         <!-- ======================== 작업 섹션 ======================= -->
@@ -62,95 +64,37 @@
             <div id="main_community_preview">
                 <div id="fir_com_preview">
                     <div id="request_preview">
-                        <div class="preview_title"  onclick="location.href='resolveMain.html'"><span>REQUEST(밋밋해서)</span></div>
+                        <div class="preview_title"  onclick="location.href='hotfix/index'"><span>REQUEST(밋밋해서)</span></div>
                         <div class="preview_content">
+                            <c:forEach var="Req" items="${MainPage}">
                             <div class="content_item">
-                                <div class="item_writer"><span>구트1년차 </span><span>활동점수10 30분전</span></div>
-                                <div class="item_info"><span>0댓글</span></div>
-                                <div class="item_title"><span>이거좀도와주십쇼</span></div>
+                                <div class="item_writer"><span>${Req.Requester}</span>&nbsp;<span><ion-icon name="flame-sharp"></ion-icon> ${Req.User_score}</span><span>${Req.ReadySolver_cnt}</span></div>
+                                <div class="item_info"><span>${Req.Recruiting_time}</span></div>
+                                <div class="item_title"><span>${Req.Request_title}</span></div>
                             </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>구트2년차 </span><span>활동점수200 2시간전</span></div>
-                                <div class="item_info"><span>1댓글</span></div>
-                                <div class="item_title"><span>아진짜어떡하지</span></div>
-                            </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>구트3년차 </span><span>활동점수340 3시간전</span></div>
-                                <div class="item_info"><span>3댓글</span></div>
-                                <div class="item_title"><span>집에가고싶습니다</span></div>
-                            </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>구트4년차 </span><span>활동점수120 4시간전</span></div>
-                                <div class="item_info"><span>0댓글</span></div>
-                                <div class="item_title"><span>4년차이상만답해주세요</span></div>
-                            </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>구트5년차 </span><span>활동점수70 5시간전</span></div>
-                                <div class="item_info"><span>8댓글</span></div>
-                                <div class="item_title"><span>이거해결하면100만원</span></div>
-                            </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>구트6년차 </span><span>활동점수7000 8시간전</span></div>
-                                <div class="item_info"><span>2댓글</span></div>
-                                <div class="item_title"><span>어렵네요</span></div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <div id="board1_preview">
-                        <div class="preview_title" onclick="location.href='board/lifeBoard.html'"><span>일상</span></div>
+                        <div class="preview_title" onclick="location.href='community/index'"><span>커뮤니티</span></div>
                         <div class="preview_content">
                             <div class="content_item">
                                 <div class="item_writer"><span>가을타나봐 </span><span>활동점수50 23분전</span></div>
                                 <div class="item_info"><span>3댓글</span></div>
                                 <div class="item_title"><span>벌써 가을이네요</span></div>
                             </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>조용좀합시다</span><span>활동점수113 43분전</span></div>
-                                <div class="item_info"><span>1댓글</span></div>
-                                <div class="item_title"><span>윗집소음 너무 심해서 미치겠네요</span></div>
-                            </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>구트13일차 </span><span>활동점수6 50분전</span></div>
-                                <div class="item_info"><span>7댓글</span></div>
-                                <div class="item_title"><span>개발이 재밌습니다</span></div>
-                            </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>틀딱개발자</span><span>활동점수230 1시간전</span></div>
-                                <div class="item_info"><span>12댓글</span></div>
-                                <div class="item_title"><span>jQuery진짜 끝났나요?</span></div>
-                            </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>비오네빌런</span><span>활동점수50 3시간전</span></div>
-                                <div class="item_info"><span>3댓글</span></div>
-                                <div class="item_title"><span>오늘비오네요</span></div>
-                            </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>조용좀합시다</span><span>활동점수210 5시간전</span></div>
-                                <div class="item_info"><span>1댓글</span></div>
-                                <div class="item_title"><span>집에가고싶습니다</span></div>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div id="sec_com_preview">
                     <div id="team_preview">
-                        <div class="preview_title" onclick="location.href='team/teamlist.html'"><span>TEAM(디자인
+                        <div class="preview_title" onclick="location.href='team/index'"><span>TEAM(디자인
                                 넣어야함)</span></div>
                         <div class="preview_content">
                             <div class="content_item">
                                 <div class="item_writer"><span>구트1년차 </span><span>활동점수10 30분전</span></div>
                                 <div class="item_info"><span>0댓글</span></div>
                                 <div class="item_title"><span>초급개발자 서로 알려줘요</span></div>
-                            </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>구트2년차 </span><span>활동점수200 2시간전</span></div>
-                                <div class="item_info"><span>1댓글</span></div>
-                                <div class="item_title"><span>3년차 이상 백엔드팀원 구함</span></div>
-                            </div>
-                            <div class="content_item">
-                                <div class="item_writer"><span>구트3년차 </span><span>활동점수340 3시간전</span></div>
-                                <div class="item_info"><span>3댓글</span></div>
-                                <div class="item_title"><span>이직정보공유</span></div>
                             </div>
                         </div>
                     </div>

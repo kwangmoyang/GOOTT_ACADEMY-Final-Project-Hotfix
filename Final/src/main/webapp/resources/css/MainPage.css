@@ -224,12 +224,20 @@
     height: 4vh;
     line-height: 4vh;
     /* background-color: blue; */
-    /* border: 1px solid blue; */
+     border: 1px solid blue;
 }
 .item_writer :nth-child(1){
     cursor: pointer;
 }
 .item_writer :nth-child(2){
+    font-size: 0.9em;
+    color: rgba(0,0,0,.6);
+}
+ion-icon{
+    font-size: 0.95em;
+    line-height: 3.8vh;
+}
+.item_writer :nth-child(3){
     font-size: 0.9em;
     color: rgba(0,0,0,.6);
 }
@@ -242,7 +250,7 @@
     height: 4vh;
     line-height: 4vh;
     /* background-color: red; */
-    /* border: 1px solid red; */
+     border: 1px solid red;
 }
 .item_info > span {
     font-size: 0.9em;
@@ -257,7 +265,7 @@
     height: 5.9vh;
     line-height: 5.9vh;
     /* background-color: green; */
-    /* border: 1px solid green; */
+     border: 1px solid green;
 }
 .item_title > span {
     font-size: 1.2em;
