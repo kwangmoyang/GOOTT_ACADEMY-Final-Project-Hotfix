@@ -6,6 +6,47 @@ let myPage_side_text = document.querySelectorAll(".myli>a");
 textHover(myPage_side_text);
 
 
+let info_before = document.querySelectorAll(".info_before");
+let update_before = document.querySelectorAll(".update_before");
+
+let info_after = document.querySelectorAll(".info_after");
+let update_after = document.querySelectorAll(".update_after");
+
+let update_submit = document.querySelectorAll(".update_submit");
+
+
+let formsection = document.querySelectorAll(".formsection");
+
+for(let i=0; i<update_before.length; i++){
+    update_before[i].addEventListener('click', function(){
+    	console.log("gd");
+        display(info_after[i],"block");
+        display(update_after[i],"block");
+        display(formsection[i],"block");
+
+        display(info_before[i],"none");
+        display(update_before[i],"none");
+    })
+}
+
+for(let i=0; i<update_after.length; i++){
+    update_after[i].addEventListener('click', function(){
+        display(info_after[i],"none");
+        display(update_after[i],"none");
+        display(formsection[i],"none");
+
+        display(info_before[i],"block");
+        display(update_before[i],"block");
+
+        update_submit.action = "/loginChk";
+    	update_submit.submit();
+
+    })
+}
+
+
+
+
 
 
 // ! =====================함수존=======================

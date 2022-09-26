@@ -7,7 +7,17 @@ public class LoginDTO {
 	private String User_id;
 	private String User_pw;
 	private int Pw_Mistake_cnt;
+	private String User_nickname;
 	
+	
+	
+	
+	public String getUser_nickname() {
+		return User_nickname;
+	}
+	public void setUser_nickname(String user_nickname) {
+		User_nickname = user_nickname;
+	}
 	public String getUser_id() {
 		return User_id;
 	}
@@ -28,8 +38,8 @@ public class LoginDTO {
 	}
 	@Override
 	public String toString() {
-		return "LoginDTO [User_id=" + User_id + ", User_pw=" + User_pw + ","
-				+ " Pw_Mistake_cnt=" + Pw_Mistake_cnt + "]";
+		return "LoginDTO [User_id=" + User_id + ", User_pw=" + User_pw + ", Pw_Mistake_cnt=" + Pw_Mistake_cnt
+				+ ", User_nickname=" + User_nickname + "]";
 	}
 	
 	

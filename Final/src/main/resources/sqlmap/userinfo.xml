@@ -15,5 +15,44 @@
 		User_id=#{User_id};
 	</select>
 	
+	<!-- 회원의 포인트 뽑아옴 -->
+	<select id="UserPoint" resultType="int">
+		select User_point from User where User_id=#{User_id};
+	</select>
+	
+	<!-- 닉네임 변경 -->
+	<update id="UserSetNickname" parameterType="hashMap">
+		update User set User_nickname =#{User_nickname} 
+		where User_id = #{User_id};
+	</update>
+	
+	<!-- 폰번호 변경 -->
+	<update id="UserSetPhone_num" parameterType="hashMap">
+		update User set Phone_num =#{Phone_num} 
+		where User_id = #{User_id};
+	</update>
+	
+	<!-- 이메일 변경 -->
+	<update id="UserSetEmail_address" parameterType="hashMap">
+		update User set Email_address =#{Email_address} 
+		where User_id = #{User_id};
+	</update>
+	
+	<!-- 비번 변경 -->
+	<update id="UserSetUser_pw" parameterType="hashMap">
+		update User set User_pw =#{User_pw} 
+		where User_id = #{User_id};
+	</update>
+	
+	<!-- 자기소개 변경 -->
+	<update id="UserSetUser_introduce" parameterType="hashMap">
+		update User set User_introduce =#{User_introduce} 
+		where User_id = #{User_id};
+	</update>
+
+	<!-- 계좌정보 변경 -->
+	
+	
+	
 
 </mapper>

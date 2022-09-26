@@ -46,7 +46,7 @@
                  </div>
                  <div class="dpGetPoint">
                     <h2>총 보유 픽스</h2>
-                    <span>150 Fix <span>   
+                    <span>${money } Fix <span>   
                  </div>
             
                 </div>

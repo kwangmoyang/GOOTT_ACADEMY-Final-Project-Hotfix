@@ -45,11 +45,11 @@
 						<div>img</div>
 						<div>
 							<div class="introduce_nickname">
-								<div class="name">양광모 123</div>
+								<div class="name">${sessionScope.User_nickname }</div>
 								<div class="follow">dd</div>
 							</div>
 
-							<div class="introduce_text">ss</div>
+							<div class="introduce_text">${sessionScope.User_introduce }</div>
 						</div>
 					</div>
 
@@ -76,7 +76,7 @@
 						님의 커미션 <i class="uil uil-question-circle"></i>
 					</p>
 					<div class="comition_1">
-						<div>5000 포인트</div>
+						<div>${sessionScope.commission } 포인트</div>
 						<div>
 							<a href="#">확인<i class="uil uil-angle-right-b"></i></a>
 						</div>
@@ -94,7 +94,7 @@
 					<!-- 나의 팀 -->
 					<p class="mypage_title">님의 팀정보</p>
 					<div class="myTeam">
-						<div>구트팀</div>
+						<div>${sessionScope.Team_name }</div>
 						<div>
 							<a href="#">확인<i class="uil uil-angle-right-b"></i></a>
 						</div>

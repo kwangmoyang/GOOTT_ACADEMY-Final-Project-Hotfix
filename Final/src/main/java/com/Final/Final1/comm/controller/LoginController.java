@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.Final.Final1.comm.model.LoginDAO;
 import com.Final.Final1.comm.model.LoginDTO;
 import com.Final.Final1.comm.service.LoginService;
+import com.Final.Final1.mypage.model.MypageDTO;
 
 @Controller
 public class LoginController {
@@ -73,7 +74,8 @@ public class LoginController {
 				System.out.println("되냐?"+ strKey +":"+ strValue );
 				session.setAttribute(strKey, strValue);
 			});
-
+			
+			
 			
 			
 			
