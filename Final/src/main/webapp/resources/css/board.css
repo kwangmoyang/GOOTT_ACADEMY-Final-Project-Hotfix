@@ -106,7 +106,6 @@ input:-webkit-autofill {
 .searchbtn{
     position: relative;
     right: 6%;
-    
     border: none;
     background-color: white;
 }
@@ -162,15 +161,18 @@ input:-webkit-autofill {
     overflow: hidden;
     
 }
-.board_content > span a {
+.board_content > span, span a {
     text-decoration: none;
     color: black;
+    cursor: pointer;
 }
+
 .board_tag>span {
     display: inline-block;
     width: 50px;
     text-align: center;
     margin: 5px;
+   
 }
 
 /* 페이징 */

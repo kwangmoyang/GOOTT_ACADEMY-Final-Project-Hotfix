@@ -17,10 +17,9 @@ public class CommentDAOImpl implements CommentDAO {
 		sqlSessionTemplate.insert("Comment.insert", dto);
 		
 	}
-
 	@Override
-	public List<CommentDTO> list(int post_num) {
-		return sqlSessionTemplate.selectList("Comment.list", post_num);
+	public List<CommentDTO> list(int Post_num) {
+		return sqlSessionTemplate.selectList("Comment.list", Post_num);
 	}
 
 }

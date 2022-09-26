@@ -3,6 +3,8 @@ package com.Final.Final1.board.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +22,13 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
-		List<BoardDTO> list = boardService.list();
+	public ModelAndView list(HttpServletRequest req, 
+			@RequestParam(defaultValue="1")int curPage) {
+		BoardDTO dto = new BoardDTO();
+		dto.setBoardCode(req.getParameter("boardCode"));
+		dto.setKeyword(req.getParameter("keyword"));
+				
+		List<BoardDTO> list = boardService.list(dto);
 		ModelAndView mv = new ModelAndView();
 		
 		mv.setViewName("board/board");
@@ -30,19 +37,18 @@ public class BoardController {
 		
 		return mv;
 	}
-	@RequestMapping(value = "/TopicList", method = RequestMethod.POST)
-	public ModelAndView list(@RequestParam Map<String, Object> map) {
-		System.out.println(map.toString());
-		List<BoardDTO> list = boardService.list(map);	
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("board/board");
-		mv.addObject("list",list);
-		mv.addObject("tag",map);
-		
-		
-		return mv;
-	}
+	/*
+	 * @RequestMapping(value = "/TopicList", method = RequestMethod.POST) public
+	 * ModelAndView list(@RequestParam Map<String, Object> map) {
+	 * System.out.println(map.toString()); List<BoardDTO> list =
+	 * boardService.list(map); ModelAndView mv = new ModelAndView();
+	 * 
+	 * mv.setViewName("board/board"); mv.addObject("list",list);
+	 * mv.addObject("tag",map);
+	 * 
+	 * 
+	 * return mv; }
+	 */
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String insert() {	
