@@ -6,7 +6,7 @@
     <div class="common_header">
         <!-- 헤더 섹션 왼쪽 -->
         <div class="common_header_left">
-            <a href="/main/index"><img src="../../resources/img/hoxfix_1.png" alt=""></a>
+            <a href="/MainPage"><img src="../../resources/img/hoxfix_1.png" alt=""></a>
         </div>
         <!-- 헤더 섹션 가운데 -->
         <div class="common_header_center">

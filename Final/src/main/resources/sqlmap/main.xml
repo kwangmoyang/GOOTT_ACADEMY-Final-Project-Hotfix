@@ -3,7 +3,11 @@
 <mapper namespace="main">
 
     <select id="list" parameterType="hashmap" resultType="hashmap">
-    SELECT r.Request_title, Requester,
+        SELECT r.Request_title, r.Requester, u.User_score, r.Recruiting_time, r.ReadySolver_cnt
+        FROM Request AS r LEFT OUTER JOIN User AS u on r.Requester = u.User_nickname ORDER BY Recruiting_time DESC;
+    </select>
+
+    <select>
 
 
     </select>

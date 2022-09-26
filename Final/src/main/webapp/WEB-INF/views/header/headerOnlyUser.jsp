@@ -15,7 +15,7 @@
 			<ul>
 				<li><a href="/mypage/index">마이페이지</a></li>
 				<li><a href="/charge/index">충전하기</a></li>
-				<li><a href="/logout/index">로그아웃</a></li>
+				<li><a href="/MainPage">로그아웃</a></li>
 				<li><a href="../admin/admin.html">관리자 페이지</a></li>
 				
 			</ul>
