@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Final.Final1.board.model.BoardDTO;
@@ -98,7 +97,7 @@ public class BoardController {
 	}
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public ModelAndView deletePost(BoardDTO dto) {
-		// 조회수 증가
+		// 議고쉶�닔 利앷�
 		
 		ModelAndView mv = new ModelAndView();
 		
