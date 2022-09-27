@@ -2,10 +2,16 @@
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hotfix">
 
+<select id="list" parameterType="com.Final.Final1.board.model.HotfixDTO" resultType="hashMap">
+		select Request_code,Requester,Request_title, Request_contents, 
+	SolverReady_cnt, Commission, Recruiting_time from Request;
+
+</select>
+
 <insert id="insert" parameterType="hashMap">
 	INSERT INTO Request (Requester,Request_title, Request_contents, 
-	ReadySolver_cnt, Commission, Recruiting_time) VALUES 
-	(#{Requester},#{Request_title},#{Request_contents},#{ReadySolver_cnt},#{Commission},#{Recruiting_time});
+	SolverReady_cnt, Commission, Recruiting_time) VALUES 
+	(#{Requester},#{Request_title},#{Request_contents},#{SolverReady_cnt},#{Commission},now());
 </insert>
 
 </mapper>

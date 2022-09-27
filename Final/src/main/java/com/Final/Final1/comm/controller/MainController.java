@@ -79,7 +79,7 @@ public class MainController {
 		List<MainDTO> list = mainService.list();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("MainPage",list);
-		mv.setViewName("/MainPage");
+		mv.setViewName("redirect:/MainPage");
 		
 		return mv;
 	}

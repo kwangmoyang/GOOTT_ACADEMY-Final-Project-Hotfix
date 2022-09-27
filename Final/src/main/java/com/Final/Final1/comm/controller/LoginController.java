@@ -74,7 +74,7 @@ public class LoginController {
 			
 			List<MainDTO> list = mainService.list();
 			mv.addObject("MainPage",list);
-			mv.setViewName("/MainPage");
+			mv.setViewName("redirect:/MainPage");
 			// 로그인 완료시 세션 생성
 			session.setAttribute("User_id", UserOnlyId_Chk.get("User_id"));
 			

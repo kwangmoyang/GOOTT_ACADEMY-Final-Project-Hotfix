@@ -38,8 +38,9 @@
                     <p>에러해결 요청을 통해 개발자들과 궁금증도 해결하는 시간 되세요</p>
                 </div>
                 
-                <form action="/resolveMain2" method="post">
+                <form method="POST" action="/resolveMainSubmit">
                 
+                <input type="hidden" name="Requester" value="${sessionScope.User_nickname}">
                 <div class="WF_input_box">
                     <p>제목</p>
                     <input type="text" placeholder="제목을 입력하세요" name="Request_title">
@@ -62,12 +63,12 @@
                 </div>
                 <div class="WF_input_box">
                     <p>모집 기한</p>
-                    <input type="text" placeholder="모집 기한을 입력하세요" name="Recruiting_time" 
-                    value="+ +">
+                   <!--   <input type="text" placeholder="모집 기한을 입력하세요" name="Recruiting_time">-->
+      
                 </div>
                 <div class="boardWF_btn">
-                    <div class="hotfixCancleBtn">취소</div>
-                    <button class="hotfixSubmitBtn">등록</button>
+                   <!--  <div class="hotfixCancleBtn">취소</div> -->
+                    <button class="hotfixSubmitBtn" type="submit">등록</button>
                 </div>
 				</form>
                 	
@@ -101,9 +102,8 @@ hotfixCancleBtn.addEventListener('click',function(){
 })
 
 hotfixSubmitBtn.addEventListener('click',function(){
-	hotfixSubmitBtn.action = "/resolveMain2";
 	hotfixSubmitBtn.submit();
-
+	
 })
 </script>
 

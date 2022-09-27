@@ -69,98 +69,91 @@
        
                         </div>
                     </div>
-
+                    
+					<c:forEach var="row" items="${list}" varStatus="vs">
+					
                     <!-- 해결 게시판 -->
                     <div class="RmBoard">
                         <div class="RmBoardLeft">
                             <p>해결요청!</p>
-                            <p>작성자 :peter</p>
-                            <p>제목 : Java 컴파일 에러가 떴습니다 해결해주세요</p>
+                            <p>작성자 :${row.Requester}</p>
+                            <p>제목 : ${row.Request_title}</p>
                         </div>
                         <div class="RmBoardRight">
-                            <p>모집인원 : 5명</p>
-                            <p>커미션: 500 FIx</p>
-                            <p>남은 시간 : 3:00:00</p>
-                            <button class="DetailModal">상세보기</button>
-
-
-
-
-
+                            <p>모집인원 : ${row.SolverReady_cnt}명</p>
+                            <p>커미션: ${row.Commission} 픽스</p>
+                            <p>남은 시간 : ${row.Recruiting_time}</p>
+                            <button class="DetailModal" >상세보기</button>
+                            <div onclick="document.getElementById('modal${vs.index}').style.display='block'">상세</div>
                         </div>
                     </div>
-                    <div class="RmBoard">
-                        <div class="RmBoardLeft">
-                            <p>해결요청!</p>
-                            <p>작성자 :peter</p>
-                            <p>제목 : Java 컴파일 에러가 떴습니다 해결해주세요</p>
-                        </div>
-                        <div class="RmBoardRight">
-                            <p>모집인원 : 5명</p>
-                            <p>커미션: 500 FIx</p>
-                            <p>남은 시간 : 3:00:00</p>
-                            <button class="DetailModal">상세보기</button>
-                        </div>
-                    </div>
+                    
+                    </c:forEach>
 
                 </div>
-
-            
-            
             <!-- ==============작업공간============== -->
         </div>
-
-
-
         </div>
-
-
-
     </div>
     <!-- 푸터 -->
     <div class="common_footer">푸터임다</div>
     <!-- 모달 -->
-    <div class="RmModal_background"></div>
-    <div class="RmModal_wrap">
-        <div class="RmModal_close"><i class="uil uil-x"></i></div>
+    <div class="RmModal_background" ></div>
+    
+    <!-- ==============모달공간============== -->
+    <c:forEach var="row" items="${list}" varStatus="vs">
+    <div class="RmModal_wrap" id="modal${vs.index}">
+        <div class="RmModal_close" onclick="document.getElementById('modal${vs.index}').style.display='none'"><i class="uil uil-x"></i></div>
         <!-- 모달 내용부분 -->
         <div class="ModalText">
             <h1>해결요청!</h1>
-            <div class="ModalHeader">
-                <p>커미션 : 500Fix</p>
-                <p>모집인원 : 5명</p>
+            <div class="ModalHeader" >
+                <p>커미션 : ${row.Commission} 픽스</p>
+                <p>모집인원 : ${row.SolverReady_cnt}명</p>
             </div>
             <div class="Modaltitle">
-                <p>작성자 : peter</p>
-                <p>제목 : Java 컴파일 에러가 떴습니다 해결해주세요</p>
-                <p>내용 : 아무리 찾아봐도 저 빨간줄 에러가 해결이 안됩니다 해결해주세요</p>
+                <p>작성자 : ${row.Requester}</p>
+                <p>제목 : ${row.Request_title}</p>
+                <p>내용 : ${row.Request_contents}</p>
             </div>
             <div class="ModalCon">
-                <img src="../resources/img/에러.png" alt="">
+                
             </div>
             <div class="ModalFooter">
                 <p>모집 마감 : 2022. 09.08 목요일</p>
-                <button>해결신청</button>
+                <button id="">해결신청</button>
             </div>
         </div>
-
+      </div>
+	</c:forEach>
+	
+	<!-- ==============모달공간============== -->
 
 </body>
 
 <script src="../resources/js/BasicFrame.js"></script>
 <!-- <script src="../resource/js/mypage_new_real.js"></script> -->
 <script>
-
+	let DetailModal2 = document.querySelector('#modal${vs.index}');
+	
+	
+	let DetailModal3 = document.querySelector('#modalclose${vs.index}');
+	
+	
+	
+	
     // 모달 열기
     function modalOpen() {
         document.querySelector('.RmModal_wrap').style.display = 'block';
         document.querySelector('.RmModal_background').style.display = 'block';
+
     }
 
     // 모달 끄기
     function modalClose() {
         document.querySelector('.RmModal_wrap').style.display = 'none';
         document.querySelector('.RmModal_background').style.display = 'none';
+        
     }
 
 
@@ -169,11 +162,11 @@
 
     for (let i = 0; i < DetailModal.length; i++) {
         DetailModal[i].addEventListener('click', modalOpen);
+        
     }
-
-
-    document.querySelector('.RmModal_close').addEventListener('click', modalClose);
-
+	
+ 	document.querySelector('.RmModal_close').addEventListener('click', modalClose);
+    
 
 
 </script>

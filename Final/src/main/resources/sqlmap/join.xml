@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="join">
+
+	
+	
+	<insert id="join" parameterType="hashMap">
+	INSERT INTO User(User_id, User_pw, Email_address, User_name, User_nickname, Phone_num)
+	VALUES(#{User_id},#{User_pw},#{Email_address},#{User_name},#{User_nickname},#{Phone_num});
+	</insert>
+	
+	
+	
+</mapper>	
