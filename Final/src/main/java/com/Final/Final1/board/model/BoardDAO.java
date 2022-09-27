@@ -17,6 +17,8 @@ public interface BoardDAO {
 
 	void viewCount(BoardDTO dto);
 
+	int Count(String keyword, String boardCode);
+
 	
 
 
