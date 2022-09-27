@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Final.Final1.board.model.BoardDTO;
+import com.Final.Final1.board.model.PageUtil;
 import com.Final.Final1.board.service.BoardService;
 
 @Controller
@@ -21,17 +22,23 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(HttpServletRequest req) {
+	public ModelAndView list(HttpServletRequest req,@RequestParam(defaultValue="1")int curPage ) {
 		BoardDTO dto = new BoardDTO();
 		dto.setBoardCode(req.getParameter("boardCode"));
 		dto.setKeyword(req.getParameter("keyword"));
-				
+		
+		int count = boardService.count(req.getParameter("keyword"),dto.getBoardCode());
+		PageUtil page_info = new PageUtil(count, curPage);
+		
+		System.out.println("countttt는" +count);
+		
 		List<BoardDTO> list = boardService.list(dto);
 		ModelAndView mv = new ModelAndView();
 		
+		
 		mv.setViewName("board/board");
 		mv.addObject("list",list);
-		
+	
 		
 		return mv;
 	}
