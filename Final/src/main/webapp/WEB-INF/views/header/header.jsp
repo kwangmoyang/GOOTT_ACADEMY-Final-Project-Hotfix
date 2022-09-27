@@ -12,7 +12,7 @@
         <div class="common_header_center">
             <!-- 카테고리 -->
             <ul class="header_menu">
-                <li><a href="/hotfix/index">HOTFIX</a></li>
+                <li><a href="/resolveMain">HOTFIX</a></li>
                 <li><a href="/teamlist">팀페이지</a></li>
                 <li><a href="/ranking/index">랭킹</a></li>
                 <li><a href="/list">커뮤니티</a></li>

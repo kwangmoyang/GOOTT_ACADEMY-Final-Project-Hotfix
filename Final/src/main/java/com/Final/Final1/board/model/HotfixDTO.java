@@ -1,14 +1,25 @@
 package com.Final.Final1.board.model;
 
+import java.util.Date;
+
 public class HotfixDTO {
 //	(Requester,Request_title, Request_contents, 
 //			ReadySolver_cnt, Commission, Recruiting_time)
+	
+	private int Request_code;
 	private String Requester;
 	private String Request_title;
 	private String Request_contents;
-	private int ReadySolver_cnt;
+	private int SolverReady_cnt;
 	private int Commission;
-	private int Recruiting_time;
+	
+	public int getRequest_code() {
+		return Request_code;
+	}
+	public void setRequest_code(int request_code) {
+		Request_code = request_code;
+	}
+	private Date Recruiting_time;
 	
 	public String getRequester() {
 		return Requester;
@@ -28,11 +39,11 @@ public class HotfixDTO {
 	public void setRequest_contents(String request_contents) {
 		Request_contents = request_contents;
 	}
-	public int getReadySolver_cnt() {
-		return ReadySolver_cnt;
+	public int getSolverReady_cnt() {
+		return SolverReady_cnt;
 	}
-	public void setReadySolver_cnt(int readySolver_cnt) {
-		ReadySolver_cnt = readySolver_cnt;
+	public void setSolverReady_cnt(int solverReady_cnt) {
+		SolverReady_cnt = solverReady_cnt;
 	}
 	public int getCommission() {
 		return Commission;
@@ -40,16 +51,16 @@ public class HotfixDTO {
 	public void setCommission(int commission) {
 		Commission = commission;
 	}
-	public int getRecruiting_time() {
+	public Date getRecruiting_time() {
 		return Recruiting_time;
 	}
-	public void setRecruiting_time(int recruiting_time) {
+	public void setRecruiting_time(Date recruiting_time) {
 		Recruiting_time = recruiting_time;
 	}
 	@Override
 	public String toString() {
 		return "HotfixDTO [Requester=" + Requester + ", Request_title=" + Request_title + ", Request_contents="
-				+ Request_contents + ", ReadySolver_cnt=" + ReadySolver_cnt + ", Commission=" + Commission
+				+ Request_contents + ", SolverReady_cnt=" + SolverReady_cnt + ", Commission=" + Commission
 				+ ", Recruiting_time=" + Recruiting_time + "]";
 	}
 	
