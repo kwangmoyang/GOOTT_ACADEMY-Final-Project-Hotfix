@@ -1,7 +1,7 @@
 
 // header center 카테고리 호버시 함수
 let header_text = document.querySelectorAll(".header_menu>li>a");
-console.log(header_text[0]);
+// console.log(header_text[0]);
 textHover(header_text);
 
 // header 마이페이지 클릭시 함수
