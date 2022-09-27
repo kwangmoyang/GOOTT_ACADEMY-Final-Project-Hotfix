@@ -20,6 +20,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardDTO> list(BoardDTO dto) {
 		// TODO Auto-generated method stub
+		System.out.println(dto.getBoardCode());
 		return boardDAO.list(dto);
 	}
 
@@ -56,6 +57,13 @@ public class BoardServiceImpl implements BoardService{
 	public void viewCount(BoardDTO dto) {
 		 boardDAO.viewCount(dto);
 		
+	}
+
+
+	@Override
+	public int count(String keyword, String boardCode) {
+		// TODO Auto-generated method stub
+		return  boardDAO.Count(keyword,boardCode);
 	}
 
 

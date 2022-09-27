@@ -3,7 +3,7 @@
 <mapper namespace="main">
 
     <select id="list" parameterType="hashmap" resultType="hashmap">
-        SELECT r.Request_title, r.Requester, u.User_score, r.Recruiting_time, r.ReadySolver_cnt
+        SELECT r.Request_title, r.Requester, u.User_score, r.Recruiting_time, r.SolverReady_cnt, r.SolverReady_cnt2
         FROM Request AS r LEFT OUTER JOIN User AS u on r.Requester = u.User_nickname ORDER BY Recruiting_time DESC;
     </select>
 
@@ -17,9 +17,3 @@
 
 
 </mapper>
-<!--    리퀘스트 >-->
-<!--    리퀘스트제목, 작성자, 작성자 활동점수, 남은시간 , 답변한사람 카운트-->
-<!--    팀리스트 >-->
-<!--    팀인트로, 팀장닉네임, 팀장활동점수, 작성시간(현재시간-작성시간),  팀원수-->
-<!--    일상 >-->
-<!--    글제목, 글작성자,  작성자활동점수, 작성시간 (현재시간-작성시간), 댓글수-->
