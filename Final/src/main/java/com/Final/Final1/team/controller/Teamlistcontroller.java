@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,14 +26,11 @@ public class Teamlistcontroller {
 	@RequestMapping(value="/teamlist")
 	public ModelAndView teamlist(@RequestParam Map<String, Object> map, @RequestParam(defaultValue = "all") String search_option, 
 			@RequestParam(defaultValue = " ") String keyword) {
-		
-			System.out.println(map.toString());
 			
 		
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("/team/teamlist");
 			
-			System.out.println("else면");
 			List<Map<String, Object>> taglist = teamlistservice.taglist(map, search_option, keyword); //태그 전체
 			List<TeamlistDTO> teamlist = teamlistservice.list(map, search_option, keyword); //팀목록 전체
 			List<Map<String, Object>> tags = teamlistservice.tags(map); //팀만들기
@@ -82,22 +78,40 @@ public class Teamlistcontroller {
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("redirect:/teamlist");
-			//팀 인서트
-			int teammake = teamlistservice.teammake(map);
-			mv.addObject("teammake", teammake); 
 			
-			return mv;
+			//팀이 있으면 팀가입 못하게
+			Map<String, Object> teammakecheck = teamlistservice.teammakecheck(map);
+			
+			if(teammakecheck == null) {
+				//팀 인서트
+				int teammake = teamlistservice.teammake(map);				
+				mv.addObject("teammake", teammake); 
+				
+				return mv;
+			}
+			else {
+				System.out.println("팀이름 중복");
+				mv.addObject("errormessage", "errormessage");
+				
+				return mv;
+			}
+			
 
 	}
 	
+	//팀 가입
 	@RequestMapping(value="/teamjoin" , method= RequestMethod.POST)
-	public ModelAndView teamjoin(@RequestParam Map<String, Object> map, HttpSession session) {
+	public ModelAndView teamjoin(@RequestParam Map<String, Object> map) {
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("redirect:/teamlist");
 			
-			int teammake = teamlistservice.teammake(map);
-			mv.addObject("teammake", teammake); 
+			System.out.println(map.toString());
+//			System.out.println(jointeamname);
+//			System.out.println(User_id);
+			
+			int teamjoin = teamlistservice.teamjoin(map);
+			mv.addObject("teamjoin", teamjoin); 
 			
 			return mv;
 

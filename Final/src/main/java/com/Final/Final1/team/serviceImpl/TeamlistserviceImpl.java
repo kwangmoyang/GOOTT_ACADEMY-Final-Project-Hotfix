@@ -29,12 +29,6 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	}
 
 	@Override
-	public List<TeamlistDTO> tagsearchlist(Map<String, Object> map, String search_option, String keyword) {
-		
-		return this.teamlistdao.tagsearchlist(map, search_option, keyword);
-	}
-
-	@Override
 	public int teammake(Map<String, Object> map) {
 		return this.teamlistdao.teammake(map);
 	}
@@ -44,9 +38,14 @@ public class TeamlistserviceImpl implements Teamlistservice {
 		return this.teamlistdao.tags(map);
 	}
 
+	@Override
+	public int teamjoin(Map<String, Object> map) {
+		return this.teamlistdao.teamjoin(map);
+	}
 
+	@Override
+	public Map<String, Object> teammakecheck(Map<String, Object> map) {
+		return this.teamlistdao.teammakecheck(map);
+	}
 
-
-
-	
 }

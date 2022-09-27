@@ -1,6 +1,7 @@
 package com.Final.Final1.comm.model;
 
 import javax.inject.Inject;
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainDTO {
@@ -8,14 +9,28 @@ public class MainDTO {
     private String Requester;
     private int User_score;
     private Date Recruiting_time;
-    private int ReadySolver_cnt;
     private String Team_intro;
-
     private String Team_leader;
-
     private Date Team_cr_date;
-
     private int Team_num_mem;
+    private int SolverReady_cnt;
+    private int SolverReady_cnt2;
+
+    public int getSolverReady_cnt() {
+        return SolverReady_cnt;
+    }
+
+    public void setSolverReady_cnt(int solverReady_cnt) {
+        SolverReady_cnt = solverReady_cnt;
+    }
+
+    public int getSolverReady_cnt2() {
+        return SolverReady_cnt2;
+    }
+
+    public void setSolverReady_cnt2(int solverReady_cnt2) {
+        SolverReady_cnt2 = solverReady_cnt2;
+    }
 
     public String getTeam_intro() {
         return Team_intro;
@@ -79,17 +94,9 @@ public class MainDTO {
     }
 
     public void setRecruiting_time(Date recruiting_time) {
-
         Recruiting_time = recruiting_time;
     }
 
-    public int getReadySolver_cnt() {
-        return ReadySolver_cnt;
-    }
-
-    public void setReadySolver_cnt(int readySolver_cnt) {
-        ReadySolver_cnt = readySolver_cnt;
-    }
 
 
 }
