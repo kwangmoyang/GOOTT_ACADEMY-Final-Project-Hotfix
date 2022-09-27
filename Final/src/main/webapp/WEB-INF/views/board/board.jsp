@@ -78,13 +78,11 @@
 						<div class="board_nav_search">
 							<div class="search">
 								<div class="search-box">
-									<form>
 										<input class="search-txt" type="text"
 											placeholder="검색어를 입력해 주세요" name="keyword" />
 										<button class="searchbtn">
 											<i class="fa-solid fa-magnifying-glass" id = "searchBtnI"></i>
 										</button>
-									</form>		
 								</div>
 							</div>
 						</div>
