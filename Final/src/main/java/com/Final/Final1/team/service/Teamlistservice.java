@@ -12,15 +12,13 @@ public interface Teamlistservice {
 	
 	List<Map<String, Object>> taglist(Map<String, Object> map, String search_option, String keyword);
 
-	List<TeamlistDTO> tagsearchlist(Map<String, Object> map, String search_option, String keyword);
-
 	int teammake(Map<String, Object> map);
 
 	List<Map<String, Object>> tags(Map<String, Object> map);
 
+	int teamjoin(Map<String, Object> map);
+
+	Map<String, Object> teammakecheck(Map<String, Object> map);
 
 
-
-
-	
 }

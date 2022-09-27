@@ -12,23 +12,29 @@
 		order by Team_cr_date DESC;
 	</select>
 	
-	<!-- 전체목록 중 태그 따로 불러옴 -->
+	<!-- 전체목록 중 팀 태그 따로 불러옴 -->
 	<select id="taglist" parameterType="hashMap" resultType="hashMap">
 		 select t.Team_code, t.Team_name, tag.Tags_Tag_Name from Team t inner join Team_has_Tags tag on t.Team_code = tag.Team_Team_code;
 	</select>
 	
-	
+	<!-- 팀만들기 -->
 	<insert id="teammake" parameterType="hashMap">  
 	    insert into Team (Team_name,Team_intro) values (#{teamname}, #{teamintro});
 	</insert>
 	
+	<select id="teammakecheck" parameterType="hashMap" resultType="hashMap">
+		select Team_name from Team where Team_name = #{teamname};
+	</select>
 	
+	<!-- 태그들 불러오기 -->
 	<select id="tags" parameterType="hashMap" resultType="hashMap">
 		select Tag_Name from Tags;
 	</select>
 	
-	
-	
+	<!-- 팀 가입하기 -->
+	<update id="teamjoin" parameterType="hashMap">
+		update User set Team_name = #{jointeamname} where user_id = #{User_id};
+	</update>
 	
 	
 	<sql id="search">

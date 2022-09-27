@@ -1,5 +1,6 @@
 package com.Final.Final1.board.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,6 +52,15 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public void viewCount(BoardDTO dto) {
 		sqlSessionTemplate.update("board.viewCount",dto);
+	}
+
+	@Override
+	public int Count(String keyword, String boardCode) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("boardCode", boardCode);
+		return sqlSessionTemplate.selectOne("board.count",map);
 	}
 	
 }

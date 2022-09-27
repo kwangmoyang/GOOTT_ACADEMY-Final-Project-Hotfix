@@ -19,6 +19,8 @@ public interface BoardService {
 
 	void viewCount(BoardDTO dto);
 
+	int count(String keyword, String boardCode);
+
 
 
 	

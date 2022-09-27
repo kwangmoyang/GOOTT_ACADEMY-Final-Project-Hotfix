@@ -40,19 +40,25 @@ modaldiv.addEventListener('click', function(e){
 })
 
 //팀정보 모달에 표시된 팀이름
-const teamnameinfo = document.querySelectorAll('#teamname');
+const teamnameinfo = document.querySelector('#teamname');
 //팀가입 모달에 표시된 팀이름
-const teamjoincheck = document.querySelectorAll('.teamjoincheck span');
+const teamjoincheck = document.querySelector('.teamjoincheck span');
 //팀탈퇴 모달에 표시된 팀이름
-const teamsecssioncheck = document.querySelectorAll('.teamsecssioncheck span');
+const teamsecssioncheck = document.querySelector('.teamsecssioncheck span');
 
 for(let i=0; i<teamname.length; i++){
     teamname[i].addEventListener('click', function(){
-        teamnameinfo[i].innerHTML = teamname[i].textContent;
-        teamjoincheck[i].innerHTML = teamname[i].textContent;
-        teamsecssioncheck[i].innerHTML = teamname[i].textContent;
+
+        console.log(teamname[i].textContent);
+
+        teamnameinfo.innerHTML = teamname[i].textContent;
+        teamjoincheck.innerHTML = teamname[i].textContent;
+        teamsecssioncheck.innerHTML = teamname[i].textContent;
+        
+
     })
 }
+
 
 
 // ========================팀만들기 모달========================
@@ -124,6 +130,8 @@ for(let i=0 ; i<tagbtn.length ; i++){
     })
 }
 
+let inputteamname = document.getElementByName("teamname");
+
 //체크가되어야 팀만들어지게
 function teamcheck(){
 
@@ -136,14 +144,11 @@ function teamcheck(){
         return false;
     }
     //tagbtn
-    
     if(teamcheckbox.checked == false){
         alert("약관에 동의해주세요.");
         return false;
     }
-    else if(teamcheckbox.checked == true){
-    	alert("제출");
-    }
+//    if()
 }
 
 //==========================팀가입 모달========================
@@ -171,10 +176,41 @@ modaldiv3.addEventListener('click', function(e){
         modaldiv3.style.display = 'none';
         xicon3.style.display = 'none';
     }
-})
+});
 
-function testone(){
-	alert("로그인해주세요.");
+function testone(a){
+
+	if(a === null || a === ""){
+		alert("로그인이 필요합니다.");
+		//로그인페이지로 이동하도록
+		location.href = "/login";
+	}
+	else if(a != null || a != "")
+	{
+		alert("가입ㄱㄱ");
+		
+		var jointeamname = teamjoincheck.textContent; //팀이름
+		var User_id = a; //유저 아이디
+		
+		console.log(jointeamname);
+		console.log(User_id);
+		
+		var param = {"jointeamname" : jointeamname, "User_id": User_id};
+		
+		console.log(JSON.stringify(param));
+		
+		$.ajax({
+			type:'POST',
+			data: JSON.stringify(param),
+			url:"/teamjoin",
+			dataType:"text",
+			success: function(data){
+				alert("팀가입이 완료되었습니다.");
+				location.href = "/teamlist";
+			}
+		});
+	}
+
 }
 // ==========================팀탈퇴 모달========================
 

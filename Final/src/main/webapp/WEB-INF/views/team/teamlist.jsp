@@ -23,6 +23,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <title>HotFix</title>
 </head>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
 
 <%@ include file="/WEB-INF/views/header/header.jsp" %>
@@ -88,9 +89,8 @@
 	            </div>
             
     
-			<form method="GET" action="/teamlist">
+			
             	<c:forEach var="row" items="${map.teamlist}" begin="0" end="9">
-            	  	<input type="hidden" value="${row.Team_code}"/>
 				  <div class="teamlistbox">
 				      <div class="img">
 				          <!-- 사진 불러오는 거 -->
@@ -122,7 +122,7 @@
 				     </div>
 			       </div>
 			   </c:forEach>
-			</form>
+			
 		   	
 		   	
             <div class="teamlistpaging">
@@ -143,7 +143,6 @@
 	            <div id="teamname"></div>
 	            <div id="team-category">
 	                <button>팀정보</button>
-	                <!-- ajax처리 -->
 	                <button><a href="teamnotice.html">공지사항</a></button>
 	                <button class="teamjoin-btn">팀가입</button>
 	                <button class="teamsecession-btn">팀탈퇴</button>
@@ -236,7 +235,7 @@
 	
 	<!-- =========================================팀만들기 모달================================================= -->
 
-	<form onsubmit="return teamcheck()" method = "POST" action="/teammake">
+	
 	    <div class="modal2-div">
 	        <div class="teammodal2-div">
 	            <div class="toptitle"><p>팀 만들기</p></div>
@@ -248,6 +247,8 @@
 	            </div>
 	            <div class="team divone">
 	                <input type="text" id="teaminput" class="teamname" name="teamname" placeholder="팀이름" >
+				<c:if test="${errormessage == 'errormessage'}"></c:if>
+				
 	            </div>
 	            <div class="team divtwo">
 	                <input type="text" id="teaminput" class="teamintro" name="teamintro" placeholder="소개글">
@@ -266,40 +267,30 @@
 	                <input type="checkbox" id="team-checkbox">
 	            </div>
 	            <div class="team make-btn">
-	                <button id="makingbtn">팀생성하기</button>
+	            	<input type="text" value="${sessionScope.User_id}"/>
+	                <button id="makingbtn" type="submit" onsubmit="return teamcheck()">팀생성하기</button>
 	            </div>
 	        </div>
 	        <ion-icon name="close-outline" id="xicon2"></ion-icon>
 	    </div>
-	</form>
 
 	
 		<!-- ====================================팀 가입 모달====================================== -->
 		
-	
-			<form method="POST" action="/teamjoin">
-				<c:if test="${sessionScope.Userid != null }">
-					<div class="modal3-div">
-					    <div class="teammodal3-div">
-					        <div class="toptitle2"><p>팀 가입</p></div>
-					        <div class="teamjoincheck"> <span></span> 팀에 가입하시겠습니까? </div>
-					        <div class="team join-btn">
-								<button>가입하기</button>
-					        </div>
-					    </div>
-						<ion-icon name="close-outline" id="xicon3"></ion-icon>
-					</div>
-				</c:if>
-				<c:if test="${sessionScope.Userid == null}">
-					<div class="modal3-div">
-					    <div class="teammodal3-div">
-					        <div class="teamjoincheck">로그인해주세요</div>
-					    </div>
-						<ion-icon name="close-outline" id="xicon3"></ion-icon>
-					</div>
-				</c:if>
-			</form>
 		
+			
+			<div class="modal3-div">
+					<div class="teammodal3-div">
+					    <div class="toptitle2"><p>팀 가입</p></div>
+					    <div class="teamjoincheck"> <span></span> 팀에 가입하시겠습니까? </div>
+					    <div class="team join-btn">
+							<button onclick="testone('${sessionScope.User_id}')">가입하기</button>
+					    </div>
+					</div>
+					<ion-icon name="close-outline" id="xicon3"></ion-icon>
+			</div>
+	
+			
 	
 	
 	<!-- ====================================팀 탈퇴 모달====================================== -->
