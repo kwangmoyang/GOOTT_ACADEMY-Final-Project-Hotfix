@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Final.Final1.board.model.BoardDTO;
@@ -42,11 +43,13 @@ public class BoardController {
 		mv.setViewName("board/board");
 		Map<String, Object> map = new HashMap<>();
 		
+
 		map.put("list", list);
 		map.put("count", count);
 		map.put("boardCode", dto.getBoardCode());
 		map.put("keyword", dto.getKeyword());
 		map.put("page_info", page_info);
+
 		
 		mv.addObject("map", map);
 				
@@ -103,7 +106,7 @@ public class BoardController {
 	}
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public ModelAndView deletePost(BoardDTO dto) {
-		// 議고쉶�닔 利앷�
+		// 鈺곌퀬�돳占쎈땾 筌앹빓占�
 		
 		ModelAndView mv = new ModelAndView();
 		

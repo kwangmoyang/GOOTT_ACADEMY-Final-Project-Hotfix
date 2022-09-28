@@ -96,12 +96,12 @@ function textHover(param) {
         param[i].addEventListener('mouseover', function () {
             textColor(param[i], "rgba(248,58,37,1)");
             transition(param[i], ".5s");
-            console.log("ok");
+//            console.log("ok");
 
             param[i].addEventListener('mouseout', function () {
                 textColor(param[i], "rgba(25, 25, 25, 1)");
                 transition(param[i], "1s");
-                console.log("ok");
+//                console.log("ok");
             })
         })
     }
