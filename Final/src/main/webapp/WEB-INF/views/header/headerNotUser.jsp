@@ -15,7 +15,7 @@
 		</div>
 		<!-- 회원가입 -->
 		<div class="mainToJoin">
-			<a href="/join_test">회원가입</a>
+			<a href="/join">회원가입</a>
 		</div>
 	</div>
 </body>

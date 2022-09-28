@@ -44,11 +44,11 @@ public class LoginController {
 //	}
 
 	// 회원가입페이지
-	@RequestMapping("/join_test")
-	public String join_test() {
-
-		return "/login_etc/join";
-	}
+//	@RequestMapping("/join_test")
+//	public String join_test() {
+//
+//		return "/login_etc/join";
+//	}
 
 	// 아이디 비밀번호 찾기
 	@RequestMapping("/find_user_idpw")

@@ -1,6 +1,6 @@
 package com.Final.Final1.mypage.controller;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.Final.Final1.comm.model.LoginDTO;
-import com.Final.Final1.comm.service.LoginService;
+import com.Final.Final1.board.model.BoardDTO;
+import com.Final.Final1.board.model.MyCommentListDTO;
+import com.Final.Final1.board.model.MyWriterListDTO;
 import com.Final.Final1.mypage.model.MypageDAO;
 import com.Final.Final1.mypage.model.MypageDTO;
 import com.Final.Final1.mypage.service.MypageService;
@@ -35,21 +35,37 @@ public class MyPageController {
 
 	// 마이페이지 작성한글
 	@RequestMapping("/mypage/writer")
-	public String mypageWriter() {
-		return "/mypage/mypage_writer";
+	public ModelAndView mypageWriter(MyWriterListDTO dto, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		//세션 값 불러옴
+		String name = (String)session.getAttribute("User_nickname");
+		dto.setPost_writer(name); // 불러온 세션값을 dto에 설정
+		//로그인한 유저가 해결요청한 게시글을 뽑아옴
+		List<BoardDTO> list = mypageService.myRequestlist(dto);
+		mv.setViewName("/mypage/mypage_writer");
+		mv.addObject("list", list);
+		
+		return mv;
 	}
 
 	// 마이페이지 작성한 댓글
 	@RequestMapping("/mypage/comments")
-	public String mypagecomments() {
-		return "/mypage/mypage_comments";
+	public ModelAndView mypagecomments(MyCommentListDTO dto, HttpSession session) {
+		
+		ModelAndView mv = new ModelAndView();
+		//세션 값 불러옴
+		String name = (String)session.getAttribute("User_nickname");
+		dto.setComment_writer(name); // 불러온 세션값을 dto에 설정
+		
+		//로그인한 유저가 해결요청한 게시글을 뽑아옴
+		List<BoardDTO> list = mypageService.myCommentlist(dto);
+		mv.setViewName("/mypage/mypage_comments");
+		mv.addObject("list", list);
+				
+		return mv;
 	}
 
-	// 마이페이지 해결 요청내역
-	@RequestMapping("/mypage/request")
-	public String mypagerequest() {
-		return "/mypage/mypage_writer_request";
-	}
+	
 
 	// 마이페이지 해결중인 내역
 	@RequestMapping("/mypage/result")

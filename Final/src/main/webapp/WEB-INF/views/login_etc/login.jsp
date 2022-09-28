@@ -27,7 +27,7 @@
             </div>
 
             <div class="login_Join">
-                회원이 아니신가요? &nbsp;<a href="/join_test">회원가입 하기</a>
+                회원이 아니신가요? &nbsp;<a href="/join">회원가입 하기</a>
             </div>
             <!-- ========== 로그인영역 ========== -->
             <form id="login_Form" method="POST" action="/loginChk">

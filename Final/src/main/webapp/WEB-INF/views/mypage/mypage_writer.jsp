@@ -61,54 +61,31 @@
                     </div>
                    
                 </div> 
+                
                 <!-- 게시글 삭제 박스 -->
-                <p><input type="checkbox"></p>
-                <div class="board_main">
-                    <div class="board_header">
-                        <div class="board_write">
-                            <span><i class="fas fa-feather-alt"></i></span>
-                            <span>200<i class="fas fa-bolt"></i></span>
-                            <span>나나콘</span>
-                            <span>약 5시간전</span>
-                        </div>
-                        <div class="board_view">
-                            <span>0 조회수</span>
-                            <span>1 추천수</span>
-                        </div>
-                    </div>
-                    <div class="board_content">
-                        <span> <a href="../board/detailBoard.html">Java 개념을 잘 모르겠습니다 알려주세요</a></span>
-                    </div>
-                    <div class="board_tag">
-                        <span>#excel</span>
-                        <span>#java</span>
-                        <span>#js</span>
-                    </div>
-                </div> 
-                <!-- 게시글 삭제 박스 -->
-                <p><input type="checkbox"></p>
-                <div class="board_main">
-                    <div class="board_header">
-                        <div class="board_write">
-                            <span><i class="fas fa-feather-alt"></i></span>
-                            <span>200<i class="fas fa-bolt"></i></span>
-                            <span>나나콘</span>
-                            <span>약 5시간전</span>
-                        </div>
-                        <div class="board_view">
-                            <span>0 조회수</span>
-                            <span>1 추천수</span>
-                        </div>
-                    </div>  
-                    <div class="board_content">
-                        <span> <a href="../board/detailBoard.html">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis consequatur sunt excepturi ipsum incidunt deserunt itaque fugiat illo saepe, magnam facere voluptas. Consequatur, debitis! Accusantium mollitia animi eaque quo asperiores.</a> </span>
-                    </div>
-                    <div class="board_tag">
-                        <span>#excel</span>
-                        <span>#java</span>
-                        <span>#js</span>
-                    </div>
-                </div> 
+                
+                <c:forEach var="row" items="${list}" varStatus="vs">
+                		<p><input type="checkbox"></p>
+						<div class="board_main">
+							<div class="board_header">
+								<div class="board_write">
+									<span><i class="fas fa-feather-alt"></i></span> <span>200<i
+										class="fas fa-bolt"></i></span> <span>${row.Post_writer}</span> <span>${row.Post_cr_date}</span>
+								</div>
+								<div class="board_view">
+									<span>${row.Post_view} 조회수</span> <span>${row.Post_like}
+										추천수</span>
+								</div>
+							</div>
+							<div class="board_content">
+								<span><a href="/detail?Post_num=${row.Post_num}">${row.Post_title}</a></span>
+
+							</div>
+							<div class="board_tag">
+								<span>${row.Tags_Board}</span>
+							</div>
+						</div>
+					</c:forEach>
               
                   
                 
