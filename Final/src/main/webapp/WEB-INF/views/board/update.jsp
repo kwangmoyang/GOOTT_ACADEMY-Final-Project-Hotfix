@@ -37,7 +37,7 @@
             -->
             <!-- ==============작업공간============== -->
             
-            <div class="boardWF_container">
+            <div class="boardWF_container" id="boardCode">
                 <div class="boardWF_title">
                     <h1>커뮤니티 이용하기</h1>
                     <p>커뮤니티를 통해 개발자들과 궁금증도 해결하는 시간 되세요</p>
@@ -46,18 +46,15 @@
              <form id="form1" name="form1" method="post">
                 <div class="WF_topic_box">
                     <p>토픽</p>
-                    <select name="Board_code">
+                    <select name="boardCode">
                         <option value="" selected="selected">${data.Board_code}</option>
                         <option value="일상">일상</option>
                         <option value="컬럼">컬럼</option>
                         <option value="커리어">커리어</option>
-                        <option value="스터디">스터디</option>    
+                        <option value="스터디">스터디</option>    	
                     </select>
                 </div>
-                 <div class="WF_input_box">
-                    <p>작성자</p>
-                    <input type="text" placeholder="작성자를 입력하세요" name="Post_writer" id="Post_writer" value="${ data.Post_writer }" >
-                </div>
+                 
                 <div class="WF_input_box">
                     <p>제목</p>
                     <input type="text" placeholder="제목을 입력하세요" name="Post_title" id="Post_title" value="${ data.Post_title }">
@@ -83,8 +80,8 @@
                 <div class="boardWF_btn">
                     <!-- 해당부분 링크는 연결할곳이 없고 프론트단에서 할게 아니라서
                             ('토픽'칸의 설정에 따라서 다르게 이동되어야함) 정리했습니다 -SEO- -->
-                    <button>취소</button>
-                    <button type="submit" >등록</button>
+                     <span onclick="location.href='/insert' ">취소</span> 
+                    <button type="button" id="Updatebtn" >등록</button>
                 </div>
 
                 </form>
@@ -109,7 +106,7 @@
 </body>
 
 <script src="../../resources/js/BasicFrame.js"></script>
-<!-- <script src="..../../resources/js/mypage_new_real.js"></script> -->
+<script src="../../resources/js/update.js"></script>
 
 
 </html>

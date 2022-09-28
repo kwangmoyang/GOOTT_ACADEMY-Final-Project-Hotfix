@@ -1,6 +1,7 @@
 package com.Final.Final1.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.Final.Final1.board.model.CommentDTO;
 
@@ -10,7 +11,9 @@ public interface CommentService {
 
 	List<CommentDTO> list(int postNum);
 
-	CommentDTO detail(int post_num);
+	void remove(Map<String, Object> map);
+
+	int count(int post_num);
 
 
 

@@ -1,6 +1,7 @@
 package com.Final.Final1.board.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,16 @@ public class CommentDAOImpl implements CommentDAO {
 	public List<CommentDTO> list(int Post_num) {
 		return sqlSessionTemplate.selectList("Comment.list", Post_num);
 	}
+	
 	@Override
-	public CommentDTO detail(int Post_num) {
+	public int delete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("Comment.detail", Post_num);
+		return sqlSessionTemplate.delete("Comment.delete", map);
+	}
+	@Override
+	public int count(int post_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("Comment.count", post_num);
 	}
 
 }

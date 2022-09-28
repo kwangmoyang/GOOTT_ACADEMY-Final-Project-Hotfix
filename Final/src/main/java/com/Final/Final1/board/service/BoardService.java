@@ -7,7 +7,7 @@ import com.Final.Final1.board.model.BoardDTO;
 
 public interface BoardService {
 
-	List<BoardDTO> list(BoardDTO dto);
+	List<BoardDTO> list(String boardCode, String keyword, int start, int end);
 	
 	void insert(BoardDTO dto);
 
@@ -20,6 +20,10 @@ public interface BoardService {
 	void viewCount(BoardDTO dto);
 
 	int count(String keyword, String boardCode);
+
+	int Likeup(int post_num);
+
+	int Likedown(int post_num);
 
 
 
