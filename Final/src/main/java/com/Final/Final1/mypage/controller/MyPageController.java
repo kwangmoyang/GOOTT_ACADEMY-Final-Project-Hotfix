@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,7 +19,7 @@ import com.Final.Final1.mypage.model.MypageDAO;
 import com.Final.Final1.mypage.model.MypageDTO;
 import com.Final.Final1.mypage.service.MypageService;
 
-//마이 페이지 컨트롤러
+//留덉씠 �럹�씠吏� 而⑦듃濡ㅻ윭
 @Controller
 public class MyPageController {
 
@@ -27,13 +28,13 @@ public class MyPageController {
 	@Autowired
 	MypageService mypageService;
 
-	// 마이페이지 정보 수정
+	// 留덉씠�럹�씠吏� �젙蹂� �닔�젙
 	@RequestMapping("/mypage/setUserInfo")
 	public String mypageSet() {
-		return "/mypage/mypage_Set";
+		return "mypage/mypage_Set";
 	}
 
-	// 마이페이지 작성한글
+	// 留덉씠�럹�씠吏� �옉�꽦�븳湲�
 	@RequestMapping("/mypage/writer")
 	public ModelAndView mypageWriter(MyWriterListDTO dto, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -48,7 +49,7 @@ public class MyPageController {
 		return mv;
 	}
 
-	// 마이페이지 작성한 댓글
+	// 留덉씠�럹�씠吏� �옉�꽦�븳 �뙎湲�
 	@RequestMapping("/mypage/comments")
 	public ModelAndView mypagecomments(MyCommentListDTO dto, HttpSession session) {
 		
@@ -65,16 +66,15 @@ public class MyPageController {
 		return mv;
 	}
 
-	
 
-	// 마이페이지 해결중인 내역
+	// 留덉씠�럹�씠吏� �빐寃곗쨷�씤 �궡�뿭
 	@RequestMapping("/mypage/result")
 	public String mypageresult() {
 		return "/mypage/mypage_writer_result";
 	}
 	
 
-	// 마이페이지 결제및정산
+	// 留덉씠�럹�씠吏� 寃곗젣諛륁젙�궛
 	@RequestMapping(value = "/mypage/pay", method = RequestMethod.GET)
 	public ModelAndView mainIndex(MypageDTO dto, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -86,7 +86,7 @@ public class MyPageController {
 		return mv;
 	}
 
-	// 마이페이지 정보 수정
+	// 留덉씠�럹�씠吏� �젙蹂� �닔�젙
 	@RequestMapping(value = "/mypage/setok", method = RequestMethod.POST)
 	public ModelAndView mypagesetok(MypageDTO dto, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -133,5 +133,18 @@ public class MyPageController {
 
 		return mv;
 	}
+	
+	@RequestMapping(value="/UserDelete", method = RequestMethod.POST)
+	public ModelAndView UserDelete(MypageDTO dto, HttpSession session, Model model) {
+		String userid = (String)session.getAttribute("User_id");
+		ModelAndView mv = new ModelAndView();
+		mypageService.UserDelete(userid);
+		session.invalidate();
+		mv.setViewName("redirect:/MainPage");
+		//mv.addObject("msg","완료2");
+		return mv;
+	}
+	
+	
 
 }

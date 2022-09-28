@@ -19,9 +19,13 @@ public interface MypageDAO {
 	public void UserSetUser_pw(MypageDTO dto);
 	public void UserSetUser_introduce(MypageDTO dto);
 
+
+	public void UserDelete(String userid);
+
 	public List<BoardDTO> myRequestlist(MyWriterListDTO dto);
 
 	public List<BoardDTO> myCommentlist(MyCommentListDTO dto);
+
 	
 	
 	
