@@ -13,7 +13,7 @@
     <!-- 폰트 -->
     <link rel="stylesheet" href="${path}/resources/css/global.css">
    <!-- 팀목록 css -->
-   <link rel="stylesheet" href="${path}/resources/css/teamlist.css?after">
+   <link rel="stylesheet" href="${path}/resources/css/teamlist.css">
    <!-- modal css -->
    <link rel="stylesheet" href="${path}/resources/css/teammodal.css">
    <!-- 유니콘 아이콘 사이트 -->
@@ -42,11 +42,7 @@
             <div class="RmHeader">
                 <h1>TEAM</h1>
             </div>
-            <!-- <div class="type">
-                select-box로 변경할 것
-                <div><a href="">전체</a></div>
-                <div><a href="">팀이름</a></div>
-            </div> -->
+            
             <div class="teamlistsearch">
                 <div class="search">
                     <div class="search-box">
@@ -67,9 +63,10 @@
         	</div>
         	
         		
-                <div class="select-tagsearch">
+                <!-- <div class="select-tagsearch">
 	                <div class="select-search-div">
 	                    <c:forEach var="row1" items="${map.tags}" begin="0" end="4">
+	                    	<input type="hidden" id="searchtagbtnone"/>
 								<button class="searchtagbtn">
 									#${row1.Tag_Name}
 								</button>
@@ -80,13 +77,14 @@
 	            <div class="plustagdiv">
 	               <div class="plustag">
 	                    <c:forEach var="row1" items="${map.tags}" begin="5">
+	                    	<input type="hidden" id="searchtagbtntwo"/>
 								<button class="searchplusbtn">
 									#${row1.Tag_Name}
 								</button>
 						</c:forEach>
 	                    <button class="closebtn">접기</button>
 	                </div>
-	            </div>
+	            </div> -->
             
     
 			
@@ -97,7 +95,7 @@
 				          <img src="/resources/img/pIiRs.jpg" alt="">
 				      </div>
 				      <div class="teamlistboxleft">
-				         <div class="teamtitle">${row.Team_name}</div>
+				         <div class="teamtitle" onclick="teaminfoFuc('${row.Team_name}')">${row.Team_name}</div>
 				         <div class="teamdescription">${row.Team_intro}</div>
 		
 							<div class="languagetag">		
@@ -117,7 +115,7 @@
 				     </div>
 				     <div class="teamlistboxright">
 				       <div class="btndiv">
-				            <button class="join btn">팀정보보기</button>
+				            <div class="join btn" onclick="teaminfoFuc2('${row.Team_name}')">팀정보보기</div>
 				       </div>
 				     </div>
 			       </div>
@@ -142,90 +140,14 @@
 	        <div id="team-navbar">
 	            <div id="teamname"></div>
 	            <div id="team-category">
-	                <button>팀정보</button>
-	                <button><a href="teamnotice.html">공지사항</a></button>
+	                <button class="teaminfo-btn" onclick="teaminfoFuc3('${row.Team_name}')">팀정보</button>
+	                
 	                <button class="teamjoin-btn">팀가입</button>
 	                <button class="teamsecession-btn">팀탈퇴</button>
 	            </div>
 	        </div>
-	        <!-- ajax? -->
 	        <div id="team-content">
-	
-	            <div class="content-team-profile">
-	                <div>팀순위 : <a href="">1</a> 위</div>
-	                <div>에러 해결 누적 건수 : <a href="">1</a> 회</div> 
-	                <div>팀 총 커미션 : <a href="">100,000</a> </div> 
-	            </div>
-	
-	            <div class="content-team-date">
-	                <table>
-	                    <thead>
-	                        <td>번호</td>
-	                        <td>제목</td>
-	                        <td>작성자</td>
-	                        <td>작성일</td>
-	                    </thead>
-	                    <!-- foreach로 수정 -->
-	                    <tbody>
-	                        <td><i class="fa-solid fa-fire"></i> <a href="">3</a></td>
-	                        <td><a href="../mypage/mypage.html" target="_blank"><i class="fa-solid fa-user"></i></a> <a href="../mypage/mypage.html" target="_blank">nickname</a></td>
-	                        <td>
-	                            <a href="">html</a>
-	                            <a href="">css</a>
-	                            <a href="">js</a>
-	                        </td>
-	                        <td><i class="fa-solid fa-crown"></i></td>
-	                    </tbody>
-	                </table>
-	                <!-- ... -->
-	            </div>
-	
-	            <div class="team-content-date-detail">
-	                 <a href="teamnotice.html">공지사항 더보기</a>
-	            </div>
-	
-	            
-	            <div class="content-team-member">
-	                <table>
-	                    <thead>
-	                        <td>활동점수</td>
-	                        <td>닉네임</td>
-	                        <td>활동언어</td>
-	                        <td>직책</td>
-	                    </thead>
-	                    <!-- foreach로 수정 -->
-	                    <tbody>
-	                        <td><i class="fa-solid fa-fire"></i> <a href="">3</a></td>
-	                        <td><a href="../mypage/mypage.html" target="_blank"><i class="fa-solid fa-user"></i></a> <a href="../mypage/mypage.html" target="_blank">nickname</a></td>
-	                        <td>
-	                            <a href="">html</a>
-	                            <a href="">css</a>
-	                            <a href="">js</a>
-	                        </td>
-	                        <td><i class="fa-solid fa-crown"></i></td>
-	                    </tbody>
-	                    <!-- ... -->
-	                </table>
-	            </div>
-	
-	            <div id="teammember-paging">
-	                <ul>
-	                    <li>previous</li>
-	                    <li>1</li>
-	                    <li>2</li>
-	                    <li>3</li>
-	                    <li>next</li>
-	                </ul>
-	            </div>
-	
-	            <div class="teamicons">
-	                <div class="linkcopy icons">
-	                    <ion-icon name="link-outline" class="md hydrated"></ion-icon>
-	                    <span class="tooltip">Copy</span>
-	                    <span class="tooltiptwo">Copied</span>
-	                </div>
-	            </div>
-	
+				
 	        </div>
 	    </div>
 	    <ion-icon name="close-outline" id="xicon"></ion-icon>
@@ -233,27 +155,25 @@
 	
 	
 	
-	<!-- =========================================팀만들기 모달================================================= -->
+<!-- =========================================팀만들기 모달================================================= -->
 
 	
 	    <div class="modal2-div">
 	        <div class="teammodal2-div">
-	            <div class="toptitle"><p>팀 만들기</p></div>
+	            <div class="toptitle"><p>${sessionScope.User_nickname}님의 팀 만들기</p></div>
 	            <div class="team profile">
-	                    	팀 로고 첨부파일
-	                    <div class="teamlogo"><img src="이미지가 들어올 것" alt=""><i class="fa-solid fa-user" id="teamlogoicon"></i></div>
-	                    <button><input type="file"></button>
-	                
+						팀 로고 첨부파일
+	                <!-- <div class="teamlogo"><img src="이미지가 들어올 것" alt=""><i class="fa-solid fa-user" id="teamlogoicon"></i></div> -->
+	                 <button><input type="file"></button>
 	            </div>
 	            <div class="team divone">
 	                <input type="text" id="teaminput" class="teamname" name="teamname" placeholder="팀이름" >
-				<c:if test="${errormessage == 'errormessage'}"></c:if>
-				
 	            </div>
 	            <div class="team divtwo">
 	                <input type="text" id="teaminput" class="teamintro" name="teamintro" placeholder="소개글">
 	            </div>
 	            <div class="team divthr">
+	                	태그선택
 	                <div class="teamtag">
 	                    <c:forEach var="row1" items="${map.tags}">
 								<button class="normalbtn" name="teamtag">
@@ -267,45 +187,80 @@
 	                <input type="checkbox" id="team-checkbox">
 	            </div>
 	            <div class="team make-btn">
-	            	<input type="text" value="${sessionScope.User_id}"/>
-	                <button id="makingbtn" type="submit" onsubmit="return teamcheck()">팀생성하기</button>
+	                <button id="makingbtn" type="button" onclick="teamcheck('${sessionScope.User_nickname}')">팀생성하기</button>
 	            </div>
 	        </div>
 	        <ion-icon name="close-outline" id="xicon2"></ion-icon>
 	    </div>
+	    
+<!-- ====================================팀만들기 알림 ============================================ -->
+	    
+		<c:if test="${message == '팀이름중복'}">
+			<p>중복된 팀이름입니다</p>
+		</c:if>
+		<c:if test="${message == '유저이미팀있음'}">
+			<p>${sessionScope.User_nickname}님은 이미 가입한 팀이 있습니다.</p>
+		</c:if>
+		<c:if test="${message == '성공'}">
+			<p>팀 생성에 성공</p>
+		</c:if>
+	
+<!-- ====================================팀 가입 모달====================================== -->
 
-	
-		<!-- ====================================팀 가입 모달====================================== -->
-		
-		
-			
-			<div class="modal3-div">
-					<div class="teammodal3-div">
-					    <div class="toptitle2"><p>팀 가입</p></div>
-					    <div class="teamjoincheck"> <span></span> 팀에 가입하시겠습니까? </div>
-					    <div class="team join-btn">
-							<button onclick="testone('${sessionScope.User_id}')">가입하기</button>
-					    </div>
-					</div>
-					<ion-icon name="close-outline" id="xicon3"></ion-icon>
+	<div class="modal3-div">
+		<div class="teammodal3-div">
+			<div class="toptitle2"><p>팀 가입</p></div>
+			<div class="teamjoincheck"> <span></span> 팀에 가입하시겠습니까? </div>
+			<div class="team join-btn">
+				<button onclick="teamcheck2('${sessionScope.User_nickname}')">가입하기</button>
 			</div>
+	</div>
+		<ion-icon name="close-outline" id="xicon3"></ion-icon>
+	</div>
 	
-			
+<!-- ====================================팀가입하기 알림 ============================================ -->
+	    
+		<c:if test="${teamjoin == '성공'}">
+			<p>팀가입에 성공했습니다.</p>
+		</c:if>
+		<c:if test="${teamjoin == '실패'}">
+			<p>${sessionScope.User_nickname}님은 이미 가입한 팀이 있습니다.</p>
+		</c:if>
 	
-	
-	<!-- ====================================팀 탈퇴 모달====================================== -->
+<!-- ====================================팀 탈퇴 모달====================================== -->
+
 	<div class="modal4-div">
 	    <div class="teammodal4-div">
 	        <div class="toptitle3"><p>팀 탈퇴</p></div>
-	        <div class="teamsecssioncheck"> <span></span> 팀을 탈퇴하시겠습니까?ㅠㅠ </div>
+	        <div class="teamsecssioncheck"> <span></span> 팀을 탈퇴하시겠습니까?ㅠㅠ  
+		</div>
 	        <div class="team secssion-btn">
-	            <form method="POST" action="/teamsecession">
-	                <button>탈퇴하기</button>
-	            </form>
+	        	<input type="text" value="${sessionScope.Team_name}" name="secession_teamname"/>
+	           <button onclick="teamcheck3('${sessionScope.User_nickname}')">탈퇴하기</button>
 	        </div>
 	    </div>
 	<ion-icon name="close-outline" id="xicon4"></ion-icon>
 	</div>
+	
+<!-- ============================================================================================= -->
+
+	
+	
+<!-- ====================================팀탈퇴하기 알림 ============================================ -->
+		<c:if test="${teamsecession == '팀삭제됨'}">
+			<div class="modal4-div">
+			    <div class="teammodal4-div">
+			        <p>팀리더가 탈퇴하여 팀이 삭제되었습니다.</p>
+			    </div>
+			<ion-icon name="close-outline" id="xicon4"></ion-icon>
+			</div>
+		</c:if>
+		<c:if test="${teamsecession == '팀탈퇴성공'}">
+			<p>팀탈퇴에 성공했습니다.</p>
+		</c:if>
+		<c:if test="${teamsecession == '팀아님'}">
+			<p>${sessionScope.User_nickname}님은 이 팀에 속해있지 않습니다.</p>
+		</c:if>
 
 </body>
 

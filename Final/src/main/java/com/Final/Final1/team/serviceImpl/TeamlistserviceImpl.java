@@ -19,13 +19,13 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	TeamlistDAO teamlistdao;
 
 	@Override
-	public List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword) {
-		return this.teamlistdao.list(map, search_option, keyword);
+	public List<TeamlistDTO> list(Map<String, Object> map) {
+		return this.teamlistdao.list(map);
 	}
 
 	@Override
-	public List<Map<String, Object>> taglist(Map<String, Object> map, String search_option, String keyword) {
-		return this.teamlistdao.taglist(map, search_option, keyword);
+	public List<Map<String, Object>> taglist(Map<String, Object> map) {
+		return this.teamlistdao.taglist(map);
 	}
 
 	@Override
@@ -46,6 +46,51 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	@Override
 	public Map<String, Object> teammakecheck(Map<String, Object> map) {
 		return this.teamlistdao.teammakecheck(map);
+	}
+
+	@Override
+	public Map<String, Object> teammakecheck2(Map<String, Object> map) {
+		return this.teamlistdao.teammakecheck2(map);
+	}
+
+	@Override
+	public int teammakeupdate(Map<String, Object> map) {
+		return this.teamlistdao.teammakeupdate(map);
+	}
+
+	@Override
+	public int teamsecession(Map<String, Object> map) {
+		return this.teamlistdao.teamsecession(map);
+	}
+
+	@Override
+	public int teamsecessiondelete(Map<String, Object> map) {
+		return this.teamlistdao.teamsecessiondelete(map);
+	}
+
+	@Override
+	public String teamsecession_teamleader(Map<String, Object> map) {
+		return this.teamlistdao.teamsecession_teamleader(map);
+	}
+
+	@Override
+	public void teamsecession_teamleaderdelete(Map<String, Object> map) {
+		this.teamlistdao.teamsecession_teamleaderdelete(map);
+	}
+
+	@Override
+	public String teamjoin_team(Map<String, Object> map) {
+		return this.teamlistdao.teamjoin_team(map);
+	}
+
+	@Override
+	public void teamjoininsert(Map<String, Object> map) {
+		this.teamlistdao.teamjoininsert(map);
+	}
+
+	@Override
+	public Map<String, Object> teaminfo_notice(Map<String, Object> map) {
+		return this.teamlistdao.teaminfo_notice(map);
 	}
 
 }

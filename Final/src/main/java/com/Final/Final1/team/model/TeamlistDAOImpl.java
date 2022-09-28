@@ -12,17 +12,17 @@ import org.springframework.stereotype.Repository;
 public class TeamlistDAOImpl implements TeamlistDAO {
 	
 	@Autowired
-	SqlSessionTemplate sqlSessionTemplate; //root-context¿Í ¿¬°á
+	SqlSessionTemplate sqlSessionTemplate; //root-contextï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	
 	@Override
-	public List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword) {
+	public List<TeamlistDTO> list(Map<String, Object> map) {
 
 		return sqlSessionTemplate.selectList("team.list", map);
 	}
 
 	@Override
-	public List<Map<String, Object>> taglist(Map<String, Object> map, String search_option, String keyword) {	
+	public List<Map<String, Object>> taglist(Map<String, Object> map) {	
 
 		return sqlSessionTemplate.selectList("team.taglist", map);
 	}
@@ -47,6 +47,52 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 	@Override
 	public Map<String, Object> teammakecheck(Map<String, Object> map) {
 		return sqlSessionTemplate.selectOne("team.teammakecheck", map);
+	}
+
+	@Override
+	public Map<String, Object> teammakecheck2(Map<String, Object> map) {
+		return sqlSessionTemplate.selectOne("team.teammakecheck2", map);
+	}
+
+	@Override
+	public int teammakeupdate(Map<String, Object> map) {
+		return sqlSessionTemplate.update("team.teammakeupdate", map);
+	}
+
+	@Override
+	public int teamsecession(Map<String, Object> map) {
+		return sqlSessionTemplate.update("team.teamsecession", map);
+	}
+	
+	@Override
+	public int teamsecessiondelete(Map<String, Object> map) {
+		return sqlSessionTemplate.update("team.teamsecessiondelete", map);
+	}
+
+	@Override
+	public String teamsecession_teamleader(Map<String, Object> map) {
+		return sqlSessionTemplate.selectOne("team.teamsecession_teamleader", map);
+	}
+
+	@Override
+	public void teamsecession_teamleaderdelete(Map<String, Object> map) {
+		sqlSessionTemplate.delete("team.teamsecession_teamleaderdelete", map);
+	}
+
+	@Override
+	public String teamjoin_team(Map<String, Object> map) {
+		return sqlSessionTemplate.selectOne("team.teamjoin_team", map);
+	}
+
+	@Override
+	public void teamjoininsert(Map<String, Object> map) {
+		sqlSessionTemplate.insert("team.teamjoininsert", map);
+	}
+
+	@Override
+	public Map<String, Object> teaminfo_notice(Map<String, Object> map) {
+		System.out.println("Ddddddd");
+		return sqlSessionTemplate.selectOne("team.teaminfo_notice", map);
 	}
 
 

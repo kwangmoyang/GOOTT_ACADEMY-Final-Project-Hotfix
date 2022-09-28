@@ -46,7 +46,7 @@
              <form id="form1" name="form1" method="post">
                 <div class="WF_topic_box">
                     <p>토픽</p>
-                    <select name="boardCode">
+                    <select name="boardCode" id="boardCode">
                         <option value="" selected="selected">토픽을 선택해주세요</option>
                         <option value="일상">일상</option>
                         <option value="컬럼">컬럼</option>
@@ -86,18 +86,18 @@
                 <div class="boardWF_btn">
                     <!-- 해당부분 링크는 연결할곳이 없고 프론트단에서 할게 아니라서
                             ('토픽'칸의 설정에 따라서 다르게 이동되어야함) 정리했습니다 -SEO- -->
-                    <button >취소</button>
-                    <button type="submit" >등록</button>
+                   <span onclick="location.href='/insert' ">취소</span> 
+                    <button type="button" id="Submitbtn" >등록</button>
                 </div>
 
                 </form>
+                 
             </div>
         </div>
             
             
             <!-- ==============작업공간============== -->
         </div>
-
 
 
    
@@ -112,7 +112,7 @@
 </body>
 
 <script src="../../resources/js/BasicFrame.js"></script>
-<!-- <script src="..../../resources/js/mypage_new_real.js"></script> -->
+<script src="../../resources/js/boardWriteForm.js"></script>
 
 
 </html>

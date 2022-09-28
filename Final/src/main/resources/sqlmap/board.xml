@@ -2,9 +2,8 @@
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 
-	<select id="list"
-		parameterType="com.Final.Final1.board.model.BoardDTO"
-		resultType="hashMap">
+	<select id="list" parameterType="hashMap" resultType="hashMap">	
+		<include refid="paging_header" />
 		select Board_code, Post_num, Post_writer, Post_title, Post_contents,
 		Post_view, Post_like, Post_cr_date, Post_up_date, Post_de_date,
 		Post_status from Board
@@ -16,6 +15,8 @@
 				and Post_title like CONCAT('%',#{keyword},'%')
 			</if>
 		</where>
+		order by Post_cr_date desc, Post_num desc
+		<include refid="paging_footer" />
 	</select>
 
 	<insert id="insert" parameterType="hashMap">
@@ -54,4 +55,32 @@
 		delete from Board where Post_num = #{Post_num};
 	</delete>
 
+
+	<sql id="paging_header">
+		select *
+		from(
+			select @ROWNUM:=@ROWNUM+1 as rn, A.* 
+			from(
+	</sql>
+	<sql id="paging_footer">
+		) A
+	where (@rownum:=0)=0 ) rn 
+	where rn between #{start} and #{end}
+	
+	</sql>
+	
+	
+	<update id="updateLikeUp" parameterType="int">
+		update Board set 
+		Post_like = Post_like+1
+		where Post_num = #{Post_num}
+	</update>
+	
+	<update id="updateLikeDown" parameterType="int">
+		update Board set 
+		Post_like = Post_like-1
+		where Post_num = #{Post_num}
+	</update>
+	
+	
 </mapper>
