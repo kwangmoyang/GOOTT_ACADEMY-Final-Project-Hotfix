@@ -16,4 +16,6 @@ public interface MypageService {
 	public void UserSetEmail_address(MypageDTO dto);
 	public void UserSetUser_pw(MypageDTO dto);
 	public void UserSetUser_introduce(MypageDTO dto);
+
+	public void UserDelete(String userid);
 }
