@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Final.Final1.board.model.BoardDTO;
@@ -30,7 +31,7 @@ public class BoardController {
 		int count = boardService.count(req.getParameter("keyword"),dto.getBoardCode());
 		PageUtil page_info = new PageUtil(count, curPage);
 		
-		System.out.println("countttt는" +count);
+		System.out.println("countttt�뒗" +count);
 		
 		List<BoardDTO> list = boardService.list(dto);
 		ModelAndView mv = new ModelAndView();
@@ -104,7 +105,7 @@ public class BoardController {
 	}
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public ModelAndView deletePost(BoardDTO dto) {
-		// 議고쉶�닔 利앷�
+		// 鈺곌퀬�돳占쎈땾 筌앹빓占�
 		
 		ModelAndView mv = new ModelAndView();
 		

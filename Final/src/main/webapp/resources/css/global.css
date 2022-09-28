@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'NanumSquareR';
-    src: url(/resource/font/NanumSquareR.ttf) format('truetype');
+    src: url(/resources/font/NanumSquareR.ttf) format('truetype');
 }
 
 * {
