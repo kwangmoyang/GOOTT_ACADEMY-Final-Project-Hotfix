@@ -4,15 +4,21 @@
 
     <select id="list" parameterType="hashmap" resultType="hashmap">
         SELECT r.Request_title, r.Requester, u.User_score, r.Recruiting_time, r.SolverReady_cnt, r.SolverReady_cnt2
+        ,r.Commission
         FROM Request AS r LEFT OUTER JOIN User AS u on r.Requester = u.User_nickname ORDER BY Recruiting_time DESC;
     </select>
 
 
     <select id="teamlist" parameterType="hashmap" resultType="hashmap">
-        SELECT distinct t.Team_intro, t.Team_leader, u.User_score, t.Team_cr_date,
-                        (SELECT COUNT(Team_member) FROM Team_Members WHERE Team_code = #{Team_code})AS 'Team_num_mem'
-        FROM Team AS t LEFT OUTER JOIN Team_Members AS tm ON t.Team_code = tm.Team_code
-                       LEFT OUTER JOIN User AS u ON t.Team_leader = u.User_nickname;
+        SELECT Team_intro, Team_cr_date,Team_name FROM Team
+    </select>
+
+    <select id="boardlist" parameterType="hashmap" resultType="hashmap">
+        SELECT distinct b.Post_num, b.Post_writer, u.User_score, b.Post_title, b.Post_like, b.Board_code,
+                        (SELECT count(*) FROM Comment WHERE Post_num = b.post_num) AS Comment_cnt,
+                        b.Post_view, b.Post_cr_date
+        FROM Board AS b LEFT OUTER JOIN User AS u ON b.Post_writer = u.User_nickname
+                        LEFT OUTER JOIN Comment  AS c ON b.Post_num = c.Post_num ORDER BY b.Post_cr_date DESC;
     </select>
 
 

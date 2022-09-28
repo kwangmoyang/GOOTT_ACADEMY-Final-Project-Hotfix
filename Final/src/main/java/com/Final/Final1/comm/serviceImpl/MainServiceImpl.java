@@ -25,6 +25,13 @@ public class MainServiceImpl implements MainService{
     public List<MainDTO> listTeam() {
         return MainDAO.listTeam();
     }
+
+    @Override
+    public List<MainDTO> listBoard() {
+        return MainDAO.listBoard();
+    }
+
+
 }
 
 

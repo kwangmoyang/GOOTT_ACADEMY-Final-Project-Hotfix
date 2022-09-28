@@ -26,9 +26,11 @@ public class MainController {
 
 		List<MainDTO> list = mainService.list();
 		List<MainDTO> listTeam = mainService.listTeam();
+		List<MainDTO> listBoard = mainService.listBoard();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("Request",list);
 		mav.addObject("Teamlist",listTeam);
+		mav.addObject("Boardlist",listBoard);
 		mav.setViewName("MainPage");
 
 		return mav;

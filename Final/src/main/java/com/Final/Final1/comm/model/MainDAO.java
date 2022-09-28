@@ -6,4 +6,6 @@ public interface MainDAO {
     List<MainDTO> list();
 
     List<MainDTO> listTeam();
+
+    List<MainDTO> listBoard();
 }
