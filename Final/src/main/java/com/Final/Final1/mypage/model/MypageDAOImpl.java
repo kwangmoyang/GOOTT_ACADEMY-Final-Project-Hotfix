@@ -48,6 +48,12 @@ public class MypageDAOImpl implements MypageDAO {
 	public int UserPoint(MypageDTO dto) {
 		return sqlSession.selectOne("userinfo.UserPoint",dto);
 	}
+
+	@Override
+	public void UserDelete(String userid) {
+		sqlSession.selectOne("userinfo.UserDelete",userid);
+		
+	}
 	
 	
 	

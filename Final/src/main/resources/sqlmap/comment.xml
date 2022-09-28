@@ -13,12 +13,12 @@
 
 	</select>
 																			
-	<select id="detail" parameterType="int" resultType="com.Final.Final1.board.model.CommentDTO">
-		select Comment_code, Post_num, Comment_writer, Comment_contents, Comment_code,Comment_like, Comment_cr_date,
-		 Comment_up_date, Comment_de_date from Comment where Comment_code =#{Post_num};
+	<delete id="delete">
+		delete from Comment where Comment_code = #{Comment_code};
+	</delete>
+	<select id="count" parameterType="hashMap" resultType="int">
+		select count(*) from Comment where Post_num =#{Post_num};
 	</select>
-	
-
 	  
 </mapper>
 

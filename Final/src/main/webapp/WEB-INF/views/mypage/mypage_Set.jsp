@@ -250,18 +250,18 @@
 							</form>
 						</div>
 					</div>
-					<!-- 탈퇴 -->
+					<!-- 탈퇴기능 -->
 					<p class="mypage_title">
 						탈퇴하기 <i class="uil uil-question-circle"></i>
 					</p>
+					<form method="POST" action="/UserDelete" id="UserOut">
 					<div class="comition_1">
 						<div class="bye_before">모든 정보삭제하고 탈퇴하기</div>
 						<div class="btebtn_before">
-							<button>탈퇴</button>
+							<input type="button" value="탈퇴하기" onclick="MemDeleteBtn()">
 						</div>
-
 					</div>
-
+					</form>
 
 				</div>
 

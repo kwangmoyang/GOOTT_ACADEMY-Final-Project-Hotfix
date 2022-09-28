@@ -58,6 +58,13 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 
+	@Override
+	public void UserDelete(String userid) {
+		// TODO Auto-generated method stub
+		mypageDao.UserDelete(userid);
+	}
+
+
 
 
 	

@@ -16,12 +16,10 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	BoardDAO boardDAO;
 	
-	
 	@Override
-	public List<BoardDTO> list(BoardDTO dto) {
+	public List<BoardDTO> list(String boardCode,String keyword, int start, int end) {
 		// TODO Auto-generated method stub
-		System.out.println(dto.getBoardCode());
-		return boardDAO.list(dto);
+		return boardDAO.list(boardCode,keyword, start, end);
 	}
 
 
@@ -66,6 +64,22 @@ public class BoardServiceImpl implements BoardService{
 		return  boardDAO.Count(keyword,boardCode);
 	}
 
+
+	@Override
+	public int Likeup(int post_num) {
+		// TODO Auto-generated method stub
+		return boardDAO.Likeup(post_num);
+	}
+
+
+	@Override
+	public int Likedown(int post_num) {
+		// TODO Auto-generated method stub
+		return boardDAO.Likedown(post_num);
+	}
+
+
+	
 
 	
 

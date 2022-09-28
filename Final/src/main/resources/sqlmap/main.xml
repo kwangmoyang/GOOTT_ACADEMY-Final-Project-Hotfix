@@ -9,6 +9,7 @@
     </select>
 
 
+
     <select id="teamlist" parameterType="hashmap" resultType="hashmap">
         SELECT Team_intro, Team_cr_date,Team_name FROM Team
     </select>
@@ -20,6 +21,7 @@
         FROM Board AS b LEFT OUTER JOIN User AS u ON b.Post_writer = u.User_nickname
                         LEFT OUTER JOIN Comment  AS c ON b.Post_num = c.Post_num ORDER BY b.Post_cr_date DESC;
     </select>
+
 
 
 

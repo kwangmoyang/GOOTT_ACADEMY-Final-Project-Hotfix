@@ -1,7 +1,7 @@
 
 // ========================팀정보 모달========================
 
-const teamname = document.querySelectorAll('.teamtitle');
+var teamname = document.querySelectorAll('.teamtitle');
 const modaldiv = document.querySelector('.modal-div');
 const teammodaldiv = document.getElementById('teammodal-div');
 const xicon = document.getElementById('xicon');
@@ -14,7 +14,7 @@ for(let i=0; i<teamname.length; i++){
         modaldiv.style.display = 'flex';
         xicon.style.display = 'block';
     })
-}
+};
 
 //팀정보보기 버튼 누르면 모달창 키기
 for(let i=0; i<teambtn.length; i++){
@@ -22,14 +22,14 @@ for(let i=0; i<teambtn.length; i++){
         modaldiv.style.display = 'flex';
         xicon.style.display = 'block';
     })
-}
+};
 
 
 // 모달창 끄기
 xicon.addEventListener('click', function(){
     modaldiv.style.display = 'none';
     xicon.style.display = 'none';
-})
+});
 
 //모달창 배경 눌러도 꺼질 수 있도록
 modaldiv.addEventListener('click', function(e){    
@@ -37,7 +37,7 @@ modaldiv.addEventListener('click', function(e){
         modaldiv.style.display = 'none';
         xicon.style.display = 'none';
     }
-})
+});
 
 //팀정보 모달에 표시된 팀이름
 const teamnameinfo = document.querySelector('#teamname');
@@ -49,15 +49,82 @@ const teamsecssioncheck = document.querySelector('.teamsecssioncheck span');
 for(let i=0; i<teamname.length; i++){
     teamname[i].addEventListener('click', function(){
 
-        console.log(teamname[i].textContent);
-
         teamnameinfo.innerHTML = teamname[i].textContent;
         teamjoincheck.innerHTML = teamname[i].textContent;
         teamsecssioncheck.innerHTML = teamname[i].textContent;
         
 
     })
+};
+
+//팀정보 ajax
+//팀이름 또는 팀정보보기를 클릭하면
+const teaminfobtn = document.querySelectorAll('.btn');
+const inteaminfobtn = document.querySelector('.teaminfo-btn');
+
+function teaminfoFuc(a){
+
+	let teaminfo_teamname = a; //팀이름
+	
+	console.log(teaminfo_teamname);
+	
+	$.ajax({
+		method:"POST",
+		url:"/teaminfo",
+		data: {teaminfo_teamname: teaminfo_teamname},
+		dataType:"text",
+		success:function(result){
+			$("#team-content").html(result);
+		},
+		error:function(request,status,error){
+			 alert("실패");
+		}
+	})
+
 }
+	
+
+
+function teaminfoFuc2(a){
+	let teaminfo_teamname = a; //팀이름
+	
+	console.log(teaminfo_teamname);
+	
+	$.ajax({
+		method:"POST",
+		url:"/teaminfo",
+		data: {teaminfo_teamname: teaminfo_teamname},
+		dataType:"text",
+		success:function(result){
+			$("#team-content").html(result);
+		},
+		error:function(request,status,error){
+			 alert("실패");
+		}
+	})
+}
+
+function teaminfoFuc3(a){
+	
+	let teaminfo_teamname = a; //팀이름
+		
+		console.log(teaminfo_teamname);
+		
+		$.ajax({
+			method:"POST",
+			url:"/teaminfo",
+			data: {teaminfo_teamname: teaminfo_teamname},
+			dataType:"text",
+			success:function(result){
+				$("#team-content").html(result);
+			},
+			error:function(request,status,error){
+				 alert("실패");
+			}
+		})
+	
+}
+
 
 
 
@@ -71,7 +138,7 @@ const teamtag = document.querySelector('.teamtag'); //div
 const tagbtn = document.querySelectorAll('.teamtag button');
 
 const teamcheckbox = document.querySelector('#team-checkbox');
-const maketeamname = document.querySelector(".teamname");
+var maketeamname = document.querySelector(".teamname");
 const maketeamintro = document.querySelector(".teamintro");
 
 //팀만들기버튼 누르면 모달창 키기
@@ -80,7 +147,7 @@ for(let i=0; i<teammakebtn.length; i++){
         modaldiv2.style.display = 'flex';
         xicon2.style.display = 'block';
     })
-}
+};
 
 // 모달창 끄기
 xicon2.addEventListener('click', function(){
@@ -95,7 +162,7 @@ xicon2.addEventListener('click', function(){
             tagbtn[i].style.backgroundColor = 'rgb(255, 232, 205)';
         }
     }
-})
+});
 
 //모달창 배경 눌러도 꺼질 수 있도록
 //modaldiv2.addEventListener('click', function(e){    
@@ -128,28 +195,53 @@ for(let i=0 ; i<tagbtn.length ; i++){
             tagbtn[i].className = 'normalbtn';
         }
     })
-}
+};
 
-let inputteamname = document.getElementByName("teamname");
 
 //체크가되어야 팀만들어지게
-function teamcheck(){
-
-    if(maketeamname.value == ''){
-        alert("팀이름을 입력해주세요.");
-        return false;
-    }
-    if(maketeamintro.value == ''){
-        alert("소개글을 입력해주세요.");
-        return false;
-    }
-    //tagbtn
-    if(teamcheckbox.checked == false){
-        alert("약관에 동의해주세요.");
-        return false;
-    }
-//    if()
-}
+function teamcheck(usernickname){
+	
+	if(usernickname === null || usernickname === ""){
+		alert("로그인이 필요합니다.");
+		//로그인페이지로 이동하도록
+		location.href = "/login";
+	}
+	else if(usernickname != null || usernickname != "")
+	{
+		
+	    if(maketeamname.value == ''){
+	        alert("팀이름을 입력해주세요.");
+	        return false;
+	    }
+	    if(maketeamintro.value == ''){
+	        alert("소개글을 입력해주세요.");
+	        return false;
+	    }
+	    //tagbtn추가할 것
+	//    if()
+	    if(teamcheckbox.checked == false){
+	        alert("약관에 동의해주세요.");
+	        return false;
+	    }
+	    if(maketeamname.value != '' && maketeamintro.value !='' && teamcheckbox.checked == true){
+	    	
+	    	$.ajax({
+	    		type:'POST',
+	    		data: {maketeamname: maketeamname.value, usernickname: usernickname, teamintro : maketeamintro.value},
+	    		url:"/teammake",
+	    		dataType:"text",
+	    		success: function(data){
+	    			location.href = "/teamlist";
+	    		},
+	    		error:function(request,status,error){
+	    			 alert("팀이름이 중복됐거나 ,유저가 속해있는 팀이 이미 있음");
+	    		}
+	    	});
+	    	
+	    }
+    
+	}
+};
 
 //==========================팀가입 모달========================
 
@@ -162,13 +254,13 @@ const xicon3 = document.querySelector('#xicon3');
 teamjoinbtn.addEventListener('click', function(){
     modaldiv3.style.display = 'flex';
     xicon3.style.display = 'block';
-})
+});
 
 // 모달창 끄기
 xicon3.addEventListener('click', function(){
     modaldiv3.style.display = 'none';
     xicon3.style.display = 'none';
-})
+});
 
 //모달창 배경 눌러도 꺼질 수 있도록
 modaldiv3.addEventListener('click', function(e){    
@@ -178,7 +270,7 @@ modaldiv3.addEventListener('click', function(e){
     }
 });
 
-function testone(a){
+function teamcheck2(a){
 
 	if(a === null || a === ""){
 		alert("로그인이 필요합니다.");
@@ -187,31 +279,23 @@ function testone(a){
 	}
 	else if(a != null || a != "")
 	{
-		alert("가입ㄱㄱ");
+		let jointeamname = teamnameinfo.textContent; //팀이름
+		let User_nickname = a; //유저 닉네임
 		
-		var jointeamname = teamjoincheck.textContent; //팀이름
-		var User_id = a; //유저 아이디
-		
-		console.log(jointeamname);
-		console.log(User_id);
-		
-		var param = {"jointeamname" : jointeamname, "User_id": User_id};
-		
-		console.log(JSON.stringify(param));
 		
 		$.ajax({
 			type:'POST',
-			data: JSON.stringify(param),
+			data: {jointeamname: jointeamname, User_nickname: User_nickname},
 			url:"/teamjoin",
 			dataType:"text",
 			success: function(data){
 				alert("팀가입이 완료되었습니다.");
 				location.href = "/teamlist";
-			}
+			},
 		});
 	}
 
-}
+};
 // ==========================팀탈퇴 모달========================
 
 const teamsecssionbtn = document.querySelector('.teamsecession-btn');
@@ -222,13 +306,13 @@ const xicon4 = document.querySelector('#xicon4');
 teamsecssionbtn.addEventListener('click', function(){
     modaldiv4.style.display = 'flex';
     xicon4.style.display = 'block';
-})
+});
 
 // 모달창 끄기
 xicon4.addEventListener('click', function(){
     modaldiv4.style.display = 'none';
     xicon4.style.display = 'none';
-})
+});
 
 //모달창 배경 눌러도 꺼질 수 있도록
 modaldiv4.addEventListener('click', function(e){    
@@ -236,4 +320,33 @@ modaldiv4.addEventListener('click', function(e){
         modaldiv4.style.display = 'none';
         xicon4.style.display = 'none';
     }
-})
+});
+
+
+function teamcheck3(a){
+	if(a === null || a === ""){
+		alert("로그인이 필요합니다.");
+		//로그인페이지로 이동하도록
+		location.href = "/login";
+	}
+	else if(a != null || a != "")
+	{
+		if(!confirm("정말 탈퇴하시겠습니까?(팀리더가 탈퇴할 경우 팀이 삭제됩니다.)")){
+			return false;
+		}else{
+			let secessionteamname = teamnameinfo.textContent; //팀이름
+			let Usernickname = a; //유저 닉네임
+			
+			$.ajax({
+				type:'POST',
+				data: {Usernickname: Usernickname, secessionteamname: secessionteamname},
+				url:"/teamsecession",
+				dataType:"text",
+				success: function(data){
+//					alert("팀탈퇴가 완료되었습니다.");
+					location.href = "/teamlist";
+				}
+			});
+		}
+	}
+};

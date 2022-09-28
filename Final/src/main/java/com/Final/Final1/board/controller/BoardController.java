@@ -1,5 +1,6 @@
 package com.Final.Final1.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Final.Final1.board.model.BoardDTO;
@@ -25,36 +27,35 @@ public class BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(HttpServletRequest req,@RequestParam(defaultValue="1")int curPage ) {
 		BoardDTO dto = new BoardDTO();
-		dto.setBoardCode(req.getParameter("boardCode"));
-		dto.setKeyword(req.getParameter("keyword"));
+		String boardCode = req.getParameter("boardCode");
+		dto.setBoardCode(boardCode);
+		String keyword = req.getParameter("keyword");
+		dto.setKeyword(keyword);
 		
 		int count = boardService.count(req.getParameter("keyword"),dto.getBoardCode());
 		PageUtil page_info = new PageUtil(count, curPage);
-		
-		System.out.println("countttt는" +count);
-		
-		List<BoardDTO> list = boardService.list(dto);
-		ModelAndView mv = new ModelAndView();
-		
-		
+		int start = page_info.getPageBegin();
+		int end = page_info.getPageEnd();
+						
+		List<BoardDTO> list = boardService.list(boardCode, keyword, start, end);
+		ModelAndView mv = new ModelAndView();	
 		mv.setViewName("board/board");
-		mv.addObject("list",list);
-	
+		Map<String, Object> map = new HashMap<>();
 		
+
+		map.put("list", list);
+		map.put("count", count);
+		map.put("boardCode", dto.getBoardCode());
+		map.put("keyword", dto.getKeyword());
+		map.put("page_info", page_info);
+
+		
+		mv.addObject("map", map);
+				
 		return mv;
+		
+		
 	}
-	/*
-	 * @RequestMapping(value = "/TopicList", method = RequestMethod.POST) public
-	 * ModelAndView list(@RequestParam Map<String, Object> map) {
-	 * System.out.println(map.toString()); List<BoardDTO> list =
-	 * boardService.list(map); ModelAndView mv = new ModelAndView();
-	 * 
-	 * mv.setViewName("board/board"); mv.addObject("list",list);
-	 * mv.addObject("tag",map);
-	 * 
-	 * 
-	 * return mv; }
-	 */
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String insert() {	
@@ -72,8 +73,7 @@ public class BoardController {
 	}
 	@RequestMapping(value= "/detail", method = RequestMethod.GET)
 	public ModelAndView detail(BoardDTO dto) {
-	boardService.viewCount(dto);
-	System.out.println(dto);
+		boardService.viewCount(dto);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("data", boardService.detail(dto));
@@ -105,7 +105,7 @@ public class BoardController {
 	}
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public ModelAndView deletePost(BoardDTO dto) {
-		// 議고쉶�닔 利앷�
+		// 鈺곌퀬�돳占쎈땾 筌앹빓占�
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -119,6 +119,22 @@ public class BoardController {
 		}
 			
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/board/Likeup" , method = RequestMethod.POST)
+	public int Likeup(int Post_num)throws Exception{
+			int Likeup = boardService.Likeup(Post_num);
+			
+			return Likeup;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/board/Likedown" , method = RequestMethod.POST)
+	public int Likedown(int Post_num)throws Exception{
+			int Likedown = boardService.Likedown(Post_num);
+			
+			return Likedown;
 	}
 	
 }

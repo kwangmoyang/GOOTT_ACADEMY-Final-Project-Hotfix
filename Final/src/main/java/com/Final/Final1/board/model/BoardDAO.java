@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface BoardDAO {
 
-	List<BoardDTO> list(BoardDTO dto);
+	List<BoardDTO> list(String boardCode, String keyword, int start, int end);
 	
 	Object insert(BoardDTO dto);
 
@@ -18,6 +18,10 @@ public interface BoardDAO {
 	void viewCount(BoardDTO dto);
 
 	int Count(String keyword, String boardCode);
+
+	int Likeup(int post_num);
+
+	int Likedown(int post_num);
 
 	
 
