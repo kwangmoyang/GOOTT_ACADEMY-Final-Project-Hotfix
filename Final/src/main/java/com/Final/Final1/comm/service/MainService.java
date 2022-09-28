@@ -8,4 +8,5 @@ public interface MainService {
 
     List<MainDTO> list();
     List<MainDTO> listTeam();
+    List<MainDTO> listBoard();
 }

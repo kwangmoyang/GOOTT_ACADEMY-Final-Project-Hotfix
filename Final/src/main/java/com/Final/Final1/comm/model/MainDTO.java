@@ -15,6 +15,99 @@ public class MainDTO {
     private int Team_num_mem;
     private int SolverReady_cnt;
     private int SolverReady_cnt2;
+    private String Post_writer;
+    private String Post_title;
+    private int Post_like;
+    private int Comment_cnt;
+    private int Post_view;
+    private Date Post_cr_date;
+    private int Post_num;
+    private String Board_code;
+    private int Commission;
+
+    public int getCommission() {
+        return Commission;
+    }
+
+    public void setCommission(int commission) {
+        Commission = commission;
+    }
+
+
+    public String getBoard_code() {
+        return Board_code;
+    }
+
+    public void setBoard_code(String board_code) {
+        Board_code = board_code;
+    }
+
+
+    public int getPost_num() {
+        return Post_num;
+    }
+    public void setPost_num(int post_num) {
+        Post_num = post_num;
+    }
+    public String getPost_writer() {
+        return Post_writer;
+    }
+
+    public void setPost_writer(String post_writer) {
+        Post_writer = post_writer;
+    }
+
+    public String getPost_title() {
+        return Post_title;
+    }
+
+    public void setPost_title(String post_title) {
+        Post_title = post_title;
+    }
+
+    public int getPost_like() {
+        return Post_like;
+    }
+
+    public void setPost_like(int post_like) {
+        Post_like = post_like;
+    }
+
+    public int getComment_cnt() {
+        return Comment_cnt;
+    }
+
+    public void setComment_cnt(int comment_cnt) {
+        Comment_cnt = comment_cnt;
+    }
+
+    public int getPost_view() {
+        return Post_view;
+    }
+
+    public void setPost_view(int post_view) {
+        Post_view = post_view;
+    }
+
+    public Date getPost_cr_date() {
+        return Post_cr_date;
+    }
+
+    public void setPost_cr_date(Date post_cr_date) {
+        Post_cr_date = post_cr_date;
+    }
+
+
+
+    public String getTeam_name() {
+        return Team_name;
+    }
+
+    public void setTeam_name(String team_name) {
+        Team_name = team_name;
+    }
+
+    private  String Team_name;
 
     public int getSolverReady_cnt() {
         return SolverReady_cnt;
