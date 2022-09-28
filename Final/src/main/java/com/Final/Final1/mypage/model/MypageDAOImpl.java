@@ -1,11 +1,16 @@
 package com.Final.Final1.mypage.model;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.Final.Final1.board.model.BoardDTO;
+import com.Final.Final1.board.model.MyCommentListDTO;
+import com.Final.Final1.board.model.MyWriterListDTO;
 
 
 
@@ -50,9 +55,17 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
+
 	public void UserDelete(String userid) {
 		sqlSession.selectOne("userinfo.UserDelete",userid);
-		
+
+	public List<BoardDTO> myRequestlist(MyWriterListDTO dto) {
+		return sqlSession.selectList("userinfo.myWriterlist",dto);
+	}
+
+	@Override
+	public List<BoardDTO> myCommentlist(MyCommentListDTO dto) {
+		return sqlSession.selectList("userinfo.myCommentlist",dto);
 	}
 	
 	

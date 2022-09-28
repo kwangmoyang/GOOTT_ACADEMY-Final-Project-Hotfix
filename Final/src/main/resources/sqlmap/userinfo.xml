@@ -8,57 +8,87 @@
 			유저 정보 모두 뽑아올수 있음
 			
 		-->
-		<!-- 유저의 회원정보 수정을 위한 부가적인 정보를 다 뽑아온다  -->
-		<select id="Userinfo" resultType="hashMap">
-			select User_code, User_id, User_pw,
-			User_name,User_nickname,User_score,
-			User_point,commission,Phone_num,Email_address,Team_name,User_introduce,
-			User_contact1,User_contact2,User_contact3 from User where
-			User_id=#{User_id};
-		</select>
 
-		<!-- 회원의 포인트 뽑아옴 -->
-		<select id="UserPoint" resultType="int">
-			select User_point from User where User_id=#{User_id};
-		</select>
 
-		<!-- 닉네임 변경 -->
-		<update id="UserSetNickname" parameterType="hashMap">
-			update User set User_nickname =#{User_nickname} where
-			User_id = #{User_id};
-		</update>
+	 
+	 <select id="myRequestlist" parameterType="com.Final.Final1.board.model.MyWriterListDTO" resultType="hashMap">
+		select Request_code,Requester,Request_title, Request_contents, 
+	SolverReady_cnt, Commission, Recruiting_time from Request where Requester=#{Requester};
+	</select>
+	
+	<!-- 마이페이지 나의 게시글 불러오기 -->
+<select id="myWriterlist" parameterType="com.Final.Final1.board.model.MyWriterListDTO" resultType="hashMap">
+		select Post_num,Board_code,Post_writer,Post_title,Post_contents,Post_view,Post_like,Post_cr_date,Post_up_date,Post_de_date,Post_status from
+Board where Post_writer = #{Post_writer};
+</select>
+	
+	
+	
+	<!-- 내 댓글 내역 -->
+	<select id="myCommentlist" parameterType="com.Final.Final1.board.model.MyCommentListDTO" resultType="hashMap">
+		select Comment_code,Post_num,Comment_writer,Comment_contents,Comment_like,Comment_cr_date,Comment_up_date,Comment_de_date,Comment_status,Att_Comment from Comment where Comment_writer=#{Comment_writer};
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	 
+	<!-- 유저의 회원정보 수정을 위한 부가적인 정보를 다 뽑아온다 -->
+	<select id="Userinfo" resultType="hashMap">
+		select User_code, User_id, User_pw, User_name,User_nickname,User_score,
+		User_point,commission,Phone_num,Email_address,Team_name,User_introduce,
+		User_contact1,User_contact2,User_contact3 from User where 
+		User_id=#{User_id};
+	</select>
+	
+	<!-- 회원의 포인트 뽑아옴 -->
+	<select id="UserPoint" resultType="int">
+		select User_point from User where User_id=#{User_id};
+	</select>
+	
+	<!-- 닉네임 변경 -->
+	<update id="UserSetNickname" parameterType="hashMap">
+		update User set User_nickname =#{User_nickname} 
+		where User_id = #{User_id};
+	</update>
+	
+	<!-- 폰번호 변경 -->
+	<update id="UserSetPhone_num" parameterType="hashMap">
+		update User set Phone_num =#{Phone_num} 
+		where User_id = #{User_id};
+	</update>
+	
+	<!-- 이메일 변경 -->
+	<update id="UserSetEmail_address" parameterType="hashMap">
+		update User set Email_address =#{Email_address} 
+		where User_id = #{User_id};
+	</update>
+	
+	<!-- 비번 변경 -->
+	<update id="UserSetUser_pw" parameterType="hashMap">
+		update User set User_pw =#{User_pw} 
+		where User_id = #{User_id};
+	</update>
+	
+	<!-- 자기소개 변경 -->
+	<update id="UserSetUser_introduce" parameterType="hashMap">
+		update User set User_introduce =#{User_introduce} 
+		where User_id = #{User_id};
+	</update>
 
-		<!-- 폰번호 변경 -->
-		<update id="UserSetPhone_num" parameterType="hashMap">
-			update User set Phone_num =#{Phone_num} where User_id =
-			#{User_id};
-		</update>
-
-		<!-- 이메일 변경 -->
-		<update id="UserSetEmail_address" parameterType="hashMap">
-			update User set Email_address =#{Email_address} where
-			User_id = #{User_id};
-		</update>
-
-		<!-- 비번 변경 -->
-		<update id="UserSetUser_pw" parameterType="hashMap">
-			update User set User_pw =#{User_pw} where User_id =
-			#{User_id};
-		</update>
-
-		<!-- 자기소개 변경 -->
-		<update id="UserSetUser_introduce" parameterType="hashMap">
-			update User set User_introduce =#{User_introduce} where
-			User_id = #{User_id};
-		</update>
-
-		<!-- 계좌정보 변경 -->
-		
-		
-		<!-- 회원탈퇴하기 -->
+	<!-- 계좌정보 변경 -->
+	
+  <!-- 회원탈퇴하기 -->
 		<delete id="UserDelete" parameterType="String">
 			delete from User where User_id= #{User_id};
 		</delete>
+	
+	
 
-		
-	</mapper>
+</mapper>
+

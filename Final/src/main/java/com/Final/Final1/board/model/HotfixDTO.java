@@ -3,8 +3,7 @@ package com.Final.Final1.board.model;
 import java.util.Date;
 
 public class HotfixDTO {
-//	(Requester,Request_title, Request_contents, 
-//			ReadySolver_cnt, Commission, Recruiting_time)
+
 	
 	private int Request_code;
 	private String Requester;
@@ -12,7 +11,29 @@ public class HotfixDTO {
 	private String Request_contents;
 	private int SolverReady_cnt;
 	private int Commission;
+	private String User_nickname;
 	
+	private String Solver_member;
+	private int Solver_appli_code;
+	
+	public int getSolver_appli_code() {
+		return Solver_appli_code;
+	}
+	public void setSolver_appli_code(int solver_appli_code) {
+		Solver_appli_code = solver_appli_code;
+	}
+	public String getSolver_member() {
+		return Solver_member;
+	}
+	public void setSolver_member(String solver_member) {
+		Solver_member = solver_member;
+	}
+	public String getUser_nickname() {
+		return User_nickname;
+	}
+	public void setUser_nickname(String user_nickname) {
+		User_nickname = user_nickname;
+	}
 	public int getRequest_code() {
 		return Request_code;
 	}
