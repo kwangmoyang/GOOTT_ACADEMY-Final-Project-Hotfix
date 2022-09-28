@@ -24,6 +24,22 @@ public class HotfixDAOImpl implements HotfixDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("hotfix.list",dto);
 	}
+
+	@Override
+	public List<BoardDTO> myRequestlist(HotfixDTO dto) {
+		return sqlSession.selectList("hotfix.myRequestlist",dto);
+	}
+
+	@Override
+	public void resolveMember(HotfixDTO dto) {
+		sqlSession.selectOne("hotfix.resolveMember",dto);
+		
+	}
+
+	@Override
+	public List<HotfixDTO> resolveMemberlist(HotfixDTO dto) {
+		return sqlSession.selectList("hotfix.resolveMemberlist",dto);
+	}
 	
 	
 }

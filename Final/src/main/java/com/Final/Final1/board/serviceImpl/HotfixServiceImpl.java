@@ -26,6 +26,22 @@ public class HotfixServiceImpl implements HotfixService{
 		// TODO Auto-generated method stub
 		return HotfixDao.list(dto);
 	}
+
+	@Override
+	public List<BoardDTO> myRequestlist(HotfixDTO dto) {
+		return HotfixDao.myRequestlist(dto);
+	}
+
+	@Override
+	public void resolveMember(HotfixDTO dto) {
+		HotfixDao.resolveMember(dto);
+		
+	}
+
+	@Override
+	public List<HotfixDTO> resolveMemberlist(HotfixDTO dto) {
+		return HotfixDao.resolveMemberlist(dto);
+	}
 	
 	
 	

@@ -2,16 +2,69 @@
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hotfix">
 
-<select id="list" parameterType="com.Final.Final1.board.model.HotfixDTO" resultType="hashMap">
-		select Request_code,Requester,Request_title, Request_contents, 
-	SolverReady_cnt, Commission, Recruiting_time from Request;
+	<!-- 22.09.27 HIKARI 마이페이지 나의 작성글 부분 쿼리입니다. -->
 
-</select>
+	<select id="list"
+		parameterType="com.Final.Final1.board.model.HotfixDTO"
+		resultType="hashMap">
+		select Request_code,Requester,Request_title,
+		Request_contents,
+		SolverReady_cnt, Commission, Recruiting_time from Request;
 
-<insert id="insert" parameterType="hashMap">
-	INSERT INTO Request (Requester,Request_title, Request_contents, 
-	SolverReady_cnt, Commission, Recruiting_time) VALUES 
-	(#{Requester},#{Request_title},#{Request_contents},#{SolverReady_cnt},#{Commission},now());
-</insert>
+	</select>
+
+	<!-- 해결요청 게시글 작성 쿼리 -->
+	<insert id="resolveMember" parameterType="hashMap">
+		INSERT INTO Solver_member (Solver_member,Request_code)
+		VALUES (#{Solver_member},#{Request_code});
+	</insert>
+
+
+
+	<!-- 해결요청 게시글 작성 쿼리 -->
+	<insert id="insert" parameterType="hashMap">
+		INSERT INTO Request (Requester,Request_title, Request_contents,
+		SolverReady_cnt, Commission, Recruiting_time) VALUES
+		(#{Requester},#{Request_title},#{Request_contents},#{SolverReady_cnt},#{Commission},now());
+	</insert>
+
+	<!-- 마이페이지 나의 해결요청내역 불러오기 -->
+	<select id="myRequestlist"
+		parameterType="com.Final.Final1.board.model.HotfixDTO"
+		resultType="hashMap">
+		select Request_code,Requester,Request_title,
+		Request_contents,
+		SolverReady_cnt, Commission, Recruiting_time from Request where
+		Requester=#{Requester};
+	</select>
+
+	<!-- 마이페이지 나의 게시글 불러오기 -->
+	<select id="myWriterlist"
+		parameterType="com.Final.Final1.board.model.MyWriterListDTO"
+		resultType="hashMap">
+		select
+		Post_num,Board_code,Post_writer,Post_title,Post_contents,Post_view,Post_like,Post_cr_date,Post_up_date,Post_de_date,Post_status
+		from
+		Board where Post_writer = #{Post_writer};
+	</select>
+
+	<!-- 내 댓글 내역 -->
+	<select id="myCommentlist"
+		parameterType="com.Final.Final1.board.model.MyCommentListDTO"
+		resultType="hashMap">
+		select
+		Comment_code,Post_num,Comment_writer,Comment_contents,Comment_like,Comment_cr_date,Comment_up_date,Comment_de_date,Comment_status,Att_Comment
+		from Comment where Comment_writer=#{Comment_writer};
+	</select>
+
+	<!-- 해결 신청자들 리스트업 -->
+	<select id="resolveMemberlist"
+		parameterType="com.Final.Final1.board.model.HotfixDTO"
+		resultType="hashMap">
+		select Solver_member,Request_code,Solver_appli_code from
+		Solver_member where Request_code= #{Request_code};
+	</select>
+
+
 
 </mapper>

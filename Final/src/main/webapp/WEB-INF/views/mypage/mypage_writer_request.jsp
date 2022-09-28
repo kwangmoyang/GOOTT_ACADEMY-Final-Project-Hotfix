@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
      <!-- 폰트어썸 사이트 -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+     <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>HotFix</title>
 </head>
 
@@ -60,61 +61,44 @@
                         </div>
 
                     </div>
-                    <!-- 해결 게시판 -->
-                    <div class="RmBoard">
-                        <div class="RmBoardLeft">
-                            <p>해결요청!</p>
-                            <p>작성자 :peter</p>
-                            <p>제목 : Java 컴파일 에러가 떴습니다 해결해주세요</p>
-                        </div>
-                        <div class="RmBoardRight">
-                            <p>모집인원 : 5명</p>
-                            <p>커미션: 500 FIx</p>
-                            <p>남은 시간 : 3:00:00</p>
-                            <button class="DetailModal">상세보기</button>
-                        </div>
-                    </div>
-                    <div class="RmBoard">
-                        <div class="RmBoardLeft">
-                            <p>해결요청!</p>
-                            <p>작성자 :peter</p>
-                            <p>제목 : Java 컴파일 에러가 떴습니다 해결해주세요</p>
-                        </div>
-                        <div class="RmBoardRight">
-                            <p>모집인원 : 5명</p>
-                            <p>커미션: 500 FIx</p>
-                            <p>남은 시간 : 3:00:00</p>
-                            <button class="DetailModal">상세보기</button>
-                        </div>
-                    </div>
-
-
-
-
+                    <c:forEach var="row" items="${list}" varStatus="vs">
+                    	
+						<!-- 해결 게시판 -->
+						<div class="RmBoard">
+							<div class="RmBoardLeft">
+								
+								<p>해결요청!</p>
+								<p>작성자 :${row.Requester}</p>
+								<p>제목 : ${row.Request_title}</p>
+							</div>
+							<div class="RmBoardRight">
+								<p>모집인원 : ${row.SolverReady_cnt}명</p>
+								<p>커미션: ${row.Commission} 픽스</p>
+								<p>남은 시간 : ${row.Recruiting_time}</p>
+								<form id="Request_form" action="/mypage/writer_request" method="POST">
+									<input type="hidden" name="Request_code" id="Request_code" value="${row.Request_code}">
+									<button class="DetailModal" >상세보기</button>
+								</form>
+								
+								
+								 
+							</div>
+						</div>
+						
+					</c:forEach>
+   
 
                 </div>
-
-
-
             </div>
 
-
         </div>
-
-        <!-- ==============작업공간============== -->
     </div>
 
-
-
-
-    </div>
-
-
-
-    </div>
+    
     <!-- 푸터 -->
     <div class="common_footer">푸터임다 d </div>
 
+	
     <!-- 모달 -->
     <div class="RmModal_background"></div>
     <div class="RmModal_wrap">
@@ -122,26 +106,25 @@
         <!-- 모달 내용부분 -->
         <div class="ModalText">
             <h1>신청한 사람들!</h1>
-
-            <div class="list">
-                <p>광모 123님  전적 43%<input type="submit" value="전적보기">  <input type="submit" value="컨택하기">  </p>
-                <p>주언어 ${java},${spring},<%-- ${c++}  --%></p>
-            </div>
-            <div class="list">
-                <p>광모 123님 전적 보기(마이페이지 전적 모달창(작성예정)과 동일) <input type="submit" value="컨택하기">  </p>
-                <p>주언어 ${java},${spring},<%-- ${c++}  --%></p>
-            </div>
-            <div class="list">
-                <p>광모 123님 전적 보기(마이페이지 전적 모달창(작성예정)과 동일) <input type="submit" value="컨택하기">  </p>
-                <p>주언어 ${java},${spring},<%-- ${c++}  --%></p>
-            </div>
             
+			<c:forEach var="row" items="${resolver}" varStatus="vs">
+            <div class="list">
+                <p>신청자 ${row.Solver_member}님  전적 43%<input type="submit" value="전적보기">  
+                <input type="submit" value="컨택하기">  </p>
+            </div>
+            </c:forEach>
         </div>
+	</div>
+	
 
 </body>
+  
+
 
 
 <script>
+
+
 
     let cancle = document.querySelector(".cancle");
     cancle.addEventListener('click', function () {
@@ -158,6 +141,7 @@
     function modalOpen() {
         document.querySelector('.RmModal_wrap').style.display = 'block';
         document.querySelector('.RmModal_background').style.display = 'block';
+
     }
 
     // 모달 끄기
@@ -169,13 +153,29 @@
 
     //버튼 클릭리스너 달기
     let DetailModal = document.querySelectorAll('.DetailModal');
-
+    let resolveform = document.querySelectorAll('#resolveform');
+    
+    //리퀘스트 코드
+    let Request_code = document.querySelectorAll('#Request_code');
+    let Request_codeform = document.querySelectorAll('#Request_codeform');
+    console.log(Request_code);
+    
     for (let i = 0; i < DetailModal.length; i++) {
-        DetailModal[i].addEventListener('click', modalOpen);
+    	//Request_codeform.addEventListener('submit', function(e){
+        DetailModal[i].addEventListener('click', function(){
+
+        modalOpen(); 
+        
+        	
+        	
+        });
+        
+       
+
     }
+    
 
-
-    document.querySelector('.RmModal_close').addEventListener('click', modalClose);
+ document.querySelector('.RmModal_close').addEventListener('click', modalClose);
 
 </script>
 <script src="../../resources/js/BasicFrame.js"></script>
