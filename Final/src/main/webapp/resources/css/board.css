@@ -76,26 +76,21 @@
 }
 /* 검색창 */
 .search-box{
-    width: 100%;
+    width: 75%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.search-box form{
-    width: 65%;
-    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
 }
+
 .search-box input[type="text"]{
     border: var(--teamlist-border);
     border-radius: 50px;
     width: 65%;
     height: 100%;
     padding: 0 20px;
+    margin-left: 45px;
 }
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset;
@@ -176,51 +171,12 @@ input:-webkit-autofill {
 }
 
 /* 페이징 */
-.page_wrap {
-	text-align:center;
-	font-size:0;
- }
-.page_nation {
-	display:inline-block;
+.boardPaging {
+	margin: auto;
 }
-.page_nation .none {
-	display:none;
-}
-.page_nation a {
-	display:block;
-	margin:0 3px;
-	float:left;
-	border:1px solid #e6e6e6;
-	width:28px;
-	height:28px;
-	line-height:28px;
-	text-align:center;
-	background-color:#fff;
-	font-size:13px;
-	color:#999999;
-	text-decoration:none;
-}
-.page_nation .arrow {
-	border:1px solid #ccc;
-}
-.page_nation .pprev {
-	background:#f8f8f8 url('/img/arrow/page_pprev.png') no-repeat center center;
-	margin-left:0;
-}
-.page_nation .prev {
-	background:#f8f8f8 url('/img/arrow/page_prev.png') no-repeat center center;
-	margin-right:7px;
-}
-.page_nation .next {
-	background:#f8f8f8 url('/img/arrow/page_next.png') no-repeat center center;
-	margin-left:7px;
-}
-.page_nation .nnext {
-	background:#f8f8f8 url('/img/arrow/page_nnext.png') no-repeat center center;
-	margin-right:0;
-}
-.page_nation a.active {
-	background-color:#42454c;
-	color:#fff;
-	border:1px solid #42454c;
-}
+.boardPagingTd a{
+            text-decoration: none;
+            color: black;
+            font-size: 25px;
+        }
+

@@ -1,6 +1,7 @@
 package com.Final.Final1.board.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,10 +28,18 @@ public class CommentServiceImpl implements CommentService{
 		return commentDAO.list(Post_num);
 	}
 
+
 	@Override
-	public CommentDTO detail(int Post_num) {
+	public void remove(Map<String, Object> map) {
+		commentDAO.delete(map);
+		
+
+	}
+
+	@Override
+	public int count(int post_num) {
 		// TODO Auto-generated method stub
-		return commentDAO.detail(Post_num);
+		return commentDAO.count(post_num);
 	}
 
 }

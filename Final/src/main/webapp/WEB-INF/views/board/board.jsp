@@ -24,9 +24,30 @@
 <link href="${path}/resources/css/board.css?after" rel="stylesheet" />
 <title>HotFix</title>
 </head>
+<script>
+/* 	$(function()}
+	 $("#btnWrite").click(function(){
+		 locataion.hred="/board/write";
+	}); */
+
+	function list(page) {
+		if(searchParam("boardCode") == null){
+			location.href="list?curPage="+page;
+			
+		}else {
+			
+			location.href="list?boardCode=${map.boardCode}&keyword=${map.keyword}&curPage="+page;
+		}
+		
+		
+				
+	}
+	
+	
+</script>
 
 <body>
-
+	
 	<%@ include file="/WEB-INF/views/header/header.jsp"%>
 
 	<div class="container">
@@ -87,15 +108,17 @@
 							</div>
 						</div>
 						<div class="board_nav_btn">
-							<select name="">
-								<option value="">최신순</option>
-								<option value="">조회순</option>
-								<option value="">추천순</option>
+							<select name="selectSequence">
+								<option value="newSelect">최신순</option>
+								<option value="viewSelect">조회순</option>
+								<option value="likeSelect">추천순</option>
 							</select>
 						</div>
 
 					</div>
-					<c:forEach var="row" items="${list}">
+					<h3>${map.count}개의 게시글</h3> <br>
+					
+					<c:forEach var="row" items="${map.list}">
 						<div class="board_main">
 							<div class="board_header">
 								<div class="board_write">
@@ -116,7 +139,38 @@
 							</div>
 						</div>
 					</c:forEach>
+				<table class="boardPaging">
+			<tr>
+				<td colspan="5" align="center" class ="boardPagingTd">
+					<c:if test="${map.page_info.curBlock > 1 }">
+						<a href="javascript:list('1')">[처음]</a>
+					</c:if> 
+					<c:if test="${map.page_info.curBlock > 1 }">
+						<a href="javascript:list('${map.page_info.prevPage}')">[이전]</a>
+					</c:if> 
+					
+					<c:forEach var="num" begin="${map.page_info.blockBegin}"
+						end="${map.page_info.blockEnd}">
+						<c:choose>
+							<c:when test="${num==map.page_info.curPage}">
+								<span style="font-size:25px; color:red"  >${num}</span>												 
+							</c:when>
+								<c:otherwise>
+								 	<a href = "javascript:list('${num}')">${num}</a>
+								</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					
+					<c:if test="${map.page_info.curBlock <= map.page_info.totBlock}">
+						<a href="javascript:list('${map.page_info.nextPage}')">[다음]</a>
+					</c:if> 
+					<c:if test="${map.page_info.curPage <= map.page_info.totPage}">
+						<a href="javascript:list('${map.page_info.totPage}')">[끝]</a>
+					</c:if> 
+				</td>
+			</tr>
 
+	</table>
 
 
 				</div>

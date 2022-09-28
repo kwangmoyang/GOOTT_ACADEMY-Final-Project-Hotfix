@@ -1,6 +1,6 @@
 //자동실행함수
 $(function() {
-	let cat = searchParam("boardCode");
+	
 	if(searchParam("boardCode") == null){
 		$(".tagHeader").html("전체");
 		
@@ -12,17 +12,19 @@ $(function() {
 	$("#searchBtnI").on("click", function() {
 		//내가 검색한 키워드
 		
+		let cat = searchParam("boardCode");
 		let keyword = $("[name=keyword]").val();
 		//카테고리를 이미 선택한 후 검색이라면
 		if(searchParam("boardCode") !=null){
-			console.log("test");
-			//location.href = "/list?boardCode="+cat+"&keyword="+keyword;
+			
 			location.href = "/list?boardCode="+cat+"&keyword="+keyword;
 			return;
 		}
 		location.href = "/list?keyword="+keyword;
 	});	
-
+	
+	
+	
 	// 카테고리 클릭시 해당메뉴 관련 데이터 리스트 호출
 	$(".category").on("click", function() {
 		let cat = $(this).attr("name");
@@ -34,6 +36,7 @@ $(function() {
 function searchParam(key) {
 	return new URLSearchParams(location.search).get(key);
 };
+
 
 let category = document.querySelectorAll(".board_category ul li")
 

@@ -14,12 +14,16 @@ public class BoardDAOImpl implements BoardDAO{
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	
 	@Override
-	public List<BoardDTO> list(BoardDTO dto) {
-		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("board.list",dto);
+	public List<BoardDTO> list(String boardCode, String keyword, int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardCode", boardCode);
+		map.put("keyword", keyword);
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSessionTemplate.selectList("board.list",map);
 	}
+	
 	
 	@Override
 	public Object insert(BoardDTO dto) {
@@ -62,6 +66,22 @@ public class BoardDAOImpl implements BoardDAO{
 		map.put("boardCode", boardCode);
 		return sqlSessionTemplate.selectOne("board.count",map);
 	}
+
+
+	@Override
+	public int Likeup(int post_num) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.update("board.updateLikeUp",post_num);
+	}
+
+
+	@Override
+	public int Likedown(int post_num) {
+		// TODO Auto-generated method stub
+		return  sqlSessionTemplate.update("board.updateLikeDown",post_num);
+	}
+
+	
 	
 }
 
