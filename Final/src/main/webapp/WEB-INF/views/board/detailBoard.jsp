@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,9 +18,11 @@
 	href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
 <title>HotFix</title>
+
 <!-- 제이쿼리 -->
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+// 댓글 작성하기 
 window.onload = function(){
 	let btnReply = document.querySelector('#btnReply');
 		  listReply();
@@ -33,8 +36,9 @@ window.onload = function(){
 				type:"post", 
 				url: "/comment/insert",
 				data: params,
-				success:function(){
-					alert("댓글등록 완료");
+				dataType: "text",
+				success:function(data){
+					  $("#listReply").html(data); 
 				},
 				error:function(error){
 					console.log(error);
@@ -43,7 +47,32 @@ window.onload = function(){
 			});
 		});  
 }
-
+// 댓글 삭제 버튼 
+$(document).on('click', '.btnDelete', function(e){
+	let Comment_code = this.nextElementSibling.value;
+	let Comment_contents = document.querySelector(".ComTd").value;
+	let Post_num = "${data.Post_num}";
+	//let Comment_contents = document.querySelector("#Comment_contents").value;
+	let Comment_writer = document.querySelector("#Comment_writer").value;	
+	let params={"Comment_contents":Comment_contents, "Post_num":Post_num,
+			"Comment_writer":Comment_writer, "Comment_code":Comment_code};
+	 $.ajax({
+		type:"post", 
+		url: "/comment/delete",
+		contentType : "application/json;charset=UTF-8",
+		data : JSON.stringify(params),
+		success:function(){
+			alert("삭제완료")
+			window.location.href = "detail?Post_num="+ Post_num; 
+		},
+		error:function(error){
+			console.log(error);
+		}
+	
+	}); 
+	
+});
+// 댓글 리스트 ajax
 function listReply(){
 	$.ajax({
 		url: "comment/list?Post_num=${data.Post_num}",
@@ -57,16 +86,55 @@ function listReply(){
 	});
 	
 }
-function showModify(Post_num){
-	console.log(Post_num)
-	$.ajax({
-		url:"comment/detail/"+Post_num,
-		success:function(result){
-			$("#modifyReply").html(result);
-		}		
+
+//추천수 증가
+function updateLikeUp(){ 
+	$(document).on('click', '.Likeup', function(e){
+		let Post_num = "${data.Post_num}";
+		let Post_writer = "${data.Post_writer}";
+		let params={"Post_num":Post_num};
+		
+		
+		 $.ajax({
+				type:"post", 
+				url: "/board/Likeup",
+				data :(params),
+				success : function() {
+					window.location.href = "detail?Post_num="+ Post_num;
+				    
+				},
+				error:function(error){
+					console.log(error);
+				}
+			
+		}); 
+		
 	});
 }
-
+//추천수 감소
+function updateLikeDown(){ 
+	$(document).on('click', '.Likedown', function(e){
+		let Post_num = "${data.Post_num}";
+		let Post_writer = "${data.Post_writer}";
+		let params={"Post_num":Post_num};
+		
+		
+		 $.ajax({
+				type:"post", 
+				url: "/board/Likedown",
+				data :(params),
+				success : function() {
+					window.location.href = "detail?Post_num="+ Post_num;
+				    
+				},
+				error:function(error){
+					console.log(error);
+				}
+			
+		}); 
+		
+	});
+}
 
 </script>
 
@@ -99,13 +167,28 @@ function showModify(Post_num){
 					</div>
 					<div class="detailTag">
 						<span>${data.Tags_Board}</span>
+					
+					<c:choose>
+							<c:when test="${sessionScope.User_id != null }">
+								<div class="detailLike">
+							<span class="Likedown" onclick="updateLikeDown();"><i class="uil uil-angle-down"></i></span>
+							<span class="LikeCnt">${data.Post_like}</span> 
+							<span class="Likeup" onclick="updateLikeUp();" ><i class="uil uil-angle-up"></i></span>
+								</div>
+							</c:when>
 
-						<div class="detailLike">
-							<span class="Likedown"><i class="uil uil-angle-down"></i></span>
-							<span class="LikeCnt">0</span> <span class="Likeup"><i
-								class="uil uil-angle-up"></i></span>
-
-						</div>
+							<c:otherwise>
+								<div class="detailLike">
+							<span class="BackTologin" ><i class="uil uil-angle-down" ></i></span>
+							<span class="LikeCnt">${data.Post_like}</span> 
+							<span class="BackTologin" ><i class="uil uil-angle-up" ></i></span>
+								</div>
+			
+							</c:otherwise>
+					</c:choose>
+					
+					
+						
 					</div>
 
 
@@ -128,29 +211,30 @@ function showModify(Post_num){
 							</c:otherwise>
 						</c:choose>
 
-
-						<span>9개의 댓글</span>
+				
 						<textarea name="Comment_contents" id="Comment_contents" rows="10"
 							cols="10" placeholder="댓글을 작성해주세요"
 							style="width: 100%; height: 100%;"></textarea>
 						<input type="hidden" value="${sessionScope.User_nickname}"
 							name="Comment_writer" id="Comment_writer">
-						<button type="button" id="btnReply">댓글쓰기</button>
+							
+						<c:choose>
+							<c:when test="${sessionScope.User_id != null }">
+									<button type="button" id="btnReply" >댓글쓰기</button>
+							</c:when>
+
+							<c:otherwise>
+									<button type="button" class="BackTologin" >댓글쓰기</button>
+							</c:otherwise>
+						</c:choose>
+									
+						
+						
+						
 					</div>
-
-
-					<!-- 	<span><i class="fas fa-feather-alt"></i></span> <span>200<i
-						class="fas fa-bolt"></i></span> <span>나나콘</span> <span>약 5시간전</span>
-					<div class="commentCon">
-						<p>세상에.. 요즘 프론트로 전향하고 싶어서 여기저기 알아보고 있었는데 좋은 글을 만났네요..</p>
-						<p>감사합니다^^</p>
-					</div>
- -->
-
+						<!-- 댓글 리스트 -->
 						<div id="listReply" ></div>
-						<div id="modifyReply"></div>
-					
-
+				
 				</div>
 			</div>
 
@@ -171,6 +255,6 @@ function showModify(Post_num){
 </body>
 
 <script src="../../resources/js/BasicFrame.js"></script>
-<!-- <script src="..../../resources/js/mypage_new_real.js"></script> -->
+<script src="/resources/js/detailBoard.js"></script>
 
 </html>

@@ -8,6 +8,7 @@
     </select>
 
 
+
     <select id="teamlist" parameterType="hashmap" resultType="hashmap">
         SELECT Team_intro, Team_cr_date,Team_name FROM Team
     </select>
