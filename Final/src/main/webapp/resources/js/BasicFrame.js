@@ -1,4 +1,3 @@
-
 // header center 카테고리 호버시 함수
 let header_text = document.querySelectorAll(".header_menu>li>a");
 // console.log(header_text[0]);
@@ -44,7 +43,7 @@ myPage.addEventListener('click', function () {
     }
     // 토글 스위치 변경
     flagMyPage = !flagMyPage;
-})
+});
 
 myAlarm.addEventListener('click', function () {
     if (flagMyAlarm == false) {

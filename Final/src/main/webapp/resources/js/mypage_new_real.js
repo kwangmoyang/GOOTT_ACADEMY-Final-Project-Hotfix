@@ -50,6 +50,18 @@ for(let i=0; i<update_after.length; i++){
 
 
 // ! =====================함수존=======================
+// 22-09-28 SLEEP 탈퇴시 확인 알림창
+function MemDeleteBtn() {
+	let UserOut = document.querySelector("#UserOut");
+    if (confirm("정말 탈퇴하시겠습니까? 탈퇴시 기존 정보는 복구불가입니다.")){
+        alert("탈퇴완료되었습니다.");
+        UserOut.action = '/UserDelete';
+        UserOut.submit();
+    }
+    else {
+        return false;
+    }
+}
 
 
 // * 22-09-02 HIKARI 텍스트호버 함수
