@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+
+
+	<select id="list" resultType="hashMap">
+	select User_name, User_id, User_nickname, 
+	Email_address, Phone_num, SignDate, User_score from User;
+	</select>
+	
+	<select id="total">
+	select count(*) from User;
+	</select>
+
+
+
+
+</mapper>
