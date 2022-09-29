@@ -7,7 +7,7 @@ import com.Final.Final1.board.model.BoardDTO;
 
 public interface BoardService {
 
-	List<BoardDTO> list(String boardCode, String keyword, int start, int end);
+	List<BoardDTO> list(String boardCode, String keyword, String select, int start, int end);
 	
 	void insert(BoardDTO dto);
 

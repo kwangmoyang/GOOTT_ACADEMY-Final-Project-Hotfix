@@ -15,12 +15,14 @@ public class BoardDAOImpl implements BoardDAO{
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public List<BoardDTO> list(String boardCode, String keyword, int start, int end) {
+	public List<BoardDTO> list(String boardCode, String keyword, String select, int start, int end) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("boardCode", boardCode);
 		map.put("keyword", keyword);
+		map.put("search_option", select);
 		map.put("start", start);
 		map.put("end", end);
+		
 		return sqlSessionTemplate.selectList("board.list",map);
 	}
 	

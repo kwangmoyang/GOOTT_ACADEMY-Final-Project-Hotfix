@@ -4,14 +4,16 @@
 
 	<!-- 22.09.27 HIKARI 마이페이지 나의 작성글 부분 쿼리입니다. -->
 
-	<select id="list"
+	 <select id="list"
 		parameterType="com.Final.Final1.board.model.HotfixDTO"
 		resultType="hashMap">
 		select Request_code,Requester,Request_title,
 		Request_contents,
 		SolverReady_cnt, Commission, Recruiting_time from Request;
 
-	</select>
+	</select> 
+	
+	
 
 	<!-- 해결요청 게시글 작성 쿼리 -->
 	<insert id="resolveMember" parameterType="hashMap">
@@ -59,12 +61,36 @@
 
 	<!-- 해결 신청자들 리스트업 -->
 	<select id="resolveMemberlist"
-		parameterType="com.Final.Final1.board.model.HotfixDTO"
+		parameterType="int"
 		resultType="hashMap">
 		select Solver_member,Request_code,Solver_appli_code from
 		Solver_member where Request_code= #{Request_code};
 	</select>
 
 
-
+	<!-- 해결 Count  -->
+	<select id="count" parameterType="hashMap" resultType="int">
+		select count(*) from Board
+		<where>
+			<if test="keyword != null">
+				and Request_title like CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+	</select>
+	
+	<!-- 페이징 -->
+	<sql id="paging_header">
+		select *
+		from(
+			select @ROWNUM:=@ROWNUM+1 as rn, A.* 
+			from(
+	</sql>
+	<sql id="paging_footer">
+		) A
+	where (@rownum:=0)=0 ) rn 
+	where rn between #{start} and #{end}
+	
+	</sql>
+	
+	
 </mapper>
