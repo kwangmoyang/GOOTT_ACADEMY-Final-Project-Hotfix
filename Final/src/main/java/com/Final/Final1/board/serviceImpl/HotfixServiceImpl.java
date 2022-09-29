@@ -38,9 +38,14 @@ public class HotfixServiceImpl implements HotfixService{
 		
 	}
 
+//	@Override
+//	public List<HotfixDTO> resolveMemberlist(HotfixDTO dto) {
+//		return HotfixDao.resolveMemberlist(dto);
+//	}
+
 	@Override
-	public List<HotfixDTO> resolveMemberlist(HotfixDTO dto) {
-		return HotfixDao.resolveMemberlist(dto);
+	public List<HotfixDTO> resolveMemberlist(int test) {
+		return HotfixDao.resolveMemberlist(test);
 	}
 	
 	

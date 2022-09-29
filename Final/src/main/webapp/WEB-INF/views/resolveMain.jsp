@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -142,8 +143,12 @@
 				<div class="ModalCon"></div>
 				<div class="ModalFooter">
 					<p>모집 마감 : 2022. 09.08 목요일</p>
-					<input type="text" name="User_nickname" value="${sessionScope.User_nickname}">
+					
+					<!-- 본인이 신청한 게시글엔 신청 못함 -->
+         			<input type="text" name="User_nickname" value="${sessionScope.User_nickname}">
 					<button class="solutionSubmit">해결신청</button>
+      				
+      	
 				</div>
 			</div>
 			
@@ -170,7 +175,7 @@
 	
 	for (let i = 0; i < solutionSubmit.length; i++) {
 		solutionSubmit[i].addEventListener('click', function(){
-			console.log("ddd");
+			alert("신청이 완료되었습니다.");
 			requestform[i].action = "solutionRequest";
 			requestform[i].submit();
 		});

@@ -11,5 +11,5 @@ public interface HotfixDAO {
 	
 	void resolveMember(HotfixDTO dto);
 	
-	List<HotfixDTO> resolveMemberlist(HotfixDTO dto);
+	List<HotfixDTO> resolveMemberlist(int test);
 }

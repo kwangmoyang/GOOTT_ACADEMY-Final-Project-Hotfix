@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,44 +48,32 @@ public class HotfixController {
 
 		ModelAndView mv = new ModelAndView();
 		hotfixService.insert(dto);
-//		System.out.println(dto.getCommission());
+
 		mv.setViewName("redirect:/resolveMain");
 		return mv;
 	}
 
-	// 요청자의 요청내역리스트에 쏴주기
-//	@RequestMapping(value = "/solutionRequest", method = RequestMethod.GET)
-//	public String solutionRequest() {
-//
-//		return "/resolveMain";
-//	}
-	// 해결자
 
+	//핫픽스 해결자 게시판
 	@RequestMapping("/solutionRequest")
-	public ModelAndView solutionRequest(HotfixDTO dto, HttpSession session, HttpServletRequest request) {
-
+	public ModelAndView solutionRequest(HotfixDTO dto, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
-		System.out.println("게시글 코드" + dto.getRequest_code());
+		//로그인된 사람의 닉네임을 불러와 신청자 리스트에 담아준다
 		String name = (String) session.getAttribute("User_nickname");
 		dto.setSolver_member(name);
-		System.out.println("해결 신청자" + name);
 		hotfixService.resolveMember(dto);
 
-		
-		
-		
-		mv.setViewName("/resolveMain");
+		mv.setViewName("redirect:/resolveMain");
 		return mv;
 	}
 	
 	
-	
 
 	// 해결요청 글 리스트 목록
+	@ResponseBody
 	@RequestMapping("/mypage/writer_request")
-	public ModelAndView mypageWriter(HotfixDTO dto, HttpSession session,HttpServletRequest request) {
-			//,@RequestParam(value="Request_code", required=false) String Request_code) {
+	public ModelAndView mypageWriter(HotfixDTO dto, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
 		// 세션 값 불러옴
@@ -94,30 +83,32 @@ public class HotfixController {
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
 		List<BoardDTO> list = hotfixService.myRequestlist(dto);
 		mv.addObject("list", list);
-		
-		// 해당 게시글에 대한 신청자 리스트
-		System.out.println(dto.getRequest_code());
-		dto.setRequest_code(7);
-		List<HotfixDTO> resolver = hotfixService.resolveMemberlist(dto);
-		mv.addObject("resolver", resolver);
-		System.out.println(resolver);
-
 		mv.setViewName("/mypage/mypage_writer_request");
+		
 		return mv;
 	}
 	
-//	// 해결요청 글 리스트 목록
-//	@ResponseBody
-//	@RequestMapping("/mypage/writer_request_Modal")
-//	public ModelAndView mypageWriterModal(HotfixDTO dto, HttpSession session) {
-//			//,@RequestParam(value="Request_code", required=false) String Request_code) {
-//		ModelAndView mv = new ModelAndView();
-//		dto.setRequest_code(7);
-//		List<HotfixDTO> resolver = hotfixService.resolveMemberlist(dto);
-//		mv.addObject("resolver", resolver);
-////		System.out.println(resolver);
-//		mv.setViewName("/mypage/mypage_writer_request");
-//		return mv;
-//	}
+	//해결요청 내역 상세 클릭시 ajax 값 받아와서 리턴
+	// 해결 신청자 리스트
+	@ResponseBody
+	@RequestMapping("/mypage/writer_request2")
+	public List<HotfixDTO> mypageWriter2(HotfixDTO dto) {
+		//ajax로 통해 전달받은 값을 쿼리에 넣어줌
+		List<HotfixDTO> resolver = hotfixService.resolveMemberlist(dto.getRequest_code());
+		//신청자 목록 리스트 리턴
+		return resolver;
+	}
+	
+	@RequestMapping("/testzone")
+	public String testzone(HotfixDTO dto) {
+		//ajax로 통해 전달받은 값을 쿼리에 넣어줌
+		System.out.println("ㅎㅇ");
+		return null;
+	}
+	
+	
+	
+	
+	
 
 }

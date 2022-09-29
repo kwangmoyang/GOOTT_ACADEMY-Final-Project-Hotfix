@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,10 +47,10 @@
                         <div class="board_nav_search">
                             <div class="search">
                                 <div class="search-box">
-                                    <form method="POST">
+                                  <%--  <form method="POST" id="test123">
                                       <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요" name="keyword" />
                                       <button type="submit" class="searchbtn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                    </form>
+                                    </form>--%>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +67,6 @@
 						<!-- 해결 게시판 -->
 						<div class="RmBoard">
 							<div class="RmBoardLeft">
-								
 								<p>해결요청!</p>
 								<p>작성자 :${row.Requester}</p>
 								<p>제목 : ${row.Request_title}</p>
@@ -75,18 +75,17 @@
 								<p>모집인원 : ${row.SolverReady_cnt}명</p>
 								<p>커미션: ${row.Commission} 픽스</p>
 								<p>남은 시간 : ${row.Recruiting_time}</p>
-								<form id="Request_form" action="/mypage/writer_request" method="POST">
-									<input type="hidden" name="Request_code" id="Request_code" value="${row.Request_code}">
-									<button class="DetailModal" >상세보기</button>
-								</form>
 								
+								<input type="text" id="Request_code" name="Request_code" value="${row.Request_code}">
+								<button class="DetailModal" id="test">상세보기</button>
 								
-								 
+
 							</div>
+							
 						</div>
 						
 					</c:forEach>
-   
+   					
 
                 </div>
             </div>
@@ -107,21 +106,12 @@
         <div class="ModalText">
             <h1>신청한 사람들!</h1>
             
-			<c:forEach var="row" items="${resolver}" varStatus="vs">
-            <div class="list">
-                <p>신청자 ${row.Solver_member}님  전적 43%<input type="submit" value="전적보기">  
-                <input type="submit" value="컨택하기">  </p>
-            </div>
-            </c:forEach>
+			<!--<c:forEach var="row" items="${resolver}" varStatus="vs">-->
+            
+            <!--</c:forEach>-->
         </div>
 	</div>
 	
-
-</body>
-  
-
-
-
 <script>
 
 
@@ -137,14 +127,13 @@
         }
     })
 
-    // 모달 열기
+    // 모달 열기 함수
     function modalOpen() {
         document.querySelector('.RmModal_wrap').style.display = 'block';
         document.querySelector('.RmModal_background').style.display = 'block';
-
     }
 
-    // 모달 끄기
+    // 모달 닫기 함수
     function modalClose() {
         document.querySelector('.RmModal_wrap').style.display = 'none';
         document.querySelector('.RmModal_background').style.display = 'none';
@@ -155,31 +144,105 @@
     let DetailModal = document.querySelectorAll('.DetailModal');
     let resolveform = document.querySelectorAll('#resolveform');
     
-    //리퀘스트 코드
-    let Request_code = document.querySelectorAll('#Request_code');
-    let Request_codeform = document.querySelectorAll('#Request_codeform');
-    console.log(Request_code);
+    
+    
+    //모달 닫는 x버튼 이벤트
+    $(document).on('click', '.RmModal_close', function(){
+    	console.log("새로불러옴");
+    	modalClose();
+    });
+    
+    
+    
     
     for (let i = 0; i < DetailModal.length; i++) {
     	//Request_codeform.addEventListener('submit', function(e){
-        DetailModal[i].addEventListener('click', function(){
+        DetailModal[i].addEventListener('click', function(e){
 
-        modalOpen(); 
-        
-        	
-        	
-        });
-        
+        	$.ajax({
+                type:'POST',
+                //headers:{"Content-Type":"application/json;charset=UTF-8"},
+                //data: JSON.stringify({Request_code:Request_code}),
+                data: {Request_code:DetailModal[i].previousSibling.previousSibling.defaultValue},
+                url:"/mypage/writer_request2",
+                //dataType:"text", 
+                success: function(data){
+                	console.dir(data);
+                   
+                    //setTimeout(modalOpen, 1000);
+                    modalOpen();
+                    
+                    const RmModal_close = document.querySelector(".RmModal_close");
+                    const ModalText = document.querySelector(".ModalText");
+  
+                    for(let i=0; i<data.length; i++){
+                    	const div = document.createElement('div');
+                    	const nick_input = document.createElement('input');
+                    	const p2 = document.createElement('p');
+                    	const input1 = document.createElement('input');
+                    	const input2 = document.createElement('input');
+                    	
+                    	const form1 = document.createElement('form');
+                    	
+                    	nick_input.setAttribute('name','username');
+                    	
+                    	div.setAttribute('class','list');
+                    	input1.setAttribute('type','submit');
+                    	input1.setAttribute('value','전적보기');
+                    
+                    	form1.setAttribute('type','post');
+                    	form1.setAttribute('action','/testzone');
+                    	
+                    	input2.setAttribute('type','submit');
+                    	input2.setAttribute('value','컨택하기');
+                    	
+                    	
+                    	//input2.setAttribute('onclick',"submit();");
+                    	
+                    	
+                    	
+                    	
+                    	
+                    	nick_input.value = data[i].Solver_member;
+                    	p2.textContent = data[i].Request_code;
+                    	
+                    	div.append(nick_input);
+                    	div.append(p2);
+                    	div.append(input1);
+                    	div.append(input2);
+                    	form1.append(div);
+                    	
+                    	ModalText.append(form1);
+ 						
+                    	console.log(form1)
+                    	
+                    }
+                    RmModal_close.addEventListener('click',function(){
+                    	$(".ModalText").empty();
+                	})
+                   	
+   
+                },
+                error:function(request,status,error){
+                   console.log(request);
+                   console.log(status);
+   
+                }
+             }); 
+    	});
        
-
-    }
-    
-
- document.querySelector('.RmModal_close').addEventListener('click', modalClose);
-
+ 	}   
+   	
+ 	
 </script>
+</body>
+  
+
+
+
+
 <script src="../../resources/js/BasicFrame.js"></script>
 <script src="../../resources/js/mypage_new_real.js"></script>
-<script src="../../resources/js/board.js"></script>
 
-</html></html>
+
+</html>
