@@ -172,11 +172,10 @@ input:-webkit-autofill {
 
 /* 페이징 */
 .boardPaging {
-	margin: auto;
+   margin: auto;
 }
 .boardPagingTd a{
             text-decoration: none;
             color: black;
             font-size: 25px;
         }
-

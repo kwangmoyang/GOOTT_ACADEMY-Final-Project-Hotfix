@@ -3,13 +3,6 @@ $(function() {
 	
 	
 	
-	if(searchParam("boardCode") == null){
-		$(".tagHeader").html("전체");
-		
-	}else{
-		$(".tagHeader").html(searchParam("boardCode"))
-		
-	}
 	// 검색
 	$("#searchBtnI").on("click", function() {
 		//내가 검색한 키워드
@@ -38,11 +31,7 @@ $(function() {
 		location.href = "/list?boardCode=" + cat;
 	});
 	
-/*	let select = $("select[name=search_option]").change(function(){
-		let select = $(this).val()
-		
-		location.href = "/list?select=" + select;
-	});*/
+	
 	
 });
 //쿼리스트링의 주소를 받아옴
@@ -50,28 +39,3 @@ function searchParam(key) {
 	return new URLSearchParams(location.search).get(key);
 };
 
-
-let category = document.querySelectorAll(".board_category ul li")
-
-textHover(category);
-
-function textColor(param, textColor) {
-	param.style.color = textColor;
-}
-function transition(param, second) {
-	param.style.transition = second;
-}
-
-function textHover(param) {
-	for (let i = 0; i < param.length; i++) {
-		param[i].addEventListener('mouseover', function() {
-			textColor(param[i], "rgba(248,58,37,1)");
-			transition(param[i], ".5s");
-
-			param[i].addEventListener('mouseout', function() {
-				textColor(param[i], "rgba(25, 25, 25, 1)");
-				transition(param[i], "1s");
-			})
-		})
-	}
-}

@@ -1,8 +1,8 @@
 package com.Final.Final1.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +24,47 @@ public class HotfixController {
 	@Autowired
 	HotfixService hotfixService;
 
+	//09.29 15:50 수근 JS로 주소값 필요
+	
+	//@RequestMapping(value = "/resolveMain", method = RequestMethod.GET)
+//	public ModelAndView list(HttpServletRequest req,@RequestParam(defaultValue="1")int curPage,
+	//	@RequestParam(defaultValue ="new")String search_option) {
+	//	HotfixDTO dto = new HotfixDTO();
+	//	String keyword = req.getParameter("keyword");
+	//	dto.setKeyword(keyword);
+	//	String select = req.getParameter("select");
+	//	dto.setSelect(select);
+		
+	//	int count = hotfixService.count(req.getParameter("keyword"));
+	//	PageUtil page_info = new PageUtil(count, curPage);
+	//	int start = page_info.getPageBegin();
+	//	int end = page_info.getPageEnd();
+						
+	//	List<BoardDTO> list = hotfixService.list(keyword, select, start, end);
+	//	ModelAndView mv = new ModelAndView();	
+	//	mv.setViewName("/resolveMain");
+	//	Map<String, Object> map = new HashMap<>();
+
+	//	map.put("list", list);
+	//	map.put("count", count);
+	//map.put("keyword", dto.getKeyword());
+	//map.put("search_option", dto.getSelect());
+	//map.put("page_info", page_info);
+
+		
+	//mv.addObject("map", map);
+			
+	//	return mv;
+		
+		
+	//}
+	
+	
+	
+	
+	
+	
+	
 	// 해결요청 글 리스트 목록
 	@RequestMapping("/resolveMain")
 	public ModelAndView resolveMain(HotfixDTO dto) {

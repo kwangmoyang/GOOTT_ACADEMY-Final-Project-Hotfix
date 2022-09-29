@@ -14,9 +14,21 @@
 			<if test="keyword != null">
 				and Post_title like CONCAT('%',#{keyword},'%')
 			</if>
-		</where>
-		order by Post_cr_date desc, Post_num desc
-		<include refid="paging_footer" />
+			
+		</where>		
+			<include refid="paging_footer" />			
+			
+			 <if test="search_option =='view' ">
+				  order by Post_view desc, Post_num desc
+			</if>
+			<if test="search_option =='like' ">
+				 order by Post_like desc, Post_num desc
+			</if> 
+			<if test="search_option == 'new'">
+				 order by Post_cr_date desc, Post_num desc
+			</if>
+		
+				
 	</select>
 
 	<insert id="insert" parameterType="hashMap">

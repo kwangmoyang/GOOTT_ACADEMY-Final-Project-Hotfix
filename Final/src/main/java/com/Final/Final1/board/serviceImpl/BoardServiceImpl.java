@@ -17,9 +17,9 @@ public class BoardServiceImpl implements BoardService{
 	BoardDAO boardDAO;
 	
 	@Override
-	public List<BoardDTO> list(String boardCode,String keyword, int start, int end) {
+	public List<BoardDTO> list(String boardCode,String keyword, String select, int start, int end) {
 		// TODO Auto-generated method stub
-		return boardDAO.list(boardCode,keyword, start, end);
+		return boardDAO.list(boardCode,keyword, select, start, end);
 	}
 
 
@@ -77,6 +77,7 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return boardDAO.Likedown(post_num);
 	}
+
 
 
 	
