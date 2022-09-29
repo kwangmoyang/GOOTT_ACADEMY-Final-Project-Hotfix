@@ -125,9 +125,12 @@
                     </div>
                 </div>
                 <div id="board2_preview">
-                    <div class="preview_title"><span>NOTICE</span></div>
+                    <div class="preview_title"><span>첨부테스트중</span></div>
                     <div class="preview_content">
-
+<%--                        <form action="#" method="POST" enctype="multipart/form-data">--%>
+<%--                            <input type="file" name="file"><br>--%>
+<%--                            <button type="submit" value="Upload"></button>--%>
+<%--                        </form>--%>
                     </div>
                 </div>
             </div>

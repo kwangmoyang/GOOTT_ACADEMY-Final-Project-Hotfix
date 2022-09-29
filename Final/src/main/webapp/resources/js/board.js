@@ -1,9 +1,10 @@
 //자동실행함수
 $(function() {
 	
+	
+	
 	if(searchParam("boardCode") == null){
 		$(".tagHeader").html("전체");
-		
 	}else{
 		$(".tagHeader").html(searchParam("boardCode"))
 		
@@ -14,13 +15,17 @@ $(function() {
 		
 		let cat = searchParam("boardCode");
 		let keyword = $("[name=keyword]").val();
+			
+		let select = $("select[name=search_option]").val()
+		
+			
 		//카테고리를 이미 선택한 후 검색이라면
 		if(searchParam("boardCode") !=null){
 			
-			location.href = "/list?boardCode="+cat+"&keyword="+keyword;
+			location.href = "/list?boardCode="+cat+"&keyword="+keyword+"&select="+select;
 			return;
 		}
-		location.href = "/list?keyword="+keyword;
+		location.href = "/list?keyword="+keyword+"&select="+select;
 	});	
 	
 	
@@ -31,10 +36,19 @@ $(function() {
 		
 		location.href = "/list?boardCode=" + cat;
 	});
+	
+/*	let select = $("select[name=search_option]").change(function(){
+		let select = $(this).val()
+		
+		location.href = "/list?select=" + select;
+	});*/
+	
 });
 //쿼리스트링의 주소를 받아옴
 function searchParam(key) {
+	
 	return new URLSearchParams(location.search).get(key);
+//	return null;
 };
 
 

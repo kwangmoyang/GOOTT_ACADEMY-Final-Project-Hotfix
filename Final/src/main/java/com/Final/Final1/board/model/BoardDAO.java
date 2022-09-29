@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface BoardDAO {
 
-	List<BoardDTO> list(String boardCode, String keyword, int start, int end);
+	List<BoardDTO> list(String boardCode, String keyword, String select, int start, int end);
 	
 	Object insert(BoardDTO dto);
 

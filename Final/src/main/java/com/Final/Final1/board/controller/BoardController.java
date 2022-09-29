@@ -25,28 +25,31 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(HttpServletRequest req,@RequestParam(defaultValue="1")int curPage ) {
+	public ModelAndView list(HttpServletRequest req,@RequestParam(defaultValue="1")int curPage,
+		@RequestParam(defaultValue ="new")String search_option) {
 		BoardDTO dto = new BoardDTO();
 		String boardCode = req.getParameter("boardCode");
 		dto.setBoardCode(boardCode);
 		String keyword = req.getParameter("keyword");
 		dto.setKeyword(keyword);
+		String select = req.getParameter("select");
+		dto.setSelect(select);
 		
 		int count = boardService.count(req.getParameter("keyword"),dto.getBoardCode());
 		PageUtil page_info = new PageUtil(count, curPage);
 		int start = page_info.getPageBegin();
 		int end = page_info.getPageEnd();
 						
-		List<BoardDTO> list = boardService.list(boardCode, keyword, start, end);
+		List<BoardDTO> list = boardService.list(boardCode, keyword, select, start, end);
 		ModelAndView mv = new ModelAndView();	
 		mv.setViewName("board/board");
 		Map<String, Object> map = new HashMap<>();
-		
 
 		map.put("list", list);
 		map.put("count", count);
 		map.put("boardCode", dto.getBoardCode());
 		map.put("keyword", dto.getKeyword());
+		map.put("search_option", dto.getSelect());
 		map.put("page_info", page_info);
 
 		

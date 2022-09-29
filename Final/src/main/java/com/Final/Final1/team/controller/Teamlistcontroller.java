@@ -1,5 +1,6 @@
 package com.Final.Final1.team.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Final.Final1.team.model.TeamMemberDTO;
 import com.Final.Final1.team.model.TeamlistDTO;
 import com.Final.Final1.team.service.Teamlistservice;
 
@@ -24,8 +26,11 @@ public class Teamlistcontroller {
 	
 	//팀목록
 	@RequestMapping(value="/teamlist")
-	public ModelAndView teamlist(@RequestParam Map<String, Object> map, @RequestParam(defaultValue = " ")String keyword, 
+	public ModelAndView teamlist(@RequestParam Map<String, Object> map, @RequestParam(defaultValue = "")String keyword, 
 			@RequestParam(defaultValue = "all") String search_option) {
+		
+			System.out.println(search_option);
+			System.out.println(keyword);
 			
 		
 			ModelAndView mv = new ModelAndView();
@@ -34,6 +39,8 @@ public class Teamlistcontroller {
 			List<Map<String, Object>> taglist = teamlistservice.taglist(map); //�±� ��ü
 			List<TeamlistDTO> teamlist = teamlistservice.list(map); //����� ��ü
 			List<Map<String, Object>> tags = teamlistservice.tags(map); //�������
+			
+			System.out.println("teamlist"+teamlist);
 			
 			
 			Map<String, Object> map2 = new HashMap<>();
@@ -51,7 +58,8 @@ public class Teamlistcontroller {
 
 	//팀생성
 	@RequestMapping(value="/teammake" , method= RequestMethod.POST)
-	public ModelAndView teammake2(@RequestParam Map<String, Object> map) {
+	public ModelAndView teammake2(@RequestParam Map<String, Object> map, HttpSession session
+			,@RequestParam("maketeamname") String maketeamname) {
 			
 			ModelAndView mv = new ModelAndView();
 			
@@ -65,9 +73,10 @@ public class Teamlistcontroller {
 				
 				teamlistservice.teammake(map);
 				teamlistservice.teammakeupdate(map);
+				
 				//세션 셋
-				
-				
+				//내가 만든 팀네임
+				session.setAttribute("Team_name", maketeamname);
 				mv.setViewName("redirect:/teamlist");
 				mv.addObject("message", "성공");
 				
@@ -100,8 +109,10 @@ public class Teamlistcontroller {
 	
 	//팀 가입
 	@RequestMapping(value="/teamjoin" , method= RequestMethod.POST)
-	public ModelAndView teamjoin(@RequestParam Map<String, Object> map, HttpSession session) {
+	public ModelAndView teamjoin(@RequestParam Map<String, Object> map, HttpSession session
+			,@RequestParam("jointeamname") String jointeamname) {
 			ModelAndView mv = new ModelAndView();
+			
 		
 			//유저한테 팀이 없으면 가능하게
 			String teamjoin_team = teamlistservice.teamjoin_team(map);
@@ -110,6 +121,8 @@ public class Teamlistcontroller {
 			if(teamjoin_team == null) {
 				teamlistservice.teamjoin(map);
 				teamlistservice.teamjoininsert(map);
+				session.setAttribute("Team_name", jointeamname);
+				
 				mv.setViewName("redirect:/teamlist");
 				mv.addObject("teamjoin", "성공");
 								
@@ -133,7 +146,8 @@ public class Teamlistcontroller {
 			, @RequestParam("secessionteamname") String secessionteamname
 			, @RequestParam("Usernickname") String Usernickname) {
 		
-		ModelAndView mv = new ModelAndView();
+		
+			ModelAndView mv = new ModelAndView();
 			
 			//db에 팀리더 조회
 			String teamleader = teamlistservice.teamsecession_teamleader(map);
@@ -156,6 +170,9 @@ public class Teamlistcontroller {
 				teamlistservice.teamsecession(map);
 				//팀멤버테이블에서 멤버컬럼 삭제
 				teamlistservice.teamsecessiondelete(map);
+				
+				session.setAttribute("Team_name", secessionteamname);
+				
 				mv.setViewName("redirect:/teamlist");
 				
 				mv.addObject("teamsecession", "팀탈퇴성공");
@@ -168,10 +185,13 @@ public class Teamlistcontroller {
 				
 				System.out.println("시발2");
 				
+				teamlistservice.teamsecession(map);
+				
 				//그냥 팀 자체 삭제
 				teamlistservice.teamsecession_teamleaderdelete(map);
 
-				teamlistservice.teamsecession(map);
+				session.setAttribute("Team_name", secessionteamname);
+				
 				mv.setViewName("redirect:/teamlist");
 				
 				mv.addObject("teamsecession", "팀삭제됨");
@@ -195,27 +215,39 @@ public class Teamlistcontroller {
 	
 	//팀정보
 	@RequestMapping("/teaminfo")
-	public ModelAndView teaminfo(@RequestParam Map<String, Object> map, ModelAndView mv
+	public ModelAndView teaminfo(@RequestParam Map<String, Object> map, ModelAndView mv, TeamlistDTO dto, TeamMemberDTO dto2
 			, @RequestParam(value="teaminfo_teamname", required = false) String teaminfo_teamname)
 	{
 		
-		System.out.println(teaminfo_teamname);
 		
 		mv.setViewName("/team/teaminfo");
 		//클릭한 팀의 팀공지사항
-		Map<String, Object> teaminfo_notice = teamlistservice.teaminfo_notice(map);
+		List<Map<String, Object>> teaminfo_notice = teamlistservice.teaminfo_notice(map);
+		//클릭한 팀의 리더
+		List<Map<String, Object>> teamleader = teamlistservice.teaminfo_teamleader(map);
 		//클릭한 팀의 멤버들
+		List<Map<String, Object>> teammembers = teamlistservice.teaminfo_members(map);
 		
-		mv.addObject("teaminfo_notice", teaminfo_notice);
+		Map<String, Object> map2 = new HashMap<>();
+		
+		
+		System.out.println("야"+teaminfo_notice);
+		System.out.println("왜"+teamleader);
+		System.out.println("안돼"+teammembers);
+		
+		map2.put("teaminfo_notice", teaminfo_notice);
+		map2.put("teamleader", teamleader);
+		map2.put("teammembers", teammembers);
+		
+		System.out.println("map2에담는 과정");
+		
+		mv.addObject("map", map2);
+		
+		System.out.println("이제 return한다"+map2);
+		
+		
 		
 		return mv;
 	}
 	
-	//팀공지사항
-	@RequestMapping("/teamnotice")
-	public ModelAndView teamnotice(@RequestParam Map<String, Object> map, ModelAndView mv) {
-		mv.setViewName("/team/teamnotice");
-		
-		return mv;
-	}
 }

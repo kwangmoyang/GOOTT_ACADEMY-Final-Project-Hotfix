@@ -68,6 +68,7 @@ public class MypageServiceImpl implements MypageService{
 		mypageDao.UserDelete(userid);
 	}	
 
+
   @Override
 	public List<BoardDTO> myRequestlist(MyWriterListDTO dto) {
 		return mypageDao.myRequestlist(dto);

@@ -92,7 +92,7 @@
 }
 #team-content{
     width: 100%;
-    height: 90%;
+    height: 95%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -139,27 +139,7 @@
 .content-team-member td{
     border: 1px solid var(--dark-border-color);
 }
-/* 페이징 */
-#teammember-paging{
-    margin-top: 2%;
-}
-#teammember-paging ul{
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-}
-#teammember-paging ul li{
-    padding: 0 10px;
-    margin: 0 5px;
-    background-color: var(--basic-gainsboro-color);
-    border-radius: var(--basic-border-radius);
-    cursor: pointer;
-    padding: 5px 10px;
-}
-#teammember-paging ul li:hover{
-    background-color: var(--hover-btn-color);
-}
+
 /* 링크 아이콘 */
 .teamicons{
     display: flex;
