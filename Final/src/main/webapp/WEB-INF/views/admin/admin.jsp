@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../resources/css/BasicFrame.css">
-    <link rel="stylesheet" href="../../resources/css/global.css">
-    <link rel="stylesheet" href="../../resources/css/admin.css">
+    <link rel="stylesheet" href="../../resources/css/BasicFrame.css?after">
+    <link rel="stylesheet" href="../../resources/css/global.css?after">
+    <link rel="stylesheet" href="../../resources/css/admin.css?after">
     <!-- 유니콘 아이콘 사이트 -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>HotFix_admin</title>
@@ -25,10 +25,10 @@
             <!-- 왼쪽 사이드 -->
             <div class="sideLeft">
                 <div class="adminList">
-                    <li><a href="admin.html">회원관리</a></li>
-                    <li><a href="admin_Report.html">신고관리</a></li>
-                    <li><a href="admin_Board.html">게시판관리</a></li>
-                    <li><a href="admin_Ask.html">1:1문의</a></li>
+                    <li><a href="/admin/index">회원관리</a></li>
+                    <li><a href="/admin/report">신고관리</a></li>
+                    <li><a href="/admin/board">게시판관리</a></li>
+                    <li><a href="/admin/ask">1:1문의</a></li>
                 </div>
             </div>
 
@@ -39,13 +39,13 @@
 
                 <div class="adminTitle">
                     <h2>회원관리</h2>
-                    <button class="setBtn">선택삭제</button>
+                   <!-- <button class="setBtn">선택삭제</button> -->
                 </div>
                 <div class="adminT">
-                    <button class="admin_Membtn">전체목록</button>
-                    <button class="admin_Membtn">총회원수</button><button class="Figure"> 60명</button>
-                    <button class="admin_Membtn">차단</button><button class="Figure"> 3명</button>
-                    <button class="admin_Membtn">탈퇴</button><button class="Figure"> 5명</button>
+                    <!-- <button class="admin_Membtn">전체목록</button> -->
+                    <button class="admin_Membtn">총회원수</button><button class="Figure"> "${total}"명</button>
+                    <!-- <button class="admin_Membtn">차단</button><button class="Figure"> 3명</button> -->
+                    <!-- <button class="admin_Membtn">탈퇴</button><button class="Figure"> 5명</button> -->
                     <br>
                     <br>
                     <table border="1" class="admin_Customer">
@@ -59,106 +59,18 @@
                             <td>가입일</td>
                             <td>활동점수</td>
                         </tr>
+                        <c:forEach var="row" items="${map}">
                         <tr>
                             <td><input type="checkbox" name="" id=""></td>
-                            <td>조준모</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>${row.User_name}</td>
+                            <td>${row.User_id}</td>
+                            <td>${row.User_nickname}</td>
+                            <td>${row.Email_address}</td>
+                            <td>${row.Phone_num}</td>
+                            <td>${row.SignDate}</td>
+                            <td>${row.User_score}</td>
                         </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>양광모</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>서승혁</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>김수진</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>김수근</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>김양희</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>사람1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>사람2</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>사람3</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>사람4</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        </c:forEach>
                     </table>
                     <div class="admin_Paging">
                         <a href="#">이전</a>

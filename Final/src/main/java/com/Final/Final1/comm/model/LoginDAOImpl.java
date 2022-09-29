@@ -49,6 +49,11 @@ public class LoginDAOImpl implements LoginDAO{
 		sqlSession.selectOne("login.Mistake_cnt_Up2",dto);
 	}
 
+	@Override
+	public Map<String, Object> User_nickname_Chk(Map<String, Object> map) {
+		return sqlSession.selectOne("login.User_nickname_Chk",map);
+	}
+
 	
 
 	

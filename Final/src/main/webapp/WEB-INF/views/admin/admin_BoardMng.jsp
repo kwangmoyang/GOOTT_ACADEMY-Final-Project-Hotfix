@@ -24,10 +24,10 @@
             <!-- 왼쪽 사이드 -->
             <div class="sideLeft">
                 <div class="adminList">
-                    <li><a href="admin.html">회원관리</a></li>
-                    <li><a href="admin_Report.html">신고관리</a></li>
-                    <li><a href="admin_Board.html">게시판관리</a></li>
-                    <li><a href="admin_Ask.html">1:1문의</a></li>
+                    <li><a href="/admin/index">회원관리</a></li>
+                    <li><a href="/admin/report">신고관리</a></li>
+                    <li><a href="/admin/board">게시판관리</a></li>
+                    <li><a href="/admin/ask">1:1문의</a></li>
                 </div>
             </div>
 
@@ -37,15 +37,15 @@
                   여기서부터 작업하고 최종파일에 복붙하기 -->
 
                 <div class="adminTitle">
-                    <h2>게시판관리</h2>
+                    <h2>게시판관리 (공지사항)</h2>
                     <div class="adminNav">
                         <button class="removeBtn">선택삭제</button>
                         <button class="setBtn">공지등록</button>
                     </div>
                 </div>
                 <div class="adminT">
-                    <button class="admin_Boardbtn"><a href="admin_BoardMng.html">공지사항</a></button>
-                    <!-- <button class="admin_Boardbtn"><a href="/view/admin/admin_BoardCus.html">회원 게시글</a></button> -->
+                    <button class="admin_Boardbtn"><a href="/admin/board_mng">공지사항</a></button>
+                    <button class="admin_Boardbtn"><a href="/admin/board_mem">회원 게시글</a></button>
                     <br>
                     <br>
                     <table border="1" class="admin_Customer">

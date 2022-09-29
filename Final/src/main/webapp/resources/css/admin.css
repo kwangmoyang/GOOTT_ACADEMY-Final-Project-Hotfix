@@ -1,3 +1,10 @@
+:root{
+    --teamlist-border: 1px solid gainsboro;
+    --border-btn-radius: 5px;
+    --btn-color: rgba(255, 95, 47, 0.906);
+}
+
+
 /* ================================================ */
 /* 메인 섹션(조원 작업존) */
 .common_section{
@@ -38,6 +45,10 @@ a {
     /* text-decoration: none; */
     color: black;
 }
+.admin_Boardbtn > a {
+    color: white;
+}
+
 
 /* 관리자페이지 왼쪽 카테고리 */
 .adminList {

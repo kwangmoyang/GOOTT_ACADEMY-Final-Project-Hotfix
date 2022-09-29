@@ -25,10 +25,10 @@
             <!-- 왼쪽 사이드 -->
             <div class="sideLeft">
                 <div class="adminList">
-                    <li><a href="admin.html">회원관리</a></li>
-                    <li><a href="admin_Report.html">신고관리</a></li>
-                    <li><a href="admin_Board.html">게시판관리</a></li>
-                    <li><a href="admin_Ask.html">1:1문의</a></li>
+                    <li><a href="/admin/index">회원관리</a></li>
+                    <li><a href="/admin/report">신고관리</a></li>
+                    <li><a href="/admin/board">게시판관리</a></li>
+                    <li><a href="/admin/ask">1:1문의</a></li>
                 </div>
             </div>
 
