@@ -61,7 +61,7 @@
 
 	<!-- 해결 신청자들 리스트업 -->
 	<select id="resolveMemberlist"
-		parameterType="com.Final.Final1.board.model.HotfixDTO"
+		parameterType="int"
 		resultType="hashMap">
 		select Solver_member,Request_code,Solver_appli_code from
 		Solver_member where Request_code= #{Request_code};

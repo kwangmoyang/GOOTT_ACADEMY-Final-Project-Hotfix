@@ -47,9 +47,14 @@ public class HotfixDAOImpl implements HotfixDAO{
 		
 	}
 
+//	@Override
+//	public List<HotfixDTO> resolveMemberlist(HotfixDTO dto) {
+//		return sqlSession.selectList("hotfix.resolveMemberlist",dto);
+//	}
+
 	@Override
-	public List<HotfixDTO> resolveMemberlist(HotfixDTO dto) {
-		return sqlSession.selectList("hotfix.resolveMemberlist",dto);
+	public List<HotfixDTO> resolveMemberlist(int test) {
+		return sqlSession.selectList("hotfix.resolveMemberlist",test);
 	}
 
 	@Override

@@ -5,7 +5,6 @@ $(function() {
 	
 	if(searchParam("boardCode") == null){
 		$(".tagHeader").html("전체");
-		
 	}else{
 		$(".tagHeader").html(searchParam("boardCode"))
 		
@@ -47,7 +46,9 @@ $(function() {
 });
 //쿼리스트링의 주소를 받아옴
 function searchParam(key) {
+	
 	return new URLSearchParams(location.search).get(key);
+//	return null;
 };
 
 
