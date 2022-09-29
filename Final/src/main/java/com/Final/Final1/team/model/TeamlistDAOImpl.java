@@ -17,7 +17,7 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 	
 	@Override
 	public List<TeamlistDTO> list(Map<String, Object> map) {
-
+		
 		return sqlSessionTemplate.selectList("team.list", map);
 	}
 
@@ -90,9 +90,21 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 	}
 
 	@Override
-	public Map<String, Object> teaminfo_notice(Map<String, Object> map) {
-		System.out.println("Ddddddd");
-		return sqlSessionTemplate.selectOne("team.teaminfo_notice", map);
+	public List<Map<String, Object>> teaminfo_notice(Map<String, Object> map) {
+
+		return sqlSessionTemplate.selectList("team.teaminfo_notice", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> teaminfo_teamleader(Map<String, Object> map) {
+		
+		return sqlSessionTemplate.selectList("team.teaminfo_teamleader", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> teaminfo_members(Map<String, Object> map) {
+		
+		return sqlSessionTemplate.selectList("team.teaminfo_members", map);
 	}
 
 

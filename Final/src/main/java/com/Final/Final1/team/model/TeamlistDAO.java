@@ -34,7 +34,11 @@ public interface TeamlistDAO {
 
 	void teamjoininsert(Map<String, Object> map);
 
-	Map<String, Object> teaminfo_notice(Map<String, Object> map);
+	List<Map<String, Object>> teaminfo_notice(Map<String, Object> map);
+
+	List<Map<String, Object>> teaminfo_teamleader(Map<String, Object> map);
+
+	List<Map<String, Object>> teaminfo_members(Map<String, Object> map);
 
 
 }

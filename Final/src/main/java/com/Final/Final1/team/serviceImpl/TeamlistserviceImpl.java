@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.Final.Final1.team.model.TeamMemberDTO;
 import com.Final.Final1.team.model.TeamlistDAO;
 import com.Final.Final1.team.model.TeamlistDAOImpl;
 import com.Final.Final1.team.model.TeamlistDTO;
@@ -20,7 +21,8 @@ public class TeamlistserviceImpl implements Teamlistservice {
 
 	@Override
 	public List<TeamlistDTO> list(Map<String, Object> map) {
-		return this.teamlistdao.list(map);
+		
+		return teamlistdao.list(map);
 	}
 
 	@Override
@@ -89,8 +91,21 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	}
 
 	@Override
-	public Map<String, Object> teaminfo_notice(Map<String, Object> map) {
+	public List<Map<String, Object>> teaminfo_notice(Map<String, Object> map) {
 		return this.teamlistdao.teaminfo_notice(map);
 	}
+
+	@Override
+	public List<Map<String, Object>> teaminfo_teamleader(Map<String, Object> map) {
+		return this.teamlistdao.teaminfo_teamleader(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> teaminfo_members(Map<String, Object> map) {
+		return this.teamlistdao.teaminfo_members(map);
+	}
+
+
+
 
 }
