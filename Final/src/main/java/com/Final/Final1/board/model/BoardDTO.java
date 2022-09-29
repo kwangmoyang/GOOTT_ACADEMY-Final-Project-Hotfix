@@ -22,8 +22,15 @@ public class BoardDTO  {
 	
 	//검색키워드
 	private String keyword;
+	//select_option
+	private String select;
 	
-	
+	public String getSelect() {
+		return select;
+	}
+	public void setSelect(String select) {
+		this.select = select;
+	}
 	public String getBoardCode() {
 		return boardCode;
 	}
