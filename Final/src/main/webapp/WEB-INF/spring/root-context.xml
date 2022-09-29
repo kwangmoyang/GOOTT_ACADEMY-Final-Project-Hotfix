@@ -13,6 +13,7 @@
 
 		<property name="username" value="admin" />
 
+
 		<property name="password" value="QqWwEe0909!" />
 		<property name="initialSize" value="5"></property>
 	</bean>

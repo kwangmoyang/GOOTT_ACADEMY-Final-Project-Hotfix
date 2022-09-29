@@ -1,6 +1,7 @@
 package com.Final.Final1.comm.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Final.Final1.admin.model.AdminDTO;
+import com.Final.Final1.admin.service.AdminService;
 import com.Final.Final1.comm.model.MainDTO;
 import com.Final.Final1.comm.service.MainService;
 
@@ -18,6 +21,8 @@ public class MainController {
 	
 	@Autowired
 	MainService mainService;
+	@Autowired
+	AdminService adminService;
 	
 	@RequestMapping(value = "/MainPage" , method = RequestMethod.GET)
 	public ModelAndView list(HttpSession session) {
@@ -90,10 +95,20 @@ public class MainController {
 	//=========유저 권한 분류에 따라 아래의 페이지가 표시됨========
 
 	//관리자 페이지
-	@RequestMapping("/admin/index")
-	public String adminIndex() {
-		return "/mypage/mypage";
+//	@RequestMapping("/admin/index")
+//	public String adminIndex() {
+//		return "/admin/admin";
+//	}
+	
+	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
+	public ModelAndView adminMemList(AdminDTO dto, HttpSession session, Map<String, Object> map) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("map", adminService.adminMemList(map));
+		mv.setViewName("/admin/admin"); // JSP파일명
+		return mv;
 	}
+	
+	
 
 	//팀장 페이지
 	@RequestMapping("/teamLeader/index")

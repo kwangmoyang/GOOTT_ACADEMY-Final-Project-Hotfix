@@ -57,7 +57,7 @@ public class MypageDAOImpl implements MypageDAO {
 	@Override
 	public void UserDelete(String userid) {
 		sqlSession.selectOne("userinfo.UserDelete",userid);
-	}
+	}	
 
 
 	public List<BoardDTO> myRequestlist(MyWriterListDTO dto) {

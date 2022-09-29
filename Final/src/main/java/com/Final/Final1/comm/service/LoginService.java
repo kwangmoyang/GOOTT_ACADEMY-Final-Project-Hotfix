@@ -20,5 +20,7 @@ public interface LoginService {
 	void Mistake_cnt_Up(LoginDTO dto); //비밀번호 오류시 회원의 Pw_Mistake_cnt 증가
 	void Mistake_cnt_Up2(LoginDTO dto);
 
+	Map<String, Object> User_nickname_Chk(Map<String, Object> map); //회원정보중 일치하는 닉네임이 있는지?
+
 	
 }

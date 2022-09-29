@@ -55,4 +55,9 @@ public class LoginServiceImpl implements LoginService{
 		loginDao.Mistake_cnt_Up2(dto);	
 	}
 
+	@Override
+	public Map<String, Object> User_nickname_Chk(Map<String, Object> map) {
+		return loginDao.User_nickname_Chk(map);
+	}
+
 }

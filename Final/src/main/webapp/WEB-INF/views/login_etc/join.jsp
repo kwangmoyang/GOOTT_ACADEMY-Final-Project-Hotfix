@@ -26,15 +26,15 @@
                 <h1>핫픽스에 오신것을 환영합니다.</h1>
             </div>
             <div class="join_Login">
-                이미 회원이신가요? &nbsp;<a href="/view/login_etc/login.jsp">로그인 하기</a>
+                이미 회원이신가요? &nbsp;<a href="/login">로그인 하기</a>
             </div>
 
             <!-- ========== 회원가입 정보입력 영역 ========== -->
             <form id="joinForm" name="join_Form" method="POST" >
                 <div class="join_id">
                     <h4>아이디</h4>
-                    <input type="text" name="User_id" id="hotID" placeholder="영문, 숫자 조합 7~15자 이내 (ex.hotfix5)">
-                    <p id="hotID_alert"></p>
+                    <input type="text" name="User_id" id="hotID" placeholder="영문 또는 영문,숫자 조합 7~15자 이내">
+                    <p id="hotID_alert">${idfalse }</p>
                 </div>
                 <div class="join_pw">
                     <h4>비밀번호</h4>
@@ -66,7 +66,7 @@
                 <div class="join_nickname">
                     <h4>닉네임</h4>
                     <input type="text" name="User_nickname" id="hotNick" placeholder="특수문자 제외 2~12자 이내">
-                    <p id="hotNK_alert"></p>
+                    <p id="hotNK_alert">${nickfalse }</p>
                 </div>
                 <div class="join_phone">
                     <h4>핸드폰번호</h4>

@@ -1,6 +1,6 @@
 // ========== 정규표현식 ========== //
 // 아이디 : 숫자와 영문(대문자or소문자) 7자~15자이내
-const ID_CHECK = /^[a-z]+[a-zA-Z0-9]{6,14}$/;
+const ID_CHECK = /^[a-zA-Z]+[a-zA-Z0-9]{6,14}$/;
 // 비밀번호 : 숫자와 특수문자 각 1개 이상, 영문은 2개 이상 사용하여 9자~20자이내
 const PW_CHECK = /^(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{2,20}).{9,20}$/;
 // 이메일 : 숫자 또는 영문 조합 
@@ -126,7 +126,7 @@ if(typeof(Storage)!== 'undefined'){
         } else if (!EMAIL_CHECK.test(hotEmail_ID.value)) {
             hotEM_alert.innerHTML = '<font color=red>&nbsp 올바른 이메일 형식이 아닙니다.</font>';
         } else {
-            hotEM_alert.innerHTML = '<font color=blue>&nbsp 정확하지 않을 경우 메일 발송이 제한 될 수 있습니다.</font>';
+            hotEM_alert.innerHTML = '<font color=red>&nbsp 정확하지 않을 경우 메일 발송이 제한 될 수 있습니다.</font>';
             userEM  = true;
         }
     })
@@ -184,9 +184,9 @@ function joinForm_check() {
     // 유효성 조건 다 맞을 경우 제출됨
     if (userID && userPW && userPWCK && userEM && userNM && userNC && userPH){
         joinForm.submit();
-        alert("회원가입을 축하드립니다");
+        alert("회원가입을 축하드립니다!");
     } else {
-        alert("공란을 입력해주세요");
+        alert("공란 또는 이용약관 확인 후 가입해주세요!");
     }
     
 }
