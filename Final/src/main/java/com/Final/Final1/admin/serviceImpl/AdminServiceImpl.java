@@ -26,6 +26,16 @@ public class AdminServiceImpl implements AdminService{
 	public int userCount(AdminDTO dto) {
 		return adminDao.userCount(dto);
 	}
+
+	@Override
+	public List<Map<String, Object>> userBoard(Map<String, Object> map) {
+		return adminDao.userBoard(map);
+	}
+
+	@Override
+	public int userBoardCount(AdminDTO dto) {
+		return adminDao.userBoardCount(dto);
+	}
 	
 	
 

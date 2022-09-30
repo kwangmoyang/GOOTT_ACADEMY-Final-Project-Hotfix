@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../resources/css/BasicFrame.css">
-    <link rel="stylesheet" href="../../resources/css/global.css">
-    <link rel="stylesheet" href="../../resources/css/admin.css">
+    <link rel="stylesheet" href="../../resources/css/BasicFrame.css?after">
+    <link rel="stylesheet" href="../../resources/css/global.css?after">
+    <link rel="stylesheet" href="../../resources/css/admin.css?after">
     <!-- 유니콘 아이콘 사이트 -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>HotFix_admin</title>
@@ -53,109 +53,31 @@
                         <option value="">스터디</option>
                         <option value="">커리어</option>
                     </select>
-                    <br>
-                    <br>
+                    <button class="admin_BoardbtnClick">검색</button>
+                    <br><br>
+                    <h3 class="userBoardCount">${count}개의 게시글</h3>
                     <table border="1" class="admin_Customer">
                         <tr>
                             <td><input type="checkbox" name="" id=""></td>
-                            <td>No.</td>
-                            <td>구분</td>
-                            <td>제목</td>
-                            <td>등록자</td>
-                            <td>등록일</td>
-                            <td>조회</td>
+                            <td class="adminBoard">No.</td>
+                            <td class="adminBoard_Sel">구분</td>
+                            <td class="adminBoard_Title">제목</td>
+                            <td class="adminBoard_Add">등록자</td>
+                            <td class="adminBoard_Date">등록일</td>
+                            <td class="adminBoard">조회</td>
                         </tr>
+                        <c:forEach var="row" items="${map}">
                         <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>10</td>
-                            <td>일상</td>
-                            <td><a href="">월요일출근...</a></td>
-                            <td>hhhhh11</td>
-                            <td>2022-09-04</td>
-                            <td>20</td>
+                            <td class="adminBoard"><input type="checkbox" name="" id=""></td>
+                            <td class="adminBoard">${row.Post_num}</td>
+                            <td class="adminBoard">${row.Board_code}</td>
+                            <td class="adminBoard_Title"><a href="/detail?Post_num=${row.Post_num}">${row.Post_title}</a></td>
+                            <td class="adminBoard">${row.Post_writer}</td>
+                            <td class="adminBoard">${row.Post_cr_date}</td>
+                            <td class="adminBoard">${row.Post_view}</td>
                         </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>9</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>8</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>7</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>6</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>5</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>4</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>3</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>2</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>1</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
+						</c:forEach>
+						
                     </table>
                     <div class="admin_Paging">
                         <a href="#">이전</a>

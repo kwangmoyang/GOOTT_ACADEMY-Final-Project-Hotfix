@@ -10,5 +10,9 @@ public interface AdminService {
 	List<Map<String, Object>> adminMemList( Map<String, Object> map);
 	
 	int userCount(AdminDTO dto);
+	
+	List<Map<String, Object>> userBoard(Map<String, Object> map);
+	
+	int userBoardCount(AdminDTO dto);
 }
 

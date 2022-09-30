@@ -3,6 +3,7 @@ package com.Final.Final1.admin.controller;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +55,14 @@ public class AdminController {
 	}
 	
 	// 게시판관리에 회원게시글페이지
-	@RequestMapping("/admin/board_mem")
-	public String adminBoardMem() {
-		return "/admin/admin_BoardMem";
+	@RequestMapping(value = "/admin/board_mem", method = RequestMethod.GET)
+	public ModelAndView adminBoardMem(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		int userBoardCount = adminService.userBoardCount(dto);
+		mv.addObject("count", userBoardCount);
+		mv.addObject("map", adminService.userBoard(map));
+		mv.setViewName("/admin/admin_BoardMem");
+		return mv;
 	}
 	
 	

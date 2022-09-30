@@ -24,7 +24,7 @@
     background-color: white;
     border: solid 2px var(--ex-border-color);
     border: solid 2px #ccc;
-    height: 150vh;
+    height: 50vh;
     width: 15%;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
@@ -137,10 +137,24 @@ a {
 .admin_Boardbtn > a {
     text-decoration: none;
 }
-.Boardbtn_Slt {
-    width: 80px;
-    height: 30px;
+.admin_BoardbtnClick {
+	width: 50px;
+    height: 35px;
     border: none;
+    margin-left: -15px;
+    border-radius: 5px;
+    background: var(--btn-color);
+    color: white;
+    cursor: pointer;
+}
+.userBoardCount {
+	margin : 10px;
+}
+.Boardbtn_Slt {
+    width: 82px;
+    height: 36px;
+    border: none;
+    margin-left: -15px;
     margin-right: 15px;
     border-radius: 5px;
     background: rgb(238, 236, 236);
@@ -149,10 +163,41 @@ a {
 
 /* 카테고리별 정보 관리영역 */
 .admin_Customer {
-   width: 100%;
+   width: 67vw;
    height: 40vh;
    text-align: center;
    border-collapse: collapse;
+}
+.adminBoard {
+	width : 5%;
+	height : 40px;
+}
+.adminBoard_Sel {
+	width : 7%;
+	height : 40px;
+}
+.adminBoard_Title {
+	width : 30%;
+	height : 40px;
+}
+.adminBoard_Add {
+	width : 10%;
+	height : 40px;
+}
+.adminBoard_Date {
+	width : 20%;
+	height : 40px;
+}
+.admin_Customer > adminBoard_Title {
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+}
+.admin_Customer > adminBoard_Title > a {
+	display : block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
 }
 
 /* 회원정보 페이징 영역 */
