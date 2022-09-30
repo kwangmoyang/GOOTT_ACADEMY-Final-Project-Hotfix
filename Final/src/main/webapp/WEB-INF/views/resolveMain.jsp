@@ -129,7 +129,7 @@
 				<i class="uil uil-x"></i>
 			</div>
 			<!-- 모달 내용부분 -->
-			<input type="text" name="Request_code" value="${row.Request_code}" >
+			
 			<div class="ModalText">
 				<h1>해결요청!</h1>
 				<div class="ModalHeader">
@@ -147,15 +147,11 @@
 				<div class="ModalFooter">
 					<p>모집 마감 : 2022. 09.08 목요일</p>
 					<input type="text" name="User_nickname" value="${sessionScope.User_nickname}">
-					<c:choose>
-					<c:when test="${sessionScope.User_nickname ne row.Requester}">
-						<!-- 본인이 신청한 게시글엔 신청 못함 -->
+					<input type="text" name="Request_code" value="${row.Request_code}" >
+                  	
+					
+					
 						<button class="solutionSubmit">해결신청</button>
-      				</c:when>
-      				<c:otherwise>
-      					<p></p>
-      				</c:otherwise>
-      				</c:choose>
       				
 				</div>
 			</div>
@@ -169,7 +165,7 @@
 </body>
 
 <script src="../resources/js/BasicFrame.js"></script>
-<script src="../resources/js/resolveMain.js"></script>
+
 
 
 <script>
