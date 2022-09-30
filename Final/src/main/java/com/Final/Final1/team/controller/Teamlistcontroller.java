@@ -119,6 +119,8 @@ public class Teamlistcontroller {
 			
 			
 			if(teamjoin_team == null) {
+				
+				//나중에 그냥 팀관리페이지로 보내고 거기서 가입가능하게
 				teamlistservice.teamjoin(map);
 				teamlistservice.teamjoininsert(map);
 				session.setAttribute("Team_name", jointeamname);
@@ -171,7 +173,7 @@ public class Teamlistcontroller {
 				//팀멤버테이블에서 멤버컬럼 삭제
 				teamlistservice.teamsecessiondelete(map);
 				
-				session.setAttribute("Team_name", secessionteamname);
+				session.setAttribute("Team_name", null);
 				
 				mv.setViewName("redirect:/teamlist");
 				
@@ -183,6 +185,8 @@ public class Teamlistcontroller {
 			//유저가 속한 팀과 클릭한 팀이 같고 팀리더면
 			else if(secession_teamname.equals(secessionteamname) && teamleader.equals(secssion_nickname)) {
 				
+				//팀관리페이지에서 리더위임후 해주세요 경고창띄우기
+				
 				System.out.println("시발2");
 				
 				teamlistservice.teamsecession(map);
@@ -190,7 +194,7 @@ public class Teamlistcontroller {
 				//그냥 팀 자체 삭제
 				teamlistservice.teamsecession_teamleaderdelete(map);
 
-				session.setAttribute("Team_name", secessionteamname);
+				session.setAttribute("Team_name", null);
 				
 				mv.setViewName("redirect:/teamlist");
 				

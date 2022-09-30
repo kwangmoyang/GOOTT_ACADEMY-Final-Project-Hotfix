@@ -109,12 +109,6 @@ public class MainController {
 	}
 	
 	
-
-	//팀장 페이지
-	@RequestMapping("/teamLeader/index")
-	public String teamLeaderIndex() {
-		return "/mypage/mypage";
-	}
 }
 
 

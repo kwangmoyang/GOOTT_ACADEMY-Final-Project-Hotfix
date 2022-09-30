@@ -117,9 +117,9 @@
                   </div>
 
                </div>
-               <h3>${count}개의 게시글</h3> <br>
+               <h3>${map.count}개의 게시글</h3> <br>
                
-               <c:forEach var="row" items="${list}">
+               <c:forEach var="row" items="${map.list}">
                   <div class="board_main">
                      <div class="board_header">
                         <div class="board_write">
