@@ -136,5 +136,25 @@ function dropDown(param,ele,flag){
  function display(param,state){
     param.style.display=state;
 }
+ //스크롤
  
+ 
+// //수정을 눌렀을 때 input이 disable풀리고 나타나도록
+// const corbtn = document.getElementById('corbtn');
+// const corbtn2 = document.getElementById('corbtn2');
+// const teamnotice_text = document.getElementById('teamnotice_text');
+// const teamnotice_form = document.getElementById('teamnotice_form');
+// function corbtnclick(){
+//     corbtn.style.display = 'none';
+//     corbtn2.style.display = 'block';
+////     teamnotice_text.disabled = false;
+// }
+// 
+// function corbtnclick2(){
+//     corbtn.style.display = 'block';
+//     corbtn2.style.display = 'none';
+////     teamnotice_text.disabled = true;
+//     
+//     teamnotice_form.submit();
+// }
  

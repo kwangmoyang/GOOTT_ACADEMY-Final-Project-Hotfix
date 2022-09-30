@@ -227,6 +227,8 @@ public class Teamlistcontroller {
 		mv.setViewName("/team/teaminfo");
 		//클릭한 팀의 팀공지사항
 		List<Map<String, Object>> teaminfo_notice = teamlistservice.teaminfo_notice(map);
+		//팀의 활동점수와 커미션
+		List<Map<String, Object>> teaminfo_int = teamlistservice.teaminfo_int(map);
 		//클릭한 팀의 리더
 		List<Map<String, Object>> teamleader = teamlistservice.teaminfo_teamleader(map);
 		//클릭한 팀의 멤버들
@@ -242,6 +244,7 @@ public class Teamlistcontroller {
 		map2.put("teaminfo_notice", teaminfo_notice);
 		map2.put("teamleader", teamleader);
 		map2.put("teammembers", teammembers);
+		map2.put("teaminfo_int", teaminfo_int);
 		
 		System.out.println("map2에담는 과정");
 		

@@ -45,6 +45,10 @@ public interface Teamlistservice {
 
 	List<Map<String, Object>> teaminfo_members(Map<String, Object> map);
 
+	List<Map<String, Object>> teaminfo_int(Map<String, Object> map);
+
+	
+
 	
 
 

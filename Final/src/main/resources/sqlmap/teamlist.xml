@@ -22,7 +22,7 @@
 	    insert into Team (Team_name, Team_intro, Team_leader, Team_agreeChk) values (#{maketeamname}, #{teamintro}, #{usernickname}, 1);
 	</insert>
 	<update id="teammakeupdate" parameterType="hashMap">
-		update User set Team_name = #{maketeamname} where User_nickname = #{usernickname};
+		update User set Team_name = #{maketeamname}, Leader_auth = 1 where User_nickname = #{usernickname};
 	</update>
 	
 	<!-- 팀이름 중복있나 -->
@@ -81,7 +81,11 @@
 	
 	<!-- 팀모달창 -->
 	<select id="teaminfo_notice"  parameterType="hashMap" resultType="hashMap">
-		select Team_avgScore, Team_sol_count, Team_notice from Team where Team_name = #{teaminfo_teamname};
+		select Team_notice from Team where Team_name = #{teaminfo_teamname};
+	</select>
+	
+	<select id="teaminfo_int" parameterType="hashMap" resultType="hashMap">
+		select round(avg(User_Score)) TeamScore, sum(commission) Teampoint from User where Team_name = #{teaminfo_teamname};
 	</select>
 	
 	<select id="teaminfo_teamleader"  parameterType="hashMap" resultType="hashMap">

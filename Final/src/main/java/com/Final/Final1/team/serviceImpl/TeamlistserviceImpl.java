@@ -105,6 +105,11 @@ public class TeamlistserviceImpl implements Teamlistservice {
 		return this.teamlistdao.teaminfo_members(map);
 	}
 
+	@Override
+	public List<Map<String, Object>> teaminfo_int(Map<String, Object> map) {
+		return this.teamlistdao.teaminfo_int(map);
+	}
+
 
 
 

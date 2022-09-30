@@ -2,16 +2,41 @@
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="teamleader">
 
-<!-- 팀정보들 -->
-<select id="team_list" parameterType="hashMap" resultType="hashMap">
-	select Team_avgScore, Team_sol_count, Team_notice, Team_name from Team where Team_name = #{teamname};
-</select>
+	<!-- 팀공지사항 -->
+	<select id="team_notice" parameterType="hashMap" resultType="hashMap">
+		select Team_notice from Team where Team_name = #{teamname};
+	</select>
+	
+	<!-- 현재 팀 총 활동점수, 현재 팀 총 커미션 -->
+	<select id="team_info"  parameterType="hashMap" resultType="hashMap">
+		select round(avg(User_Score)) TeamScore, sum(commission) Teampoint from User where Team_name = #{teamname};
+	</select>
 
-<!-- 팀멤버들 -->
-<select id="team_members"  parameterType="hashMap" resultType="com.Final.Final1.team.model.TeamlistDTO">
-	select User_nickname, commission, Email_address, User_score from User;
-</select>
-
-
+	<!-- 팀멤버들 -->
+	<select id="team_members"  parameterType="hashMap" resultType="hashMap">
+		select User_nickname, commission, Email_address, User_score from User where Team_name = #{teamname} and not Leader_auth = 1;
+	</select>
+	
+	
+	
+	
+	<!-- 팀이름 수정 -->
+	<update id="teamname_correction" parameterType="hashMap">
+		update Team set Team_name = #{Team_name} where Team_name = #{teamname};
+	</update>
+	
+	<!-- 공지사항 수정 -->
+	<update id="teamnotice_correction" parameterType="hashMap">
+		update Team set Team_notice = #{teamnotice_correction} where Team_name = #{teamname};
+	</update>
+	
+	<!-- 팀원 추방하기  -->
+	<delete id="teammember_delete" parameterType="hashMap">
+		delete from Team_Members where Team_member = #{User_nickname};
+	</delete>
+	
+	<update id="teammember_delete2" parameterType="hashMap">
+		update User set Team_name =null where User_nickname = #{User_nickname};
+	</update>
 
 </mapper>

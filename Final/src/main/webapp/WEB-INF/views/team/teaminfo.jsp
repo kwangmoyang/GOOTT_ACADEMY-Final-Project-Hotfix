@@ -7,25 +7,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- 폰트 -->
-<link rel="stylesheet" href="${path}/resources/css/global.css">
-<!-- modal css -->
-<link rel="stylesheet" href="${path}/resources/css/teammodal.css">
-<!-- 유니콘 아이콘 사이트 -->
-<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<!-- 폰트어썸 아이콘 사이트 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
 <title>Insert title here</title>
 </head>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
-	<c:forEach var="row3" items="${map.teaminfo_notice}">
-		<div class="content-team-profile">
-		     <div>팀 평균 활동 점수: ${row3.Team_avgScore}</div> 
-			 <div>팀 총 커미션 : ${row3.Team_sol_count}</div>
-		</div>
+		<c:forEach var="row2" items="${map.teaminfo_int}">
+			<div class="content-team-profile">
+			     <div>팀 평균 활동 점수: ${row2.TeamScore}</div> 
+				 <div>팀 총 커미션 : ${row2.Teampoint}</div>
+			</div>
+		</c:forEach>
 	
+	<c:forEach var="row3" items="${map.teaminfo_notice}">
 		<div class="content-team-date">
 		    <p>팀 공지사항 : ${row3.Team_notice}</p>
 		</div>
@@ -75,6 +69,5 @@
 	 </div>
 	
 </body>
-<!-- modal js -->
-<script src="../../resources/js/teammodal.js"></script>
+
 </html>

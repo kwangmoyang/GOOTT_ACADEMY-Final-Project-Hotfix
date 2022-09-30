@@ -18,7 +18,7 @@
 	<select id="UserOnlyId_Chk" resultType="hashMap">
 		select User_code, User_id, User_pw, User_name,User_nickname,User_score,
 		User_point,commission,Phone_num,Email_address,User_introduce, admin_auth,
-		User_contact1,User_contact2,User_contact3, Team_name from User where 
+		User_contact1,User_contact2,User_contact3, Team_name, Leader_auth from User where 
 		User_id=#{User_id};
 	</select>
 	

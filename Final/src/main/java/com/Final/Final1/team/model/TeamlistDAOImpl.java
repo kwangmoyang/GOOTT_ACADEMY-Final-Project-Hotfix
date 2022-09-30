@@ -107,5 +107,10 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 		return sqlSessionTemplate.selectList("team.teaminfo_members", map);
 	}
 
+	@Override
+	public List<Map<String, Object>> teaminfo_int(Map<String, Object> map) {
+		return sqlSessionTemplate.selectList("team.teaminfo_int", map);
+	}
+
 
 }
