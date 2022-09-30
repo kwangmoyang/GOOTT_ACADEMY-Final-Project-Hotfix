@@ -69,10 +69,10 @@ for(let i=0; i<teamname.length; i++){
     })
 };
 
-const teaminfobtn = document.querySelectorAll('.btn');
+const teaminfobtnone = document.querySelectorAll('.btn');
 
-for(let i=0; i<teaminfobtn.length; i++){
-	teaminfobtn[i].addEventListener('click', function(){
+for(let i=0; i<teaminfobtnone.length; i++){
+	teaminfobtnone[i].addEventListener('click', function(){
 
         teamnameinfo.innerHTML = teamname[i].textContent;
         teamjoincheck.innerHTML = teamname[i].textContent;
