@@ -40,8 +40,10 @@
     cursor: pointer;
 
     display: none;
-
 	
+	
+	animation-name: opacity;
+    animation-duration: 3s;
 
 }
 #teammodal-div{
@@ -49,6 +51,11 @@
     height: 95%;
     background-color: var(--basic-white-color);
 
+	animation-name: opacity;
+    animation-duration: 3s;
+    
+
+	overflow-y: auto;
 }
 #team-navbar{
     padding: 20px;
@@ -97,8 +104,6 @@
     justify-content: center;
     flex-direction: column;
     border: 3px solid red;
-    
-    overflow-y: scroll;
     
 }
 /* 공지사항 */
@@ -396,11 +401,13 @@ input[id="teaminput"]:focus{
     0%{
         opacity: 0;
     }
+    50%{
+        opacity: 0;
+    }
     100%{
         opacity: 1;
     }
 }
-
 
 /* =========================팀가입 모달=============================== */
 .modal3-div{

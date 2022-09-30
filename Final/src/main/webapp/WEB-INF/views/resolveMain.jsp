@@ -208,6 +208,7 @@
 </body>
 
 <script src="../resources/js/BasicFrame.js"></script>
+<script src="../resources/js/resolveMain.js"></script>
 
 
 </html>

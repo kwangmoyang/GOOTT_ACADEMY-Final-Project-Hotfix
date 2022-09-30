@@ -13,7 +13,10 @@ public class TeamlistDTO {
 	private String Team_intro;
 	private Date Team_cr_date;
 	private String Att_Team;
-	
+
+
+
+
 
 	public int getTeam_code() {
 		return Team_code;

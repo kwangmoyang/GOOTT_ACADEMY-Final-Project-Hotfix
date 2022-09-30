@@ -41,42 +41,44 @@
 					 
 					 	<div class="teamcommission-div">
 						 	<div class="teamcommission">
-						 	현재 팀 총 활동점수 : 	 	
-					 <c:if test="${teaminfo.Team_avgScore ne 0 || teaminfo.Team_sol_count ne 0 }">
-						 	${teaminfo.Team_avgScore} 
-					 </c:if>	
+							 	현재 팀 총 활동점수 : 	 	
+								 <c:if test="${map.teaminfo2.TeamScore ne 0}">
+									 	${map.teaminfo2.TeamScore} 
+								 </c:if>
+								 <c:if test="${map.teaminfo2.TeamScore eq 0}">
+									 	0
+								 </c:if>	
 						 	</div>
 						 	<div class="teamcommission">
-						 	현재 팀 총 커미션 : 
-						 	
-						 	${teaminfo.Team_sol_count} 
-						 	
+							 	현재 팀 총 커미션 : 
+							 	<c:if test="${map.teaminfo2.Teampoint ne 0}">
+							 		${map.teaminfo2.Teampoint} 
+							 	</c:if>
+							 	<c:if test="${map.teaminfo2.Teampoint eq 0}">
+							 		0 
+							 	</c:if>
 						 	</div>
 					 	</div>
 					 
-					 <c:if test="${teaminfo.Team_avgScore eq 0 || teaminfo.Team_sol_count eq 0 } ">
-					 	<div class="teamcommission-div">
-						 	<div class="teamcommission">
-						 	현재 팀 총 활동점수 :
-						 	
-						 	 0 
-						 	 
-						 	 </div>
-						 	<div class="teamcommission">
-						 	현재 팀 총 커미션 : 
-						 	0 
-						 	</div>
-					 	</div>
-					 </c:if>
 					 
 					 	<div class="teammanage-twotitle">팀 정보수정</div>
-						 <div class="teammanage-box">
-					        <p>공지사항 수정</p>
-					        <textarea name="" id="" cols="80" rows="10">${teaminfo.Team_notice}</textarea>
-					  	</div>
+						 	<div class="teammanage-box">
+						        <p>공지사항 수정</p>
+								 <form action="/teamnotice" method="POST">
+								 		 <textarea name="teamnotice_correction" id="teamnotice_correction" cols="80" rows="10">${map.teaminfo.Team_notice}</textarea>
+								  		<div>
+								  			<input type="submit" value="수정" id="corbtn"/>
+								  		</div>
+								 </form>
+					  		</div>
 					  	<div class="teammanage-box">
 					        <p>팀 이름 수정</p>
-					        <input type="text" value="${teaminfo.Team_name}">
+					        <form action="/teamnamecor" method="POST">
+					        	<input type="text" value="${sessionScope.Team_name}" name="Team_name">
+					        	<div>
+					        		<input type="submit" value="수정" id="corbtn"/>
+					        	</div>
+					        </form>
 					  	</div>
 					    <div class="teammanage-box">
 					        <p>팀 로고 수정</p>
@@ -91,12 +93,17 @@
 					            <li>누구님이 팀가입신청을 보냈습니다. <input type="button" value="수락"><input type="button" value="거절"></li>
 					        </ul>
 					    </div>
-					    <div class="teammanage-box">
-					        <p>팀원 목록</p>
-					        <ul>
-					            <li>팀원이름 <input type="button" value="추방하기"></li>
-					        </ul>
-					    </div>
+						<div class="teammanage-box">
+							<form action="/teammemberdel" method="POST">
+						        <p>팀원 목록</p>
+						        <ul>
+						            <c:forEach var="row" items="${map.team_members}">
+								            <input type="hidden" value="${row.User_nickname}" name="User_nickname"/>
+								            <li>${row.User_nickname} <input type="submit" value="추방하기"></li>
+						            </c:forEach>
+						        </ul>
+							</form>
+						</div>
 					    <div class="teammanage-box">
 					        <p>팀리더 위임하기</p>
 					        <p>현재 팀리더 : <input type="text" value="${sessionScope.User_nickname}"></p>

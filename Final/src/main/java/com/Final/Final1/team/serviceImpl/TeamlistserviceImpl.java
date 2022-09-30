@@ -109,7 +109,12 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	public int count(String search_option, String keyword) {
 		// TODO Auto-generated method stub
 		return teamlistdao.count(search_option ,keyword);
+  }
 
+	@Override
+	public List<Map<String, Object>> teaminfo_int(Map<String, Object> map) {
+		return this.teamlistdao.teaminfo_int(map);
 	}
+
 
 }

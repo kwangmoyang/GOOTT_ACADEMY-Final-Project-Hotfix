@@ -22,7 +22,9 @@
 				<li><a href="/admin/index">관리자 페이지</a></li>			
 				</c:when>
 				</c:choose>
-        <li><a href="/teamleader">팀 관리 페이지</a></li>	
+				<c:if test="${sessionScope.Leader_auth == 1}">
+        			<li><a href="/teamleader">팀 관리 페이지</a></li>
+        		</c:if>	
 			</ul>
 		</div>
 		<!-- 알림페이지 -->
