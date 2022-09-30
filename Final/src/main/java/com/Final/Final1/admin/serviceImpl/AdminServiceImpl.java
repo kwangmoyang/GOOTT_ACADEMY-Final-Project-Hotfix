@@ -13,14 +13,21 @@ import com.Final.Final1.admin.service.AdminService;
 @Service
 public class AdminServiceImpl implements AdminService{
 
-   @Autowired
-   AdminDAO adminDao;
-   
-   @Override
-   public List<Map<String, Object>> adminMemList( Map<String, Object> map) {
-      return adminDao.adminMemList(map);
-   }
-   
-   
+
+	@Autowired
+	AdminDAO adminDao;
+	
+	@Override
+	public List<Map<String, Object>> adminMemList( Map<String, Object> map) {
+		return adminDao.adminMemList(map);
+	}
+
+	@Override
+	public int userCount(AdminDTO dto) {
+		return adminDao.userCount(dto);
+	}
+	
+	
 
 }
+

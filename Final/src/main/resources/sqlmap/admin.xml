@@ -3,16 +3,13 @@
 <mapper namespace="admin">
 
 
-   <select id="list" resultType="hashMap">
-   select User_name, User_id, User_nickname, 
-   Email_address, Phone_num, SignDate, User_score from User;
-   </select>
-   
-   <select id="total">
-   select count(*) from User;
-   </select>
-
-
-
+	<select id="list" resultType="hashMap">
+	select User_name, User_id, User_nickname, 
+	Email_address, Phone_num, SignDate, User_score from User;
+	</select>
+	
+	<select id="userCount" resultType="int">
+	select count(*) from User;
+	</select>
 
 </mapper>

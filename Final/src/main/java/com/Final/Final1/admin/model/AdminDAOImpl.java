@@ -11,12 +11,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AdminDAOImpl implements AdminDAO {
 
-   @Inject
-   SqlSessionTemplate sqlsession;
-   
-   @Override
-   public List<Map<String, Object>> adminMemList(Map<String, Object> map) {
-      return sqlsession.selectList("admin.list",map);
-   }
+
+	@Inject
+	SqlSessionTemplate sqlsession;
+	
+	@Override
+	public List<Map<String, Object>> adminMemList(Map<String, Object> map) {
+		return sqlsession.selectList("admin.list",map);
+	}
+
+	@Override
+	public int userCount(AdminDTO dto) {
+		return sqlsession.selectOne("admin.userCount", dto);
+	}
 
 }
+

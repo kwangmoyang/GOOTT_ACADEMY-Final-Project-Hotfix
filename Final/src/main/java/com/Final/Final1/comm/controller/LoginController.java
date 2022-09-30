@@ -77,6 +77,8 @@ public class LoginController {
 			mv.setViewName("redirect:/MainPage");
 			// 로그인 완료시 세션 생성
 			session.setAttribute("User_id", UserOnlyId_Chk.get("User_id"));
+			//System.out.println("zzzzzzzzzzzzzzzzzzzzz"+UserOnlyId_Chk.get("admin_auth"));
+			session.setAttribute("admin_auth", UserOnlyId_Chk.get("admin_auth"));
 			
 			UserOnlyId_Chk.forEach((strKey, strValue)->{
 				System.out.println("되냐?"+ strKey +":"+ strValue );

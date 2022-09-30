@@ -17,10 +17,11 @@
 	<!-- 회원정보중 일치하는 id가 있는지? -->
 	<select id="UserOnlyId_Chk" resultType="hashMap">
 		select User_code, User_id, User_pw, User_name,User_nickname,User_score,
-		User_point,commission,Phone_num,Email_address,User_introduce,
+		User_point,commission,Phone_num,Email_address,User_introduce, admin_auth,
 		User_contact1,User_contact2,User_contact3, Team_name from User where 
 		User_id=#{User_id};
 	</select>
+	
 	
 	<!-- 회원정보중 일치하는 닉네임이 있는지? -->
 	<select id="User_nickname_Chk" resultType="hashMap">
