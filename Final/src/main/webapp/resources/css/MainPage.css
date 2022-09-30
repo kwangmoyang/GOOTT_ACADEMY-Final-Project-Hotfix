@@ -257,22 +257,26 @@ ion-icon{
     /* background-color: red; */
     /* border: 1px solid red;*/
 }
-.item_info > span {
-    font-size: 0.9em;
-    color: rgba(0,0,0, .5);
-}
 .item_title{
-     grid-area: item_title;
+    grid-area: item_title;
     text-align: left;
     /*grid-column: 1 / 4;*/
-	/*grid-row: 2 / 3;*/
+    /*grid-row: 2 / 3;*/
     width: 25vw;
     height: 5.9vh;
     line-height: 5.9vh;
     transition: .5s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 
     /* background-color: green; */
     /* border: 1px solid green;*/
+}
+.item_info > span {
+    font-size: 0.9em;
+    color: rgba(0,0,0, .5);
 }
 .item_title > span {
     font-size: 1.2em;

@@ -198,6 +198,7 @@ let DetailModal3 = document.querySelector('#modalclose${vs.index}');
 		document.querySelector('.RmModal_wrap').style.display = 'block';
 		document.querySelector('.RmModal_background').style.display = 'block';
 	}
+
 // 모달 끄기
 function modalClose() {
 	document.querySelector('.RmModal_wrap').style.display = 'none';
