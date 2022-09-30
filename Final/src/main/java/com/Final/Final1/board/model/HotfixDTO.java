@@ -14,17 +14,25 @@ public class HotfixDTO {
 	private String User_nickname;
 	
 	private String Solver_member;
+	private String Solver;
 	private int Solver_appli_code;
 	
 	
 	
 
+	
 	//검색키워드
 	private String keyword;
 	//최신순, 커미션순
 	private String select;
 	
 	
+	public String getSolver() {
+		return Solver;
+	}
+	public void setSolver(String solver) {
+		Solver = solver;
+	}
 	
 	public String getKeyword() {
 		return keyword;

@@ -19,6 +19,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <title>HotFix</title>
+
 </head>
 
 <body>
@@ -42,9 +43,12 @@
 					<!-- HOT FIX 제목 -->
 					<div class="RmHeader">
 						<h1>HOT FIX</h1>
+						<p>커미션을 걸고 에러 해결을 요청해보세요!</p>
+						
 					</div>
-
+					
 					<div class="RmSubtitle">
+					
 						<!-- 요청서 버튼  -->
 						<div class="RmWriteRequest">
 							<c:choose>
@@ -67,7 +71,7 @@
 										<input class="search-txt" type="text"
 											placeholder="검색어를 입력해 주세요" name="keyword" />
 										<button type="submit" class="searchbtn">
-											<i class="fa-solid fa-magnifying-glass"></i>
+											<i class="fa-solid fa-magnifying-glass" id = "searchBtnI"></i>
 										</button>
 									</form>
 								</div>
@@ -98,9 +102,8 @@
 								<p>모집인원 : ${row.SolverReady_cnt}명</p>
 								<p>커미션: ${row.Commission} 픽스</p>
 								<p>남은 시간 : ${row.Recruiting_time}</p>
-								<button class="DetailModal">상세보기</button>
-								<div
-									onclick="document.getElementById('modal${vs.index}').style.display='block'">상세</div>
+								
+								<div class="DetailModal" onclick="document.getElementById('modal${vs.index}').style.display='block'">내용보기</div>
 							</div>
 						</div>
 
@@ -143,12 +146,17 @@
 				<div class="ModalCon"></div>
 				<div class="ModalFooter">
 					<p>모집 마감 : 2022. 09.08 목요일</p>
-					
-					<!-- 본인이 신청한 게시글엔 신청 못함 -->
-         			<input type="text" name="User_nickname" value="${sessionScope.User_nickname}">
-					<button class="solutionSubmit">해결신청</button>
+					<input type="text" name="User_nickname" value="${sessionScope.User_nickname}">
+					<c:choose>
+					<c:when test="${sessionScope.User_nickname ne row.Requester}">
+						<!-- 본인이 신청한 게시글엔 신청 못함 -->
+						<button class="solutionSubmit">해결신청</button>
+      				</c:when>
+      				<c:otherwise>
+      					<p></p>
+      				</c:otherwise>
+      				</c:choose>
       				
-      	
 				</div>
 			</div>
 			
@@ -161,6 +169,8 @@
 </body>
 
 <script src="../resources/js/BasicFrame.js"></script>
+<script src="../resources/js/resolveMain.js"></script>
+
 
 <script>
 let solutionSubmit = document.querySelectorAll('.solutionSubmit');
@@ -187,6 +197,7 @@ let DetailModal3 = document.querySelector('#modalclose${vs.index}');
 	function modalOpen() {
 		document.querySelector('.RmModal_wrap').style.display = 'block';
 		document.querySelector('.RmModal_background').style.display = 'block';
+	}
 
 // 모달 끄기
 function modalClose() {
@@ -196,15 +207,11 @@ function modalClose() {
 }
 
 //버튼 클릭리스너 달기
-let DetailModal = document.querySelectorAll('.DetailModal');
 
-for (let i = 0; i < DetailModal.length; i++) {
-	DetailModal[i].addEventListener('click', modalOpen);
 
-}
+//document.querySelector('.RmModal_close').addEventListener('click',modalClose);
 
-document.querySelector('.RmModal_close').addEventListener('click',
-		modalClose);
 </script>
+
 
 </html>
