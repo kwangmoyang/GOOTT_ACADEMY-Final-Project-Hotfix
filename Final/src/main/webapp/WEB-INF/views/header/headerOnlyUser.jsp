@@ -19,9 +19,10 @@
 				<li><a href="/logout/index">로그아웃</a></li>
 				<c:choose>
 				<c:when test="${sessionScope.admin_auth == 1}">
-				<li><a href="/admin/index">관리자 페이지</a></li>
+				<li><a href="/admin/index">관리자 페이지</a></li>			
 				</c:when>
 				</c:choose>
+        <li><a href="/teamleader">팀 관리 페이지</a></li>	
 			</ul>
 		</div>
 		<!-- 알림페이지 -->

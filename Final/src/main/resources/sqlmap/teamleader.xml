@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="teamleader">
+
+<!-- 팀정보들 -->
+<select id="team_list" parameterType="hashMap" resultType="hashMap">
+	select Team_avgScore, Team_sol_count, Team_notice, Team_name from Team where Team_name = #{teamname};
+</select>
+
+<!-- 팀멤버들 -->
+<select id="team_members"  parameterType="hashMap" resultType="com.Final.Final1.team.model.TeamlistDTO">
+	select User_nickname, commission, Email_address, User_score from User;
+</select>
+
+
+
+</mapper>

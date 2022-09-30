@@ -142,11 +142,6 @@ public class MainController {
 		return mv;
 	}
 
-	//팀장 페이지
-	@RequestMapping("/teamLeader/index")
-	public String teamLeaderIndex() {
-		return "/mypage/mypage";
-	}
 
 	@ResponseBody
 	@RequestMapping(value = "fileupload.do")
@@ -201,6 +196,7 @@ public class MainController {
 			}
 		}
 	}
+
 
 }
 

@@ -69,10 +69,21 @@ for(let i=0; i<teamname.length; i++){
     })
 };
 
+const teaminfobtn = document.querySelectorAll('.btn');
+
+for(let i=0; i<teaminfobtn.length; i++){
+	teaminfobtn[i].addEventListener('click', function(){
+
+        teamnameinfo.innerHTML = teamname[i].textContent;
+        teamjoincheck.innerHTML = teamname[i].textContent;
+        teamsecssioncheck.innerHTML = teamname[i].textContent;
+        
+
+    })
+};
+
 //팀정보 ajax
 //팀이름 또는 팀정보보기를 클릭하면
-const teaminfobtn = document.querySelectorAll('.btn');
-const inteaminfobtn = document.querySelector('.teaminfo-btn');
 
 function teaminfoFuc(a){
 
