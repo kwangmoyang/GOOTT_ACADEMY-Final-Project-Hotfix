@@ -63,6 +63,18 @@ public class HotfixServiceImpl implements HotfixService{
 		return HotfixDao.list(dto);
 	}
 
+
+	@Override
+	public void choiceResolve(HotfixDTO dto) {
+		HotfixDao.choiceResolve(dto);
+		
+	}
+
+	@Override
+	public List<HotfixDTO> resolveZone(HotfixDTO dto) {
+		return HotfixDao.resolveZone(dto);
+	}
+
 	
 	
 	

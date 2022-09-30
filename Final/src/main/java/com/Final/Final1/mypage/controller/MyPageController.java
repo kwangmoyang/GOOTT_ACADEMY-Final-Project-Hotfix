@@ -45,11 +45,11 @@ public class MyPageController {
 		List<BoardDTO> list = mypageService.myRequestlist(dto);
 		mv.setViewName("/mypage/mypage_writer");
 		mv.addObject("list", list);
-		
+		System.out.println(list);
 		return mv;
 	}
 
-	// 留덉씠�럹�씠吏� �옉�꽦�븳 �뙎湲�
+	// 나의 작성 댓글
 	@RequestMapping("/mypage/comments")
 	public ModelAndView mypagecomments(MyCommentListDTO dto, HttpSession session) {
 		
@@ -57,6 +57,8 @@ public class MyPageController {
 		//세션 값 불러옴
 		String name = (String)session.getAttribute("User_nickname");
 		dto.setComment_writer(name); // 불러온 세션값을 dto에 설정
+		
+		
 		
 		//로그인한 유저가 해결요청한 게시글을 뽑아옴
 		List<BoardDTO> list = mypageService.myCommentlist(dto);
@@ -67,11 +69,6 @@ public class MyPageController {
 	}
 
 
-	// 留덉씠�럹�씠吏� �빐寃곗쨷�씤 �궡�뿭
-	@RequestMapping("/mypage/result")
-	public String mypageresult() {
-		return "/mypage/mypage_writer_result";
-	}
 	
 
 	// 留덉씠�럹�씠吏� 寃곗젣諛륁젙�궛

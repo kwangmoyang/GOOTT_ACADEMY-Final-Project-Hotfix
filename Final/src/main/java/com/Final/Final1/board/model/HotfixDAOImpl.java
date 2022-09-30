@@ -62,6 +62,16 @@ public class HotfixDAOImpl implements HotfixDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("hotfix.count",keyword);
 	}
+	
+	@Override
+	public void choiceResolve(HotfixDTO dto) {
+		sqlSession.selectOne("hotfix.choiceResolve",dto);
+		
+	}
+	@Override
+	public List<HotfixDTO> resolveZone(HotfixDTO dto) {
+		return sqlSession.selectList("hotfix.resolveZone",dto);
+	}
 
 	
 

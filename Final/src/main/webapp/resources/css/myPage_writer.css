@@ -22,6 +22,17 @@ input[type="checkbox"]{
     height: 20px;
 }
 
+/*  작성된 게시글 없을떄 표시 
+	22-09-30 HIKARI  */
+.noPost{
+	text-align: center;
+	font-size: 30px;
+    font-weight: bold;
+    margin-top: 100px;
+    
+    padding-bottom:130px;
+}
+
 /* 왼쪽 사이드 */
 .sideLeft{
     background-color: white;

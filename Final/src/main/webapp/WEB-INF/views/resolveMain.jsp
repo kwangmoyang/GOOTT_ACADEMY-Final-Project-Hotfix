@@ -43,9 +43,12 @@
 					<!-- HOT FIX 제목 -->
 					<div class="RmHeader">
 						<h1>HOT FIX</h1>
+						<p>커미션을 걸고 에러 해결을 요청해보세요!</p>
+						
 					</div>
-
+					
 					<div class="RmSubtitle">
+					
 						<!-- 요청서 버튼  -->
 						<div class="RmWriteRequest">
 							<c:choose>
@@ -99,9 +102,8 @@
 								<p>모집인원 : ${row.SolverReady_cnt}명</p>
 								<p>커미션: ${row.Commission} 픽스</p>
 								<p>남은 시간 : ${row.Recruiting_time}</p>
-								<button class="DetailModal">상세보기</button>
-								<div
-									onclick="document.getElementById('modal${vs.index}').style.display='block'">상세</div>
+								
+								<div class="DetailModal" onclick="document.getElementById('modal${vs.index}').style.display='block'">내용보기</div>
 							</div>
 						</div>
 
@@ -144,12 +146,17 @@
 				<div class="ModalCon"></div>
 				<div class="ModalFooter">
 					<p>모집 마감 : 2022. 09.08 목요일</p>
-					
-					<!-- 본인이 신청한 게시글엔 신청 못함 -->
-         			<input type="text" name="User_nickname" value="${sessionScope.User_nickname}">
-					<button class="solutionSubmit">해결신청</button>
+					<input type="text" name="User_nickname" value="${sessionScope.User_nickname}">
+					<c:choose>
+					<c:when test="${sessionScope.User_nickname ne row.Requester}">
+						<!-- 본인이 신청한 게시글엔 신청 못함 -->
+						<button class="solutionSubmit">해결신청</button>
+      				</c:when>
+      				<c:otherwise>
+      					<p></p>
+      				</c:otherwise>
+      				</c:choose>
       				
-      	
 				</div>
 			</div>
 			
@@ -163,6 +170,47 @@
 
 <script src="../resources/js/BasicFrame.js"></script>
 <script src="../resources/js/resolveMain.js"></script>
+
+
+<script>
+let solutionSubmit = document.querySelectorAll('.solutionSubmit');
+let requestform = document.querySelectorAll('#requestform');
+
+
+let DetailModal2 = document.querySelector('#modal${vs.index}');
+let DetailModal3 = document.querySelector('#modalclose${vs.index}');
+
+//해결신청 제출
+	
+	
+	for (let i = 0; i < solutionSubmit.length; i++) {
+		solutionSubmit[i].addEventListener('click', function(){
+			alert("신청이 완료되었습니다.");
+			requestform[i].action = "solutionRequest";
+			requestform[i].submit();
+		});
+
+	}
+	
+	
+	// 모달 열기
+	function modalOpen() {
+		document.querySelector('.RmModal_wrap').style.display = 'block';
+		document.querySelector('.RmModal_background').style.display = 'block';
+	}
+// 모달 끄기
+function modalClose() {
+	document.querySelector('.RmModal_wrap').style.display = 'none';
+	document.querySelector('.RmModal_background').style.display = 'none';
+
+}
+
+//버튼 클릭리스너 달기
+
+
+//document.querySelector('.RmModal_close').addEventListener('click',modalClose);
+
+</script>
 
 
 </html>

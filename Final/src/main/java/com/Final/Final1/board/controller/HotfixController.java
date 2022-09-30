@@ -22,6 +22,47 @@ public class HotfixController {
 
 	//09.30 수근 작업
 	
+
+	//@RequestMapping(value = "/resolveMain", method = RequestMethod.GET)
+//	public ModelAndView list(HttpServletRequest req,@RequestParam(defaultValue="1")int curPage,
+	//	@RequestParam(defaultValue ="new")String search_option) {
+	//	HotfixDTO dto = new HotfixDTO();
+	//	String keyword = req.getParameter("keyword");
+	//	dto.setKeyword(keyword);
+	//	String select = req.getParameter("select");
+	//	dto.setSelect(select);
+		
+	//	int count = hotfixService.count(req.getParameter("keyword"));
+	//	PageUtil page_info = new PageUtil(count, curPage);
+	//	int start = page_info.getPageBegin();
+	//	int end = page_info.getPageEnd();
+						
+	//	List<BoardDTO> list = hotfixService.list(keyword, select, start, end);
+	//	ModelAndView mv = new ModelAndView();	
+	//	mv.setViewName("/resolveMain");
+	//	Map<String, Object> map = new HashMap<>();
+
+	//	map.put("list", list);
+	//	map.put("count", count);
+	//map.put("keyword", dto.getKeyword());
+	//map.put("search_option", dto.getSelect());
+	//map.put("page_info", page_info);
+
+		
+	//mv.addObject("map", map);
+			
+	//	return mv;
+		
+		
+	//
+	
+	
+	
+	
+	
+	
+	
+	// 해결요청 글 리스트 목록
 	@RequestMapping("/resolveMain")
 	public ModelAndView resolveMain(HotfixDTO dto) {
 		ModelAndView mv = new ModelAndView();
@@ -50,9 +91,31 @@ public class HotfixController {
 
 	// 해결 요청 게시글 리스트
 	@RequestMapping("/resolveWriteForm")
-	public String resolveWriteForm() {
-		return "/resolveWriteForm";
+	public ModelAndView resolveWriteForm() {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("/resolveWriteForm");
+		return mv;
 	}
+	
+	// 내가 해결중인 게시글
+	@RequestMapping("/mypage/result")
+	public ModelAndView mypageresult(HotfixDTO dto,HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		String nickToResolve = (String) session.getAttribute("User_nickname");
+		dto.setSolver(nickToResolve);
+		
+		//게시판 리스트 (다른 컨트롤러 주소로 뺴셈)
+		List<HotfixDTO> resolver2 = hotfixService.resolveZone(dto);
+		System.out.println("제가 선택받은 요청들"+resolver2);
+		
+		mv.addObject("resolver2", resolver2);
+		mv.setViewName("/mypage/mypage_writer_result");
+		
+		return mv;
+	}
+		
 
 	// 해결 요청 게시글 등록할때
 	@RequestMapping("/resolveMainSubmit")
@@ -110,12 +173,19 @@ public class HotfixController {
 		//신청자 목록 리스트 리턴
 		return resolver;
 	}
-	
-	@RequestMapping("/testzone")
-	public String testzone(HotfixDTO dto) {
+	//해결자 선택하기
+	@RequestMapping("/choiceResolve")
+	public ModelAndView choiceResolve(HotfixDTO dto) {
+		ModelAndView mv = new ModelAndView();
 		//ajax로 통해 전달받은 값을 쿼리에 넣어줌
 		System.out.println("ㅎㅇ");
-		return null;
+		
+		//업데이트
+		hotfixService.choiceResolve(dto);
+		
+		
+		mv.setViewName("/mypage/mypage_writer_request");
+		return mv;
 	}
 	
 	

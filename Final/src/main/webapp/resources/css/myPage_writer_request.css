@@ -16,6 +16,16 @@
     --border-btn-radius: 5px;
     --btn-color: rgba(255, 95, 47, 0.906);
 }
+
+.noPost{
+	text-align: center;
+	font-size: 30px;
+    font-weight: bold;
+    margin-top: 100px;
+    
+    padding-bottom:130px;
+}
+
 input[type="checkbox"]{
     width: 20px;
     height: 20px;

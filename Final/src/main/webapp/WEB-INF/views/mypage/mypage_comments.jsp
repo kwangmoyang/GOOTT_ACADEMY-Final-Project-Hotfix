@@ -39,9 +39,11 @@
 				<!-- ==============작업공간============== -->
 				<div class="board_container">
 					<div class="board_title">
-						<h1>나의 작성글</h1>
+						<h1>${sessionScope.User_nickname } 님의 작성댓글</h1>
 					</div>
 					<%@ include file="/WEB-INF/views/mypage/mypageWriterbar.jsp"%>
+					
+					
 
 					<div class="board_nav">
 						<button class="cancle">댓글 삭제하기</button>
@@ -64,17 +66,21 @@
 						</div>
 
 					</div>
-					<!-- 게시글 삭제 박스 -->
-					<p>
-						<input type="checkbox">
-					</p>
+					
+					<!-- 작성한 게시글 없어요 -->
+               		<c:set var="name" value="${list}" />
+                	<c:if test="${empty name}">   
+                		<p class="noPost">작성한 댓글이 없어요 !</p>
+                	</c:if>
 
 					<c:forEach var="row" items="${list}" varStatus="vs">
+						<!-- 게시글 삭제 박스 -->
+						
 						<div class="myComment">
+							<p><input type="checkbox"></p>
 							<div class="myComment2">
-								<p>게시물 내용 : ${row.Post_title}</p>
 								<p>댓글 작성자 :${row.Comment_writer}</p>
-								<p>댓글내용 : ${row.Comment_contents}</p>
+								<p>댓글 내용: ${row.Comment_contents}</p>
 								<p>
 									<c:if test="${sessionScope.User_nickname==row.Comment_writer}">
 										<button onclick="showModify('${row.Post_num}')">댓글
