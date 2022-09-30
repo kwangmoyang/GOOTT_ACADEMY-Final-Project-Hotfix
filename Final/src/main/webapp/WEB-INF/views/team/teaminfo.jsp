@@ -20,39 +20,57 @@
 </head>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
-	팀정보창
-	<div class="content-team-profile">
-	     <div>팀 평균 활동 점수: ${Team_avgScore}</div> 
-		 <div>팀 총 커미션 : ${Team_sol_count}</div>
-	</div>
+	<c:forEach var="row3" items="${map.teaminfo_notice}">
+		<div class="content-team-profile">
+		     <div>팀 평균 활동 점수: ${row3.Team_avgScore}</div> 
+			 <div>팀 총 커미션 : ${row3.Team_sol_count}</div>
+		</div>
 	
-	<div class="content-team-date">
-	    <p>팀 공지사항 : ${Team_notice}</p>
-	</div>
+		<div class="content-team-date">
+		    <p>팀 공지사항 : ${row3.Team_notice}</p>
+		</div>
+	</c:forEach>
 	
   
 	<div class="content-team-member">
 	    <table>
-	       <thead>
+	       <tr>
 	          <td>활동점수</td>
 	          <td>닉네임</td>
 	          <td>커미션</td>
 	          <td>이메일</td>
-	      </thead>
+	      </tr>
 	      <!-- foreach로 수정 -->
-	       <tbody>
-	          <td><i class="fa-solid fa-fire"></i> <!-- ${User_score} --></td>
-	          <td>
-		          <a href="../../mypage/mypage" target="_blank"><i class="fa-solid fa-user"></i></a> 
-		          <a href="../../mypage/mypage" target="_blank"><!-- ${User_nickname} --></a>
-	          </td>
-	          <td>
-	             <!-- ${commission} -->
-	          </td>
-	          <td>
-	          	<!-- ${Email_address} -->
-	          </td>
-	        </tbody>
+	       <tr>
+	          <c:forEach var="row" items="${map.teamleader}">
+		          <td><i class="fa-solid fa-fire"></i>  ${row.User_score}</td>
+		          <td> 
+			          <a href="../../mypage/mypage" target="_blank"><i class="fa-solid fa-crown"></i>${row.User_nickname}</a>
+		          </td>
+		          <td>
+		             ${row.commission}
+		          </td>
+		          <td>
+		          	${row.Email_address}
+		          </td>
+	          </c:forEach>
+	       </tr>
+	        
+	       <c:forEach var="row1" items="${map.teammembers}">
+		          <tr>
+		          	  <td><i class="fa-solid fa-fire"></i>  ${row1.User_score}</td>
+			          <td>
+				          <a href="../../mypage/mypage" target="_blank"><i class="fa-solid fa-user"></i></a> 
+				          <a href="../../mypage/mypage" target="_blank">${row1.User_nickname}</a>
+			          </td>
+			          <td>
+			             ${row1.commission}
+			          </td>
+			          <td>
+			          	${row1.Email_address}
+			          </td>
+		          </tr>
+	        </c:forEach>
 	     </table>
 	 </div>
 	

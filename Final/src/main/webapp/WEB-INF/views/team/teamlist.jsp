@@ -47,7 +47,7 @@
                 <div class="search">
                     <div class="search-box">
                         <form method="POST" action="/teamlist">
-	                        <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요" name="keyword" value=" "/>
+	                        <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요" name="keyword" value=""/>
 	                        <button type="submit" class="searchbtn"><i class="fa-solid fa-magnifying-glass"></i></button>
 	                        <select name="search_option">
 								<option value="all"<c:out value="${map.search_option == 'all' ? 'selected' : ''}"/> >전체</option>
@@ -115,7 +115,7 @@
 				     </div>
 				     <div class="teamlistboxright">
 				       <div class="btndiv">
-				            <div class="join btn" onclick="teaminfoFuc2('${row.Team_name}')">팀정보보기</div>
+				            <div class="join btn" onclick="teaminfoFuc('${row.Team_name}')">팀정보보기</div>
 				       </div>
 				     </div>
 			       </div>
@@ -140,10 +140,9 @@
 	        <div id="team-navbar">
 	            <div id="teamname"></div>
 	            <div id="team-category">
-	                <button class="teaminfo-btn" onclick="teaminfoFuc3('${row.Team_name}')">팀정보</button>
-	                
+	                <button class="teaminfo-btn" onclick="teaminfoFuc('${Team_name}')">팀정보</button>
 	                <button class="teamjoin-btn">팀가입</button>
-	                <button class="teamsecession-btn">팀탈퇴</button>
+		            <button class="teamsecession-btn">팀탈퇴</button>			
 	            </div>
 	        </div>
 	        <div id="team-content">
@@ -232,11 +231,10 @@
 	<div class="modal4-div">
 	    <div class="teammodal4-div">
 	        <div class="toptitle3"><p>팀 탈퇴</p></div>
-	        <div class="teamsecssioncheck"> <span></span> 팀을 탈퇴하시겠습니까?ㅠㅠ  
-		</div>
+	        <div class="teamsecssioncheck"> <span></span> 팀을 탈퇴하시겠습니까?ㅠㅠ  </div>
 	        <div class="team secssion-btn">
 	        	<input type="text" value="${sessionScope.Team_name}" name="secession_teamname"/>
-	           <button onclick="teamcheck3('${sessionScope.User_nickname}')">탈퇴하기</button>
+	           <button onclick="teamcheck3('${sessionScope.User_nickname}', '${sessionScope.Team_name}')">탈퇴하기</button>
 	        </div>
 	    </div>
 	<ion-icon name="close-outline" id="xicon4"></ion-icon>
@@ -258,9 +256,7 @@
 		<c:if test="${teamsecession == '팀탈퇴성공'}">
 			<p>팀탈퇴에 성공했습니다.</p>
 		</c:if>
-		<c:if test="${teamsecession == '팀아님'}">
-			<p>${sessionScope.User_nickname}님은 이 팀에 속해있지 않습니다.</p>
-		</c:if>
+		
 
 </body>
 

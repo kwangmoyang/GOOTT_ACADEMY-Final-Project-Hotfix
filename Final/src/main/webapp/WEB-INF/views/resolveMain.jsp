@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -142,8 +143,12 @@
 				<div class="ModalCon"></div>
 				<div class="ModalFooter">
 					<p>모집 마감 : 2022. 09.08 목요일</p>
-					<input type="text" name="User_nickname" value="${sessionScope.User_nickname}">
+					
+					<!-- 본인이 신청한 게시글엔 신청 못함 -->
+         			<input type="text" name="User_nickname" value="${sessionScope.User_nickname}">
 					<button class="solutionSubmit">해결신청</button>
+      				
+      	
 				</div>
 			</div>
 			
@@ -156,21 +161,21 @@
 </body>
 
 <script src="../resources/js/BasicFrame.js"></script>
-<!-- <script src="../resource/js/mypage_new_real.js"></script> -->
-<script>
-	let solutionSubmit = document.querySelectorAll('.solutionSubmit');
-	let requestform = document.querySelectorAll('#requestform');
-	
-	
-	let DetailModal2 = document.querySelector('#modal${vs.index}');
-	let DetailModal3 = document.querySelector('#modalclose${vs.index}');
 
-	//해결신청 제출
+<script>
+let solutionSubmit = document.querySelectorAll('.solutionSubmit');
+let requestform = document.querySelectorAll('#requestform');
+
+
+let DetailModal2 = document.querySelector('#modal${vs.index}');
+let DetailModal3 = document.querySelector('#modalclose${vs.index}');
+
+//해결신청 제출
 	
 	
 	for (let i = 0; i < solutionSubmit.length; i++) {
 		solutionSubmit[i].addEventListener('click', function(){
-			console.log("ddd");
+			alert("신청이 완료되었습니다.");
 			requestform[i].action = "solutionRequest";
 			requestform[i].submit();
 		});
@@ -183,24 +188,23 @@
 		document.querySelector('.RmModal_wrap').style.display = 'block';
 		document.querySelector('.RmModal_background').style.display = 'block';
 
-	}
+// 모달 끄기
+function modalClose() {
+	document.querySelector('.RmModal_wrap').style.display = 'none';
+	document.querySelector('.RmModal_background').style.display = 'none';
 
-	// 모달 끄기
-	function modalClose() {
-		document.querySelector('.RmModal_wrap').style.display = 'none';
-		document.querySelector('.RmModal_background').style.display = 'none';
+}
 
-	}
+//버튼 클릭리스너 달기
+let DetailModal = document.querySelectorAll('.DetailModal');
 
-	//버튼 클릭리스너 달기
-	let DetailModal = document.querySelectorAll('.DetailModal');
+for (let i = 0; i < DetailModal.length; i++) {
+	DetailModal[i].addEventListener('click', modalOpen);
 
-	for (let i = 0; i < DetailModal.length; i++) {
-		DetailModal[i].addEventListener('click', modalOpen);
+}
 
-	}
-
-	document.querySelector('.RmModal_close').addEventListener('click',
-			modalClose);
+document.querySelector('.RmModal_close').addEventListener('click',
+		modalClose);
 </script>
+
 </html>

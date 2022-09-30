@@ -43,7 +43,7 @@
                 </div>
                 <div class="adminT">
                     <!-- <button class="admin_Membtn">전체목록</button> -->
-                    <button class="admin_Membtn">총회원수</button><button class="Figure"> "${total}"명</button>
+                    <button class="admin_Membtn">총회원수</button><button class="Figure"> ${count}명</button>
                     <!-- <button class="admin_Membtn">차단</button><button class="Figure"> 3명</button> -->
                     <!-- <button class="admin_Membtn">탈퇴</button><button class="Figure"> 5명</button> -->
                     <br>

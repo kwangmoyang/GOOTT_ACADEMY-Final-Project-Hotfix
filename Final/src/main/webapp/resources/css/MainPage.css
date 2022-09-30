@@ -270,6 +270,7 @@ ion-icon{
     height: 5.9vh;
     line-height: 5.9vh;
     transition: .5s;
+
     /* background-color: green; */
     /* border: 1px solid green;*/
 }
@@ -277,6 +278,9 @@ ion-icon{
     font-size: 1.2em;
     font-weight: 600;
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .title_color{
     transition: all .3s;

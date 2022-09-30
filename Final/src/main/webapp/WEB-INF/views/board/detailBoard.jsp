@@ -158,7 +158,11 @@ function updateLikeDown(){
 				<div class="detailBoard_container">
 					<div class="detailSubTitle">
 						<span><i class="fas fa-feather-alt"></i></span> <span>200<i
-							class="fas fa-bolt"></i></span> <span>${data.Post_writer}</span> <span>${data.Post_cr_date}</span>
+							class="fas fa-bolt"></i></span> <span>${data.Post_writer}</span> 
+							 <span>
+					             <fmt:parseDate value="${data.Post_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 
+					             <fmt:formatDate value="${date1}" pattern="MM-dd  HH:mm"/>
+					          </span>
 					</div>
 					<div class="detailContent">
 						<h1>${data.Post_title}</h1>
@@ -195,7 +199,7 @@ function updateLikeDown(){
 
 					<div class="detailCommentBox">
 						<c:choose>
-							<c:when test="${sessionScope.User_id != null }">
+							<c:when test="${sessionScope.User_id != null and sessionScope.User_nickname == data.Post_writer}">
 								<div class="detail_btn">
 									<button
 										onclick="location.href='/update?Post_num=${data.Post_num}'">수정</button>
@@ -217,7 +221,6 @@ function updateLikeDown(){
 							style="width: 100%; height: 100%;"></textarea>
 						<input type="hidden" value="${sessionScope.User_nickname}"
 							name="Comment_writer" id="Comment_writer">
-							
 						<c:choose>
 							<c:when test="${sessionScope.User_id != null }">
 									<button type="button" id="btnReply" >댓글쓰기</button>

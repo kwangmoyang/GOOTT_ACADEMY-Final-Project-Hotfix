@@ -18,6 +18,7 @@ import com.Final.Final1.admin.model.AdminDTO;
 
 @Controller
 public class AdminController {
+
 	
 
 	@Autowired
@@ -42,7 +43,7 @@ public class AdminController {
 	
 	// 게시판관리페이지
 	@RequestMapping("/admin/board")
-	public String adminBoard() {
+	public String adminBoard(AdminDTO dto) {
 		return "/admin/admin_Board";
 	}
 	

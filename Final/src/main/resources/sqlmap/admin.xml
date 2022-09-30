@@ -8,11 +8,8 @@
 	Email_address, Phone_num, SignDate, User_score from User;
 	</select>
 	
-	<select id="total">
+	<select id="userCount" resultType="int">
 	select count(*) from User;
 	</select>
-
-
-
 
 </mapper>

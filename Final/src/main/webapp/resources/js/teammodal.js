@@ -85,46 +85,6 @@ function teaminfoFuc(a){
 	
 
 
-function teaminfoFuc2(a){
-	let teaminfo_teamname = a; //팀이름
-	
-	console.log(teaminfo_teamname);
-	
-	$.ajax({
-		method:"POST",
-		url:"/teaminfo",
-		data: {teaminfo_teamname: teaminfo_teamname},
-		dataType:"text",
-		success:function(result){
-			$("#team-content").html(result);
-		},
-		error:function(request,status,error){
-			 alert("실패");
-		}
-	})
-}
-
-function teaminfoFuc3(a){
-	
-	let teaminfo_teamname = a; //팀이름
-		
-		console.log(teaminfo_teamname);
-		
-		$.ajax({
-			method:"POST",
-			url:"/teaminfo",
-			data: {teaminfo_teamname: teaminfo_teamname},
-			dataType:"text",
-			success:function(result){
-				$("#team-content").html(result);
-			},
-			error:function(request,status,error){
-				 alert("실패");
-			}
-		})
-	
-}
-
 
 
 
@@ -164,22 +124,6 @@ xicon2.addEventListener('click', function(){
     }
 });
 
-//모달창 배경 눌러도 꺼질 수 있도록
-//modaldiv2.addEventListener('click', function(e){    
-//    if(e.target.className == 'modal2-div'){
-//        modaldiv2.style.display = 'none';
-//        xicon2.style.display = 'none';
-//        teamcheckbox.value = null;
-//        maketeamname.value = null;
-//        maketeamintro.value = null;
-//        for(let i=0; i<tagbtn.length; i++){
-//        	if(tagbtn[i].className == 'clickbtn'){
-//        		tagbtn[i].style.backgroundColor = 'rgb(255, 232, 205)';
-//        	}
-//        }
-//    }
-//    
-//})
 
 //태그
 for(let i=0 ; i<tagbtn.length ; i++){
@@ -225,16 +169,24 @@ function teamcheck(usernickname){
 	    }
 	    if(maketeamname.value != '' && maketeamintro.value !='' && teamcheckbox.checked == true){
 	    	
+	    	console.log(maketeamname.value.length);
+	    	
 	    	$.ajax({
 	    		type:'POST',
 	    		data: {maketeamname: maketeamname.value, usernickname: usernickname, teamintro : maketeamintro.value},
 	    		url:"/teammake",
 	    		dataType:"text",
 	    		success: function(data){
+	    			alert("팀생성이 완료되었습니다!")
 	    			location.href = "/teamlist";
 	    		},
 	    		error:function(request,status,error){
-	    			 alert("팀이름이 중복됐거나 ,유저가 속해있는 팀이 이미 있음");
+	    			if(maketeamname.value.length >= 20){
+	    		    	alert("20자 이내로 입력해주세요.");
+	    		    }
+	    			else{
+	    				 alert("팀이름이 중복됐거나 ,유저가 속해있는 팀이 이미 있습니다.");
+	    			}
 	    		}
 	    	});
 	    	
@@ -292,6 +244,9 @@ function teamcheck2(a){
 				alert("팀가입이 완료되었습니다.");
 				location.href = "/teamlist";
 			},
+			error: function(){
+				alert("이미 속한 팀이 있습니다.")
+			}
 		});
 	}
 
@@ -322,8 +277,12 @@ modaldiv4.addEventListener('click', function(e){
     }
 });
 
+//let secession_teamname = document.getElementByName('secession_teamname');
 
-function teamcheck3(a){
+//console.log("sss",secession_teamname);
+
+function teamcheck3(a,b){
+	
 	if(a === null || a === ""){
 		alert("로그인이 필요합니다.");
 		//로그인페이지로 이동하도록
@@ -334,19 +293,28 @@ function teamcheck3(a){
 		if(!confirm("정말 탈퇴하시겠습니까?(팀리더가 탈퇴할 경우 팀이 삭제됩니다.)")){
 			return false;
 		}else{
-			let secessionteamname = teamnameinfo.textContent; //팀이름
-			let Usernickname = a; //유저 닉네임
-			
-			$.ajax({
-				type:'POST',
-				data: {Usernickname: Usernickname, secessionteamname: secessionteamname},
-				url:"/teamsecession",
-				dataType:"text",
-				success: function(data){
-//					alert("팀탈퇴가 완료되었습니다.");
-					location.href = "/teamlist";
+				let ssteamname = teamnameinfo.textContent; //클릭한 팀이름
+				let secessionteamname = b; //팀이름
+				let Usernickname = a; //유저 닉네임
+				
+				console.log("dddddd");
+				
+				if(ssteamname == secessionteamname){
+					console.log("dssdas");
+					$.ajax({
+						type:'POST',
+						data: {Usernickname: Usernickname, secessionteamname: secessionteamname},
+						url:"/teamsecession",
+						dataType:"text",
+						success: function(data){
+						alert("팀탈퇴가 완료되었습니다.");
+							location.href = "/teamlist";
+						}
+					});
+				}else if(secessionteamname == null || ssteamname != secessionteamname){
+					alert("유저가 속한 팀이 아닙니다.");
 				}
-			});
+
 		}
 	}
 };

@@ -16,6 +16,28 @@ public class HotfixDTO {
 	private String Solver_member;
 	private int Solver_appli_code;
 	
+	
+	
+
+	//검색키워드
+	private String keyword;
+	//최신순, 커미션순
+	private String select;
+	
+	
+	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getSelect() {
+		return select;
+	}
+	public void setSelect(String select) {
+		this.select = select;
+	}
 	public int getSolver_appli_code() {
 		return Solver_appli_code;
 	}

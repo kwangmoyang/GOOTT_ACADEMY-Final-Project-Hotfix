@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AdminDAOImpl implements AdminDAO {
 
+
 	@Inject
 	SqlSessionTemplate sqlsession;
 	
@@ -19,4 +20,10 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlsession.selectList("admin.list",map);
 	}
 
+	@Override
+	public int userCount(AdminDTO dto) {
+		return sqlsession.selectOne("admin.userCount", dto);
+	}
+
 }
+

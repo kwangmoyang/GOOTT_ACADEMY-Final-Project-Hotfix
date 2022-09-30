@@ -1,6 +1,8 @@
 package com.Final.Final1.board.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -18,12 +20,21 @@ public class HotfixDAOImpl implements HotfixDAO{
 		sqlSession.selectOne("hotfix.insert",dto);
 		
 	}
-
 	@Override
 	public List<BoardDTO> list(HotfixDTO dto) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("hotfix.list",dto);
 	}
+	/*
+	 * @Override public List<BoardDTO> list(String keyword, String select, int
+	 * start, int end) { // TODO Auto-generated method stub Map<String, Object> map
+	 * = new HashMap<>(); map.put("keyword", keyword); map.put("search_option",
+	 * select); map.put("start", start); map.put("end", end);
+	 * 
+	 * return sqlSession.selectList("hotfix.list",map); }
+	 */
+
+	
 
 	@Override
 	public List<BoardDTO> myRequestlist(HotfixDTO dto) {
@@ -36,10 +47,25 @@ public class HotfixDAOImpl implements HotfixDAO{
 		
 	}
 
+//	@Override
+//	public List<HotfixDTO> resolveMemberlist(HotfixDTO dto) {
+//		return sqlSession.selectList("hotfix.resolveMemberlist",dto);
+//	}
+
 	@Override
-	public List<HotfixDTO> resolveMemberlist(HotfixDTO dto) {
-		return sqlSession.selectList("hotfix.resolveMemberlist",dto);
+	public List<HotfixDTO> resolveMemberlist(int test) {
+		return sqlSession.selectList("hotfix.resolveMemberlist",test);
 	}
+
+	@Override
+	public int Count(String keyword) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("hotfix.count",keyword);
+	}
+
+	
+
+
 	
 	
 }

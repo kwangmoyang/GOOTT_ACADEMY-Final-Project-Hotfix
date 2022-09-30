@@ -1,5 +1,6 @@
 package com.Final.Final1.comm.controller;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import com.Final.Final1.admin.service.AdminService;
 import com.Final.Final1.comm.model.MainDTO;
 import com.Final.Final1.comm.service.MainService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -100,9 +102,28 @@ public class MainController {
 //		return "/admin/admin";
 //	}
 	
+
+	
 	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
-	public ModelAndView adminMemList(AdminDTO dto, HttpSession session, Map<String, Object> map) {
+	public ModelAndView adminMemList(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		
+		Enumeration<String> attributes = request.getSession().getAttributeNames();
+	      while (attributes.hasMoreElements()) {
+	          String attribute = (String) attributes.nextElement();
+	          System.out.println(attribute+" : "+request.getSession().getAttribute(attribute));
+	      }
+	    
+	    Integer admin_auth = (Integer)session.getAttribute("admin_auth");  
+	    System.out.println(admin_auth);
+	    if(!admin_auth.equals(1)) {
+	    	mv.setViewName("redirect:/MainPage");
+	    	return mv;
+	    }
+		
+		int userCount = adminService.userCount(dto);
+		System.out.println(dto.getUserCount());
+		mv.addObject("count", userCount);
 		mv.addObject("map", adminService.adminMemList(map));
 		mv.setViewName("/admin/admin"); // JSP파일명
 		return mv;

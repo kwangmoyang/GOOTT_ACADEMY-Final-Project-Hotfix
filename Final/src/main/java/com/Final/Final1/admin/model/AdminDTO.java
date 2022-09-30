@@ -12,6 +12,18 @@ public class AdminDTO {
 	private Date SignDate;
 	private int User_score;
 	
+	private int userCount;
+	
+	
+	
+	
+	public int getUserCount() {
+		return userCount;
+	}
+	public void setUserCount(int userCount) {
+		this.userCount = userCount;
+	}
+	
 	
 	public String getUser_name() {
 		return User_name;
@@ -65,3 +77,5 @@ public class AdminDTO {
 	
 
 }
+
+
