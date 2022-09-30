@@ -26,62 +26,50 @@ public class HotfixController {
 	HotfixService hotfixService;
 
 	//09.30 수근 작업
-	@RequestMapping(value = "/resolveMain", method = RequestMethod.GET)
-	public ModelAndView resolveMain(HttpServletRequest req, @RequestParam(defaultValue="1")int curPage,
-			@RequestParam(defaultValue ="new")String search_option) {
-			
-		HotfixDTO dto = new HotfixDTO();
-		String keyword = req.getParameter("keyword");
-		dto.setKeyword(keyword);
-		String select = req.getParameter("select");
-		dto.setSelect(select);
-		
-		int count = hotfixService.count(req.getParameter("keyword"));
-		PageUtil page_info = new PageUtil(count, curPage);
-		int start = page_info.getPageBegin();
-		int end = page_info.getPageEnd();
-		
+//	@RequestMapping(value = "/resolveMain", method = RequestMethod.GET)
+//	public ModelAndView resolveMain(HttpServletRequest req, @RequestParam(defaultValue="1")int curPage,
+//			@RequestParam(defaultValue ="new")String search_option) {
+//			
+//		HotfixDTO dto = new HotfixDTO();
+//		String keyword = req.getParameter("keyword");
+//		dto.setKeyword(keyword);
+//		String select = req.getParameter("select");
+//		dto.setSelect(select);
+//		
+//		int count = hotfixService.count(req.getParameter("keyword"));
+//		PageUtil page_info = new PageUtil(count, curPage);
+//		int start = page_info.getPageBegin();
+//		int end = page_info.getPageEnd();
+//		
+//
+//		List<HotfixDTO> list = hotfixService.list(keyword, start, end, select);
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("/resolveMain");
+//		mv.addObject("list", list);
+//		mv.addObject("count", count);
+//		mv.addObject("keyword", dto.getKeyword());
+//		mv.addObject("page_info", page_info);
+//		mv.addObject("search_option", dto.getSelect()); 
+//		
+//		return mv;
+//	}
 
-		List<HotfixDTO> list = hotfixService.list(keyword, start, end, select);
+	
+	
+	 //해결요청 글 리스트 목록
+	@RequestMapping("/resolveMain")
+	public ModelAndView resolveMain(HotfixDTO dto) {
 		ModelAndView mv = new ModelAndView();
+		List<BoardDTO> list = hotfixService.list(dto);
 		mv.setViewName("/resolveMain");
 		mv.addObject("list", list);
-		mv.addObject("count", count);
-		mv.addObject("keyword", dto.getKeyword());
-		mv.addObject("page_info", page_info);
-		mv.addObject("search_option", dto.getSelect()); 
-		
+
 		return mv;
 	}
-
-	
-	
-	// 해결요청 글 리스트 목록
-	//@RequestMapping("/resolveMain")
-	//public ModelAndView resolveMain(HotfixDTO dto) {
-	//	ModelAndView mv = new ModelAndView();
-	//	List<BoardDTO> list = hotfixService.list(dto);
-	//	mv.setViewName("/resolveMain");
-	//	mv.addObject("list", list);
-
-	//	return mv;
-	//}
 	
 	
 	
 	
-	
-	
-	// 해결요청 글 리스트 목록
-	//@RequestMapping("/resolveMain")
-	//public ModelAndView resolveMain(HotfixDTO dto) {
-	//	ModelAndView mv = new ModelAndView();
-	//	List<BoardDTO> list = hotfixService.list(dto);
-	//	mv.setViewName("/resolveMain");
-	//	mv.addObject("list", list);
-
-	//	return mv;
-//	}
 
 	// 해결 요청 게시글 리스트
 	@RequestMapping("/resolveWriteForm")
@@ -129,6 +117,7 @@ public class HotfixController {
 		ModelAndView mv = new ModelAndView();
 
 		//로그인된 사람의 닉네임을 불러와 신청자 리스트에 담아준다
+		System.out.println("gd");
 		String name = (String) session.getAttribute("User_nickname");
 		dto.setSolver_member(name);
 		hotfixService.resolveMember(dto);

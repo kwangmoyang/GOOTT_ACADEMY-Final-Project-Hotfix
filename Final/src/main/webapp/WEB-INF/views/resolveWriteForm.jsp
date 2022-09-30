@@ -52,7 +52,8 @@
                     <p>내용</p>
                 
                         <div id="smarteditor">
-                            <%-- 곧 사진 업로드 되는 에디터 추가될 예정임 시발 --%>
+                            <textarea name="Request_contents" id="editorTxt" rows="20" cols="100" placeholder="내용을 입력해주세요"
+                                style="width: 100%"></textarea>
                         </div>
 
                 </div>

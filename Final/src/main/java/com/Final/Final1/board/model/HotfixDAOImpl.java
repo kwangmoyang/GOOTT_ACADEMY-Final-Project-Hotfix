@@ -78,6 +78,11 @@ public class HotfixDAOImpl implements HotfixDAO{
 	public List<HotfixDTO> resolveZone(HotfixDTO dto) {
 		return sqlSession.selectList("hotfix.resolveZone",dto);
 	}
+	@Override
+	public List<BoardDTO> list(HotfixDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("hotfix.list",dto);
+	}
 
 	
 

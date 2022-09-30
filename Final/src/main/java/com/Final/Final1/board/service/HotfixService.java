@@ -11,6 +11,7 @@ public interface HotfixService {
 
 	List<HotfixDTO> list(String keyword, int start, int end, String select);
 
+	
 	List<BoardDTO> myRequestlist(HotfixDTO dto);
 
 	void resolveMember(HotfixDTO dto);
@@ -22,6 +23,8 @@ public interface HotfixService {
 	void choiceResolve(HotfixDTO dto);
 
 	List<HotfixDTO> resolveZone(HotfixDTO dto);
+
+	List<BoardDTO> list(HotfixDTO dto);
 
 	
 

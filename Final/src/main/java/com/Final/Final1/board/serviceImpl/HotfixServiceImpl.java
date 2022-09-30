@@ -71,6 +71,11 @@ public class HotfixServiceImpl implements HotfixService{
 		return HotfixDao.resolveZone(dto);
 	}
 
+	@Override
+	public List<BoardDTO> list(HotfixDTO dto) {
+		return HotfixDao.list(dto);
+	}
+
 
 
 	

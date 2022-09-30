@@ -6,13 +6,13 @@
 
 
 	 <select id="list" parameterType="hashMap" resultType="hashMap">
-		 <include refid="paging_header" /> 
+		 <!--<include refid="paging_header" /> -->
 		
 		select Request_code,Requester,Request_title,Request_contents,
 		Request_start_date,SolverReady_cnt, Commission, Recruiting_time from Request
 	
 		
-			 <if test="keyword != null"> 
+		<!--	 <if test="keyword != null"> 
 				where Request_title like CONCAT('%',#{keyword},'%')
 			 </if>  
 			 
@@ -23,7 +23,7 @@
 			</if>	
 			<if test="search_option =='com' ">
 				 order by Commission desc, Request_code desc
-			</if>    
+			</if>     -->
 			
 	</select> 
 	
@@ -91,17 +91,17 @@
 
 
 	<!-- 해결 Count  -->
-	<select id="count" parameterType="hashMap" resultType="int">
+	<!--<select id="count" parameterType="hashMap" resultType="int">
 		select count(*) from Request
 		<where>
 			<if test="keyword != null">
 				and Request_title like CONCAT('%',#{keyword},'%')
 			</if>
 		</where>
-	</select>
+	</select>-->
 	
 	<!-- 페이징 -->
-	<sql id="paging_header">
+	<!--<sql id="paging_header">
 		select *
 		from(
 			select @ROWNUM:=@ROWNUM+1 as rn, A.* 
@@ -112,7 +112,7 @@
 	where (@rownum:=0)=0 ) rn 
 	where rn between #{start} and #{end}
 	
-	</sql>
+	</sql>-->
 	
 	
 </mapper>
