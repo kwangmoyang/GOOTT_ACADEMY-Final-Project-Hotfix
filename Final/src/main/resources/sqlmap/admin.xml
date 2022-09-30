@@ -11,5 +11,15 @@
 	<select id="userCount" resultType="int">
 	select count(*) from User;
 	</select>
+	
+	<select id="userBoard" resultType="hashMap">
+	select Post_num, Board_code, Post_title, Post_writer, 
+	Post_cr_date, Post_view from Board 
+	order by Post_num desc;
+	</select>
+	
+	<select id="userBoardCount" resultType="int">
+	select count(*) from Board;
+	</select>
 
 </mapper>

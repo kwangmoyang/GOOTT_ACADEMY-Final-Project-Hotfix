@@ -25,5 +25,15 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlsession.selectOne("admin.userCount", dto);
 	}
 
+	@Override
+	public List<Map<String, Object>> userBoard(Map<String, Object> map) {
+		return sqlsession.selectList("admin.userBoard",map);
+	}
+
+	@Override
+	public int userBoardCount(AdminDTO dto) {
+		return sqlsession.selectOne("admin.userBoardCount", dto);
+	}
+
 }
 

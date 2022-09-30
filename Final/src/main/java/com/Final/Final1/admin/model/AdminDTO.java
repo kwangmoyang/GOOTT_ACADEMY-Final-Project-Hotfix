@@ -14,8 +14,60 @@ public class AdminDTO {
 	
 	private int userCount;
 	
+	private int Post_num;
+	private String Board_code;
+	private String Post_title;
+	private String Post_writer;
+	private Date Post_cr_date;
+	private int Post_view;
+	
+	private int userBoardCount;
 	
 	
+	public int getUserBoardCount() {
+		return userBoardCount;
+	}
+	public void setUserBoardCount(int userBoardCount) {
+		this.userBoardCount = userBoardCount;
+	}
+	
+	public int getPost_num() {
+		return Post_num;
+	}
+	public void setPost_num(int post_num) {
+		Post_num = post_num;
+	}
+	public String getBoard_code() {
+		return Board_code;
+	}
+	public void setBoard_code(String board_code) {
+		Board_code = board_code;
+	}
+	public String getPost_title() {
+		return Post_title;
+	}
+	public void setPost_title(String post_title) {
+		Post_title = post_title;
+	}
+	public String getPost_writer() {
+		return Post_writer;
+	}
+	public void setPost_writer(String post_writer) {
+		Post_writer = post_writer;
+	}
+	public Date getPost_cr_date() {
+		return Post_cr_date;
+	}
+	public void setPost_cr_date(Date post_cr_date) {
+		Post_cr_date = post_cr_date;
+	}
+	public int getPost_view() {
+		return Post_view;
+	}
+	public void setPost_view(int post_view) {
+		Post_view = post_view;
+	}
+
 	
 	public int getUserCount() {
 		return userCount;

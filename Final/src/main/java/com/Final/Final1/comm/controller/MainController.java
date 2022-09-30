@@ -28,7 +28,6 @@ public class MainController {
 	public ModelAndView list(HttpSession session) {
 		//조건문 추가
 //		session.invalidate();
-
 		List<MainDTO> list = mainService.list();
 		List<MainDTO> listTeam = mainService.listTeam();
 		List<MainDTO> listBoard = mainService.listBoard();
@@ -95,29 +94,28 @@ public class MainController {
 	//=========유저 권한 분류에 따라 아래의 페이지가 표시됨========
 
 	//관리자 페이지
-//	@RequestMapping("/admin/index")
-//	public String adminIndex() {
-//		return "/admin/admin";
-//	}
-	
-
 	
 	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
-	public ModelAndView adminMemList(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request) {
+	public ModelAndView adminMemList(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		
-		Enumeration<String> attributes = request.getSession().getAttributeNames();
-	      while (attributes.hasMoreElements()) {
-	          String attribute = (String) attributes.nextElement();
-	          System.out.println(attribute+" : "+request.getSession().getAttribute(attribute));
-	      }
+//		Enumeration<String> attributes = request.getSession().getAttributeNames();
+//	      while (attributes.hasMoreElements()) {
+//	          String attribute = (String) attributes.nextElement();
+//	          System.out.println(attribute+" : "+request.getSession().getAttribute(attribute));
+//	      }  admin_auth 값 확인하기 위한것. 
 	    
 	    Integer admin_auth = (Integer)session.getAttribute("admin_auth");  
 	    System.out.println(admin_auth);
 	    if(!admin_auth.equals(1)) {
-	    	mv.setViewName("redirect:/MainPage");
-	    	return mv;
-	    }
+	    	response.setContentType("text/html; charset=UTF-8");
+	    	PrintWriter out = response.getWriter();
+	    	out.println("<script>alert('잘못된 접근입니다.');location.href='/MainPage'</script>");
+	    	out.flush();
+	    	//out.close();
+	    	//mv.setViewName("redirect:/MainPage");
+	    	//return mv;
+	    } 
 		
 		int userCount = adminService.userCount(dto);
 		System.out.println(dto.getUserCount());
