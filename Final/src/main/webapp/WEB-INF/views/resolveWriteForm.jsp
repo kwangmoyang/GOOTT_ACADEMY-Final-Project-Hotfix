@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +14,8 @@
         <!-- 유니콘 아이콘 사이트 -->
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <link rel="stylesheet" href="../resources/css/resolveWriteForm.css">
+
+        <script type="text/javascript" src="<c:url value="/resources/ckeditor/ckeditor.js"/>"></script>
       
         <title>HotFix</title>
     </head>
@@ -49,9 +52,9 @@
                     <p>내용</p>
                 
                         <div id="smarteditor">
-                            <textarea name="Request_contents" id="editorTxt" rows="20" cols="100" placeholder="내용을 입력해주세요"
-                                style="width: 100%"></textarea>
+                            <%-- 곧 사진 업로드 되는 에디터 추가될 예정임 시발 --%>
                         </div>
+
                 </div>
                 <div class="WF_input_box">
                     <p>모집 인원</p>

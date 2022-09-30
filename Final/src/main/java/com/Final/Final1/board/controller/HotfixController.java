@@ -1,10 +1,5 @@
 package com.Final.Final1.board.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +8,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 import com.Final.Final1.board.model.BoardDTO;
 import com.Final.Final1.board.model.HotfixDTO;
 import com.Final.Final1.board.model.PageUtil;
 import com.Final.Final1.board.service.HotfixService;
+
 
 @Controller
 public class HotfixController {
@@ -40,6 +41,7 @@ public class HotfixController {
 		int start = page_info.getPageBegin();
 		int end = page_info.getPageEnd();
 		
+
 		List<HotfixDTO> list = hotfixService.list(keyword, start, end, select);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/resolveMain");
@@ -51,8 +53,7 @@ public class HotfixController {
 		
 		return mv;
 	}
-	
-	
+
 	
 	
 	// 해결요청 글 리스트 목록
@@ -89,6 +90,7 @@ public class HotfixController {
 		
 		mv.setViewName("/resolveWriteForm");
 		return mv;
+
 	}
 	
 	// 내가 해결중인 게시글
@@ -116,7 +118,6 @@ public class HotfixController {
 
 		ModelAndView mv = new ModelAndView();
 		hotfixService.insert(dto);
-
 		mv.setViewName("redirect:/resolveMain");
 		return mv;
 	}
@@ -180,6 +181,8 @@ public class HotfixController {
 		mv.setViewName("/mypage/mypage_writer_request");
 		return mv;
 	}
+
+
 	
 	
 
