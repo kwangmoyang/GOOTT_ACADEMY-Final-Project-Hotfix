@@ -21,7 +21,15 @@
 <title>HotFix</title>
 
 </head>
+<script>
 
+   function list(page) {
+    	  location.href="resolveMain?keyword=${keyword}&curPage="+page;
+            
+   }
+   
+   
+</script>
 <body>
 
 	<%@ include file="/WEB-INF/views/header/header.jsp"%>
@@ -67,28 +75,32 @@
 						<div class="RmSearchbar">
 							<div class="search">
 								<div class="search-box">
-									<form method="POST">
+									<!-- <form method="POST"> -->
 										<input class="search-txt" type="text"
 											placeholder="검색어를 입력해 주세요" name="keyword" />
 										<button type="submit" class="searchbtn">
 											<i class="fa-solid fa-magnifying-glass" id = "searchBtnI"></i>
 										</button>
-									</form>
+									<!-- </form> -->
 								</div>
 							</div>
 						</div>
 
 						<!-- 태그 버튼 -->
 						<div class="Rmlist">
-							<select name="">
-								<option value="">최신순</option>
-								<option value="">커미션순</option>
-							</select>
-
+							<select name="search_option" id="search_option">
+								<option value="new"
+									<c:out value="${search_option == 'new' ? 'selected' : ''}"/>>최신순</option>
+								<option value="com"
+									<c:out value="${search_option == 'com' ? 'selected' : ''}"/>>커미션순</option>
+							</select> 
+						
+					
 
 						</div>
 					</div>
-
+					<span>${count}개의 해결 게시글</span>
+`					
 					<c:forEach var="row" items="${list}" varStatus="vs">
 
 						<!-- 해결 게시판 -->
@@ -108,7 +120,38 @@
 						</div>
 
 					</c:forEach>
+					  <table>
+         <tr>
+            <td colspan="5" align="center" class ="boardPagingTd">
+               <c:if test="${page_info.curBlock > 1 }">
+                  <a href="javascript:list('1')">[처음]</a>
+               </c:if> 
+               <c:if test="${page_info.curBlock > 1 }">
+                  <a href="javascript:list('${page_info.prevPage}')">[이전]</a>
+               </c:if> 
+               
+               <c:forEach var="num" begin="${page_info.blockBegin}"
+                  end="${page_info.blockEnd}">
+                  <c:choose>
+                     <c:when test="${num==page_info.curPage}">
+                        <span style="font-size:25px; color:red"  >${num}</span>                                     
+                     </c:when>
+                        <c:otherwise>
+                            <a href = "javascript:list('${num}')">${num}</a>
+                        </c:otherwise>
+                  </c:choose>
+               </c:forEach>
+               
+               <c:if test="${page_info.curBlock <= page_info.totBlock}">
+                  <a href="javascript:list('${page_info.nextPage}')">[다음]</a>
+               </c:if> 
+               <c:if test="${page_info.curPage <= page_info.totPage}">
+                  <a href="javascript:list('${page_info.totPage}')">[끝]</a>
+               </c:if> 
+            </td>
+         </tr>
 
+   </table>
 				</div>
 				<!-- ==============작업공간============== -->
 			</div>
@@ -129,7 +172,7 @@
 				<i class="uil uil-x"></i>
 			</div>
 			<!-- 모달 내용부분 -->
-			<input type="text" name="Request_code" value="${row.Request_code}" >
+			
 			<div class="ModalText">
 				<h1>해결요청!</h1>
 				<div class="ModalHeader">
@@ -147,15 +190,11 @@
 				<div class="ModalFooter">
 					<p>모집 마감 : 2022. 09.08 목요일</p>
 					<input type="text" name="User_nickname" value="${sessionScope.User_nickname}">
-					<c:choose>
-					<c:when test="${sessionScope.User_nickname ne row.Requester}">
-						<!-- 본인이 신청한 게시글엔 신청 못함 -->
+					<input type="text" name="Request_code" value="${row.Request_code}" >
+                  	
+					
+					
 						<button class="solutionSubmit">해결신청</button>
-      				</c:when>
-      				<c:otherwise>
-      					<p></p>
-      				</c:otherwise>
-      				</c:choose>
       				
 				</div>
 			</div>
@@ -169,48 +208,7 @@
 </body>
 
 <script src="../resources/js/BasicFrame.js"></script>
-
-
-<script>
-let solutionSubmit = document.querySelectorAll('.solutionSubmit');
-let requestform = document.querySelectorAll('#requestform');
-
-
-let DetailModal2 = document.querySelector('#modal${vs.index}');
-let DetailModal3 = document.querySelector('#modalclose${vs.index}');
-
-//해결신청 제출
-	
-	
-	for (let i = 0; i < solutionSubmit.length; i++) {
-		solutionSubmit[i].addEventListener('click', function(){
-			alert("신청이 완료되었습니다.");
-			requestform[i].action = "solutionRequest";
-			requestform[i].submit();
-		});
-
-	}
-	
-	
-	// 모달 열기
-	function modalOpen() {
-		document.querySelector('.RmModal_wrap').style.display = 'block';
-		document.querySelector('.RmModal_background').style.display = 'block';
-	}
-
-// 모달 끄기
-function modalClose() {
-	document.querySelector('.RmModal_wrap').style.display = 'none';
-	document.querySelector('.RmModal_background').style.display = 'none';
-
-}
-
-//버튼 클릭리스너 달기
-
-
-//document.querySelector('.RmModal_close').addEventListener('click',modalClose);
-
-</script>
+<script src="../resources/js/resolveMain.js"></script>
 
 
 </html>

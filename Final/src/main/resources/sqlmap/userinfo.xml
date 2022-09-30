@@ -8,7 +8,14 @@
 			유저 정보 모두 뽑아올수 있음
 			
 		-->
-
+	<select id="count" parameterType="hashMap" resultType="int">
+		select count(*) from Board
+		<where>
+			<if test="keyword != null">
+				and Post_title like CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+	</select>
 
 	 
 	 <select id="myRequestlist" parameterType="com.Final.Final1.board.model.MyWriterListDTO" resultType="hashMap">

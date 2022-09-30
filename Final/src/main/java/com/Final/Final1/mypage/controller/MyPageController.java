@@ -3,6 +3,7 @@ package com.Final.Final1.mypage.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,20 +35,74 @@ public class MyPageController {
 		return "mypage/mypage_Set";
 	}
 
+	// 수근 코드 
+		@RequestMapping("/mypage/writer")
+		public ModelAndView mypageWriter(HttpServletRequest req, MyWriterListDTO Post_writer, HttpSession session) {
+			
+			MyWriterListDTO dto = new MyWriterListDTO();
+			String keyword = req.getParameter("keyword");
+			dto.setKeyword(keyword);
+			
+			int count = mypageService.count(req.getParameter("keyword"));
+			
+			
+			
+			
+			ModelAndView mv = new ModelAndView();
+	
+			//세션 값 불러옴
+			String name = (String)session.getAttribute("User_nickname");
+			Post_writer.setPost_writer(name); // 불러온 세션값을 dto에 설정
+			//로그인한 유저가 해결요청한 게시글을 뽑아옴
+			List<BoardDTO> list = mypageService.myRequestlist(Post_writer);
+			mv.setViewName("/mypage/mypage_writer");
+			mv.addObject("list", list);
+			mv.addObject("count", count);
+			return mv;
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//광모형 코드 
 	// 留덉씠�럹�씠吏� �옉�꽦�븳湲�
-	@RequestMapping("/mypage/writer")
-	public ModelAndView mypageWriter(MyWriterListDTO dto, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
+//	@RequestMapping("/mypage/writer")
+//	public ModelAndView mypageWriter(MyWriterListDTO dto, HttpSession session) {
+//		ModelAndView mv = new ModelAndView();
 		//세션 값 불러옴
-		String name = (String)session.getAttribute("User_nickname");
-		dto.setPost_writer(name); // 불러온 세션값을 dto에 설정
+//		String name = (String)session.getAttribute("User_nickname");
+//		dto.setPost_writer(name); // 불러온 세션값을 dto에 설정
 		//로그인한 유저가 해결요청한 게시글을 뽑아옴
-		List<BoardDTO> list = mypageService.myRequestlist(dto);
-		mv.setViewName("/mypage/mypage_writer");
-		mv.addObject("list", list);
-		System.out.println(list);
-		return mv;
-	}
+//		List<BoardDTO> list = mypageService.myRequestlist(dto);
+//		mv.setViewName("/mypage/mypage_writer");
+//		mv.addObject("list", list);
+//		System.out.println(list);
+//		return mv;
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// 나의 작성 댓글
 	@RequestMapping("/mypage/comments")

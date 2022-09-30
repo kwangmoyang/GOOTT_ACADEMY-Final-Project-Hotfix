@@ -130,12 +130,6 @@
                 <div id="board2_preview">
                     <div class="preview_title"><span>첨부테스트중</span></div>
                     <div class="preview_content">
-                        <textarea class="editorTest" id="ckeditor"></textarea>
-                        <script type="text/javascript">
-                        CKEDITOR.replace('ckeditor',{
-                            width:'30vw',
-                            height:'45vh',
-                            filebrowserUploadUrl: "fileupload.do"}); </script>
                     </div>
                 </div>
             </div>
