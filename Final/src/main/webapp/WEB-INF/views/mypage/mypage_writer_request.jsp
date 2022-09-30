@@ -38,7 +38,7 @@
                 <!-- ==============작업공간============== -->
                 <div class="board_container">
                     <div class="board_title">
-                        <h1>나의 작성글</h1>
+                        <h1>${sessionScope.User_nickname } 님의 해결요청 내역</h1>
                     </div>
                     <%@ include file="/WEB-INF/views/mypage/mypageWriterbar.jsp"%>
 
@@ -62,8 +62,18 @@
                         </div>
 
                     </div>
+                    
+                    <!-- 요청한 내역이 없어요 -->
+               		<c:set var="name" value="${list}" />
+                	<c:if test="${empty name}">   
+                		<p class="noPost">
+                			해결요청한 내역이 없어요 !<br><br>
+                			요청할 돈이 없으신가요?!
+                			
+                		</p>
+                	</c:if>
+                    
                     <c:forEach var="row" items="${list}" varStatus="vs">
-                    	
 						<!-- 해결 게시판 -->
 						<div class="RmBoard">
 							<div class="RmBoardLeft">
@@ -178,20 +188,21 @@
                     for(let i=0; i<data.length; i++){
                     	const div = document.createElement('div');
                     	const nick_input = document.createElement('input');
-                    	const p2 = document.createElement('p');
+                    	const code_input = document.createElement('input');
                     	const input1 = document.createElement('input');
                     	const input2 = document.createElement('input');
                     	
                     	const form1 = document.createElement('form');
                     	
-                    	nick_input.setAttribute('name','username');
+                    	nick_input.setAttribute('name','Solver');
+                    	code_input.setAttribute('name','Request_code');
                     	
                     	div.setAttribute('class','list');
                     	input1.setAttribute('type','submit');
                     	input1.setAttribute('value','전적보기');
                     
-                    	form1.setAttribute('type','post');
-                    	form1.setAttribute('action','/testzone');
+                    	form1.setAttribute('method','post');
+                    	form1.setAttribute('action','/choiceResolve');
                     	
                     	input2.setAttribute('type','submit');
                     	input2.setAttribute('value','컨택하기');
@@ -199,15 +210,12 @@
                     	
                     	//input2.setAttribute('onclick',"submit();");
                     	
-                    	
-                    	
-                    	
-                    	
+
                     	nick_input.value = data[i].Solver_member;
-                    	p2.textContent = data[i].Request_code;
+                    	code_input.value = data[i].Request_code;
                     	
                     	div.append(nick_input);
-                    	div.append(p2);
+                    	div.append(code_input);
                     	div.append(input1);
                     	div.append(input2);
                     	form1.append(div);
