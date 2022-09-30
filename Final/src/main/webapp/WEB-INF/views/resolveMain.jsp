@@ -19,6 +19,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <title>HotFix</title>
+
 </head>
 
 <body>
@@ -70,7 +71,7 @@
 										<input class="search-txt" type="text"
 											placeholder="검색어를 입력해 주세요" name="keyword" />
 										<button type="submit" class="searchbtn">
-											<i class="fa-solid fa-magnifying-glass"></i>
+											<i class="fa-solid fa-magnifying-glass" id = "searchBtnI"></i>
 										</button>
 									</form>
 								</div>
@@ -168,6 +169,8 @@
 </body>
 
 <script src="../resources/js/BasicFrame.js"></script>
+<script src="../resources/js/resolveMain.js"></script>
+
 
 <script>
 let solutionSubmit = document.querySelectorAll('.solutionSubmit');
@@ -208,5 +211,6 @@ function modalClose() {
 //document.querySelector('.RmModal_close').addEventListener('click',modalClose);
 
 </script>
+
 
 </html>
