@@ -9,7 +9,7 @@ public interface HotfixService {
 
 	void insert(HotfixDTO dto);
 
-	List<BoardDTO> list(HotfixDTO dto);
+	List<HotfixDTO> list(String keyword, int start, int end, String select);
 
 	List<BoardDTO> myRequestlist(HotfixDTO dto);
 
@@ -23,6 +23,6 @@ public interface HotfixService {
 
 	List<HotfixDTO> resolveZone(HotfixDTO dto);
 
-	// List<BoardDTO> list(String keyword, String select, int start, int end);
+	
 
 }

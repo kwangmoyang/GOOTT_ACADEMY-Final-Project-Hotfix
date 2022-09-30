@@ -28,4 +28,6 @@ public interface MypageService {
 
 	public List<BoardDTO> myCommentlist(MyCommentListDTO dto);
 
+	public int count(String keyword);
+
 }

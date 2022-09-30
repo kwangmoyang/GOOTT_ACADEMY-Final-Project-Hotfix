@@ -28,10 +28,10 @@ public class Teamlistcontroller {
 	@RequestMapping(value="/teamlist")
 	public ModelAndView teamlist(@RequestParam Map<String, Object> map, @RequestParam(defaultValue = "")String keyword, 
 			@RequestParam(defaultValue = "all") String search_option) {
-		
-			System.out.println(search_option);
-			System.out.println(keyword);
+
+			int count = teamlistservice.count(search_option, keyword);
 			
+		
 		
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("/team/teamlist");
@@ -48,7 +48,7 @@ public class Teamlistcontroller {
 			map2.put("teamlist", teamlist); //����� ��ü
 			map2.put("taglist", taglist); //�±� ��ü
 			map2.put("tags", tags);
-			
+			map2.put("count", count);
 			
 			mv.addObject("map",map2);
 

@@ -5,7 +5,7 @@ import java.util.List;
 public interface HotfixDAO {
 	void insert(HotfixDTO dto);
 
-	List<BoardDTO> list(HotfixDTO dto);
+	List<HotfixDTO> list(String keyword, int start, int end, String select);
 
 	List<BoardDTO> myRequestlist(HotfixDTO dto);
 

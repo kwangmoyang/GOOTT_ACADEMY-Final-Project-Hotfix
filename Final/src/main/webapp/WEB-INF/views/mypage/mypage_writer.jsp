@@ -40,7 +40,7 @@
                 </div>
  
                  <%@ include file="/WEB-INF/views/mypage/mypageWriterbar.jsp"%>
-
+	
                 <div class="board_nav">
                     <button class="cancle">삭제하기</button>
                     <div class="board_nav_search">
@@ -48,7 +48,7 @@
                             <div class="search-box">
                                 <form method="POST">
                                   <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요" name="keyword" />
-                                  <button type="submit" class="searchbtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                  <button type="submit" class="searchbtn"><i class="fa-solid fa-magnifying-glass" id="searchBtnI"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -56,12 +56,13 @@
                      <div class="board_nav_btn">
                         <select name="">
                             <option value="">최신순</option>
+                            <option value="">추천순</option>
                             <option value="">조회순</option>
                         </select>
                     </div>
                    
                 </div> 
-                
+                숫장ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ${count}
                 <!-- 작성한 게시글 없어요 -->
                 <c:set var="name" value="${list}" />
                 <c:if test="${empty name}">   
@@ -127,21 +128,9 @@
     <div class="common_footer">푸터임다 d </div>
 
 </body>
-<script>
 
-    let cancle = document.querySelector(".cancle");
-    cancle.addEventListener('click',function(){
-        if (confirm("정말 삭제하시겠습니까?") == true){ 
-        //true는 확인버튼을 눌렀을 때 코드 작성
-        console.log("완료되었습니다.");
-        }else{
-        // false는 취소버튼을 눌렀을 때, 취소됨
-        console.log("취소되었습니다");
- }
-    })
-</script>
 <script src="../../resources/js/BasicFrame.js"></script>
 <script src="../../resources/js/mypage_new_real.js"></script>
-<script src="../../resources/js/board.js"></script>
+<script src="../../resources/js/mypage_writer.js"></script>
 
 </html>

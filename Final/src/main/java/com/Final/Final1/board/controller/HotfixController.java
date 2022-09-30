@@ -1,16 +1,23 @@
 package com.Final.Final1.board.controller;
 
-import com.Final.Final1.board.model.BoardDTO;
-import com.Final.Final1.board.model.HotfixDTO;
-import com.Final.Final1.board.service.HotfixService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
+import com.Final.Final1.board.model.BoardDTO;
+import com.Final.Final1.board.model.HotfixDTO;
+import com.Final.Final1.board.model.PageUtil;
+import com.Final.Final1.board.service.HotfixService;
+
 
 @Controller
 public class HotfixController {
@@ -19,53 +26,46 @@ public class HotfixController {
 	HotfixService hotfixService;
 
 	//09.30 수근 작업
-	
-
-	//@RequestMapping(value = "/resolveMain", method = RequestMethod.GET)
-//	public ModelAndView list(HttpServletRequest req,@RequestParam(defaultValue="1")int curPage,
-	//	@RequestParam(defaultValue ="new")String search_option) {
-	//	HotfixDTO dto = new HotfixDTO();
-	//	String keyword = req.getParameter("keyword");
-	//	dto.setKeyword(keyword);
-	//	String select = req.getParameter("select");
-	//	dto.setSelect(select);
-		
-	//	int count = hotfixService.count(req.getParameter("keyword"));
-	//	PageUtil page_info = new PageUtil(count, curPage);
-	//	int start = page_info.getPageBegin();
-	//	int end = page_info.getPageEnd();
-						
-	//	List<BoardDTO> list = hotfixService.list(keyword, select, start, end);
-	//	ModelAndView mv = new ModelAndView();	
-	//	mv.setViewName("/resolveMain");
-	//	Map<String, Object> map = new HashMap<>();
-
-	//	map.put("list", list);
-	//	map.put("count", count);
-	//map.put("keyword", dto.getKeyword());
-	//map.put("search_option", dto.getSelect());
-	//map.put("page_info", page_info);
-
-		
-	//mv.addObject("map", map);
+	@RequestMapping(value = "/resolveMain", method = RequestMethod.GET)
+	public ModelAndView resolveMain(HttpServletRequest req, @RequestParam(defaultValue="1")int curPage,
+			@RequestParam(defaultValue ="new")String search_option) {
 			
-	//	return mv;
+		HotfixDTO dto = new HotfixDTO();
+		String keyword = req.getParameter("keyword");
+		dto.setKeyword(keyword);
+		String select = req.getParameter("select");
+		dto.setSelect(select);
 		
+		int count = hotfixService.count(req.getParameter("keyword"));
+		PageUtil page_info = new PageUtil(count, curPage);
+		int start = page_info.getPageBegin();
+		int end = page_info.getPageEnd();
 		
-	//
+
+		List<HotfixDTO> list = hotfixService.list(keyword, start, end, select);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/resolveMain");
+		mv.addObject("list", list);
+		mv.addObject("count", count);
+		mv.addObject("keyword", dto.getKeyword());
+		mv.addObject("page_info", page_info);
+		mv.addObject("search_option", dto.getSelect()); 
+		
+		return mv;
+	}
 
 	
 	
 	// 해결요청 글 리스트 목록
-	@RequestMapping("/resolveMain")
-	public ModelAndView resolveMain(HotfixDTO dto) {
-		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> list = hotfixService.list(dto);
-		mv.setViewName("/resolveMain");
-		mv.addObject("list", list);
+	//@RequestMapping("/resolveMain")
+	//public ModelAndView resolveMain(HotfixDTO dto) {
+	//	ModelAndView mv = new ModelAndView();
+	//	List<BoardDTO> list = hotfixService.list(dto);
+	//	mv.setViewName("/resolveMain");
+	//	mv.addObject("list", list);
 
-		return mv;
-	}
+	//	return mv;
+	//}
 	
 	
 	
@@ -185,8 +185,6 @@ public class HotfixController {
 
 	
 	
-	
-	
-	
+
 
 }

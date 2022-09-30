@@ -20,13 +20,14 @@ public class HotfixServiceImpl implements HotfixService{
 	public void insert(HotfixDTO dto) {
 		HotfixDao.insert(dto);
 	}
+	
+	@Override
+	public List<HotfixDTO> list(String keyword, int start, int end, String select ) {
+		// TODO Auto-generated method stub
+		return HotfixDao.list(keyword, start, end, select);
+	}
 
-
-	/*
-	 * @Override public List<BoardDTO> list(String keyword, String select, int
-	 * start, int end) { // TODO Auto-generated method stub return
-	 * HotfixDao.list(keyword,select,start,end); }
-	 */
+	
 	
 
 	@Override
@@ -57,12 +58,7 @@ public class HotfixServiceImpl implements HotfixService{
 	}
 
 
-	@Override
-	public List<BoardDTO> list(HotfixDTO dto) {
-		// TODO Auto-generated method stub
-		return HotfixDao.list(dto);
-	}
-
+	
 
 	@Override
 	public void choiceResolve(HotfixDTO dto) {
@@ -75,6 +71,9 @@ public class HotfixServiceImpl implements HotfixService{
 		return HotfixDao.resolveZone(dto);
 	}
 
+
+
+	
 	
 	
 	
