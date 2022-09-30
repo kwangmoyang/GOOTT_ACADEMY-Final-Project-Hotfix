@@ -36,7 +36,7 @@
                 <!-- ==============작업공간============== -->
                 <div class="board_container">
                     <div class="board_title">
-                        <h1>나의 작성글</h1>
+                        <h1>${sessionScope.User_nickname } 님의 해결내역</h1>
                     </div>
                     
                     <%@ include file="/WEB-INF/views/mypage/mypageWriterbar.jsp"%>
@@ -63,33 +63,31 @@
                         </div>
 
                     </div>
+                    
+                    <!-- 컨텍받지  못함 없어요 -->
+               		<c:set var="name" value="${resolver2}" />
+                	<c:if test="${empty name}">   
+                		<p class="noPost">
+                			해결중인 게시글이 없어요!<br><br>
+                			활동점수를 높여보는건 어떨까요?
+                		</p>
+                	</c:if>
+                    
                     <!-- 해결 게시판 -->
+                    <c:forEach var="row" items="${resolver2 }" varStatus="vs">
                     <div class="RmBoard">
                         <div class="RmBoardLeft">
-                            <p>해결요청!</p>
-                            <p>작성자 :peter</p>
-                            <p>제목 : Java 컴파일 에러가 떴습니다 해결해주세요</p>
+                            <p>진행중</p>
+                            <p>요청자 :${row.Requester }</p>
+                            <p>요청 내용 : ${row.Request_title }</p>
                         </div>
                         <div class="RmBoardRight">
-                            <p>모집인원 : 5명</p>
-                            <p>커미션: 500 FIx</p>
+                            <p>커미션: ${row.Commission } FIx</p>
                             <p>남은 시간 : 3:00:00</p>
-                            <button class="DetailModal">해결하러가기</button>
+                            <button class="DetailModal">채팅창 열기</button>
                         </div>
                     </div>
-                    <div class="RmBoard">
-                        <div class="RmBoardLeft">
-                            <p>해결요청!</p>
-                            <p>작성자 :peter</p>
-                            <p>제목 : Java 컴파일 에러가 떴습니다 해결해주세요</p>
-                        </div>
-                        <div class="RmBoardRight">
-                            <p>모집인원 : 5명</p>
-                            <p>커미션: 500 FIx</p>
-                            <p>남은 시간 : 3:00:00</p>
-                            <button class="DetailModal">해결하러가기</button>
-                        </div>
-                    </div>
+                    </c:forEach>
 
 
 

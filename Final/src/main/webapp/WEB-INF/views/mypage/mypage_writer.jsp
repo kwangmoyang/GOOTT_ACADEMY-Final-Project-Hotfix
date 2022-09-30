@@ -36,7 +36,7 @@
             <!-- ==============작업공간============== -->
             <div class="board_container">
                 <div class="board_title">
-                    <h1>나의 작성글</h1>
+                    <h1>${sessionScope.User_nickname } 님의 작성글</h1>
                 </div>
  
                  <%@ include file="/WEB-INF/views/mypage/mypageWriterbar.jsp"%>
@@ -62,11 +62,17 @@
                    
                 </div> 
                 
-                <!-- 게시글 삭제 박스 -->
-                
+                <!-- 작성한 게시글 없어요 -->
+                <c:set var="name" value="${list}" />
+                <c:if test="${empty name}">   
+                	<p class="noPost">작성한 게시글이 없어요 !</p>
+                </c:if>
+
                 <c:forEach var="row" items="${list}" varStatus="vs">
-                		<p><input type="checkbox"></p>
+             			<!-- 게시글 삭제 박스 -->
+                		
 						<div class="board_main">
+							<p><input type="checkbox"></p>
 							<div class="board_header">
 								<div class="board_write">
 									<span><i class="fas fa-feather-alt"></i></span> <span>200<i

@@ -76,7 +76,7 @@
 						님의 커미션 <i class="uil uil-question-circle"></i>
 					</p>
 					<div class="comition_1">
-						<div>${sessionScope.commission } 포인트</div>
+						<div>${sessionScope.commission } 픽스</div>
 						<div>
 							<a href="#">확인<i class="uil uil-angle-right-b"></i></a>
 						</div>
@@ -94,10 +94,20 @@
 					<!-- 나의 팀 -->
 					<p class="mypage_title">님의 팀정보</p>
 					<div class="myTeam">
-						<div>${sessionScope.Team_name }</div>
-						<div>
-							<a href="#">확인<i class="uil uil-angle-right-b"></i></a>
-						</div>
+						
+						<c:choose>
+					      <c:when test="${sessionScope.Team_name != null }">
+					      	<!-- 가입된 팀정보가 있을때 -->
+					      	<div>${sessionScope.Team_name }</div>
+							<div><a href="#">확인<i class="uil uil-angle-right-b"></i></a></div>
+					      </c:when>
+					      
+					      <c:otherwise>
+					      	<!-- 가입된 팀정보가 없을때 -->
+					      	<div>가입된 팀이없어요 ㅠ 팀에 속해 활동하면 더 높은 커미션을 받을수 있어요!</div>
+							<div><a href="/teamlist">팀 둘러보기<i class="uil uil-angle-right-b"></i></a></div>
+					      </c:otherwise>
+					   </c:choose>
 					</div>
 
 					<!-- 나의 활동점수 -->
