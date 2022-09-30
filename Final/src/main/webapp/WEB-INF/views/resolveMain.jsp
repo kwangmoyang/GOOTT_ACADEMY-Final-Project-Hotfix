@@ -19,6 +19,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <title>HotFix</title>
+
 </head>
 
 <body>
@@ -67,7 +68,7 @@
 										<input class="search-txt" type="text"
 											placeholder="검색어를 입력해 주세요" name="keyword" />
 										<button type="submit" class="searchbtn">
-											<i class="fa-solid fa-magnifying-glass"></i>
+											<i class="fa-solid fa-magnifying-glass" id = "searchBtnI"></i>
 										</button>
 									</form>
 								</div>
@@ -161,50 +162,7 @@
 </body>
 
 <script src="../resources/js/BasicFrame.js"></script>
+<script src="../resources/js/resolveMain.js"></script>
 
-<script>
-let solutionSubmit = document.querySelectorAll('.solutionSubmit');
-let requestform = document.querySelectorAll('#requestform');
-
-
-let DetailModal2 = document.querySelector('#modal${vs.index}');
-let DetailModal3 = document.querySelector('#modalclose${vs.index}');
-
-//해결신청 제출
-	
-	
-	for (let i = 0; i < solutionSubmit.length; i++) {
-		solutionSubmit[i].addEventListener('click', function(){
-			alert("신청이 완료되었습니다.");
-			requestform[i].action = "solutionRequest";
-			requestform[i].submit();
-		});
-
-	}
-	
-	
-	// 모달 열기
-	function modalOpen() {
-		document.querySelector('.RmModal_wrap').style.display = 'block';
-		document.querySelector('.RmModal_background').style.display = 'block';
-
-// 모달 끄기
-function modalClose() {
-	document.querySelector('.RmModal_wrap').style.display = 'none';
-	document.querySelector('.RmModal_background').style.display = 'none';
-
-}
-
-//버튼 클릭리스너 달기
-let DetailModal = document.querySelectorAll('.DetailModal');
-
-for (let i = 0; i < DetailModal.length; i++) {
-	DetailModal[i].addEventListener('click', modalOpen);
-
-}
-
-document.querySelector('.RmModal_close').addEventListener('click',
-		modalClose);
-</script>
 
 </html>
