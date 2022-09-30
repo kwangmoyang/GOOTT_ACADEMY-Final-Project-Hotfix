@@ -5,13 +5,26 @@
 	<!-- 22.09.27 HIKARI 마이페이지 나의 작성글 부분 쿼리입니다. -->
 
 
-	 <select id="list"
-		parameterType="com.Final.Final1.board.model.HotfixDTO"
-		resultType="hashMap">
-		select Request_code,Requester,Request_title,
-		Request_contents,
-		SolverReady_cnt, Commission, Recruiting_time from Request;
-
+	 <select id="list" parameterType="hashMap" resultType="hashMap">
+		 <include refid="paging_header" /> 
+		
+		select Request_code,Requester,Request_title,Request_contents,
+		Request_start_date,SolverReady_cnt, Commission, Recruiting_time from Request
+	
+		
+			 <if test="keyword != null"> 
+				where Request_title like CONCAT('%',#{keyword},'%')
+			 </if>  
+			 
+			<include refid="paging_footer" />	
+			
+			  <if test="search_option == 'new'">
+				 order by Request_start_date desc, Request_code desc
+			</if>	
+			<if test="search_option =='com' ">
+				 order by Commission desc, Request_code desc
+			</if>    
+			
 	</select> 
 	
 	<!-- 해당 게시물에 신청한 멤버들이 들어가는 테이블 -->
@@ -79,7 +92,7 @@
 
 	<!-- 해결 Count  -->
 	<select id="count" parameterType="hashMap" resultType="int">
-		select count(*) from Board
+		select count(*) from Request
 		<where>
 			<if test="keyword != null">
 				and Request_title like CONCAT('%',#{keyword},'%')

@@ -45,6 +45,8 @@ public interface Teamlistservice {
 
 	List<Map<String, Object>> teaminfo_members(Map<String, Object> map);
 
+	int count(String search_option, String keyword);
+
 	
 
 

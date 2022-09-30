@@ -81,6 +81,13 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 
+	@Override
+	public int count(String keyword) {
+		// TODO Auto-generated method stub
+		return mypageDao.count(keyword);
+	}
+
+
 
 
 	
