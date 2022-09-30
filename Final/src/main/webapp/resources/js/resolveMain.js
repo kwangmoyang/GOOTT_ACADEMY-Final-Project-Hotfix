@@ -1,41 +1,68 @@
-//자동실행함수
-$(function() {
-	
-	
-	
-	// 검색
-	$("#searchBtnI").on("click", function() {
-		//내가 검색한 키워드
-		
-		let cat = searchParam("boardCode");
-		let keyword = $("[name=keyword]").val();
-			
-		let select = $("select[name=search_option]").val()
-		
-			
-		//카테고리를 이미 선택한 후 검색이라면
-		if(searchParam("boardCode") !=null){
-			
-			location.href = "/list?boardCode="+cat+"&keyword="+keyword+"&select="+select;
-			return;
-		}
-		location.href = "/list?keyword="+keyword+"&select="+select;
-	});	
-	
-	
-	
-	// 카테고리 클릭시 해당메뉴 관련 데이터 리스트 호출
-	$(".category").on("click", function() {
-		let cat = $(this).attr("name");
-		
-		location.href = "/list?boardCode=" + cat;
-	});
-	
-	
-	
-});
-//쿼리스트링의 주소를 받아옴
-function searchParam(key) {
-	return new URLSearchParams(location.search).get(key);
-};
 
+
+
+
+
+$(function() {
+
+	$("#searchBtnI").on("click", function() {
+
+		alert("되나?");
+
+
+
+
+	});	
+
+
+});
+
+
+
+
+
+
+let solutionSubmit = document.querySelectorAll('.solutionSubmit');
+	let requestform = document.querySelectorAll('#requestform');
+	
+	
+	let DetailModal2 = document.querySelector('#modal${vs.index}');
+	let DetailModal3 = document.querySelector('#modalclose${vs.index}');
+
+//해결신청 제출
+	
+	
+	for (let i = 0; i < solutionSubmit.length; i++) {
+		solutionSubmit[i].addEventListener('click', function(){
+			alert("신청이 완료되었습니다.");
+			requestform[i].action = "solutionRequest";
+			requestform[i].submit();
+		});
+
+	}
+	
+	
+	// 모달 열기
+	function modalOpen() {
+		document.querySelector('.RmModal_wrap').style.display = 'block';
+		document.querySelector('.RmModal_background').style.display = 'block';
+
+// 모달 끄기
+	function modalClose() {
+		document.querySelector('.RmModal_wrap').style.display = 'none';
+		document.querySelector('.RmModal_background').style.display = 'none';
+	
+	}
+
+//버튼 클릭리스너 달기
+	let DetailModal = document.querySelectorAll('.DetailModal');
+	
+	for (let i = 0; i < DetailModal.length; i++) {
+		DetailModal[i].addEventListener('click', modalOpen);
+			
+	}
+	
+	document.querySelector('.RmModal_close').addEventListener('click',
+			modalClose);
+	
+	}

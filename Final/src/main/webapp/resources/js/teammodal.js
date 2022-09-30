@@ -7,6 +7,18 @@ const teammodaldiv = document.getElementById('teammodal-div');
 const xicon = document.getElementById('xicon');
 const teambtn = document.querySelectorAll('.join');
 const checked = document.querySelector('#checked');
+const teaminfobtn = document.querySelectorAll('.btn');
+
+for(let i=0; i<teaminfobtn.length; i++){
+	teaminfobtn[i].addEventListener('click', function(){
+
+		teamnameinfo.innerHTML = teamname[i].textContent;
+		teamjoincheck.innerHTML = teamname[i].textContent;
+		teamsecssioncheck.innerHTML = teamname[i].textContent;
+
+
+	})
+};
 
 //팀이름 누르면 모달창 키기
 for(let i=0; i<teamname.length; i++){

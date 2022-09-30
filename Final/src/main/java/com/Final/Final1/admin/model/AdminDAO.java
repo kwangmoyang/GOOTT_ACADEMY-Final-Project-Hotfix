@@ -5,6 +5,9 @@ import java.util.Map;
 
 public interface AdminDAO {
 
-   List<Map<String, Object>> adminMemList(Map<String, Object> map);
+	List<Map<String, Object>> adminMemList(Map<String, Object> map);
+	
+	int userCount(AdminDTO dto);
 
 }
+

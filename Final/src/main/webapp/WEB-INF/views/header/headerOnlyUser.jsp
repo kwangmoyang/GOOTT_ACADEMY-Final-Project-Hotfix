@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +17,12 @@
 				<li><a href="/mypage/index">마이페이지</a></li>
 				<li><a href="/charge/index">충전하기</a></li>
 				<li><a href="/logout/index">로그아웃</a></li>
-				<li><a href="/admin/index">관리자 페이지</a></li>
-				<li><a href="/teamleader">팀 관리 페이지</a></li>				
+				<c:choose>
+				<c:when test="${sessionScope.admin_auth == 1}">
+				<li><a href="/admin/index">관리자 페이지</a></li>			
+				</c:when>
+				</c:choose>
+        <li><a href="/teamleader">팀 관리 페이지</a></li>	
 			</ul>
 		</div>
 		<!-- 알림페이지 -->

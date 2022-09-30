@@ -1,20 +1,35 @@
 package com.Final.Final1.comm.controller;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.Final.Final1.admin.model.AdminDTO;
 import com.Final.Final1.admin.service.AdminService;
 import com.Final.Final1.comm.model.MainDTO;
 import com.Final.Final1.comm.service.MainService;
+import com.google.gson.JsonObject;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+
+
+
+import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Controller
 public class MainController {
@@ -100,15 +115,89 @@ public class MainController {
 //		return "/admin/admin";
 //	}
 	
+
+	
 	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
-	public ModelAndView adminMemList(AdminDTO dto, HttpSession session, Map<String, Object> map) {
+	public ModelAndView adminMemList(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		
+		Enumeration<String> attributes = request.getSession().getAttributeNames();
+	      while (attributes.hasMoreElements()) {
+	          String attribute = (String) attributes.nextElement();
+	          System.out.println(attribute+" : "+request.getSession().getAttribute(attribute));
+	      }
+	    
+	    Integer admin_auth = (Integer)session.getAttribute("admin_auth");  
+	    System.out.println(admin_auth);
+	    if(!admin_auth.equals(1)) {
+	    	mv.setViewName("redirect:/MainPage");
+	    	return mv;
+	    }
+		
+		int userCount = adminService.userCount(dto);
+		System.out.println(dto.getUserCount());
+		mv.addObject("count", userCount);
 		mv.addObject("map", adminService.adminMemList(map));
 		mv.setViewName("/admin/admin"); // JSP파일명
 		return mv;
 	}
-	
-	
+
+
+	@ResponseBody
+	@RequestMapping(value = "fileupload.do")
+	public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
+		JsonObject jsonObject = new JsonObject();
+		PrintWriter printWriter = null;
+		OutputStream out = null;
+		MultipartFile file = multiFile.getFile("upload");
+
+		if(file != null) {
+			if(file.getSize() >0 && StringUtils.isNotBlank(file.getName())) {
+				if(file.getContentType().toLowerCase().startsWith("image/")) {
+					try{
+
+						String fileName = file.getOriginalFilename();
+						byte[] bytes = file.getBytes();
+
+						String uploadPath = req.getSession().getServletContext().getRealPath("/resources/img/clientImg"); //저장경로
+						System.out.println("uploadPath:"+uploadPath);
+
+						File uploadFile = new File(uploadPath);
+						if(!uploadFile.exists()) {
+							uploadFile.mkdir();
+						}
+						String fileName2 = UUID.randomUUID().toString();
+						uploadPath = uploadPath + "/" + fileName2 +fileName;
+
+						out = new FileOutputStream(new File(uploadPath));
+						out.write(bytes);
+
+						printWriter = resp.getWriter();
+						String fileUrl = req.getContextPath() + "/resources/img/clientImg/" +fileName2 +fileName; //url경로
+						System.out.println("fileUrl :" + fileUrl);
+						JsonObject json = new JsonObject();
+						json.addProperty("uploaded", 1);
+						json.addProperty("fileName", fileName);
+						json.addProperty("url", fileUrl);
+						printWriter.print(json);
+						System.out.println(json);
+
+					}catch(IOException e){
+						e.printStackTrace();
+					} finally {
+						if (out != null) {
+							out.close();
+						}
+						if (printWriter != null) {
+							printWriter.close();
+						}
+					}
+				}
+			}
+		}
+	}
+
+
 }
 
 

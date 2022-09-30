@@ -20,6 +20,9 @@
     <!-- 유니콘 아이콘 사이트 -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <!-- 에디터 -->
+    <script type="text/javascript" src="<c:url value="/resources/ckeditor/ckeditor.js"/>"></script>
+
     <title>HOTFIX</title>
 
 </head>
@@ -127,10 +130,12 @@
                 <div id="board2_preview">
                     <div class="preview_title"><span>첨부테스트중</span></div>
                     <div class="preview_content">
-<%--                        <form action="#" method="POST" enctype="multipart/form-data">--%>
-<%--                            <input type="file" name="file"><br>--%>
-<%--                            <button type="submit" value="Upload"></button>--%>
-<%--                        </form>--%>
+                        <textarea class="editorTest" id="ckeditor"></textarea>
+                        <script type="text/javascript">
+                        CKEDITOR.replace('ckeditor',{
+                            width:'30vw',
+                            height:'45vh',
+                            filebrowserUploadUrl: "fileupload.do"}); </script>
                     </div>
                 </div>
             </div>

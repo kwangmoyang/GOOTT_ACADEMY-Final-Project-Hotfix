@@ -330,7 +330,7 @@ a{
 
 .myTeam>div:nth-child(1){
     /* border: solid 2px red; */
-    width: 90%;
+    width: 80%;
 
     display: flex;
     justify-content: space-around;
@@ -338,7 +338,7 @@ a{
 }
 .myTeam>div:nth-child(2){
     /* border: solid 2px red; */
-    width: 10%;
+    width: 20%;
 
     display: flex;
     justify-content: space-around;
