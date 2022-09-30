@@ -68,6 +68,12 @@ public class MypageDAOImpl implements MypageDAO {
 	public List<BoardDTO> myCommentlist(MyCommentListDTO dto) {
 		return sqlSession.selectList("userinfo.myCommentlist",dto);
 	}
+
+	@Override
+	public int count(String keyword) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("userinfo.count" ,keyword);
+	}
 	
 	
 	

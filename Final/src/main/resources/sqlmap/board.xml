@@ -6,7 +6,7 @@
 		<include refid="paging_header" />
 		select Board_code, Post_num, Post_writer, Post_title, Post_contents,
 		Post_view, Post_like, Post_cr_date, Post_up_date, Post_de_date,
-		Post_status from Board
+		Post_status from Board 
 		<where>
 			<if test="boardCode != null">
 				and Board_code = #{boardCode}

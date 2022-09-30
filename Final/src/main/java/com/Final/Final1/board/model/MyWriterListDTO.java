@@ -15,6 +15,25 @@ public class MyWriterListDTO {
 	private Date Post_up_date;
 	private Date Post_de_date;
 	private int Post_status;
+	
+	
+	//검색키워드
+	private String keyword;
+	//최신순, 커미션순
+	private String select;
+	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getSelect() {
+		return select;
+	}
+	public void setSelect(String select) {
+		this.select = select;
+	}
 	public int getPost_num() {
 		return Post_num;
 	}

@@ -21,9 +21,15 @@ public class HotfixDAOImpl implements HotfixDAO{
 		
 	}
 	@Override
-	public List<BoardDTO> list(HotfixDTO dto) {
+	public List<HotfixDTO> list(String keyword ,int start, int end, String select) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("hotfix.list",dto);
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("start", start);
+		map.put("end", end);
+		map.put("search_option", select);
+		
+		return sqlSession.selectList("hotfix.list", map);
 	}
 	/*
 	 * @Override public List<BoardDTO> list(String keyword, String select, int

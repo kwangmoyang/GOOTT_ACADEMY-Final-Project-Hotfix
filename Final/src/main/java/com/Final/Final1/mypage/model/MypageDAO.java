@@ -26,6 +26,8 @@ public interface MypageDAO {
 
 	public List<BoardDTO> myCommentlist(MyCommentListDTO dto);
 
+	public int count(String keyword);
+
 	
 	
 	

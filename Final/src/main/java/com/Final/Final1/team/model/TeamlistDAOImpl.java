@@ -106,6 +106,16 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 		
 		return sqlSessionTemplate.selectList("team.teaminfo_members", map);
 	}
+	// 팀 카운트
+	@Override
+	public int count(String search_option, String keyword) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("search_option", search_option);
+		
+		return sqlSessionTemplate.selectOne("team.count", map);
+	}
 
 
 }

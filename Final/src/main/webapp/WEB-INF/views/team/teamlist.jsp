@@ -48,7 +48,7 @@
                     <div class="search-box">
                         <form method="POST" action="/teamlist">
 	                        <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요" name="keyword" value=""/>
-	                        <button type="submit" class="searchbtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+	                        <button type="submit" class="searchbtn"><i class="fa-solid fa-magnifying-glass" ></i></button>
 	                        <select name="search_option">
 								<option value="all"<c:out value="${map.search_option == 'all' ? 'selected' : ''}"/> >전체</option>
 								<option value="Teamname"<c:out value="${map.search_option == 'Teamname' ? 'selected' : ''}"/> >팀이름</option>
@@ -87,7 +87,7 @@
 	            </div> -->
             
     
-			
+				${map.count}	
             	<c:forEach var="row" items="${map.teamlist}" begin="0" end="9">
 				  <div class="teamlistbox">
 				      <div class="img">
