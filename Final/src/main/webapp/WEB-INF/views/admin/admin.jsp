@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,9 +27,9 @@
             <div class="sideLeft">
                 <div class="adminList">
                     <li><a href="/admin/index">회원관리</a></li>
-                    <li><a href="/admin/report">신고관리</a></li>
+                   <!-- <li><a href="/admin/report">신고관리</a></li> -->
                     <li><a href="/admin/board">게시판관리</a></li>
-                    <li><a href="/admin/ask">1:1문의</a></li>
+                   <!-- <li><a href="/admin/ask">1:1문의</a></li> -->
                 </div>
             </div>
 
@@ -67,19 +68,22 @@
                             <td>${row.User_nickname}</td>
                             <td>${row.Email_address}</td>
                             <td>${row.Phone_num}</td>
-                            <td>${row.SignDate}</td>
-                            <td>${row.User_score}</td>
+                            <td>
+                            <fmt:parseDate value="${row.SignDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="ad_date" type="both"/>
+                            <fmt:formatDate value="${ad_date}" pattern="yyyy-MM-dd"/>
+                            </td>                          
+                            <td><fmt:formatNumber value="${row.User_score}" pattern="#,###"/></td>
                         </tr>
                         </c:forEach>
                     </table>
-                    <div class="admin_Paging">
+                    <!-- <div class="admin_Paging">
                         <a href="#">이전</a>
                         <a href="#">1</a>
                         <a href="#">2</a>
                         <a href="#">3</a>
                         <a href="#">4</a>
                         <a href="#">5</a>
-                        <a href="#">다음</a>
+                        <a href="#">다음</a> -->
                     </div>
                 </div>
                 <!-- 여기까지 복붙라인 -->

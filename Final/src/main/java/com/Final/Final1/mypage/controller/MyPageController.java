@@ -186,13 +186,14 @@ public class MyPageController {
 		return mv;
 	}
 	
+	// SLEEP 추가_회원정보탈퇴
 	@RequestMapping(value="/UserDelete", method = RequestMethod.POST)
 	public ModelAndView UserDelete(MypageDTO dto, HttpSession session, Model model) {
 		String userid = (String)session.getAttribute("User_id");
 		ModelAndView mv = new ModelAndView();
 		mypageService.UserDelete(userid);
 		session.invalidate();
-		mv.setViewName("redirect:/MainPage");
+		mv.setViewName("redirect:/MainPage"); // 탈퇴시 메인페이지로 연결됨
 		//mv.addObject("msg","완료2");
 		return mv;
 	}

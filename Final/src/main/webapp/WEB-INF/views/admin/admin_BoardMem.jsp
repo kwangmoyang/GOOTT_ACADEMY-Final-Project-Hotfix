@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,10 +15,10 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>HotFix_admin</title>
 </head>
-
+	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
 
-     <%@ include file="/WEB-INF/views/header/header.jsp" %>
+    <%@ include file="/WEB-INF/views/header/header.jsp" %>
 
     <div class="container">
         <!-- ======================== 작업 섹션 ======================= -->
@@ -26,9 +27,9 @@
             <div class="sideLeft">
                 <div class="adminList">
                     <li><a href="/admin/index">회원관리</a></li>
-                    <li><a href="/admin/report">신고관리</a></li>
+                   <!-- <li><a href="/admin/report">신고관리</a></li> -->
                     <li><a href="/admin/board">게시판관리</a></li>
-                    <li><a href="/admin/ask">1:1문의</a></li>
+                   <!-- <li><a href="/admin/ask">1:1문의</a></li> -->
                 </div>
             </div>
 
@@ -36,11 +37,11 @@
             <div class="main">
                 <!-- 관리자페이지 2022-08-22 bear 
                   여기서부터 작업하고 최종파일에 복붙하기 -->
-
                 <div class="adminTitle">
                     <h2>게시판관리 (회원게시글)</h2>
                     <div class="adminNav">
-                        <button class="removeBtn">선택삭제</button>
+                       <!-- <button class="removeBtn">선택삭제</button> -->
+                       <input type="button" name="removeBtn" class="removeBtn" value="선택삭제" onclick="removeValue()">
                     </div>
                 </div>
                 <div class="adminT">
@@ -58,28 +59,31 @@
                     <h3 class="userBoardCount">${count}개의 게시글</h3>
                     <table border="1" class="admin_Customer">
                         <tr>
-                            <td><input type="checkbox" name="" id=""></td>
+                            <td><input type="checkbox" name="admin_allChBox" id="admin_allChBox"></td>
                             <td class="adminBoard">No.</td>
                             <td class="adminBoard_Sel">구분</td>
                             <td class="adminBoard_Title">제목</td>
-                            <td class="adminBoard_Add">등록자</td>
-                            <td class="adminBoard_Date">등록일</td>
-                            <td class="adminBoard">조회</td>
+                            <td class="adminBoard_Add">작성자</td>
+                            <td class="adminBoard_Date">작성일</td>
+                            <td class="adminBoard">조회수</td>
                         </tr>
                         <c:forEach var="row" items="${map}">
                         <tr>
-                            <td class="adminBoard"><input type="checkbox" name="" id=""></td>
+                            <td class="adminBoard"><input type="checkbox" name="del_Abd" class="del_Abd" data-adminBd="${row.Post_num}"></td>
                             <td class="adminBoard">${row.Post_num}</td>
                             <td class="adminBoard">${row.Board_code}</td>
                             <td class="adminBoard_Title"><a href="/detail?Post_num=${row.Post_num}">${row.Post_title}</a></td>
                             <td class="adminBoard">${row.Post_writer}</td>
-                            <td class="adminBoard">${row.Post_cr_date}</td>
+                            <td class="adminBoard">
+                            <fmt:parseDate value="${row.Post_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="ad_date" type="both"/>
+                            <fmt:formatDate value="${ad_date}" pattern="yyyy-MM-dd HH:mm"/>
+                            </td>
                             <td class="adminBoard">${row.Post_view}</td>
                         </tr>
 						</c:forEach>
-						
                     </table>
-                    <div class="admin_Paging">
+                    
+                  <!--  <div class="admin_Paging">
                         <a href="#">이전</a>
                         <a href="#">1</a>
                         <a href="#">2</a>
@@ -87,7 +91,7 @@
                         <a href="#">4</a>
                         <a href="#">5</a>
                         <a href="#">다음</a>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- 여기까지 복붙라인 -->
                 <!-- ==============작업공간============== -->

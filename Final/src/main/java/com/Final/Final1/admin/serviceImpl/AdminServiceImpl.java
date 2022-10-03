@@ -36,6 +36,19 @@ public class AdminServiceImpl implements AdminService{
 	public int userBoardCount(AdminDTO dto) {
 		return adminDao.userBoardCount(dto);
 	}
+
+	@Override
+	public void boardMemDelete(int no) {
+		adminDao.boardMemDelete(no);
+	}
+
+	@Override
+	public List<Map<String, Object>> adminBoard(Map<String, Object> map) {
+		return adminDao.adminBoard(map);
+	}
+
+
+	
 	
 	
 

@@ -26,9 +26,9 @@
             <div class="sideLeft">
                 <div class="adminList">
                     <li><a href="/admin/index">회원관리</a></li>
-                    <li><a href="/admin/report">신고관리</a></li>
+                   <!-- <li><a href="/admin/report">신고관리</a></li> -->
                     <li><a href="/admin/board">게시판관리</a></li>
-                    <li><a href="/admin/ask">1:1문의</a></li>
+                   <!-- <li><a href="/admin/ask">1:1문의</a></li> -->
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
                     <h2>게시판관리</h2>
                     <div class="adminNav">
                         <button class="removeBtn">선택삭제</button>
-                        <button class="setBtn">공지등록</button>
+                        <button class="setBtn" onclick="location.href='/admin/write'">공지등록</button>
                     </div>
                 </div>
                 <div class="adminT">

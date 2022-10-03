@@ -13,7 +13,6 @@
     background-color: white;
     min-width: 1280px;
     /* border: 3px solid red; */
-    
     position: relative;
     display: flex;
     justify-content: center;
@@ -24,7 +23,7 @@
     background-color: white;
     border: solid 2px var(--ex-border-color);
     border: solid 2px #ccc;
-    height: 50vh;
+    height: 30vh;
     width: 15%;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
@@ -36,13 +35,13 @@
     background-color: white;
     border: solid 2px #ccc;
     border-radius: 10px;
-    height: 150vh;
+    height: 105vh;
     width: 70%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
 }
 
 a {
-    /* text-decoration: none; */
+    text-decoration: none;
     color: black;
 }
 .admin_Boardbtn > a {
@@ -167,6 +166,8 @@ a {
    height: 40vh;
    text-align: center;
    border-collapse: collapse;
+   border-color: #ccc;
+   
 }
 .adminBoard {
 	width : 5%;
