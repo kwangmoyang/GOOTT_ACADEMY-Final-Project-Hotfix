@@ -27,26 +27,26 @@ public class Teamlistcontroller {
 	//팀목록
 	@RequestMapping(value="/teamlist")
 	public ModelAndView teamlist(@RequestParam Map<String, Object> map, @RequestParam(defaultValue = "")String keyword, 
-			@RequestParam(defaultValue = "all") String search_option) {
+			@RequestParam(defaultValue = "all") String search_option, HttpSession session) {
 
 			int count = teamlistservice.count(search_option, keyword);
 			
-		
+			
 		
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("/team/teamlist");
 			
-			List<Map<String, Object>> taglist = teamlistservice.taglist(map); //�±� ��ü
-			List<TeamlistDTO> teamlist = teamlistservice.list(map); //����� ��ü
-			List<Map<String, Object>> tags = teamlistservice.tags(map); //�������
+			List<Map<String, Object>> taglist = teamlistservice.taglist(map); //Team_has_Tags테이블에서 태그 불러오기 -> 팀목록에서 view
+			List<TeamlistDTO> teamlist = teamlistservice.list(map); //팀목록 불러오기
+			List<Map<String, Object>> tags = teamlistservice.tags(map); //팀만들기 부분에 태그 전체 불러오기
 			
 			System.out.println("teamlist"+teamlist);
 			
 			
 			Map<String, Object> map2 = new HashMap<>();
 			
-			map2.put("teamlist", teamlist); //����� ��ü
-			map2.put("taglist", taglist); //�±� ��ü
+			map2.put("teamlist", teamlist); 
+			map2.put("taglist", taglist);
 			map2.put("tags", tags);
 			map2.put("count", count);
 			
@@ -59,8 +59,11 @@ public class Teamlistcontroller {
 	//팀생성
 	@RequestMapping(value="/teammake" , method= RequestMethod.POST)
 	public ModelAndView teammake2(@RequestParam Map<String, Object> map, HttpSession session
-			,@RequestParam("maketeamname") String maketeamname) {
+			,@RequestParam("maketeamname") String maketeamname
+			,@RequestParam("tagarray[]") List<String> tagarray) {
 			
+			System.out.println("maketeamname=" + maketeamname);
+
 			ModelAndView mv = new ModelAndView();
 			
 			//팀이름 중복된 거 있나
@@ -70,37 +73,37 @@ public class Teamlistcontroller {
 			
 			if(teammakecheck == null && teammakecheck2 == null) {
 				
-				
+				//팀 insert
 				teamlistservice.teammake(map);
+				//user테이블에서 팀만들기한 유저의 team_name 컬럼에 만든 팀 추가
 				teamlistservice.teammakeupdate(map);
 				
-				//세션 셋
+				
 				//내가 만든 팀네임
 				session.setAttribute("Team_name", maketeamname);
-				mv.setViewName("redirect:/teamlist");
-				mv.addObject("message", "성공");
+				//팀리더도 
+				session.setAttribute("Leader_auth", 1);
+
+				for(String s :tagarray) {
+					teamlistservice.taginsert(maketeamname, s);
+				}
+			
 				
-				System.out.println("팀만들기성공");
+				mv.setViewName("redirect:/teamlist");
 				
 				return mv;
 			}
 			else if(teammakecheck != null) {
 				mv.addObject("message", "팀이름중복");
-				
-				System.out.println("팀만들기실패1");
 					
 				return mv;
 			}
 			else if(teammakecheck2 != null) {
 				mv.addObject("message", "유저이미팀있음");
-				
-				System.out.println("팀만들기실패2");
 					
 				return mv;
 			}
 			else {
-				
-				System.out.println("팀만들기실패3");
 				return mv;
 			}
 			
@@ -115,15 +118,12 @@ public class Teamlistcontroller {
 			
 		
 			//유저한테 팀이 없으면 가능하게
-			String teamjoin_team = teamlistservice.teamjoin_team(map);
-			
-			
+			Map<String, Object> teamjoin_team = teamlistservice.teamjoin_team(map);
+
 			if(teamjoin_team == null) {
 				
-				//나중에 그냥 팀관리페이지로 보내고 거기서 가입가능하게
-				teamlistservice.teamjoin(map);
-				teamlistservice.teamjoininsert(map);
-				session.setAttribute("Team_name", jointeamname);
+				//그냥 팀관리페이지로 보내고 거기서 가입가능하게
+				teamlistservice.teamjoinmessage(map);
 				
 				mv.setViewName("redirect:/teamlist");
 				mv.addObject("teamjoin", "성공");
@@ -134,10 +134,7 @@ public class Teamlistcontroller {
 				mv.addObject("teamjoin", "실패");
 				return mv;
 			}
-			
-			
 
-			
 
 	}
 	
@@ -154,26 +151,21 @@ public class Teamlistcontroller {
 			//db에 팀리더 조회
 			String teamleader = teamlistservice.teamsecession_teamleader(map);
 			
-			System.out.println(teamleader);
-		
-			
 			//유저가 속한 팀네임
 			String secession_teamname = (String)session.getAttribute("Team_name");
 			String secssion_nickname = (String)session.getAttribute("User_nickname");
-			
-			System.out.println(secession_teamname);
-			System.out.println(secssion_nickname);
-			
+
 			//유저가 속한 팀과 클릭한 팀이 같고 팀리더가 아니면
 			if(secession_teamname.equals(secessionteamname) && !teamleader.equals(secssion_nickname)) {
 				
-				System.out.println("시발");
 				
 				teamlistservice.teamsecession(map);
 				//팀멤버테이블에서 멤버컬럼 삭제
 				teamlistservice.teamsecessiondelete(map);
 				
+
 				session.setAttribute("Team_name", null);
+				
 				
 				mv.setViewName("redirect:/teamlist");
 				
@@ -185,14 +177,13 @@ public class Teamlistcontroller {
 			//유저가 속한 팀과 클릭한 팀이 같고 팀리더면
 			else if(secession_teamname.equals(secessionteamname) && teamleader.equals(secssion_nickname)) {
 				
-				//팀관리페이지에서 리더위임후 해주세요 경고창띄우기
-				
-				System.out.println("시발2");
 				
 				teamlistservice.teamsecession(map);
 				
 				//그냥 팀 자체 삭제
 				teamlistservice.teamsecession_teamleaderdelete(map);
+				
+				session.setAttribute("Leader_auth", 0);
 
 				session.setAttribute("Team_name", null);
 				
@@ -203,8 +194,6 @@ public class Teamlistcontroller {
 				return mv;
 			}
 			else if(!secession_teamname.equals(secessionteamname)) {
-				
-				System.out.println("팀에 속해있지 않음");
 				
 				mv.addObject("teamsecession", "팀아님");
 				
@@ -236,23 +225,13 @@ public class Teamlistcontroller {
 		
 		Map<String, Object> map2 = new HashMap<>();
 		
-		
-		System.out.println("야"+teaminfo_notice);
-		System.out.println("왜"+teamleader);
-		System.out.println("안돼"+teammembers);
-		
 		map2.put("teaminfo_notice", teaminfo_notice);
 		map2.put("teamleader", teamleader);
 		map2.put("teammembers", teammembers);
 		map2.put("teaminfo_int", teaminfo_int);
 		
-		System.out.println("map2에담는 과정");
-		
 		mv.addObject("map", map2);
-		
-		System.out.println("이제 return한다"+map2);
-		
-		
+
 		
 		return mv;
 	}

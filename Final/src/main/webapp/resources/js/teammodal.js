@@ -147,6 +147,7 @@ xicon2.addEventListener('click', function(){
     }
 });
 
+var tagarray = [];
 
 //태그
 for(let i=0 ; i<tagbtn.length ; i++){
@@ -155,18 +156,44 @@ for(let i=0 ; i<tagbtn.length ; i++){
         if(e.target.className == 'normalbtn'){
             tagbtn[i].style.backgroundColor = 'rgb(251, 171, 79)';
             tagbtn[i].className = 'clickbtn';
+            
+            //태그들 배열에 넣어주기
+            tagarray.push(tagbtn[i].value);
+
         }
 
         else if(tagbtn[i].className = 'clickbtn'){
             tagbtn[i].style.backgroundColor = 'rgb(255, 232, 205)';
             tagbtn[i].className = 'normalbtn';
+            
+            //취소하면 배열에서 제거
+            for(let j = 0; j < tagarray.length; j++) {
+            	if(tagarray[j] == tagbtn[i].value){
+            	    tagarray.splice(j, 1);
+            	    j--;
+            	}
+            }
+            
         }
     })
 };
 
 
+
+
 //체크가되어야 팀만들어지게
 function teamcheck(usernickname){
+	
+	//만들팀이름, 팀소개글, 태그들, 팀만드는유저
+	var objParams = {
+			"maketeamname": maketeamname.value,
+			"teamintro" : maketeamintro.value,
+			"tagarray" : tagarray,
+			"usernickname": usernickname
+	}
+	
+	
+	
 	
 	if(usernickname === null || usernickname === ""){
 		alert("로그인이 필요합니다.");
@@ -192,15 +219,14 @@ function teamcheck(usernickname){
 	    }
 	    if(maketeamname.value != '' && maketeamintro.value !='' && teamcheckbox.checked == true){
 	    	
-	    	console.log(maketeamname.value.length);
+	    	console.log("objParams="+objParams);
 	    	
 	    	$.ajax({
-	    		type:'POST',
-	    		data: {maketeamname: maketeamname.value, usernickname: usernickname, teamintro : maketeamintro.value},
 	    		url:"/teammake",
-	    		dataType:"text",
+	    		type:'POST',
+	    		data: objParams,
 	    		success: function(data){
-	    			alert("팀생성이 완료되었습니다!")
+	    			alert("팀생성이 완료되었습니다!");
 	    			location.href = "/teamlist";
 	    		},
 	    		error:function(request,status,error){
@@ -208,7 +234,8 @@ function teamcheck(usernickname){
 	    		    	alert("20자 이내로 입력해주세요.");
 	    		    }
 	    			else{
-	    				 alert("팀이름이 중복됐거나 ,유저가 속해있는 팀이 이미 있습니다.");
+	    				 alert("팀이름이 중복됐거나 ,유저가 속해있는 팀, 혹은 오류");
+//	    				alert("code:"+request.status+"\n"+"textStatus:"+textStatus+"\n"+"error:"+error);
 	    			}
 	    		}
 	    	});
@@ -217,7 +244,6 @@ function teamcheck(usernickname){
     
 	}
 };
-
 //==========================팀가입 모달========================
 
 const teamjoinbtn = document.querySelector('.teamjoin-btn');
@@ -264,7 +290,8 @@ function teamcheck2(a){
 			url:"/teamjoin",
 			dataType:"text",
 			success: function(data){
-				alert("팀가입이 완료되었습니다.");
+//				alert("팀가입이 완료되었습니다.");
+				alert("팀신청이 완료되었습니다.(팀신청이 완료되면 알림이 갑니다.) ")
 				location.href = "/teamlist";
 			},
 			error: function(){
@@ -335,6 +362,8 @@ function teamcheck3(a,b){
 						}
 					});
 				}else if(secessionteamname == null || ssteamname != secessionteamname){
+					console.log(secessionteamname);
+					console.log(ssteamname);
 					alert("유저가 속한 팀이 아닙니다.");
 				}
 

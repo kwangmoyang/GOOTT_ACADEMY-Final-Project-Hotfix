@@ -26,7 +26,7 @@
 	<select id="list" parameterType="hashMap" resultType="hashMap">
 		select t1.Team_code, t1.Team_name, t1.Team_intro, t1.Team_cr_date, t2.Tags_Tag_Name from Team t1
 		left outer join Team_has_Tags t2
-		on t1.Team_code = t2.Team_Team_code
+		on t1.Team_name = t2.Team_name
 		<include refid="search"/>
 		group by t1.Team_name
 		order by Team_cr_date DESC;
@@ -34,7 +34,7 @@
 	
 	<!-- 전체목록 중 팀 태그 따로 불러옴 -->
 	<select id="taglist" parameterType="hashMap" resultType="hashMap">
-		 select t.Team_code, t.Team_name, tag.Tags_Tag_Name from Team t inner join Team_has_Tags tag on t.Team_code = tag.Team_Team_code;
+		 select t.Team_code, t.Team_name, tag.Tags_Tag_Name from Team t inner join Team_has_Tags tag on t.Team_name = tag.Team_name;
 	</select>
 	
 	<!-- 팀만들기 -->
@@ -56,30 +56,31 @@
 	</select>
 	
 	<!-- 팀만들기에서 tag insert -->
-	
-	
+	<insert id="taginsert" parameterType="hashMap">
+			insert into Team_has_Tags (Team_name, Tags_Tag_Name) values (#{maketeamname}, #{tagarray});
+	</insert>
+
 	<!-- 태그들 불러오기 -->
 	<select id="tags" parameterType="hashMap" resultType="hashMap">
 		select Tag_Name from Tags;
 	</select>
-	
-	<!-- 팀 가입하기 -->
-	<update id="teamjoin" parameterType="hashMap">
-		update User set Team_name = #{jointeamname} where User_nickname = #{User_nickname};
-	</update>
-	<insert id="teamjoininsert" parameterType="hashMap">
-		insert into Team_Members (Team_Member, Team_name) value(#{User_nickname}, #{jointeamname});
-	</insert>
 	
 	<!-- 조건 쿼리 -->
 	<!-- 유저한테 팀이 있으면 -->
 	<select id="teamjoin_team" parameterType="hashMap" resultType="hashMap">
 		select Team_name from User where User_nickname = #{User_nickname};
 	</select>
+
+	<!-- 팀가입 신청보내기 -->	
+	<insert id="teamjoinmessage" parameterType="hashMap">
+		insert into Team_NOT_Members (Team_unaccept_member, Team_name) values (#{User_nickname} , #{jointeamname});
+	</insert>
+	
+	
 	
 	<!-- 팀 탈퇴하기 (공통)-->
 	<update id="teamsecession" parameterType="hashMap">
-		update User set Team_name =null where User_nickname = #{Usernickname};
+		update User set Team_name =null, Leader_auth = 0 where User_nickname = #{Usernickname};
 	</update>
 
 	<!-- 일반 유저면 이것도 같이 삭제-->
@@ -115,7 +116,7 @@
 	
 	<!-- 팀리더도 같이 불러올 것임 + 팀멤버 -->
 	<select id="teaminfo_members"  parameterType="hashMap" resultType="hashMap">
-		select User_nickname, commission, Email_address, User_score from User where Team_name = #{teaminfo_teamname};
+		select User_nickname, commission, Email_address, User_score from User where Team_name = #{teaminfo_teamname} and not Leader_auth = 1;
 	</select>
 	
 	<!-- 클릭한 팀의 이름 -->
