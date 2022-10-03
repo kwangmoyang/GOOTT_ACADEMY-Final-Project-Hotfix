@@ -52,8 +52,12 @@
                     <p>내용</p>
                 
                         <div id="smarteditor">
-                            <textarea name="Request_contents" id="editorTxt" rows="20" cols="100" placeholder="내용을 입력해주세요"
-                                style="width: 100%"></textarea>
+                            <textarea id="request" name="Request_contents"></textarea>
+                            <script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
+                            CKEDITOR.replace('request',
+                                {filebrowserUploadUrl:'hotfix/imgUpload.do'
+                                });
+                            </script>
                         </div>
 
                 </div>
