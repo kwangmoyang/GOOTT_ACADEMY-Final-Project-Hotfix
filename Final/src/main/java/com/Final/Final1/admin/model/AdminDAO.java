@@ -12,6 +12,10 @@ public interface AdminDAO {
 	List<Map<String, Object>> userBoard(Map<String, Object> map);
 	
 	int userBoardCount(AdminDTO dto);
+	
+	public void boardMemDelete(int no);
+	
+	List<Map<String, Object>> adminBoard(Map<String, Object> map);
 
 }
 

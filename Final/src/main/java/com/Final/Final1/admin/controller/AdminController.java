@@ -1,5 +1,6 @@
 package com.Final.Final1.admin.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -8,8 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Final.Final1.admin.model.AdminDAO;
@@ -35,17 +39,11 @@ public class AdminController {
 //		return mv;
 //	}
 	
-	// 신고관리페이지
-	@RequestMapping("/admin/report")
-	public String adminReport() {
-		return "/admin/admin_Report";
-	}
-	
 	
 	// 게시판관리페이지
 	@RequestMapping("/admin/board")
 	public String adminBoard(AdminDTO dto) {
-		return "/admin/admin_Board";
+		return "/admin/admin_BoardMng";
 	}
 	
 	// 게시판관리에 공지사항페이지
@@ -53,6 +51,26 @@ public class AdminController {
 	public String adminBoardMng() {
 		return "/admin/admin_BoardMng";
 	}
+	
+	// 게시판관리에 공지사항 작성페이지
+	@RequestMapping("/admin/write")
+	public String adminBoardWrite() {
+		return "/admin/admin_WriteForm";
+	}
+	
+	// 게시판관리에 공지사항 작성했을때
+//		@RequestMapping(value = "/adminBoard", method = RequestMethod.POST)
+//		public ModelAndView adminBoard(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request) {
+//			ModelAndView mv = new ModelAndView();
+//			adminService.adminBoard(dto);
+//			
+//			
+//			
+//			
+//			return "/admin/admin_BoardMng";
+//		}
+	
+	
 	
 	// 게시판관리에 회원게시글페이지
 	@RequestMapping(value = "/admin/board_mem", method = RequestMethod.GET)
@@ -65,11 +83,17 @@ public class AdminController {
 		return mv;
 	}
 	
-	
-	// 1:1문의페이지
-	@RequestMapping("/admin/ask")
-	public String adminAsk() {
-		return "/admin/admin_Ask";
+	// 게시판관리 게시글 선택삭제
+	@ResponseBody
+	@RequestMapping(value = "/boardMemDelete", method = RequestMethod.POST)
+		//public String boardDelete(HttpServletRequest request) {
+		public String boardDelete(int[] valueArr) {
+		int[] boardDeleteMsg = valueArr;
+		int size = boardDeleteMsg.length;
+		for(int i=0; i<size; i++) {
+			adminService.boardMemDelete(boardDeleteMsg[i]);
+		}
+		return "redirect:/admin/admin_BoardMem";
 	}
-
+	
 }
