@@ -21,7 +21,17 @@ public interface HotfixDAO {
 
 	List<BoardDTO> list(HotfixDTO dto);
 	
-	
+	List<HotfixDTO> mySolverlist(HotfixDTO dto);
 	/* List<BoardDTO> list(String keyword, String select, int start, int end); */
 
+	void giveUpResolve(HotfixDTO dto);
+	
+	void requesterCommissionDown(HotfixDTO dto);
+	
+	void resolverCommissionUp(HotfixDTO dto);
+	
+	void Drop_Req_cnt(HotfixDTO dto);
+	
+	void Completion(HotfixDTO dto);
+	
 }

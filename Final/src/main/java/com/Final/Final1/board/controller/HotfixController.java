@@ -1,22 +1,26 @@
 package com.Final.Final1.board.controller;
 
+import com.Final.Final1.board.model.BoardDTO;
+import com.Final.Final1.board.model.HotfixDTO;
+import com.Final.Final1.board.service.HotfixService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-
-import javax.servlet.http.HttpSession;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.*;
 import java.util.List;
-
-import com.Final.Final1.board.model.BoardDTO;
-import com.Final.Final1.board.model.HotfixDTO;
-import com.Final.Final1.board.model.PageUtil;
-import com.Final.Final1.board.service.HotfixService;
+import java.util.UUID;
 
 
 @Controller
@@ -117,7 +121,6 @@ public class HotfixController {
 		ModelAndView mv = new ModelAndView();
 
 		//로그인된 사람의 닉네임을 불러와 신청자 리스트에 담아준다
-		System.out.println("gd");
 		String name = (String) session.getAttribute("User_nickname");
 		dto.setSolver_member(name);
 		hotfixService.resolveMember(dto);
@@ -146,34 +149,230 @@ public class HotfixController {
 		return mv;
 	}
 	
+	
 	//해결요청 내역 상세 클릭시 ajax 값 받아와서 리턴
 	// 해결 신청자 리스트
 	@ResponseBody
 	@RequestMapping("/mypage/writer_request2")
 	public List<HotfixDTO> mypageWriter2(HotfixDTO dto) {
 		//ajax로 통해 전달받은 값을 쿼리에 넣어줌
+		System.out.println(dto.getRequest_code());
 		List<HotfixDTO> resolver = hotfixService.resolveMemberlist(dto.getRequest_code());
 		//신청자 목록 리스트 리턴
 		return resolver;
 	}
 	//해결자 선택하기
 	@RequestMapping("/choiceResolve")
-	public ModelAndView choiceResolve(HotfixDTO dto) {
+	public ModelAndView choiceResolve(HotfixDTO dto,HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		//ajax로 통해 전달받은 값을 쿼리에 넣어줌
-		System.out.println("ㅎㅇ");
 		
 		//업데이트
 		hotfixService.choiceResolve(dto);
+
+		
+		// 세션 값 불러옴
+		String name = (String) session.getAttribute("User_nickname");
+		dto.setRequester(name); // 불러온 세션값을 dto에 설정
+		
+		// 요청자 해결포기 카운트
+		dto.setUser_nickname(name);
+		hotfixService.Drop_Req_cnt(dto);
 		
 		
+		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
+		List<BoardDTO> list = hotfixService.myRequestlist(dto);
+		System.out.println(list);
+		mv.addObject("list", list);
 		mv.setViewName("/mypage/mypage_writer_request");
 		return mv;
 	}
 
 
-	
-	
+	/**
+	 * @param multiFile
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="hotfix/imgUpload.do", method = RequestMethod.POST)
+	public void imageUpload(HttpServletRequest request,
+							HttpServletResponse response, MultipartHttpServletRequest multiFile
+			, @RequestParam MultipartFile upload) throws Exception{
+		// 랜덤 문자 생성
+		UUID uid = UUID.randomUUID();
+
+		OutputStream out = null;
+		PrintWriter printWriter = null;
+
+		//인코딩
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+
+		try{
+
+			//파일 이름 가져오기
+			String fileName = upload.getOriginalFilename();
+			byte[] bytes = upload.getBytes();
+
+			//이미지 경로 생성
+			String path = "/Users/seoair/Goott/Project/FinalProjectSpring/untitled/Final/src/main/webapp/resources/img/clientImg" + "ckImage/";
+			String ckUploadPath = path + uid + "_" + fileName;
+			File folder = new File(path);
+
+			//해당 디렉토리 확인
+			if(!folder.exists()){
+				try{
+					folder.mkdirs(); // 폴더 생성
+				}catch(Exception e){
+					e.getStackTrace();
+				}
+			}
+
+			out = new FileOutputStream(new File(ckUploadPath));
+			out.write(bytes);
+			out.flush(); // outputStram에 저장된 데이터를 전송하고 초기화
+
+			String callback = request.getParameter("CKEditorFuncNum");
+			printWriter = response.getWriter();
+			String fileUrl = "/hotfix/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName;  // 작성화면
+
+			// 업로드시 메시지 출력
+			printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
+			printWriter.flush();
+
+		}catch(IOException e){
+			e.printStackTrace();
+		} finally {
+			try {
+				if(out != null) { out.close(); }
+				if(printWriter != null) { printWriter.close(); }
+			} catch(IOException e) { e.printStackTrace(); }
+		}
+
+		return;
+	}
+
+	/**
+	 * cKeditor 서버로 전송된 이미지 뿌려주기
+	 * @param uid
+	 * @param fileName
+	 * @param request
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	//
+	@RequestMapping(value="/hotfix/ckImgSubmit.do")
+	public void ckSubmit(@RequestParam(value="uid") String uid
+			, @RequestParam(value="fileName") String fileName
+			, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException{
+
+		//서버에 저장된 이미지 경로
+		String path = "/Users/seoair/Goott/Project/FinalProjectSpring/untitled/Final/src/main/webapp/resources/img/clientImg" + "ckImage/";
+
+		String sDirPath = path + uid + "_" + fileName;
+
+		File imgFile = new File(sDirPath);
+
+		//사진 이미지 찾지 못하는 경우 예외처리로 빈 이미지 파일을 설정한다.
+		if(imgFile.isFile()){
+			byte[] buf = new byte[1024];
+			int readByte = 0;
+			int length = 0;
+			byte[] imgBuf = null;
+
+			FileInputStream fileInputStream = null;
+			ByteArrayOutputStream outputStream = null;
+			ServletOutputStream out = null;
+
+			try{
+				fileInputStream = new FileInputStream(imgFile);
+				outputStream = new ByteArrayOutputStream();
+				out = response.getOutputStream();
+
+				while((readByte = fileInputStream.read(buf)) != -1){
+					outputStream.write(buf, 0, readByte);
+				}
+
+				imgBuf = outputStream.toByteArray();
+				length = imgBuf.length;
+				out.write(imgBuf, 0, length);
+				out.flush();
+
+			}catch(IOException e){
+				e.printStackTrace();
+			}finally {
+				outputStream.close();
+				fileInputStream.close();
+				out.close();
+			}
+		}
+	}
+
+	//포기하기 버튼 클릭시
+	@RequestMapping("/giveUpSolver")
+	public ModelAndView giveUpSolver(HotfixDTO dto,@RequestParam("Request_code") int Request_code,
+			HttpSession session) {
+		
+		ModelAndView mv = new ModelAndView();
+		dto.setRequest_code(Request_code);
+		hotfixService.giveUpResolve(dto);
+		
+		
+		// 세션 값 불러옴
+		String name = (String) session.getAttribute("User_nickname");
+		dto.setRequester(name); // 불러온 세션값을 dto에 설정
+		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
+		List<BoardDTO> list = hotfixService.myRequestlist(dto);
+		mv.addObject("list", list);
+		
+		//전적 떨어지는거 추가해야함 (테이블 문의)
+		
+		mv.setViewName("/mypage/mypage_writer_request");
+		return mv;
+	}
+		//해결완료 버튼 클릭시
+		@RequestMapping("/CompletionResolve")
+		public ModelAndView CompletionResolve(HotfixDTO dto,@RequestParam("Requester") String Requester,
+				@RequestParam("Solver") String Solver,@RequestParam("Commission") int Commission,
+				@RequestParam("Request_code") int Request_code, HttpSession session) {
+			
+			ModelAndView mv = new ModelAndView();
+			System.out.println(Commission);
+			System.out.println(Requester);
+			System.out.println(Solver);
+			
+			dto.setCommission(Commission);
+			//요청자의 커미션의 차감
+			dto.setUser_nickname(Requester);
+			hotfixService.requesterCommissionDown(dto);
+			
+			//해결자의 커미션이 증가
+			dto.setUser_nickname(Solver);
+			hotfixService.resolverCommissionUp(dto);
+			
+			//해당 게시물이 완료됨으로 변경 (result)
+			dto.setRequest_code(Request_code);
+			hotfixService.Completion(dto);
+			
+			
+			// 세션 값 불러옴
+			String name = (String) session.getAttribute("User_nickname");
+			dto.setRequester(name); // 불러온 세션값을 dto에 설정
+			// 로그인한 유저가 해결요청한 게시글을 뽑아옴
+			List<BoardDTO> list = hotfixService.myRequestlist(dto);
+			System.out.println(list);
+			
+			mv.addObject("list", list);
+			
+			//전적 떨어지는거 추가해야함 (테이블 문의)
+			
+			mv.setViewName("/mypage/mypage_writer_request");
+			return mv;
+		}	
+
 
 
 }

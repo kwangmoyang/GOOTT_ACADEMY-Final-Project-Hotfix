@@ -365,9 +365,17 @@ input:-webkit-autofill {
     margin: 15px 20px;
 }
 .RmBoardLeft > p:nth-child(1) {
-    font-size: 30px;
-    color: red;
+    font-size: 20px;
 }
+
+.ing{
+	color: red;
+}
+.okok{
+	color: blue;
+}
+
+
 /* 해결 게시판 오른쪽 */
 .RmBoardRight {
     display: flex;

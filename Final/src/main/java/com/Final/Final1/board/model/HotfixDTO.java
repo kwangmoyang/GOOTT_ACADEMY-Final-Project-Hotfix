@@ -17,10 +17,26 @@ public class HotfixDTO {
 	private String Solver;
 	private int Solver_appli_code;
 	
+	private int result;
+	
+	private String guide;
 	
 	
-
 	
+	
+	public int getResult() {
+		return result;
+	}
+	public void setResult(int result) {
+		this.result = result;
+	}
+	//안내 멘트
+	public String getGuide() {
+		return guide;
+	}
+	public void setGuide(String guide) {
+		this.guide = guide;
+	}
 	//검색키워드
 	private String keyword;
 	//최신순, 커미션순

@@ -88,6 +88,33 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 
+//	@Override
+//	public void insert(MypageDTO dto) {
+//		mypageDao.insert(dto);
+//	}
+
+
+	@Override
+	public void updateUserPhoto(MypageDTO dto) {
+		mypageDao.updateUserPhoto(dto);
+	}
+
+
+	@Override
+	public String UserPhotoView(MypageDTO dto) {
+		return mypageDao.UserPhotoView(dto);
+	}
+
+
+	@Override
+	public void UserContactSet(MypageDTO dto) {
+		mypageDao.UserSetUser_introduce(dto);
+	}
+
+
+	
+
+
 
 
 	

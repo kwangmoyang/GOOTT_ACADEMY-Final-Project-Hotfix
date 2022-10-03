@@ -33,17 +33,12 @@ Board where Post_writer = #{Post_writer};
 	
 	<!-- 내 댓글 내역 -->
 	<select id="myCommentlist" parameterType="com.Final.Final1.board.model.MyCommentListDTO" resultType="hashMap">
-		select Comment_code,Post_num,Comment_writer,Comment_contents,Comment_like,Comment_cr_date,Comment_up_date,Comment_de_date,Comment_status,Att_Comment from Comment where Comment_writer=#{Comment_writer};
+		select Comment_code,Post_num,Comment_writer,Comment_contents,Comment_like,Comment_cr_date,Comment_up_date,Comment_de_date,Comment_status from Comment where Comment_writer=#{Comment_writer};
 	</select>
 	
 	
 	
-	
-	
-	
-	
-	
-	 
+
 	 
 	<!-- 유저의 회원정보 수정을 위한 부가적인 정보를 다 뽑아온다 -->
 	<select id="Userinfo" resultType="hashMap">
@@ -52,6 +47,33 @@ Board where Post_writer = #{Post_writer};
 		User_contact1,User_contact2,User_contact3 from User where 
 		User_id=#{User_id};
 	</select>
+	
+	<!-- 이메일 확인후 정보 있을시 ㅇ이디 값 뱉어줌 -->
+	<select id="UserEmailinfo" resultType="String">
+		select User_id,Email_address from User where Email_address=#{Email_address};
+	</select>
+	<!-- 유저 이메일 아이디 체크후 비번 뱉어줌 -->
+	<select id="UserEmailAndIDinfo" resultType="String">
+		select User_pw from User where Email_address=#{Email_address} and User_id=#{User_id};
+	</select>
+	
+	
+	
+	<insert id="insert" >
+		insert into Attachment (ORG_File_name, STORED_File_name)  value(#{ORG_File_name},#{STORED_File_name});
+	</insert>
+	
+	<!-- 유저 프로필사진 업데이트 -->
+	<update id="updateUserPhoto" >
+		update User set IMG_File_name = #{IMG_File_name}, IMG_URL_name = #{IMG_URL_name} where User_id = #{User_id};
+	</update>
+	
+	
+	<select id="UserPhotoView" resultType="String">
+		select IMG_File_name from User where user_id= #{User_id};
+	</select>
+	
+	
 	
 	<!-- 회원의 포인트 뽑아옴 -->
 	<select id="UserPoint" resultType="int">
@@ -87,6 +109,14 @@ Board where Post_writer = #{Post_writer};
 		update User set User_introduce =#{User_introduce} 
 		where User_id = #{User_id};
 	</update>
+
+	<!-- 컨택트 주소 변경 -->
+	<update id="UserContactSet" parameterType="hashMap">
+		update User set User_contact1 = #{User_contact1}, User_contact2 = #{User_contact2}, User_contact3 = #{User_contact2} where User_id = #{User_id};
+	</update>
+
+		
+
 
 	<!-- 계좌정보 변경 -->
 	

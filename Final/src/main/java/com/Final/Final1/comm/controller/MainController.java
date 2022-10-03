@@ -69,11 +69,7 @@ public class MainController {
 
 
 
-	// 마이 페이지
-	@RequestMapping("/mypage/index")
-	public String mypageIndex() {
-		return "/mypage/mypage";
-	}
+	
 
 	//충전하기
 	@RequestMapping("/charge/index")
