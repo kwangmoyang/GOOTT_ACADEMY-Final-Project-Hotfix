@@ -29,52 +29,37 @@ public class HotfixController {
 	@Autowired
 	HotfixService hotfixService;
 
-	//09.30 수근 작업
-//	@RequestMapping(value = "/resolveMain", method = RequestMethod.GET)
-//	public ModelAndView resolveMain(HttpServletRequest req, @RequestParam(defaultValue="1")int curPage,
-//			@RequestParam(defaultValue ="new")String search_option) {
-//			
-//		HotfixDTO dto = new HotfixDTO();
-//		String keyword = req.getParameter("keyword");
-//		dto.setKeyword(keyword);
-//		String select = req.getParameter("select");
-//		dto.setSelect(select);
-//		
-//		int count = hotfixService.count(req.getParameter("keyword"));
-//		PageUtil page_info = new PageUtil(count, curPage);
-//		int start = page_info.getPageBegin();
-//		int end = page_info.getPageEnd();
-//		
-//
-//		List<HotfixDTO> list = hotfixService.list(keyword, start, end, select);
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("/resolveMain");
-//		mv.addObject("list", list);
-//		mv.addObject("count", count);
-//		mv.addObject("keyword", dto.getKeyword());
-//		mv.addObject("page_info", page_info);
-//		mv.addObject("search_option", dto.getSelect()); 
-//		
-//		return mv;
-//	}
+	//09.30 수근 작업 HOTFIX
+	@RequestMapping(value = "/resolveMain", method = RequestMethod.GET)
+	public ModelAndView resolveMain(HttpServletRequest req, @RequestParam(defaultValue="1")int curPage,
+			@RequestParam(defaultValue ="new")String search_option) {
+			
+		HotfixDTO dto = new HotfixDTO();
+		String keyword = req.getParameter("keyword");
+		dto.setKeyword(keyword);
+		String select = req.getParameter("select");
+		dto.setSelect(select);
+		
+		int count = hotfixService.count(req.getParameter("keyword"));
+		PageUtil page_info = new PageUtil(count, curPage);
+		int start = page_info.getPageBegin();
+		int end = page_info.getPageEnd();
+		
 
-	
-	
-	 //해결요청 글 리스트 목록
-	@RequestMapping("/resolveMain")
-	public ModelAndView resolveMain(HotfixDTO dto) {
+		List<HotfixDTO> list = hotfixService.list(keyword, start, end, select);
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> list = hotfixService.list(dto);
 		mv.setViewName("/resolveMain");
 		mv.addObject("list", list);
-
+		mv.addObject("count", count);
+		mv.addObject("keyword", dto.getKeyword());
+		mv.addObject("page_info", page_info);
+		mv.addObject("search_option", dto.getSelect()); 
+		
 		return mv;
 	}
-	
-	
-	
-	
 
+
+	
 	// 해결 요청 게시글 리스트
 	@RequestMapping("/resolveWriteForm")
 	public ModelAndView resolveWriteForm() {
@@ -85,18 +70,25 @@ public class HotfixController {
 
 	}
 	
-	// 내가 해결중인 게시글
+	// 마이페이지 해결 내역 
 	@RequestMapping("/mypage/result")
-	public ModelAndView mypageresult(HotfixDTO dto,HttpSession session) {
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView mypageresult(HotfixDTO dto,HttpSession session,
+			@RequestParam(defaultValue="1")int curPage) {
+		
 		
 		String nickToResolve = (String) session.getAttribute("User_nickname");
 		dto.setSolver(nickToResolve);
+		int count = hotfixService.resultCount(dto);
+		PageUtil page_info = new PageUtil(count, curPage);
+		int start = page_info.getPageBegin();
+		int end = page_info.getPageEnd();
 		
 		//게시판 리스트 (다른 컨트롤러 주소로 뺴셈)
-		List<HotfixDTO> resolver2 = hotfixService.resolveZone(dto);
-		System.out.println("제가 선택받은 요청들"+resolver2);
+		List<HotfixDTO> resolver2 = hotfixService.resolveZone(dto, start, end);
 		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("count", count);
+		mv.addObject("page_info", page_info);
 		mv.addObject("resolver2", resolver2);
 		mv.setViewName("/mypage/mypage_writer_result");
 		
@@ -134,16 +126,27 @@ public class HotfixController {
 	// 해결요청 글 리스트 목록
 	@ResponseBody
 	@RequestMapping("/mypage/writer_request")
-	public ModelAndView mypageWriter(HotfixDTO dto, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView mypageWriter(HotfixDTO dto, HttpSession session, 
+			@RequestParam(defaultValue="1")int curPage) {
+		
 
 		// 세션 값 불러옴
 		String name = (String) session.getAttribute("User_nickname");
 		dto.setRequester(name); // 불러온 세션값을 dto에 설정
+		
+		int count = hotfixService.count(dto);
+		PageUtil page_info = new PageUtil(count, curPage);
+		int start = page_info.getPageBegin();
+		int end = page_info.getPageEnd();
 
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
-		List<BoardDTO> list = hotfixService.myRequestlist(dto);
+		List<BoardDTO> list = hotfixService.myRequestlist(dto, start, end);
+		ModelAndView mv = new ModelAndView();
+		
 		mv.addObject("list", list);
+		mv.addObject("count", count);
+		mv.addObject("page_info", page_info);
+		
 		mv.setViewName("/mypage/mypage_writer_request");
 		
 		return mv;

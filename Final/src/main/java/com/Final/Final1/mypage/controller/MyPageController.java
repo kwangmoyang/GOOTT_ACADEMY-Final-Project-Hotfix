@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.Final.Final1.board.model.BoardDTO;
 import com.Final.Final1.board.model.MyCommentListDTO;
 import com.Final.Final1.board.model.MyWriterListDTO;
+import com.Final.Final1.board.model.PageUtil;
 import com.Final.Final1.mypage.model.MypageDAO;
 import com.Final.Final1.mypage.model.MypageDTO;
 import com.Final.Final1.mypage.service.MypageService;
@@ -169,31 +169,31 @@ public class MyPageController {
 
 	// 수근 코드 
 		@RequestMapping("/mypage/writer")
-		public ModelAndView mypageWriter(HttpServletRequest req, MyWriterListDTO Post_writer, HttpSession session) {
-			
-			MyWriterListDTO dto = new MyWriterListDTO();
-			String keyword = req.getParameter("keyword");
-			dto.setKeyword(keyword);
-			
-			int count = mypageService.count(req.getParameter("keyword"));
-			
-			
-			
-			
-			ModelAndView mv = new ModelAndView();
+		public ModelAndView mypageWriter(MyWriterListDTO dto, HttpSession session,
+				@RequestParam(defaultValue="1")int curPage) {
 	
 			//세션 값 불러옴
 			String name = (String)session.getAttribute("User_nickname");
-			Post_writer.setPost_writer(name); // 불러온 세션값을 dto에 설정
+			
+			dto.setPost_writer(name); // 불러온 세션값을 dto에 설정
+			int count = mypageService.count(dto);
+			PageUtil page_info = new PageUtil(count, curPage);
+			int start = page_info.getPageBegin();
+			int end = page_info.getPageEnd();
+			
 			//로그인한 유저가 해결요청한 게시글을 뽑아옴
-			List<BoardDTO> list = mypageService.myRequestlist(Post_writer);
-			mv.setViewName("/mypage/mypage_writer");
+			List<BoardDTO> list = mypageService.myRequestlist(dto, start, end);
+			ModelAndView mv = new ModelAndView();
+			
+			
 			mv.addObject("list", list);
 			mv.addObject("count", count);
+			mv.addObject("page_info", page_info);
+			
+			mv.setViewName("/mypage/mypage_writer");
 			return mv;
 		}
 	
-
 	
 	//광모형 코드 
 	// 留덉씠�럹�씠吏� �옉�꽦�븳湲�
@@ -210,24 +210,36 @@ public class MyPageController {
 //		System.out.println(list);
 //		return mv;
 //	}
+
 	
 	
 	
 
 	// 나의 작성 댓글
 	@RequestMapping("/mypage/comments")
-	public ModelAndView mypagecomments(MyCommentListDTO dto, HttpSession session) {
+	public ModelAndView mypagecomments(MyCommentListDTO dto, HttpSession session,
+			@RequestParam(defaultValue="1")int curPage) {
 		
-		ModelAndView mv = new ModelAndView();
+		
 		//세션 값 불러옴
 		String name = (String)session.getAttribute("User_nickname");
 		dto.setComment_writer(name); // 불러온 세션값을 dto에 설정
 
+		
+		int count = mypageService.commentCount(dto);
+		PageUtil page_info = new PageUtil(count, curPage);
+		int start = page_info.getPageBegin();
+		int end = page_info.getPageEnd();
+		
+
 		//로그인한 유저가 해결요청한 게시글을 뽑아옴
-		List<BoardDTO> list = mypageService.myCommentlist(dto);
-		mv.setViewName("/mypage/mypage_comments");
+		List<BoardDTO> list = mypageService.myCommentlist(dto, start ,end);
+		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
+		mv.addObject("count", count);
+		mv.addObject("page_info", page_info);
 				
+		mv.setViewName("/mypage/mypage_comments");
 		return mv;
 	}
 

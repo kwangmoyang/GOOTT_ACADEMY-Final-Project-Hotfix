@@ -9,7 +9,7 @@ import com.Final.Final1.team.model.TeamlistDTO;
 public interface Teamlistservice {
 
 
-	List<TeamlistDTO> list(Map<String, Object> map);
+	List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword, int start, int end);
 	
 	List<Map<String, Object>> taglist(Map<String, Object> map);
 

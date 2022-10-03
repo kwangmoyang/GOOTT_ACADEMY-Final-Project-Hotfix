@@ -17,12 +17,20 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate; //root-context�� ����
 
-	
+
 	@Override
-	public List<TeamlistDTO> list(Map<String, Object> map) {
-		
-		return sqlSessionTemplate.selectList("team.list", map);
+	public List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword, int start, int end) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map1 = new HashMap<>();
+		map1.put("keyword", keyword);
+		map1.put("search_option", search_option);
+		map1.put("start", start);
+		map1.put("end", end);
+		return sqlSessionTemplate.selectList("team.list", map1);
 	}
+	
+	
+	
 
 	@Override
 	public List<Map<String, Object>> taglist(Map<String, Object> map) {	
@@ -112,7 +120,6 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 	public List<Map<String, Object>> teaminfo_int(Map<String, Object> map) {
 		return sqlSessionTemplate.selectList("team.teaminfo_int", map);
 	}
-
 
 
 	@Override

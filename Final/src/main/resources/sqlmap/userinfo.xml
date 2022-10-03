@@ -8,35 +8,44 @@
 			유저 정보 모두 뽑아올수 있음
 			
 		-->
-	<select id="count" parameterType="hashMap" resultType="int">
-		select count(*) from Board
-		<where>
-			<if test="keyword != null">
-				and Post_title like CONCAT('%',#{keyword},'%')
-			</if>
-		</where>
+		<!-- 마이페이지 게시글 count -->
+	<select id="count" parameterType="com.Final.Final1.board.model.MyWriterListDTO" resultType="int">
+		select count(*) from Board where Post_writer = #{Post_writer};
 	</select>
+
+	<!-- 마이페이지 나의 게시글 불러오기 -->
+<select id="myWriterlist" parameterType="com.Final.Final1.board.model.MyWriterListDTO" resultType="hashMap">
+	 <include refid="paging_header" /> 
+			select Post_num,Board_code,Post_writer,Post_title,Post_contents,Post_view,Post_like,Post_cr_date,Post_up_date,Post_de_date,Post_status from
+	Board where Post_writer = #{Post_writer}
+	 <include refid="paging_footer" />	
+	 
+</select>
+	
 
 	 
 	 <select id="myRequestlist" parameterType="com.Final.Final1.board.model.MyWriterListDTO" resultType="hashMap">
+
 		select Request_code,Requester,Request_title, Request_contents, 
 	SolverReady_cnt, Commission, Recruiting_time from Request where Requester=#{Requester};
+	
 	</select>
 	
-	<!-- 마이페이지 나의 게시글 불러오기 -->
-<select id="myWriterlist" parameterType="com.Final.Final1.board.model.MyWriterListDTO" resultType="hashMap">
-		select Post_num,Board_code,Post_writer,Post_title,Post_contents,Post_view,Post_like,Post_cr_date,Post_up_date,Post_de_date,Post_status from
-Board where Post_writer = #{Post_writer};
-</select>
 	
 	
 	
 	<!-- 내 댓글 내역 -->
 	<select id="myCommentlist" parameterType="com.Final.Final1.board.model.MyCommentListDTO" resultType="hashMap">
-		select Comment_code,Post_num,Comment_writer,Comment_contents,Comment_like,Comment_cr_date,Comment_up_date,Comment_de_date,Comment_status from Comment where Comment_writer=#{Comment_writer};
+	 <include refid="paging_header" /> 
+		select Comment_code,Post_num,Comment_writer,Comment_contents,Comment_like,Comment_cr_date,Comment_up_date,Comment_de_date,Comment_status from Comment where Comment_writer=#{Comment_writer}
+	<include refid="paging_footer" /> 
+
 	</select>
 	
-	
+	<!-- 내 댓글 내역 수   -->
+	<select id="commentCount" parameterType="com.Final.Final1.board.model.MyCommentListDTO" resultType="int">
+		select count(*) from Comment where Comment_writer=#{Comment_writer};
+	</select>
 	
 
 	 
@@ -124,6 +133,21 @@ Board where Post_writer = #{Post_writer};
 		<delete id="UserDelete" parameterType="String">
 			delete from User where User_id= #{User_id};
 		</delete>
+	
+	<!-- 페이징 -->
+	<sql id="paging_header">
+		select *
+		from(
+			select @ROWNUM:=@ROWNUM+1 as rn, A.* 
+			from(
+	</sql>
+	<sql id="paging_footer">
+		) A
+	where (@rownum:=0)=0 ) rn 
+	where rn between #{start} and #{end}
+	
+	</sql>
+	
 	
 	
 

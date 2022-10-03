@@ -11,8 +11,10 @@ public interface AdminService {
 	
 	int userCount(AdminDTO dto);
 	
-	List<Map<String, Object>> userBoard(Map<String, Object> map);
+	List<AdminDTO> userBoard(int start, int end, String select);
 	
+	int userBoardCount();
+
 	int userBoardCount(AdminDTO dto);
 	
 	//public void boardMemDelete(int boardDeleteMsg);
@@ -20,5 +22,6 @@ public interface AdminService {
 	void boardMemDelete(int boardDeleteMsg);
 	
 	List<Map<String, Object>> adminBoard(Map<String, Object> map);
+
 }
 

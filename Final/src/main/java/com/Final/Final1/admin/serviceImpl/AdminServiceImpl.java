@@ -28,14 +28,27 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<Map<String, Object>> userBoard(Map<String, Object> map) {
-		return adminDao.userBoard(map);
+	public List<AdminDTO> userBoard(int start, int end, String select) {
+		return adminDao.userBoard(start, end, select);
 	}
 
 	@Override
-	public int userBoardCount(AdminDTO dto) {
-		return adminDao.userBoardCount(dto);
+	public int userBoardCount() {
+		return adminDao.userBoardCount();
 	}
+
+
+	
+	
+//	@Override
+//	public List<Map<String, Object>> userBoard(Map<String, Object> map) {
+//		return adminDao.userBoard(map);
+//	}
+//
+//	@Override
+//	public int userBoardCount(AdminDTO dto) {
+//		return adminDao.userBoardCount(dto);
+//	}
 
 	@Override
 	public void boardMemDelete(int no) {
@@ -49,6 +62,7 @@ public class AdminServiceImpl implements AdminService{
 
 
 	
+
 	
 	
 

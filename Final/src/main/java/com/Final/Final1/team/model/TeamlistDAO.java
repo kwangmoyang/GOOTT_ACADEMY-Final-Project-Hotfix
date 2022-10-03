@@ -6,7 +6,7 @@ import java.util.Map;
 public interface TeamlistDAO {
 
 
-	List<TeamlistDTO> list(Map<String, Object> map);
+	List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword, int start, int end);
 
 	public List<Map<String, Object>> taglist(Map<String, Object> map);
 

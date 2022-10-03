@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Final.Final1.board.model.PageUtil;
 import com.Final.Final1.team.model.TeamMemberDTO;
 import com.Final.Final1.team.model.TeamlistDTO;
 import com.Final.Final1.team.service.Teamlistservice;
@@ -27,11 +28,14 @@ public class Teamlistcontroller {
 	//팀목록
 	@RequestMapping(value="/teamlist")
 	public ModelAndView teamlist(@RequestParam Map<String, Object> map, @RequestParam(defaultValue = "")String keyword, 
-			@RequestParam(defaultValue = "all") String search_option, HttpSession session) {
+			@RequestParam(defaultValue = "all") String search_option,
+			@RequestParam(defaultValue="1")int curPage) {
 
 			int count = teamlistservice.count(search_option, keyword);
-			
-			
+			PageUtil page_info = new PageUtil(count, curPage);
+			int start = page_info.getPageBegin();
+			int end = page_info.getPageEnd();
+				
 		
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("/team/teamlist");
@@ -39,6 +43,7 @@ public class Teamlistcontroller {
 			List<Map<String, Object>> taglist = teamlistservice.taglist(map); //Team_has_Tags테이블에서 태그 불러오기 -> 팀목록에서 view
 			List<TeamlistDTO> teamlist = teamlistservice.list(map); //팀목록 불러오기
 			List<Map<String, Object>> tags = teamlistservice.tags(map); //팀만들기 부분에 태그 전체 불러오기
+
 			
 			System.out.println("teamlist"+teamlist);
 			
@@ -49,6 +54,9 @@ public class Teamlistcontroller {
 			map2.put("taglist", taglist);
 			map2.put("tags", tags);
 			map2.put("count", count);
+			map2.put("page_info", page_info);
+			map2.put("search_option", search_option);
+			map2.put("keyword", keyword);
 			
 			mv.addObject("map",map2);
 

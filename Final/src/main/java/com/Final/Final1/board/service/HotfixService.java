@@ -12,19 +12,24 @@ public interface HotfixService {
 	List<HotfixDTO> list(String keyword, int start, int end, String select);
 
 	
-	List<BoardDTO> myRequestlist(HotfixDTO dto);
+	List<BoardDTO> myRequestlist(HotfixDTO dto, int start, int end);
 
 	void resolveMember(HotfixDTO dto);
 
 	List<HotfixDTO> resolveMemberlist(int test);
 
-	int count(String keyword);
+	int count(HotfixDTO dto);
 
 	void choiceResolve(HotfixDTO dto);
 
-	List<HotfixDTO> resolveZone(HotfixDTO dto);
+	List<HotfixDTO> resolveZone(HotfixDTO dto, int start, int end);
 
-	List<BoardDTO> list(HotfixDTO dto);
+	int count(String keyword);
+	
+	// 해결내역 수
+	int resultCount(HotfixDTO dto);
+
+//	List<BoardDTO> list(HotfixDTO dto);
 
 	List<HotfixDTO> mySolverlist(HotfixDTO dto);
 	
