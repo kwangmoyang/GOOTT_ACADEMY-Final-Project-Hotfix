@@ -42,11 +42,12 @@
 					<p class="mypage_title">Introduce</p>
 					<div class="introduce">
 						<!-- 사진&자기소개&팔로잉 -->
-						<div>img</div>
+						
+						<img src="<%= request.getContextPath() + "C:\\Users/광트북/img/399f5015.png" %>"/>
 						<div>
+						
 							<div class="introduce_nickname">
 								<div class="name">${sessionScope.User_nickname }</div>
-								<div class="follow">dd</div>
 							</div>
 
 							<div class="introduce_text">${sessionScope.User_introduce }</div>
@@ -59,13 +60,13 @@
 						<div>
 							<ul>
 								<button>
-									<i class="uil uil-home"></i>
+									<a href="${sessionScope.User_contact1 }" target="_blank"><i class="uil uil-home"></i></a>
 								</button>
 								<button>
-									<i class="uil uil-github"></i>
+									<a href="${sessionScope.User_contact2 }" target="_blank"><i class="uil uil-home"></i></a>
 								</button>
 								<button>
-									<i class="uil uil-blogger"></i>
+									<a href="${sessionScope.User_contact3 }" target="_blank"><i class="uil uil-home"></i></a>
 								</button>
 							</ul>
 						</div>
@@ -119,10 +120,7 @@
 						</div>
 					</div>
 
-					<!-- 나의 주 언어 -->
-					<p class="mypage_title">님의 주 언어</p>
-					<div class="myLanguage">ㅇㅇ</div>
-
+					
 
 
 				</div>

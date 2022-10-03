@@ -50,9 +50,9 @@
 
                 <!-- 아이디 저장 및 찾기영역 -->
                 <div class="login_Forgot">
-                    <label><input type="checkbox" name="rememberId" ${empty cookie.id.value ? "" :"checked" }> 아이디
-                        저장</label>
-                    <a href="/find_user_idpw">아이디 / 비밀번호 찾기</a>
+                    <label><input type="checkbox" name="rememberId" ${empty cookie.id.value ? "" :"checked" }> 아이디저장</label>
+           
+                    <span><a href="/find_user_id">아이디  /</a><a href="/find_user_pw">비밀번호 찾기</a></span>
                 </div>
 
                 <!-- 로그인 제출 영역 -->

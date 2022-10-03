@@ -76,6 +76,38 @@ public class HotfixServiceImpl implements HotfixService{
 		return HotfixDao.list(dto);
 	}
 
+	@Override
+	public List<HotfixDTO> mySolverlist(HotfixDTO dto) {
+		return HotfixDao.mySolverlist(dto);
+	}
+
+	@Override
+	public void giveUpResolve(HotfixDTO dto) {
+		HotfixDao.giveUpResolve(dto);
+		
+	}
+
+	@Override
+	public void requesterCommissionDown(HotfixDTO dto) {
+		HotfixDao.requesterCommissionDown(dto);
+	}
+
+	@Override
+	public void resolverCommissionUp(HotfixDTO dto) {
+		HotfixDao.resolverCommissionUp(dto);
+	}
+
+	@Override
+	public void Drop_Req_cnt(HotfixDTO dto) {
+		HotfixDao.Drop_Req_cnt(dto);
+		
+	}
+
+	@Override
+	public void Completion(HotfixDTO dto) {
+		HotfixDao.Completion(dto);
+	}
+
 
 
 	

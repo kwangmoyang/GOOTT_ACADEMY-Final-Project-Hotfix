@@ -30,4 +30,17 @@ public interface MypageService {
 
 	public int count(String keyword);
 
+//	void insert(MypageDTO dto);
+	
+	
+	void updateUserPhoto(MypageDTO dto);
+	
+	public String UserPhotoView(MypageDTO dto);
+	
+	public void UserContactSet(MypageDTO dto);
+
+
+	
+	
+	
 }

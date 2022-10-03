@@ -46,10 +46,17 @@
 		parameterType="com.Final.Final1.board.model.HotfixDTO"
 		resultType="hashMap">
 		select Request_code,Requester,Request_title,
-		Request_contents,
-		SolverReady_cnt, Commission, Recruiting_time from Request where
+		Request_contents,Solver,
+		SolverReady_cnt, Commission, Recruiting_time,result from Request where
 		Requester=#{Requester};
 	</select>
+	<!-- 해결자 불러오기 -->
+	<select id="mySolverlist"
+		parameterType="com.Final.Final1.board.model.HotfixDTO"
+		resultType="hashMap">
+		select Solver from Request where Requester=#{Requester} ;
+	</select>
+
 
 	<!-- 마이페이지 나의 게시글 불러오기 -->
 	<select id="myWriterlist"
@@ -85,10 +92,32 @@
 	<select id="resolveZone" parameterType="com.Final.Final1.board.model.HotfixDTO" resultType="hashMap">
 		select Request_code,Request_title,Request_contents,Solver,Request_status,Request_start_date,
 		Request_contact_date,Request_end_date,Recruiting_time,Requester,SolverReady_cnt,
-		Commission,SolverReady_cnt2 from Request where Solver=#{Solver};
+		Commission,SolverReady_cnt2,result from Request where Solver=#{Solver};
 	</select>
+	<!-- 요청자가 포기시 -->
+	<update id="giveUpResolve" parameterType="hashMap">
+		update Request set Solver = null where Request_code = #{Request_code };
+	</update>
 	
+	<update id="Drop_Req_cnt" parameterType="hashMap">
+		update User set Drop_Req_cnt = Drop_Req_cnt+1 where User_nickname =#{User_nickname };
+	</update>
 
+	<!-- 요청자 커미션 다운-->
+	<update id="requesterCommissionDown" parameterType="hashMap">
+		update User set Commission = Commission - #{Commission }, Req_cnt = Req_cnt+1 where User_nickname = #{User_nickname };
+	</update>
+	<!-- 해결자 커미션 업-->
+	<update id="resolverCommissionUp" parameterType="hashMap">
+		update User set Commission = Commission + #{Commission }, Sol_cnt = Sol_cnt+1 where User_nickname = #{User_nickname };
+	</update>
+	
+	<!-- 해결완료시 결과값 변경 -->
+	<update id="Completion" parameterType="hashMap">
+		update Request set result = 1 where Request_code = #{Request_code };
+	</update>
+	
+	
 
 	<!-- 해결 Count  -->
 	<!--<select id="count" parameterType="hashMap" resultType="int">
