@@ -8,6 +8,8 @@ public interface HotfixDAO {
 	List<HotfixDTO> list(String keyword, int start, int end, String select);
 
 	List<BoardDTO> myRequestlist(HotfixDTO dto, int start, int end);
+	
+	List<BoardDTO> myRequestlist(HotfixDTO dto);
 
 	void resolveMember(HotfixDTO dto);
 
@@ -37,5 +39,7 @@ public interface HotfixDAO {
 	void Drop_Req_cnt(HotfixDTO dto);
 	
 	void Completion(HotfixDTO dto);
+
+	
 	
 }

@@ -59,6 +59,12 @@ public class AdminServiceImpl implements AdminService{
 	public List<Map<String, Object>> adminBoard(Map<String, Object> map) {
 		return adminDao.adminBoard(map);
 	}
+	//양광모 (아래거지우셈
+	@Override
+	public int userBoardCount(AdminDTO dto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 
 	

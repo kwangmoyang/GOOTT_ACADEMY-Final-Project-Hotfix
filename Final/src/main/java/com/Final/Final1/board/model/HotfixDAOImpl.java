@@ -136,6 +136,11 @@ public class HotfixDAOImpl implements HotfixDAO{
 	public void Completion(HotfixDTO dto) {
 		sqlSession.selectOne("hotfix.Completion",dto);
 	}
+	@Override
+	public List<BoardDTO> myRequestlist(HotfixDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("hotfix.myRequestlist",dto);
+	}
 
 
 	

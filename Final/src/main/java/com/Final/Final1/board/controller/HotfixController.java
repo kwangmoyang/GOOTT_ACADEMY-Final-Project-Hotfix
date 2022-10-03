@@ -2,6 +2,7 @@ package com.Final.Final1.board.controller;
 
 import com.Final.Final1.board.model.BoardDTO;
 import com.Final.Final1.board.model.HotfixDTO;
+import com.Final.Final1.board.model.PageUtil;
 import com.Final.Final1.board.service.HotfixService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,9 +48,11 @@ public class HotfixController {
 		
 
 		List<HotfixDTO> list = hotfixService.list(keyword, start, end, select);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/resolveMain");
 		mv.addObject("list", list);
+		
 		mv.addObject("count", count);
 		mv.addObject("keyword", dto.getKeyword());
 		mv.addObject("page_info", page_info);
@@ -138,9 +141,10 @@ public class HotfixController {
 		PageUtil page_info = new PageUtil(count, curPage);
 		int start = page_info.getPageBegin();
 		int end = page_info.getPageEnd();
-
+		
+		
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
-		List<BoardDTO> list = hotfixService.myRequestlist(dto, start, end);
+		List<BoardDTO> list = hotfixService.myRequestlist(dto,start,end);
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("list", list);
@@ -166,13 +170,18 @@ public class HotfixController {
 	}
 	//해결자 선택하기
 	@RequestMapping("/choiceResolve")
-	public ModelAndView choiceResolve(HotfixDTO dto,HttpSession session) {
+	public ModelAndView choiceResolve(HotfixDTO dto,HttpSession session,@RequestParam(defaultValue="1")int curPage) {
 		ModelAndView mv = new ModelAndView();
 		//ajax로 통해 전달받은 값을 쿼리에 넣어줌
 		
 		//업데이트
 		hotfixService.choiceResolve(dto);
-
+		
+		
+		int count = hotfixService.count(dto);
+		PageUtil page_info = new PageUtil(count, curPage);
+		int start = page_info.getPageBegin();
+		int end = page_info.getPageEnd();
 		
 		// 세션 값 불러옴
 		String name = (String) session.getAttribute("User_nickname");
@@ -184,7 +193,7 @@ public class HotfixController {
 		
 		
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
-		List<BoardDTO> list = hotfixService.myRequestlist(dto);
+		List<BoardDTO> list = hotfixService.myRequestlist(dto,start,end);
 		System.out.println(list);
 		mv.addObject("list", list);
 		mv.setViewName("/mypage/mypage_writer_request");
@@ -317,18 +326,23 @@ public class HotfixController {
 	//포기하기 버튼 클릭시
 	@RequestMapping("/giveUpSolver")
 	public ModelAndView giveUpSolver(HotfixDTO dto,@RequestParam("Request_code") int Request_code,
-			HttpSession session) {
+			HttpSession session,@RequestParam(defaultValue="1")int curPage) {
 		
 		ModelAndView mv = new ModelAndView();
 		dto.setRequest_code(Request_code);
 		hotfixService.giveUpResolve(dto);
+		
+		int count = hotfixService.count(dto);
+		PageUtil page_info = new PageUtil(count, curPage);
+		int start = page_info.getPageBegin();
+		int end = page_info.getPageEnd();
 		
 		
 		// 세션 값 불러옴
 		String name = (String) session.getAttribute("User_nickname");
 		dto.setRequester(name); // 불러온 세션값을 dto에 설정
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
-		List<BoardDTO> list = hotfixService.myRequestlist(dto);
+		List<BoardDTO> list = hotfixService.myRequestlist(dto,start,end);
 		mv.addObject("list", list);
 		
 		//전적 떨어지는거 추가해야함 (테이블 문의)
@@ -340,12 +354,19 @@ public class HotfixController {
 		@RequestMapping("/CompletionResolve")
 		public ModelAndView CompletionResolve(HotfixDTO dto,@RequestParam("Requester") String Requester,
 				@RequestParam("Solver") String Solver,@RequestParam("Commission") int Commission,
-				@RequestParam("Request_code") int Request_code, HttpSession session) {
+				@RequestParam("Request_code") int Request_code, HttpSession session,
+				@RequestParam(defaultValue="1")int curPage) {
 			
 			ModelAndView mv = new ModelAndView();
 			System.out.println(Commission);
 			System.out.println(Requester);
 			System.out.println(Solver);
+			
+			int count = hotfixService.count(dto);
+			PageUtil page_info = new PageUtil(count, curPage);
+			int start = page_info.getPageBegin();
+			int end = page_info.getPageEnd();
+			
 			
 			dto.setCommission(Commission);
 			//요청자의 커미션의 차감
@@ -365,7 +386,7 @@ public class HotfixController {
 			String name = (String) session.getAttribute("User_nickname");
 			dto.setRequester(name); // 불러온 세션값을 dto에 설정
 			// 로그인한 유저가 해결요청한 게시글을 뽑아옴
-			List<BoardDTO> list = hotfixService.myRequestlist(dto);
+			List<BoardDTO> list = hotfixService.myRequestlist(dto,start,end);
 			System.out.println(list);
 			
 			mv.addObject("list", list);

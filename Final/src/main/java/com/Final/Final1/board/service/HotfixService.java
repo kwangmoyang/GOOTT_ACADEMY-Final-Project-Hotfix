@@ -14,22 +14,20 @@ public interface HotfixService {
 	
 	List<BoardDTO> myRequestlist(HotfixDTO dto, int start, int end);
 
+	List<BoardDTO> myRequestlist(HotfixDTO dto);
+	
 	void resolveMember(HotfixDTO dto);
 
 	List<HotfixDTO> resolveMemberlist(int test);
 
 	int count(HotfixDTO dto);
+	int count(String keyword);
+	
 
 	void choiceResolve(HotfixDTO dto);
 
 	List<HotfixDTO> resolveZone(HotfixDTO dto, int start, int end);
 
-	int count(String keyword);
-	
-	// 해결내역 수
-	int resultCount(HotfixDTO dto);
-
-//	List<BoardDTO> list(HotfixDTO dto);
 
 	List<HotfixDTO> mySolverlist(HotfixDTO dto);
 	
@@ -43,4 +41,8 @@ public interface HotfixService {
 	void Drop_Req_cnt(HotfixDTO dto);
 	
 	void Completion(HotfixDTO dto);
+
+	int resultCount(HotfixDTO dto);
+
+	
 }

@@ -52,7 +52,7 @@
 	<select id="myRequestlist"
 		parameterType="com.Final.Final1.board.model.HotfixDTO"
 		resultType="hashMap">
-		 <include refid="paging_header" /> 
+		<include refid="paging_header" /> 
      
 		select Request_code,Requester,Request_title,
 		Request_contents,Solver,
@@ -60,9 +60,12 @@
 		Requester=#{Requester}
     
 		<include refid="paging_footer" />	
-		 
 
 	</select>
+	
+	
+	
+	
   
 	<!-- 해결자 불러오기 -->
 	<select id="mySolverlist"
@@ -108,7 +111,7 @@
 	  <include refid="paging_header" /> 
 		select Request_code,Request_title,Request_contents,Solver,Request_status,Request_start_date,
 		Request_contact_date,Request_end_date,Recruiting_time,Requester,SolverReady_cnt,
-		Commission,SolverReady_cnt2,result from Request where Solver=#{Solver};
+		Commission,SolverReady_cnt2,result from Request where Solver=#{Solver}
     <include refid="paging_footer" />	
 
 	</select>

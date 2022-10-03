@@ -21,6 +21,11 @@ public class HotfixDTO {
 	
 	private String guide;
 	
+	//검색키워드
+	private String keyword;
+	//최신순, 커미션순
+	private String select;
+	
 	
 	
 	
@@ -37,10 +42,7 @@ public class HotfixDTO {
 	public void setGuide(String guide) {
 		this.guide = guide;
 	}
-	//검색키워드
-	private String keyword;
-	//최신순, 커미션순
-	private String select;
+	
 	
 	
 	public String getSolver() {

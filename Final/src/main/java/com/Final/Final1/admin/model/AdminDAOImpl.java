@@ -63,6 +63,13 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlsession.selectList("admin.adminBoard",map);
 	}
 
+	//양광모 (아래거지우셈
+	@Override
+	public int userBoardCount(AdminDTO dto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 
 }

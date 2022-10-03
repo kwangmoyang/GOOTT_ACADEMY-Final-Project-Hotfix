@@ -22,7 +22,7 @@ public class HotfixServiceImpl implements HotfixService{
 	}
 	
 	@Override
-	public List<HotfixDTO> list(String keyword, int start, int end, String select ) {
+	public List<HotfixDTO> list(String keyword, int start, int end, String select) {
 		// TODO Auto-generated method stub
 		return HotfixDao.list(keyword, start, end, select);
 	}
@@ -34,7 +34,13 @@ public class HotfixServiceImpl implements HotfixService{
 	public List<BoardDTO> myRequestlist(HotfixDTO dto, int start, int end) {
 		return HotfixDao.myRequestlist(dto, start, end);
 	}
-
+	
+	@Override
+	public List<BoardDTO> myRequestlist(HotfixDTO dto) {
+		// TODO Auto-generated method stub
+		return HotfixDao.myRequestlist(dto);
+	}
+	
 	@Override
 	public void resolveMember(HotfixDTO dto) {
 		HotfixDao.resolveMember(dto);
@@ -56,7 +62,7 @@ public class HotfixServiceImpl implements HotfixService{
 		// TODO Auto-generated method stub
 		return HotfixDao.Count(keyword);
 	}
-
+	
 
 	
 
@@ -70,6 +76,7 @@ public class HotfixServiceImpl implements HotfixService{
 	public List<HotfixDTO> resolveZone(HotfixDTO dto, int start, int end) {
 		return HotfixDao.resolveZone(dto, start, end);
 	}
+	
 	//해결내역 count
 		@Override
 		public int resultCount(HotfixDTO dto) {
@@ -125,6 +132,11 @@ public class HotfixServiceImpl implements HotfixService{
 		HotfixDao.Completion(dto);
 	}
 
+	
+
+	
+
+	
 
 
 	

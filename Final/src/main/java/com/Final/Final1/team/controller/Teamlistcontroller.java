@@ -41,7 +41,7 @@ public class Teamlistcontroller {
 			mv.setViewName("/team/teamlist");
 			
 			List<Map<String, Object>> taglist = teamlistservice.taglist(map); //Team_has_Tags테이블에서 태그 불러오기 -> 팀목록에서 view
-			List<TeamlistDTO> teamlist = teamlistservice.list(map); //팀목록 불러오기
+			List<TeamlistDTO> teamlist = teamlistservice.list(map,search_option, keyword, start, end); //팀목록 불러오기
 			List<Map<String, Object>> tags = teamlistservice.tags(map); //팀만들기 부분에 태그 전체 불러오기
 
 			
