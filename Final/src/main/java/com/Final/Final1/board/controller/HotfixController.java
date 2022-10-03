@@ -121,7 +121,6 @@ public class HotfixController {
 		ModelAndView mv = new ModelAndView();
 
 		//로그인된 사람의 닉네임을 불러와 신청자 리스트에 담아준다
-		System.out.println("gd");
 		String name = (String) session.getAttribute("User_nickname");
 		dto.setSolver_member(name);
 		hotfixService.resolveMember(dto);
@@ -150,30 +149,45 @@ public class HotfixController {
 		return mv;
 	}
 	
+	
 	//해결요청 내역 상세 클릭시 ajax 값 받아와서 리턴
 	// 해결 신청자 리스트
 	@ResponseBody
 	@RequestMapping("/mypage/writer_request2")
 	public List<HotfixDTO> mypageWriter2(HotfixDTO dto) {
 		//ajax로 통해 전달받은 값을 쿼리에 넣어줌
+		System.out.println(dto.getRequest_code());
 		List<HotfixDTO> resolver = hotfixService.resolveMemberlist(dto.getRequest_code());
 		//신청자 목록 리스트 리턴
 		return resolver;
 	}
 	//해결자 선택하기
 	@RequestMapping("/choiceResolve")
-	public ModelAndView choiceResolve(HotfixDTO dto) {
+	public ModelAndView choiceResolve(HotfixDTO dto,HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		//ajax로 통해 전달받은 값을 쿼리에 넣어줌
-		System.out.println("ㅎㅇ");
 		
 		//업데이트
 		hotfixService.choiceResolve(dto);
+
+		
+		// 세션 값 불러옴
+		String name = (String) session.getAttribute("User_nickname");
+		dto.setRequester(name); // 불러온 세션값을 dto에 설정
+		
+		// 요청자 해결포기 카운트
+		dto.setUser_nickname(name);
+		hotfixService.Drop_Req_cnt(dto);
 		
 		
+		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
+		List<BoardDTO> list = hotfixService.myRequestlist(dto);
+		System.out.println(list);
+		mv.addObject("list", list);
 		mv.setViewName("/mypage/mypage_writer_request");
 		return mv;
 	}
+
 
 	/**
 	 * @param multiFile
@@ -296,6 +310,69 @@ public class HotfixController {
 			}
 		}
 	}
+
+	//포기하기 버튼 클릭시
+	@RequestMapping("/giveUpSolver")
+	public ModelAndView giveUpSolver(HotfixDTO dto,@RequestParam("Request_code") int Request_code,
+			HttpSession session) {
+		
+		ModelAndView mv = new ModelAndView();
+		dto.setRequest_code(Request_code);
+		hotfixService.giveUpResolve(dto);
+		
+		
+		// 세션 값 불러옴
+		String name = (String) session.getAttribute("User_nickname");
+		dto.setRequester(name); // 불러온 세션값을 dto에 설정
+		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
+		List<BoardDTO> list = hotfixService.myRequestlist(dto);
+		mv.addObject("list", list);
+		
+		//전적 떨어지는거 추가해야함 (테이블 문의)
+		
+		mv.setViewName("/mypage/mypage_writer_request");
+		return mv;
+	}
+		//해결완료 버튼 클릭시
+		@RequestMapping("/CompletionResolve")
+		public ModelAndView CompletionResolve(HotfixDTO dto,@RequestParam("Requester") String Requester,
+				@RequestParam("Solver") String Solver,@RequestParam("Commission") int Commission,
+				@RequestParam("Request_code") int Request_code, HttpSession session) {
+			
+			ModelAndView mv = new ModelAndView();
+			System.out.println(Commission);
+			System.out.println(Requester);
+			System.out.println(Solver);
+			
+			dto.setCommission(Commission);
+			//요청자의 커미션의 차감
+			dto.setUser_nickname(Requester);
+			hotfixService.requesterCommissionDown(dto);
+			
+			//해결자의 커미션이 증가
+			dto.setUser_nickname(Solver);
+			hotfixService.resolverCommissionUp(dto);
+			
+			//해당 게시물이 완료됨으로 변경 (result)
+			dto.setRequest_code(Request_code);
+			hotfixService.Completion(dto);
+			
+			
+			// 세션 값 불러옴
+			String name = (String) session.getAttribute("User_nickname");
+			dto.setRequester(name); // 불러온 세션값을 dto에 설정
+			// 로그인한 유저가 해결요청한 게시글을 뽑아옴
+			List<BoardDTO> list = hotfixService.myRequestlist(dto);
+			System.out.println(list);
+			
+			mv.addObject("list", list);
+			
+			//전적 떨어지는거 추가해야함 (테이블 문의)
+			
+			mv.setViewName("/mypage/mypage_writer_request");
+			return mv;
+		}	
+
 
 
 }

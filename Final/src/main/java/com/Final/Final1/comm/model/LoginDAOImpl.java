@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.Final.Final1.mypage.model.MypageDTO;
+
 @Repository // 구현할 메서드 찾아와줌
 public class LoginDAOImpl implements LoginDAO{
 
@@ -52,6 +54,16 @@ public class LoginDAOImpl implements LoginDAO{
 	@Override
 	public Map<String, Object> User_nickname_Chk(Map<String, Object> map) {
 		return sqlSession.selectOne("login.User_nickname_Chk",map);
+	}
+
+	@Override
+	public String UserEmailinfo(MypageDTO dto) {
+		return sqlSession.selectOne("userinfo.UserEmailinfo",dto);
+	}
+
+	@Override
+	public String UserEmailAndIDinfo(MypageDTO dto) {
+		return sqlSession.selectOne("userinfo.UserEmailAndIDinfo",dto);
 	}
 
 	

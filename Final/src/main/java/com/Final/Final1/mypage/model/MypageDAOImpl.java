@@ -74,7 +74,29 @@ public class MypageDAOImpl implements MypageDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("userinfo.count" ,keyword);
 	}
-	
+
+//	@Override
+//	public void insert(MypageDTO dto) {
+//		sqlSession.insert("userinfo.insert" ,dto);
+//		
+//	}
+
+	@Override
+	public void updateUserPhoto(MypageDTO dto) {
+		sqlSession.update("userinfo.updateUserPhoto" ,dto);
+	}
+
+	@Override
+	public String UserPhotoView(MypageDTO dto) {
+		return sqlSession.selectOne("userinfo.UserPhotoView",dto);
+	}
+
+	@Override
+	public void UserContactSet(MypageDTO dto) {
+		sqlSession.selectOne("userinfo.UserContactSet",dto);
+		
+	}
+
 	
 	
 	

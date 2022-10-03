@@ -2,6 +2,8 @@ package com.Final.Final1.comm.model;
 
 import java.util.Map;
 
+import com.Final.Final1.mypage.model.MypageDTO;
+
 public interface LoginDAO {
 	Map<String, Object> UserInfo_Chk(Map<String, Object> map); //아이디&비밀번호 일치 확인
 	
@@ -19,4 +21,9 @@ public interface LoginDAO {
 	void Mistake_cnt_Up2(LoginDTO dto);
 
 	Map<String, Object> User_nickname_Chk(Map<String, Object> map); //회원정보중 일치하는 닉네임이 있는지?
+	
+	String UserEmailinfo(MypageDTO dto);
+	
+	String UserEmailAndIDinfo(MypageDTO dto);
+	
 }

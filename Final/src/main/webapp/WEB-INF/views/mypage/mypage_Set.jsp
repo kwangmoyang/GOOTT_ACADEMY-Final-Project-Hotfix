@@ -38,20 +38,23 @@
 					<p class="myPage_titleText">${sessionScope.User_nickname } 님의 정보</p>
 					<!-- 프로필사진 -->
 					<p class="mypage_title">
-						프로필사진 변경 <i class="uil uil-question-circle"></i>
+						프로필사진 변경 
 					</p>
 					<div class="comition_1">
+						<form method="POST" enctype="multipart/form-data" action="/fileTest">
 						<div>
-							<input type="file">
+							<input type="file" name="file">
+							<input type="submit" value="등록">
 						</div>
+						</form>
 						<div>
-							<a href="">수정<i class="uil uil-angle-right-b"></i></a>
+							
 						</div>
 					</div>
 					<!-- 닉네임 -->
 
 					<p class="mypage_title">
-						닉네임 변경 <i class="uil uil-question-circle"></i>
+						닉네임 변경 
 					</p>
 					<div class="comition_1">
 						<div class="info_before">${sessionScope.User_nickname }</div>
@@ -75,7 +78,7 @@
 
 					<!-- 폰번호 수정 -->
 					<p class="mypage_title">
-						핸드폰번호 변경 <i class="uil uil-question-circle"></i>
+						핸드폰번호 변경 
 					</p>
 					<div class="comition_1">
 						<div class="info_before">${sessionScope.Phone_num }</div>
@@ -97,7 +100,7 @@
 					</div>
 					<!-- 이메일 수정 -->
 					<p class="mypage_title">
-						이메일 변경 <i class="uil uil-question-circle"></i>
+						이메일 변경 
 					</p>
 					<div class="comition_1">
 						<div class="info_before">${sessionScope.Email_address }</div>
@@ -119,7 +122,7 @@
 					</div>
 					<!-- 비번 수정 -->
 					<p class="mypage_title">
-						비밀번호 변경 <i class="uil uil-question-circle"></i>
+						비밀번호 변경 
 					</p>
 					<div class="comition_1">
 						<div class="info_before">${sessionScope.User_pw }</div>
@@ -143,7 +146,7 @@
 
 					<!-- 자기소개 -->
 					<p class="mypage_title">
-						자기소개 수정 <i class="uil uil-question-circle"></i>
+						자기소개 수정 
 					</p>
 					<div class="comition_1">
 						<div class="info_before">${sessionScope.User_introduce }</div>
@@ -170,35 +173,21 @@
 					<p class="mypage_title">소셜정보</p>
 					<div class="contact">
 						<div class="info_before">
-							<p>
-								github : <span>ddd</span>
-							</p>
-							<p>
-								home : <span>ddd</span>
-							</p>
-							<p>
-								blog : <span>ddd</span>
-							</p>
+							<p>github : <span>${sessionScope.User_contact1 }</span></p>
+							<p>home : <span>${sessionScope.User_contact2 }</span></p>
+							<p>blog : <span>${sessionScope.User_contact3 }</span></p>
 						</div>
 						<div class="update_before">
 							<button>수정</button>
 						</div>
 
 						<div class="formsection">
-							<form action="/mypage/setok" class="form1" method="POST">
+							<form action="/mypage/UserContactSet" class="form1" method="POST">
 								<div class="info_after">
-									<p>
-										github : <span><input type="text" name="" id=""
-											value="양광모1모"></span>
-									</p>
-									<p>
-										home : <span><input type="text" name="" id=""
-											value="양광모2모"></span>
-									</p>
-									<p>
-										blog : <span><input type="text" name="" id=""
-											value="양광모3모"></span>
-									</p>
+									<input type="hidden" name="User_id" id="" value="${sessionScope.User_id }">
+									<p>HOME : <span><input type="text" name="User_contact1" id="" value="${sessionScope.User_contact1 }"></span></p>
+									<p>Git Hub : <span><input type="text" name="User_contact2" id="" value="${sessionScope.User_contact2 }"></span></p>
+									<p>Velog : <span><input type="text" name="User_contact3" id="" value="${sessionScope.User_contact3 }"></span></p>
 								</div>
 
 								<div class="update_after">
@@ -210,7 +199,7 @@
 					</div>
 					<!-- 계좌정보 -->
 					<p class="mypage_title">
-						계좌정보 변경 <i class="uil uil-question-circle"></i>
+						계좌정보 변경 
 					</p>
 					<div class="comition_1">
 						<div class="info_before">dd</div>
@@ -230,7 +219,7 @@
 						</div>
 					</div>
 					<!-- 알림설정 -->
-					<p class="mypage_title">
+					<!-- <p class="mypage_title">
 						알림 설정 <i class="uil uil-question-circle"></i>
 					</p>
 					<div class="comition_1">
@@ -249,10 +238,10 @@
 								</div>
 							</form>
 						</div>
-					</div>
+					</div> -->
 					<!-- 탈퇴기능 -->
 					<p class="mypage_title">
-						탈퇴하기 <i class="uil uil-question-circle"></i>
+						탈퇴하기 
 					</p>
 					<form method="POST" action="/UserDelete" id="UserOut">
 					<div class="comition_1">

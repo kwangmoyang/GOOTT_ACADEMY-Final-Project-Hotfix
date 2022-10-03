@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.Final.Final1.comm.model.LoginDAO;
 import com.Final.Final1.comm.model.LoginDTO;
 import com.Final.Final1.comm.service.LoginService;
+import com.Final.Final1.mypage.model.MypageDTO;
 
 @Service
 public class LoginServiceImpl implements LoginService{
@@ -58,6 +59,16 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public Map<String, Object> User_nickname_Chk(Map<String, Object> map) {
 		return loginDao.User_nickname_Chk(map);
+	}
+
+	@Override
+	public String UserEmailinfo(MypageDTO dto) {
+		return loginDao.UserEmailinfo(dto);	
+	}
+
+	@Override
+	public String UserEmailAndIDinfo(MypageDTO dto) {
+		return loginDao.UserEmailAndIDinfo(dto);	
 	}
 
 }

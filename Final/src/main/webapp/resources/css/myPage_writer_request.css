@@ -281,21 +281,38 @@ input:-webkit-autofill {
 
 }
 /* 해결 게시판 왼쪽 */
-.RmBoardLeft {
-    width: 70%;
+.RmBoard {
+    margin: 30px auto;
+    width: 95%;
+    height: 180px;
+    background-color: #ccc;
+    border-radius: 5px;
     display: flex;
+
+}
+/* 해결 게시판 왼쪽 */
+.RmBoardLeft {
+    width: 60%;
+    /* display: flex; */
     align-items: left;
-    flex-direction: column;
-    border-right: 1px solid #aaa;
+    
+
 }
 
 .RmBoardLeft > p {
     margin: 15px 20px;
 }
 .RmBoardLeft > p:nth-child(1) {
-    font-size: 30px;
+    font-size: 20px;
     color: red;
 }
+
+.RmBoardCenter{
+    width: 25%;
+    text-align: center;
+    
+}
+
 /* 해결 게시판 오른쪽 */
 .RmBoardRight {
     display: flex;
@@ -307,14 +324,33 @@ input:-webkit-autofill {
 .RmBoardRight > p {
     margin: 5px 30px;
 }
-.RmBoardRight > button {
+.DetailModal{
     margin: 10px 30px;
     padding: 12px 20px;
     border: none;
     color: white;
-    background-color: var(--main-red-color);
+    background-color: blue;
     border-radius: 5px;
 }
+
+.GiveUpBtn{
+	margin: 10px 30px;
+    padding: 12px 20px;
+    border: none;
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+}
+
+.ChatOpenBtn,.ResultOk{
+	margin: 10px 30px;
+    padding: 12px 20px;
+    border: none;
+    color: white;
+    background-color: green;
+    border-radius: 5px;
+}
+
 /* --------모달------------- */
 /* 스크롤막기 */
 html, body {

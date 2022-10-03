@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../resources/css/find.css">
-    <title>find_pw</title>
+    <title>HOTFIX</title>
 </head>
 
 <body>
@@ -18,41 +18,31 @@
                 <img src="../../resources/img/HOT.png" alt="" srcset="">
             </div>
             <div class="find_Header">
-                <h1>아이디 / 비밀번호 찾기</h1>
-            </div>
-            <div class="find_Area">
-                <input type="button" value="아이디 찾기" onclick="location.href='find_id.html'">
-                <input type="button" value="비밀번호 찾기" onclick="location.href='find_pw.html'">
+                <h1>비밀번호  찾기</h1>
             </div>
 
-            <div class="find_ChoicePw">
+            <div class="find_ChoiceId">
+            	<br>
                 <h4>비밀번호를 잊으셨나요?</h4>
-                <h4>찾고자 하는 계정의 아이디를 입력하시고 </h4>
-                <h4>아래의 방법을 선택해주세요.</h4>
+                <h4>가입시 등록한 ID와 이메일 주소를 입력해주세요!</h4>
             </div>
-            <div class="find_ID">
-                <input type="text" name="" id="" placeholder="아이디를 입력해주세요">
+            <form action="/find_user_pwChk" method="POST">
+            <div class="find_Email">
+                <h4>정보 입력</h4>
+                <input type="email" name="Email_address" id="" value="" placeholder="이메일을 입력해주세요">
             </div>
             <div class="find_Email">
-                <h4>등록된 이메일로 찾기</h4>
-                <input type="text" name="" id="" placeholder="이름">
-                <input type="email" name="" id="" placeholder="이메일을 입력해주세요">
+                <h4>ID 입력</h4>
+                <input type="text" name="User_id" id="" value="" placeholder="이메일을 입력해주세요">
             </div>
-            <div class="find_Phone">
-                <h4>등록된 핸드폰번호로 찾기</h4>
-                <input type="text" name="" id="" placeholder="이름">
-                <input id="find_Phone1" type="text" size="1" maxlength="3" oninput="changePhone1()"> -
-                <input id="find_Phone2" type="text" size="3" maxlength="4" oninput="changePhone2()"> -
-                <input id="find_Phone3" type="text" size="3" maxlength="4" oninput="changePhone3()">
+            <p>${noJoinUser }</p>
+            <div class="find_BtnId">
+                <input id="find_BtnId2" type="submit" value="확인">
             </div>
-
-            <div class="find_BtnPw">
-                <input id="find_BtnPw1" type="submit" value="취소" onclick="location.href='login.html'">
-                <input id="find_BtnPw2" type="submit" value="확인">
-            </div>
-
+			</form>
         </div>
     </div>
 </body>
+
 
 </html>
