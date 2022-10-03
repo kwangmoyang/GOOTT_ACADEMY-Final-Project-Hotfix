@@ -20,10 +20,12 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	TeamlistDAO teamlistdao;
 
 	@Override
-	public List<TeamlistDTO> list(Map<String, Object> map) {
-		
-		return teamlistdao.list(map);
+	public List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword, int start, int end) {
+		// TODO Auto-generated method stub
+		return teamlistdao.list(map, search_option,keyword,start,end);
 	}
+	
+	
 
 	@Override
 	public List<Map<String, Object>> taglist(Map<String, Object> map) {
@@ -115,6 +117,8 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	public List<Map<String, Object>> teaminfo_int(Map<String, Object> map) {
 		return this.teamlistdao.teaminfo_int(map);
 	}
+
+	
 
 
 }

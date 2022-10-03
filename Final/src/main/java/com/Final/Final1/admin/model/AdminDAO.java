@@ -8,10 +8,16 @@ public interface AdminDAO {
 	List<Map<String, Object>> adminMemList(Map<String, Object> map);
 	
 	int userCount(AdminDTO dto);
+
+
+	List<AdminDTO> userBoard(int start, int end, String select);
 	
-	List<Map<String, Object>> userBoard(Map<String, Object> map);
+	int userBoardCount();
+
 	
-	int userBoardCount(AdminDTO dto);
+//	List<Map<String, Object>> userBoard(Map<String, Object> map);
+//	
+//	int userBoardCount(AdminDTO dto);
 
 }
 

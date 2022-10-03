@@ -1,5 +1,6 @@
 package com.Final.Final1.mypage.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,20 +60,35 @@ public class MypageDAOImpl implements MypageDAO {
 		sqlSession.selectOne("userinfo.UserDelete",userid);
 	}	
 
-
-	public List<BoardDTO> myRequestlist(MyWriterListDTO dto) {
-		return sqlSession.selectList("userinfo.myWriterlist",dto);
+//	마이페이지 게시글
+	public List<BoardDTO> myRequestlist(MyWriterListDTO dto, int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("Post_writer", dto.getPost_writer());
+		map.put("start", start);
+		map.put("end", end);
+		
+		return sqlSession.selectList("userinfo.myWriterlist", map);
 	}
 
 	@Override
-	public List<BoardDTO> myCommentlist(MyCommentListDTO dto) {
-		return sqlSession.selectList("userinfo.myCommentlist",dto);
+	public List<BoardDTO> myCommentlist(MyCommentListDTO dto,  int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("Comment_writer", dto.getComment_writer());
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("userinfo.myCommentlist", map);
 	}
 
 	@Override
-	public int count(String keyword) {
+	public int count(MyWriterListDTO dto) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("userinfo.count" ,keyword);
+	
+		return sqlSession.selectOne("userinfo.count" , dto );
+	}
+	//마이페이지 댓글 
+	@Override
+	public int commentCount(MyCommentListDTO dto) {
+		return sqlSession.selectOne("userinfo.commentCount" ,dto);
 	}
 	
 	

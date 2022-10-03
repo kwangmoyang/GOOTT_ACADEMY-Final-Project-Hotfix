@@ -1,5 +1,6 @@
 package com.Final.Final1.admin.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -10,10 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Final.Final1.admin.model.AdminDAO;
 import com.Final.Final1.admin.service.AdminService;
+import com.Final.Final1.board.model.BoardDTO;
+import com.Final.Final1.board.model.PageUtil;
 import com.Final.Final1.admin.model.AdminDTO;
 
 
@@ -54,16 +58,45 @@ public class AdminController {
 		return "/admin/admin_BoardMng";
 	}
 	
-	// 게시판관리에 회원게시글페이지
+	// 게시판 회원 게시판 
 	@RequestMapping(value = "/admin/board_mem", method = RequestMethod.GET)
-	public ModelAndView adminBoardMem(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request) {
+	public ModelAndView adminBoardMem(HttpServletRequest req, @RequestParam(defaultValue="1")int curPage,
+			@RequestParam(defaultValue ="all")String search_option) {
+		AdminDTO dto = new AdminDTO();
+		String select = req.getParameter("select");
+		dto.setSelect(select);
+		
 		ModelAndView mv = new ModelAndView();
-		int userBoardCount = adminService.userBoardCount(dto);
-		mv.addObject("count", userBoardCount);
-		mv.addObject("map", adminService.userBoard(map));
+		
+		int userBoardCount = adminService.userBoardCount();
+		PageUtil page_info = new PageUtil(userBoardCount, curPage);
+		int start = page_info.getPageBegin();
+		int end = page_info.getPageEnd();
+		
+		List<AdminDTO> list = adminService.userBoard(start, end, select );
 		mv.setViewName("/admin/admin_BoardMem");
+		
+		mv.addObject("count", userBoardCount);
+		mv.addObject("map",list);
+		mv.addObject("page_info", page_info);
+		mv.addObject("search_option", dto.getSelect());
+		
+		
+		
 		return mv;
-	}
+	}	
+		
+
+	
+//	@RequestMapping(value = "/admin/board_mem", method = RequestMethod.GET)
+//	public ModelAndView adminBoardMem(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request) {
+//		ModelAndView mv = new ModelAndView();
+//		int userBoardCount = adminService.userBoardCount(dto);
+//		mv.addObject("count", userBoardCount);
+//		mv.addObject("map", adminService.userBoard(map));
+//		mv.setViewName("/admin/admin_BoardMem");
+//		return mv;
+//	}
 	
 	
 	// 1:1문의페이지

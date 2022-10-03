@@ -24,10 +24,12 @@ public interface MypageService {
 
 	public void UserDelete(String userid);
 
-	public List<BoardDTO> myRequestlist(MyWriterListDTO dto);
+	public List<BoardDTO> myRequestlist(MyWriterListDTO dto, int start, int end);
 
-	public List<BoardDTO> myCommentlist(MyCommentListDTO dto);
+	public List<BoardDTO> myCommentlist(MyCommentListDTO dto, int start, int end);
 
-	public int count(String keyword);
+	public int count(MyWriterListDTO dto);
+
+	public int commentCount(MyCommentListDTO dto);
 
 }

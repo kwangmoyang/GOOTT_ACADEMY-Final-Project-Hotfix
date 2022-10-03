@@ -127,7 +127,7 @@ input[type="checkbox"]{
 /* ================================= */
 .myPage{
     width: 100%;
-    height: 150vh;
+    height: 100%;
     /* border: solid 3px blue; */
 
     padding: 0% 10%;
@@ -146,7 +146,7 @@ input[type="checkbox"]{
 /* 게시판 전체 컨테이너 */
 .board_container {
     width: 90%;
-    height: 1050px;
+    height: 100%;
     margin: 0 auto;
 }
 /* 게시판 타이틀 */

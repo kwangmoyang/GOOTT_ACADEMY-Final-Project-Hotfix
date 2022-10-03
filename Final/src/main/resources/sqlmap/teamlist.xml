@@ -1,142 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team">
-	<!-- 팀 카운트 쿼리 -->
-	<select id="count" parameterType="hashMap" resultType="int">
-	
-	     select count(*) from Team
-		<!--  <choose>
-	         <when test="search_option == 'all' ">
-	            where 1=1
-	            and (Team_name like CONCAT('%', #{keyword}, '%')
-	               or Team_intro like CONCAT('%', #{keyword}, '%')
-	               or Tags_Tag_Name like CONCAT ('%', #{keyword} ,'%'))
-	         </when>
-	         <when test="search_option == 'Teamname'">
-	            where 1=1 and Team_name like CONCAT('%', #{keyword}, '%')
-	         </when>
-	         <when test="search_option == 'tagname'">
-	            where 1=1 and Tags_Tag_Name like CONCAT ('%', #{keyword} ,'%')
-	         </when> 
-	      </choose>	 -->
-	</select>
+   <!-- 팀 카운트 쿼리 -->
+   <select id="count" parameterType="hashMap" resultType="int">
+			select count(*)from Team t1
+      left outer join Team_has_Tags t2
+      on t1.Team_name = t2.Team_name 
+      <include refid="search"/>
+      order by Team_cr_date DESC;
+   </select>
 
 
-	<!-- 전체목록 불러오는 쿼리 -->
-	<select id="list" parameterType="hashMap" resultType="hashMap">
-		select t1.Team_code, t1.Team_name, t1.Team_intro, t1.Team_cr_date, t2.Tags_Tag_Name from Team t1
-		left outer join Team_has_Tags t2
-		on t1.Team_code = t2.Team_Team_code
-		<include refid="search"/>
-		group by t1.Team_name
-		order by Team_cr_date DESC;
-	</select>
-	
-	<!-- 전체목록 중 팀 태그 따로 불러옴 -->
-	<select id="taglist" parameterType="hashMap" resultType="hashMap">
-		 select t.Team_code, t.Team_name, tag.Tags_Tag_Name from Team t inner join Team_has_Tags tag on t.Team_code = tag.Team_Team_code;
-	</select>
-	
-	<!-- 팀만들기 -->
-	<insert id="teammake" parameterType="hashMap">  
-	    insert into Team (Team_name, Team_intro, Team_leader, Team_agreeChk) values (#{maketeamname}, #{teamintro}, #{usernickname}, 1);
-	</insert>
-	<update id="teammakeupdate" parameterType="hashMap">
-		update User set Team_name = #{maketeamname}, Leader_auth = 1 where User_nickname = #{usernickname};
-	</update>
-	
-	<!-- 팀이름 중복있나 -->
-	<select id="teammakecheck" parameterType="hashMap" resultType="hashMap">
-		select Team_name from Team where Team_name = #{maketeamname};
-	</select>
-	
-	<!-- 팀이 이미 있는 유저인가 -->
-	<select id="teammakecheck2" parameterType="hashMap" resultType="hashMap">
-		select Team_name from User where User_nickname = #{usernickname};
-	</select>
-	
-	<!-- 팀만들기에서 tag insert -->
-	
-	
-	<!-- 태그들 불러오기 -->
-	<select id="tags" parameterType="hashMap" resultType="hashMap">
-		select Tag_Name from Tags;
-	</select>
-	
-	<!-- 팀 가입하기 -->
-	<update id="teamjoin" parameterType="hashMap">
-		update User set Team_name = #{jointeamname} where User_nickname = #{User_nickname};
-	</update>
-	<insert id="teamjoininsert" parameterType="hashMap">
-		insert into Team_Members (Team_Member, Team_name) value(#{User_nickname}, #{jointeamname});
-	</insert>
-	
-	<!-- 조건 쿼리 -->
-	<!-- 유저한테 팀이 있으면 -->
-	<select id="teamjoin_team" parameterType="hashMap" resultType="hashMap">
-		select Team_name from User where User_nickname = #{User_nickname};
-	</select>
-	
-	<!-- 팀 탈퇴하기 (공통)-->
-	<update id="teamsecession" parameterType="hashMap">
-		update User set Team_name =null where User_nickname = #{Usernickname};
-	</update>
+   <!-- 전체목록 불러오는 쿼리 -->
+   <select id="list" parameterType="hashMap" resultType="hashMap">
+   <include refid="paging_header" />
+      select t1.Team_code, t1.Team_name, t1.Team_intro, t1.Team_cr_date, t2.Tags_Tag_Name from Team t1
+      left outer join Team_has_Tags t2
+      on t1.Team_name = t2.Team_name
+      <include refid="search"/>
+      
+      group by t1.Team_name
+       order by Team_cr_date DESC
+      <include refid="paging_footer" />
+   </select>
+   
+   <!-- 전체목록 중 팀 태그 따로 불러옴 -->
+   <select id="taglist" parameterType="hashMap" resultType="hashMap">
+       select t.Team_code, t.Team_name, tag.Tags_Tag_Name from Team t inner join Team_has_Tags tag on t.Team_name = tag.Team_name;
+   </select>
+   
+   <!-- 팀만들기 -->
+   <insert id="teammake" parameterType="hashMap">  
+       insert into Team (Team_name, Team_intro, Team_leader, Team_agreeChk) values (#{maketeamname}, #{teamintro}, #{usernickname}, 1);
+   </insert>
+   <update id="teammakeupdate" parameterType="hashMap">
+      update User set Team_name = #{maketeamname}, Leader_auth = 1 where User_nickname = #{usernickname};
+   </update>
+   
+   <!-- 팀이름 중복있나 -->
+   <select id="teammakecheck" parameterType="hashMap" resultType="hashMap">
+      select Team_name from Team where Team_name = #{maketeamname};
+   </select>
+   
+   <!-- 팀이 이미 있는 유저인가 -->
+   <select id="teammakecheck2" parameterType="hashMap" resultType="hashMap">
+      select Team_name from User where User_nickname = #{usernickname};
+   </select>
+   
+   <!-- 팀만들기에서 tag insert -->
+   <insert id="taginsert" parameterType="hashMap">
+         insert into Team_has_Tags (Team_name, Tags_Tag_Name) values (#{maketeamname}, #{tagarray});
+   </insert>
 
-	<!-- 일반 유저면 이것도 같이 삭제-->
-	<delete id="teamsecessiondelete" parameterType="hashMap">
-		delete from Team_Members where Team_Member = #{Usernickname};
-	</delete>
+   <!-- 태그들 불러오기 -->
+   <select id="tags" parameterType="hashMap" resultType="hashMap">
+      select Tag_Name from Tags;
+   </select>
+   
+   <!-- 조건 쿼리 -->
+   <!-- 유저한테 팀이 있으면 -->
+   <select id="teamjoin_team" parameterType="hashMap" resultType="hashMap">
+      select Team_name from User where User_nickname = #{User_nickname};
+   </select>
+
+   <!-- 팀가입 신청보내기 -->   
+   <insert id="teamjoinmessage" parameterType="hashMap">
+      insert into Team_NOT_Members (Team_unaccept_member, Team_name) values (#{User_nickname} , #{jointeamname});
+   </insert>
+   
+   
+   
+   <!-- 팀 탈퇴하기 (공통)-->
+   <update id="teamsecession" parameterType="hashMap">
+      update User set Team_name =null, Leader_auth = 0 where User_nickname = #{Usernickname};
+   </update>
+
+   <!-- 일반 유저면 이것도 같이 삭제-->
+   <delete id="teamsecessiondelete" parameterType="hashMap">
+      delete from Team_Members where Team_Member = #{Usernickname};
+   </delete>
+   
+   <!-- 팀장이면 team테이블의 team_leader에서 삭제 -> 그냥 팀자체삭제됨 -->
+   <!--update Team set Team_leader = null where Team_name = #{secessionteamname}-->
+   <delete id="teamsecession_teamleaderdelete" parameterType="hashMap">
+      delete from Team where Team_name = #{secessionteamname};
+   </delete>
+   
+   <!-- 조건 쿼리 -->
+   <!-- 팀리더면 -->
+   <select id="teamsecession_teamleader" parameterType="hashMap" resultType="String">
+      select Team_leader from Team where Team_name = #{secessionteamname};
+   </select>
+   
+   <!-- 팀모달창 -->
+   <select id="teaminfo_notice"  parameterType="hashMap" resultType="hashMap">
+      select Team_notice from Team where Team_name = #{teaminfo_teamname};
+   </select>
+   
+   <select id="teaminfo_int" parameterType="hashMap" resultType="hashMap">
+      select round(avg(User_Score)) TeamScore, sum(commission) Teampoint from User where Team_name = #{teaminfo_teamname};
+   </select>
+   
+   <select id="teaminfo_teamleader"  parameterType="hashMap" resultType="hashMap">
+      select User_score,  commission, Email_address , User_nickname from User 
+      where user_nickname in (select Team_leader from Team where Team_name = #{teaminfo_teamname});
+   </select>
+   
+   <!-- 팀리더도 같이 불러올 것임 + 팀멤버 -->
+   <select id="teaminfo_members"  parameterType="hashMap" resultType="hashMap">
+      select User_nickname, commission, Email_address, User_score from User where Team_name = #{teaminfo_teamname} and not Leader_auth = 1;
+   </select>
+   
+   <!-- 클릭한 팀의 이름 -->
+   
+   
+   
+   <sql id="search">
+      <choose>
+            <when test="search_option == 'all' ">
+               where 1=1
+               and (t1.Team_name like CONCAT('%', #{keyword}, '%')
+                  or t1.Team_intro like CONCAT('%', #{keyword}, '%')
+                  or t2.Tags_Tag_Name like CONCAT ('%', #{keyword} ,'%'))
+            </when>
+            <when test="search_option == 'Teamname'">
+               where 1=1 and t1.Team_name like CONCAT('%', #{keyword}, '%')
+            </when>
+             <when test="search_option == 'tagname'">
+               where 1=1 and t2.Tags_Tag_Name like CONCAT ('%', #{keyword} ,'%')
+            </when>
+         </choose>
+   </sql>
+   
+   <sql id="paging_header">
+		select *
+		from(
+			select @ROWNUM:=@ROWNUM+1 as rn, A.* 
+			from(
+	</sql>
+	<sql id="paging_footer">
+		) A
+	where (@rownum:=0)=0 ) rn 
+	where rn between #{start} and #{end}
 	
-	<!-- 팀장이면 team테이블의 team_leader에서 삭제 -> 그냥 팀자체삭제됨 -->
-	<!--update Team set Team_leader = null where Team_name = #{secessionteamname}-->
-	<delete id="teamsecession_teamleaderdelete" parameterType="hashMap">
-		delete from Team where Team_name = #{secessionteamname};
-	</delete>
-	
-	<!-- 조건 쿼리 -->
-	<!-- 팀리더면 -->
-	<select id="teamsecession_teamleader" parameterType="hashMap" resultType="String">
-		select Team_leader from Team where Team_name = #{secessionteamname};
-	</select>
-	
-	<!-- 팀모달창 -->
-	<select id="teaminfo_notice"  parameterType="hashMap" resultType="hashMap">
-		select Team_notice from Team where Team_name = #{teaminfo_teamname};
-	</select>
-	
-	<select id="teaminfo_int" parameterType="hashMap" resultType="hashMap">
-		select round(avg(User_Score)) TeamScore, sum(commission) Teampoint from User where Team_name = #{teaminfo_teamname};
-	</select>
-	
-	<select id="teaminfo_teamleader"  parameterType="hashMap" resultType="hashMap">
-		select User_score,  commission, Email_address , User_nickname from User 
-		where user_nickname in (select Team_leader from Team where Team_name = #{teaminfo_teamname});
-	</select>
-	
-	<!-- 팀리더도 같이 불러올 것임 + 팀멤버 -->
-	<select id="teaminfo_members"  parameterType="hashMap" resultType="hashMap">
-		select User_nickname, commission, Email_address, User_score from User where Team_name = #{teaminfo_teamname};
-	</select>
-	
-	<!-- 클릭한 팀의 이름 -->
-	
-	
-	
-	<sql id="search">
-		<choose>
-	         <when test="search_option == 'all' ">
-	            where 1=1
-	            and (t1.Team_name like CONCAT('%', #{keyword}, '%')
-	               or t1.Team_intro like CONCAT('%', #{keyword}, '%')
-	               or t2.Tags_Tag_Name like CONCAT ('%', #{keyword} ,'%'))
-	         </when>
-	         <when test="search_option == 'Teamname'">
-	            where 1=1 and t1.Team_name like CONCAT('%', #{keyword}, '%')
-	         </when>
-	          <when test="search_option == 'tagname'">
-	            where 1=1 and t2.Tags_Tag_Name like CONCAT ('%', #{keyword} ,'%')
-	         </when>
-	      </choose>
 	</sql>
 	
+   
 </mapper>

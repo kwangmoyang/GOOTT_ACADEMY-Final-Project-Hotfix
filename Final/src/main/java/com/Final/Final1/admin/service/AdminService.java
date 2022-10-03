@@ -11,8 +11,12 @@ public interface AdminService {
 	
 	int userCount(AdminDTO dto);
 	
-	List<Map<String, Object>> userBoard(Map<String, Object> map);
+	List<AdminDTO> userBoard(int start, int end, String select);
 	
-	int userBoardCount(AdminDTO dto);
+	int userBoardCount();
+
+//	List<Map<String, Object>> userBoard(Map<String, Object> map);
+//	
+//	int userBoardCount(AdminDTO dto);
 }
 

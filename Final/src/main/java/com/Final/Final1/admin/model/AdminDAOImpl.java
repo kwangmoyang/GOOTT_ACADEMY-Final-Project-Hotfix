@@ -1,5 +1,6 @@
 package com.Final.Final1.admin.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,15 +26,32 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlsession.selectOne("admin.userCount", dto);
 	}
 
+	
 	@Override
-	public List<Map<String, Object>> userBoard(Map<String, Object> map) {
-		return sqlsession.selectList("admin.userBoard",map);
+	public List<AdminDTO> userBoard(int start, int end, String select) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("start", start);
+		map.put("end", end);
+		map.put("search_option", select);
+		
+		return sqlsession.selectList("admin.userBoard", map);
 	}
 
 	@Override
-	public int userBoardCount(AdminDTO dto) {
-		return sqlsession.selectOne("admin.userBoardCount", dto);
-	}
+	public int userBoardCount() {
+		return sqlsession.selectOne("admin.userBoardCount");
+	}	
+	
+//	@Override
+//	public List<Map<String, Object>> userBoard(Map<String, Object> map) {
+//		return sqlsession.selectList("admin.userBoard",map);
+//	}
+//
+//	@Override
+//	public int userBoardCount(AdminDTO dto) {
+//		return sqlsession.selectOne("admin.userBoardCount", dto);
+//	}
 
 }
 

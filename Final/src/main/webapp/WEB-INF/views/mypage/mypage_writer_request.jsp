@@ -20,7 +20,11 @@
      <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>HotFix</title>
 </head>
-
+<script>
+	function list(page) {
+		location.href="writer_request?curPage="+page;
+	}
+</script>
 <body>
 
      <%@ include file="/WEB-INF/views/header/header.jsp" %>
@@ -62,7 +66,7 @@
                         </div>
 
                     </div>
-                    
+                   	 해결요청내역 : ${count}개
                     <!-- 요청한 내역이 없어요 -->
                		<c:set var="name" value="${list}" />
                 	<c:if test="${empty name}">   
@@ -95,7 +99,32 @@
 						</div>
 						
 					</c:forEach>
-   					
+   					<table>
+						<tr>
+							<td colspan="5" align="center" class="boardPagingTd"><c:if
+									test="${page_info.curBlock > 1 }">
+									<a href="javascript:list('1')">[처음]</a>
+								</c:if> <c:if test="${page_info.curBlock > 1 }">
+									<a href="javascript:list('${page_info.prevPage}')">[이전]</a>
+								</c:if> <c:forEach var="num" begin="${page_info.blockBegin}"
+									end="${page_info.blockEnd}">
+									<c:choose>
+										<c:when test="${num==page_info.curPage}">
+											<span style="font-size: 25px; color: red">${num}</span>
+										</c:when>
+										<c:otherwise>
+											<a href="javascript:list('${num}')">${num}</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach> <c:if test="${page_info.curBlock <= page_info.totBlock}">
+									<a href="javascript:list('${page_info.nextPage}')">[다음]</a>
+								</c:if> <c:if test="${page_info.curPage <= page_info.totPage}">
+									<a href="javascript:list('${page_info.totPage}')">[끝]</a>
+								</c:if></td>
+						</tr>
+
+					</table>
+                  
 
                 </div>
             </div>

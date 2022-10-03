@@ -22,12 +22,13 @@ public class HotfixDAOImpl implements HotfixDAO{
 	}
 	@Override
 	public List<HotfixDTO> list(String keyword ,int start, int end, String select) {
-		// TODO Auto-generated method stub
+		System.out.println(select);
 		Map<String, Object> map = new HashMap<>();
 		map.put("keyword", keyword);
 		map.put("start", start);
 		map.put("end", end);
 		map.put("search_option", select);
+		
 		
 		return sqlSession.selectList("hotfix.list", map);
 	}
@@ -43,8 +44,12 @@ public class HotfixDAOImpl implements HotfixDAO{
 	
 
 	@Override
-	public List<BoardDTO> myRequestlist(HotfixDTO dto) {
-		return sqlSession.selectList("hotfix.myRequestlist",dto);
+	public List<BoardDTO> myRequestlist(HotfixDTO dto, int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("Requester", dto.getRequester());
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("hotfix.myRequestlist",map);
 	}
 
 	@Override
@@ -74,15 +79,38 @@ public class HotfixDAOImpl implements HotfixDAO{
 		sqlSession.selectOne("hotfix.choiceResolve",dto);
 		
 	}
+	
+	// 마이페이지 해결내역
 	@Override
-	public List<HotfixDTO> resolveZone(HotfixDTO dto) {
-		return sqlSession.selectList("hotfix.resolveZone",dto);
+	public List<HotfixDTO> resolveZone(HotfixDTO dto, int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("Solver", dto.getSolver());
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("hotfix.resolveZone", map);
 	}
+	
+	//마이페이지 해결내역 count
+		@Override
+		public int resultCount(HotfixDTO dto) {
+			// TODO Auto-generated method stub
+			return sqlSession.selectOne("hotfix.resultCount",dto); 
+		}
+	
+	
+//	@Override
+//	public List<BoardDTO> list(HotfixDTO dto) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.selectList("hotfix.list",dto);
+//	}
+	
+	//마이페이지 해결요청내역 count
 	@Override
-	public List<BoardDTO> list(HotfixDTO dto) {
+	public int count(HotfixDTO dto) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("hotfix.list",dto);
+		return sqlSession.selectOne("hotfix.mypageCount",dto); 
 	}
+	
 
 	
 

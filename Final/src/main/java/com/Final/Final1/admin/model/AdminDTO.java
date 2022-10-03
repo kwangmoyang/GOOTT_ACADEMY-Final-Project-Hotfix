@@ -15,7 +15,7 @@ public class AdminDTO {
 	private int userCount;
 	
 	private int Post_num;
-	private String Board_code;
+	private String boardCode;
 	private String Post_title;
 	private String Post_writer;
 	private Date Post_cr_date;
@@ -23,7 +23,15 @@ public class AdminDTO {
 	
 	private int userBoardCount;
 	
-	
+	//select_option
+		private String select;
+		
+	public String getSelect() {
+			return select;
+		}
+		public void setSelect(String select) {
+			this.select = select;
+		}
 	public int getUserBoardCount() {
 		return userBoardCount;
 	}
@@ -37,11 +45,12 @@ public class AdminDTO {
 	public void setPost_num(int post_num) {
 		Post_num = post_num;
 	}
-	public String getBoard_code() {
-		return Board_code;
+
+	public String getBoardCode() {
+		return boardCode;
 	}
-	public void setBoard_code(String board_code) {
-		Board_code = board_code;
+	public void setBoardCode(String boardCode) {
+		this.boardCode = boardCode;
 	}
 	public String getPost_title() {
 		return Post_title;

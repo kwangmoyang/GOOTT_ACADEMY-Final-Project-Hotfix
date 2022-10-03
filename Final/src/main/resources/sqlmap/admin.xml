@@ -12,14 +12,53 @@
 	select count(*) from User;
 	</select>
 	
+	<!-- 페이징 Board 리스트 -->
 	<select id="userBoard" resultType="hashMap">
+	
+	<include refid="paging_header" />
+	
 	select Post_num, Board_code, Post_title, Post_writer, 
 	Post_cr_date, Post_view from Board 
-	order by Post_num desc;
+	
+	
+	<where>
+		 <if test="search_option =='life' ">
+		and Board_code = "일상"
+	</if>
+	<if test="search_option =='column' ">
+		and Board_code = "컬럼"
+	</if>
+	<if test="search_option =='study' ">
+		and Board_code = "스터디"
+	</if>
+	<if test="search_option =='career' ">
+		and Board_code = "커리어"
+	</if>  
+	</where>
+  
+	
+		
+	<include refid="paging_footer" />	
+	 
+	 order by Post_num desc 
 	</select>
 	
 	<select id="userBoardCount" resultType="int">
 	select count(*) from Board;
 	</select>
-
+	
+	
+	<sql id="paging_header">
+		select *
+		from(
+			select @ROWNUM:=@ROWNUM+1 as rn, A.* 
+			from(
+	</sql>
+	<sql id="paging_footer">
+		) A
+	where (@rownum:=0)=0 ) rn 
+	where rn between #{start} and #{end}
+	
+	</sql>
+	
 </mapper>

@@ -70,21 +70,28 @@ public class MypageServiceImpl implements MypageService{
 
 
   @Override
-	public List<BoardDTO> myRequestlist(MyWriterListDTO dto) {
-		return mypageDao.myRequestlist(dto);
+	public List<BoardDTO> myRequestlist(MyWriterListDTO dto, int start, int end) {
+		return mypageDao.myRequestlist(dto, start, end);
 	}
 
 
 	@Override
-	public List<BoardDTO> myCommentlist(MyCommentListDTO dto) {
-		return mypageDao.myCommentlist(dto);
+	public List<BoardDTO> myCommentlist(MyCommentListDTO dto, int start, int end) {
+		return mypageDao.myCommentlist(dto, start, end);
 	}
 
 
 	@Override
-	public int count(String keyword) {
+	public int count(MyWriterListDTO dto) {
 		// TODO Auto-generated method stub
-		return mypageDao.count(keyword);
+		return mypageDao.count(dto);
+	}
+
+	// 마이페이지 댓글 
+	@Override
+	public int commentCount(MyCommentListDTO dto) {
+		// TODO Auto-generated method stub
+		return mypageDao.commentCount(dto);
 	}
 
 

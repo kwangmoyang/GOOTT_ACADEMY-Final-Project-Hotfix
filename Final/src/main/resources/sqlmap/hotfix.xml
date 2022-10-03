@@ -6,24 +6,25 @@
 
 
 	 <select id="list" parameterType="hashMap" resultType="hashMap">
-		 <!--<include refid="paging_header" /> -->
+		 <include refid="paging_header" /> 
 		
 		select Request_code,Requester,Request_title,Request_contents,
 		Request_start_date,SolverReady_cnt, Commission, Recruiting_time from Request
 	
 		
-		<!--	 <if test="keyword != null"> 
+			 <if test="keyword != null"> 
 				where Request_title like CONCAT('%',#{keyword},'%')
 			 </if>  
 			 
 			<include refid="paging_footer" />	
 			
-			  <if test="search_option == 'new'">
+		    <if test="search_option == 'new'">
 				 order by Request_start_date desc, Request_code desc
 			</if>	
 			<if test="search_option =='com' ">
 				 order by Commission desc, Request_code desc
-			</if>     -->
+			</if>  
+			
 			
 	</select> 
 	
@@ -40,17 +41,27 @@
 		SolverReady_cnt, Commission, Recruiting_time) VALUES
 		(#{Requester},#{Request_title},#{Request_contents},#{SolverReady_cnt},#{Commission},now());
 	</insert>
-
+	
+	<!-- 마이페이지 나의 해결요청내역 수 -->
+	<select id="mypageCount" parameterType="hashMap" resultType="int">
+		select count(*) from Request where Requester=#{Requester}
+	
+	</select>
+	
 	<!-- 마이페이지 나의 해결요청내역 불러오기 -->
 	<select id="myRequestlist"
 		parameterType="com.Final.Final1.board.model.HotfixDTO"
 		resultType="hashMap">
+		 <include refid="paging_header" /> 
 		select Request_code,Requester,Request_title,
 		Request_contents,
 		SolverReady_cnt, Commission, Recruiting_time from Request where
-		Requester=#{Requester};
+		Requester=#{Requester}
+		<include refid="paging_footer" />	
+		 
 	</select>
 
+	
 	<!-- 마이페이지 나의 게시글 불러오기 -->
 	<select id="myWriterlist"
 		parameterType="com.Final.Final1.board.model.MyWriterListDTO"
@@ -83,25 +94,33 @@
 	
 	<!-- 채택당한 사람들의 해결중인 게시판에 표시됨-->
 	<select id="resolveZone" parameterType="com.Final.Final1.board.model.HotfixDTO" resultType="hashMap">
+	<include refid="paging_header" /> 
 		select Request_code,Request_title,Request_contents,Solver,Request_status,Request_start_date,
 		Request_contact_date,Request_end_date,Recruiting_time,Requester,SolverReady_cnt,
-		Commission,SolverReady_cnt2 from Request where Solver=#{Solver};
+		Commission,SolverReady_cnt2 from Request where Solver=#{Solver}
+		<include refid="paging_footer" />	
 	</select>
 	
+	<!-- 채택당한 사람들의 해결중인 게시판 수 -->
+	<select id="resultCount" parameterType="com.Final.Final1.board.model.HotfixDTO" resultType="int">
+		select count(*)from Request where Solver=#{Solver};
+	
+	</select> 
 
+	
 
-	<!-- 해결 Count  -->
-	<!--<select id="count" parameterType="hashMap" resultType="int">
+	<!-- HOTFIX Count  -->
+	<select id="count" parameterType="hashMap" resultType="int">
 		select count(*) from Request
 		<where>
 			<if test="keyword != null">
 				and Request_title like CONCAT('%',#{keyword},'%')
 			</if>
 		</where>
-	</select>-->
+	</select>
 	
 	<!-- 페이징 -->
-	<!--<sql id="paging_header">
+	<sql id="paging_header">
 		select *
 		from(
 			select @ROWNUM:=@ROWNUM+1 as rn, A.* 
@@ -112,7 +131,11 @@
 	where (@rownum:=0)=0 ) rn 
 	where rn between #{start} and #{end}
 	
-	</sql>-->
+	</sql>
+	
+	
+	
+	
 	
 	
 </mapper>

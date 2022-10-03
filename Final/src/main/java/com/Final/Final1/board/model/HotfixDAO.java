@@ -7,7 +7,7 @@ public interface HotfixDAO {
 
 	List<HotfixDTO> list(String keyword, int start, int end, String select);
 
-	List<BoardDTO> myRequestlist(HotfixDTO dto);
+	List<BoardDTO> myRequestlist(HotfixDTO dto, int start, int end);
 
 	void resolveMember(HotfixDTO dto);
 
@@ -17,9 +17,13 @@ public interface HotfixDAO {
 
 	void choiceResolve(HotfixDTO dto);
 	
-	List<HotfixDTO> resolveZone(HotfixDTO dto);
+	List<HotfixDTO> resolveZone(HotfixDTO dto, int start, int end);
 
-	List<BoardDTO> list(HotfixDTO dto);
+	int count(HotfixDTO dto);
+
+	int resultCount(HotfixDTO dto);
+
+//	List<BoardDTO> list(HotfixDTO dto);
 	
 	
 	/* List<BoardDTO> list(String keyword, String select, int start, int end); */
