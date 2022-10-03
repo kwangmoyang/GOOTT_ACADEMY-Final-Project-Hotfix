@@ -18,25 +18,49 @@
 	</select>
 	
 	
-	
+	<!-- 공지사항 수정 -->
+	<update id="teamnotice_correction" parameterType="hashMap">
+		update Team set Team_notice = #{teamnotice_correction} where Team_name = #{teamname};
+	</update>
 	
 	<!-- 팀이름 수정 -->
 	<update id="teamname_correction" parameterType="hashMap">
 		update Team set Team_name = #{Team_name} where Team_name = #{teamname};
 	</update>
 	
-	<!-- 공지사항 수정 -->
-	<update id="teamnotice_correction" parameterType="hashMap">
-		update Team set Team_notice = #{teamnotice_correction} where Team_name = #{teamname};
-	</update>
+	<!-- 팀가입신청한 유저들 -->
+	<select id="team_notmembers"  parameterType="hashMap" resultType="hashMap">
+		select Team_unaccept_member from Team_NOT_Members where Team_name= #{teamname};
+	</select>
 	
-	<!-- 팀원 추방하기  -->
-	<delete id="teammember_delete" parameterType="hashMap">
-		delete from Team_Members where Team_member = #{User_nickname};
+	<!-- 팀 가입하기 -->
+	<!-- 유저한테 팀이 있으면 -->
+	<select id="teamjoin_team" parameterType="hashMap" resultType="hashMap">
+		select Team_name from User where User_nickname = #{Team_unaccept_member};
+	</select>
+	
+	<update id="teamjoin_accept" parameterType="hashMap">
+		update User set Team_name = #{Team_name} where User_nickname = #{Team_unaccept_member};
+	</update>
+	<insert id="teamjoininsert" parameterType="hashMap">
+		insert into Team_Members (Team_Member, Team_name) value(#{Team_unaccept_member}, #{Team_name});
+	</insert>
+	<delete id="teamnotmember_del" parameterType="hashMap">
+		delete from Team_NOT_Members where Team_unaccept_member = #{Team_unaccept_member};
 	</delete>
 	
-	<update id="teammember_delete2" parameterType="hashMap">
-		update User set Team_name =null where User_nickname = #{User_nickname};
+	<!-- 팀가입 거절하기 -->
+	<delete id="teamjoinrefuse" parameterType="hashMap">
+		delete from Team_NOT_Members where Team_unaccept_member = #{Team_unaccept_member};
+	</delete>
+	
+	<!-- 팀원 추방하기  -->
+	<delete id="teammember_delete1" parameterType="com.Final.Final1.team.model.TeamMemberdelDTO">
+		delete from Team_Members where Team_member = #{Team_member};
+	</delete>
+	
+	<update id="teammember_delete2" parameterType="com.Final.Final1.team.model.TeamMemberdelDTO">
+		update User set Team_name =null where User_nickname = #{Team_member};
 	</update>
 
 </mapper>

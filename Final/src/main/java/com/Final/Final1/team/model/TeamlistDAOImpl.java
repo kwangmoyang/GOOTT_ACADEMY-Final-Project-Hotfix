@@ -1,8 +1,11 @@
 package com.Final.Final1.team.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,12 +50,6 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 	}
 
 	@Override
-	public int teamjoin(Map<String, Object> map) {
-		System.out.println(map.toString());
-		return sqlSessionTemplate.update("team.teamjoin", map);
-	}
-
-	@Override
 	public Map<String, Object> teammakecheck(Map<String, Object> map) {
 		return sqlSessionTemplate.selectOne("team.teammakecheck", map);
 	}
@@ -88,13 +85,8 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 	}
 
 	@Override
-	public String teamjoin_team(Map<String, Object> map) {
+	public Map<String, Object> teamjoin_team(Map<String, Object> map) {
 		return sqlSessionTemplate.selectOne("team.teamjoin_team", map);
-	}
-
-	@Override
-	public void teamjoininsert(Map<String, Object> map) {
-		sqlSessionTemplate.insert("team.teamjoininsert", map);
 	}
 
 	@Override
@@ -117,7 +109,6 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 	// 팀 카운트
 	@Override
 	public int count(String search_option, String keyword) {
-		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
 		map.put("keyword", keyword);
 		map.put("search_option", search_option);
@@ -130,6 +121,22 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 		return sqlSessionTemplate.selectList("team.teaminfo_int", map);
 	}
 
+
+	@Override
+	public int teamjoinmessage(Map<String, Object> map) {
+		return sqlSessionTemplate.insert("team.teamjoinmessage", map);
+	}
+
+	@Override
+	public int taginsert(String maketeamname, String tagarray) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("maketeamname", maketeamname);
+		map.put("tagarray", tagarray);
+		
+		return sqlSessionTemplate.insert("team.taginsert", map);
+	}
 
 
 }

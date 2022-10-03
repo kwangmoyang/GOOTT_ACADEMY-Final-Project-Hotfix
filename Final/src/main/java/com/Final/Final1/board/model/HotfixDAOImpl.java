@@ -110,7 +110,33 @@ public class HotfixDAOImpl implements HotfixDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("hotfix.mypageCount",dto); 
 	}
-	
+
+	@Override
+	public List<HotfixDTO> mySolverlist(HotfixDTO dto) {
+		return sqlSession.selectList("hotfix.mySolverlist",dto);
+	}
+	@Override
+	public void giveUpResolve(HotfixDTO dto) {
+		sqlSession.selectOne("hotfix.giveUpResolve",dto);
+		
+	}
+	@Override
+	public void requesterCommissionDown(HotfixDTO dto) {
+		sqlSession.selectOne("hotfix.requesterCommissionDown",dto);
+	}
+	@Override
+	public void resolverCommissionUp(HotfixDTO dto) {
+		sqlSession.selectOne("hotfix.resolverCommissionUp",dto);		
+	}
+	@Override
+	public void Drop_Req_cnt(HotfixDTO dto) {
+		sqlSession.selectOne("hotfix.Drop_Req_cnt",dto);
+	}
+	@Override
+	public void Completion(HotfixDTO dto) {
+		sqlSession.selectOne("hotfix.Completion",dto);
+	}
+
 
 	
 

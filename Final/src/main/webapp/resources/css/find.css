@@ -84,17 +84,14 @@
     outline: none;
     font-size: 20px;
 }
-#find_Phone1 {
-    width: 25%;
-}
-#find_Phone2 {
-    width: 33%;
-}
-#find_Phone3 {
-    width: 33%;
-}
 
 /*========== 계정찾기 제출 영역 ==========*/
+form{
+	width: 100%;
+	margin-left : 65%;
+	
+}
+
 .find_BtnId, .find_BtnPw {
     width: 33%;
     height: 7vh;
@@ -102,7 +99,7 @@
     margin-bottom: 2vh;
     /* border: 2px solid orangered; */
 }
-.find_BtnId input, .find_BtnPw input {
+#find_BtnId2{
     width: 100%;
     height: 50px;
     margin-left: 3px;

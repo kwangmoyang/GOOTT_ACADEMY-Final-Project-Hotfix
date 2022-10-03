@@ -10,7 +10,6 @@
       order by Team_cr_date DESC;
    </select>
 
-
    <!-- 전체목록 불러오는 쿼리 -->
    <select id="list" parameterType="hashMap" resultType="hashMap">
    <include refid="paging_header" />
@@ -142,8 +141,10 @@
 		) A
 	where (@rownum:=0)=0 ) rn 
 	where rn between #{start} and #{end}
+  </sql>
+
 	
-	</sql>
+	
 	
    
 </mapper>

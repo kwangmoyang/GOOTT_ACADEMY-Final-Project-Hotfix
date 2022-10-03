@@ -14,8 +14,7 @@
 <!-- 폰트 불러올라고-->
 <link rel="stylesheet" href="../../resources/css/global.css">
 <!-- 유니콘 아이콘 사이트 -->
-<link rel="stylesheet"
-	href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 <title>HotFix</title>
 </head>
 
@@ -88,26 +87,32 @@
 					
 					    <div class="teammanage-twotitle">팀 회원관리</div>
 					    <div class="teammanage-box">
-					        <p>팀 가입신청목록</p>
-					        <ul>
-					            <li>누구님이 팀가입신청을 보냈습니다. <input type="button" value="수락"><input type="button" value="거절"></li>
-					        </ul>
+					        <form method="POST">
+		 						<p>팀 가입신청목록</p>
+						        <ul>
+						        	<c:forEach var="row1" items="${map.teamnotmerber}">
+						        		<input type="hidden" value="${sessionScope.Team_name}" name="Team_name">
+						        		<input type="hidden" value="${row1.Team_unaccept_member}" name="Team_unaccept_member"/>
+							            <li>
+							            	${row1.Team_unaccept_member} 님이 팀가입신청을 보냈습니다. 
+								            <input type="button" value="수락" onclick="acceptbtn('${sessionScope.Team_name}','${row1.Team_unaccept_member}')">
+								            <input type="button" value="거절" onclick="refusebtn('${row1.Team_unaccept_member}')">
+							            </li>					        	
+						        	</c:forEach>	
+						        </ul>
+					        </form>
 					    </div>
 						<div class="teammanage-box">
-							<form action="/teammemberdel" method="POST">
+							<form action="/teammemberdel" method="POST" id="teammemberdelForm">
 						        <p>팀원 목록</p>
 						        <ul>
-						            <c:forEach var="row" items="${map.team_members}">
-								            <input type="hidden" value="${row.User_nickname}" name="User_nickname"/>
-								            <li>${row.User_nickname} <input type="submit" value="추방하기"></li>
+						            <c:forEach var="row2" items="${map.team_members}">
+								            <input type="hidden" value="${row2.User_nickname}" name="Team_member"/>
+								            <li>${row2.User_nickname} <input type="button" value="추방하기" onclick="teammemberdel()"></li>
 						            </c:forEach>
 						        </ul>
 							</form>
-						</div>
-					    <div class="teammanage-box">
-					        <p>팀리더 위임하기</p>
-					        <p>현재 팀리더 : <input type="text" value="${sessionScope.User_nickname}"></p>
-					    </div>	
+						</div>	
 				</div>
 				<!-- ==============작업공간============== -->
 			</div>

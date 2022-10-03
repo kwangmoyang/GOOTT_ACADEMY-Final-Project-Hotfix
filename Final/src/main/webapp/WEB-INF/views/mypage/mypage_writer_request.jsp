@@ -81,19 +81,51 @@
 						<!-- 해결 게시판 -->
 						<div class="RmBoard">
 							<div class="RmBoardLeft">
-								<p>해결요청!</p>
-								<p>작성자 :${row.Requester}</p>
+							<c:if test="${empty row.Solver}">  
+								<p>컨텍을 진행해주세요!</p>
+							</c:if>
+							<c:if test="${row.Solver != null and row.result == 0}">  
+								<p>${row.Solver} 님과 해결중입니다.</p>
+							</c:if>	
+							<c:if test="${row.result == 1}">  
+								<p>해결 완료된 게시글입니다!</p>
+								<div><button class="ChatOpenBtn" id="test">대화내용 확인</button></div>
+							</c:if>	
+			
 								<p>제목 : ${row.Request_title}</p>
+								
 							</div>
+							<div class="RmBoardCenter">
+							<c:if test="${row.Solver != null and row.result == 0}"> 
+								<!-- 해결 완료시 -->
+								<form action="/CompletionResolve" id="CompletionResolve" method="POST">
+									<input type="hidden"  name=Request_code value="${row.Request_code}">
+									<input type="hidden"  name=Requester value="${row.Requester}">
+									<input type="hidden"  name="Solver" value="${row.Solver}">
+									<input type="hidden"  name="Commission" value="${row.Commission}">
+						            <input type="button"  class="ResultOk" value="해결완료!" onclick="CompletionResolve()">
+					            </form>
+					            <div><button class="ChatOpenBtn" id="test">채팅방열기</button></div>
+					        </c:if>
+        					</div>
 							<div class="RmBoardRight">
 								<p>모집인원 : ${row.SolverReady_cnt}명</p>
 								<p>커미션: ${row.Commission} 픽스</p>
-								<p>남은 시간 : ${row.Recruiting_time}</p>
+								<!--  <p>남은 시간 : ${row.Recruiting_time}</p>-->
 								
-								<input type="text" id="Request_code" name="Request_code" value="${row.Request_code}">
+								
+							<!-- 해결자가 없을 경우 -->	
+							<c:if test="${empty row.Solver}">  	
+								<input type="hidden" id="Request_code" name="Request_code" value="${row.Request_code}">
 								<button class="DetailModal" id="test">상세보기</button>
-								
-
+							</c:if>	
+							<!-- 요청자가 포기를 했을경우 -->	
+							<c:if test="${row.Solver != null and row.result == 0}">  
+								<form action="/giveUpSolver" id="giveUpSolver" method="POST">
+								<input type="hidden"  id="Request_code" name="Request_code" value="${row.Request_code}">
+								<input type="button"  class="GiveUpBtn" value="포기하기" onclick="GiveUpBtn()">
+								</form> 
+							</c:if>
 							</div>
 							
 						</div>
@@ -152,20 +184,37 @@
 	</div>
 	
 <script>
+	
+	let Request_code = document.querySelector("#Request_code");
 
-
-
-    let cancle = document.querySelector(".cancle");
-    cancle.addEventListener('click', function () {
-        if (confirm("정말 삭제하시겠습니까?") == true) {
-            //true는 확인버튼을 눌렀을 때 코드 작성
-            console.log("완료되었습니다.");
-        } else {
-            // false는 취소버튼을 눌렀을 때, 취소됨
-            console.log("취소되었습니다");
+	
+	//해결완료 버튼
+	function CompletionResolve(){
+		let CompletionResolve = document.querySelector("#CompletionResolve");
+        if (confirm("해결 완료를 누르시면 채팅은 종료되고 커미션이 해결자에게 지급됩니다!")){
+            alert("해결을 축하드려요!");
+            CompletionResolve.action = '/CompletionResolve';
+            CompletionResolve.submit();
         }
-    })
-
+        else {
+            return false;
+        }
+	}
+	
+    //해결포기 버튼
+	function GiveUpBtn(){
+	    	let giveUpSolver = document.querySelector("#giveUpSolver");
+	        if (confirm("포기 하실건가요? 모니터링으로 패널티를 부여 받을수도 있어요!.")){
+	            alert("새로운 해결자를 컨텍해주세요!");
+	            giveUpSolver.action = '/giveUpSolver';
+	            giveUpSolver.submit();
+	        }
+	        else {
+	        	alert("조금만 더 하면 해결할 수 있을거에요!");
+	            return false;
+	        }
+	}
+	
     // 모달 열기 함수
     function modalOpen() {
         document.querySelector('.RmModal_wrap').style.display = 'block';
@@ -190,8 +239,6 @@
     	console.log("새로불러옴");
     	modalClose();
     });
-    
-    
     
     
     for (let i = 0; i < DetailModal.length; i++) {
@@ -220,7 +267,7 @@
                     	const code_input = document.createElement('input');
                     	const input1 = document.createElement('input');
                     	const input2 = document.createElement('input');
-                    	
+                    	const h1 = document.createElement('h1');
                     	const form1 = document.createElement('form');
                     	
                     	nick_input.setAttribute('name','Solver');
@@ -242,7 +289,7 @@
 
                     	nick_input.value = data[i].Solver_member;
                     	code_input.value = data[i].Request_code;
-                    	
+                    	div.append(h1);
                     	div.append(nick_input);
                     	div.append(code_input);
                     	div.append(input1);
@@ -251,13 +298,15 @@
                     	
                     	ModalText.append(form1);
  						
-                    	console.log(form1)
+                    	
                     	
                     }
                     RmModal_close.addEventListener('click',function(){
                     	$(".ModalText").empty();
                 	})
-                   	
+                	
+                	
+                		
    
                 },
                 error:function(request,status,error){
@@ -267,10 +316,8 @@
                 }
              }); 
     	});
-       
- 	}   
-   	
- 	
+    }
+
 </script>
 </body>
   

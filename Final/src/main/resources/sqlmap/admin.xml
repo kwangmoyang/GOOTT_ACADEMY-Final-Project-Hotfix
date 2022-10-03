@@ -47,6 +47,7 @@
 	select count(*) from Board;
 	</select>
 	
+
 	
 	<sql id="paging_header">
 		select *
@@ -61,4 +62,14 @@
 	
 	</sql>
 	
+
+	<delete id="boardMemDelete" parameterType="int">
+	delete from Board where Post_num = #{Post_num};
+	</delete>
+	
+	<insert id="adminBoard" parameterType="hashMap">
+	insert into Board(Board_code,Post_writer,Post_title,Post_contents)
+	values('공지사항',#{Post_writer},#{Post_title},#{Post_contents});
+	</insert>
+
 </mapper>

@@ -25,9 +25,9 @@
             <div class="sideLeft">
                 <div class="adminList">
                     <li><a href="/admin/index">회원관리</a></li>
-                    <li><a href="/admin/report">신고관리</a></li>
+                   <!-- <li><a href="/admin/report">신고관리</a></li> -->
                     <li><a href="/admin/board">게시판관리</a></li>
-                    <li><a href="/admin/ask">1:1문의</a></li>
+                   <!-- <li><a href="/admin/ask">1:1문의</a></li> -->
                 </div>
             </div>
 
@@ -40,7 +40,7 @@
                     <h2>게시판관리 (공지사항)</h2>
                     <div class="adminNav">
                         <button class="removeBtn">선택삭제</button>
-                        <button class="setBtn">공지등록</button>
+                        <button class="setBtn" onclick="location.href='/admin/write'">공지등록</button>
                     </div>
                 </div>
                 <div class="adminT">
@@ -52,7 +52,6 @@
                         <tr>
                             <td><input type="checkbox" name="" id=""></td>
                             <td>No.</td>
-                            <td>구분</td>
                             <td>제목</td>
                             <td>등록자</td>
                             <td>등록일</td>
@@ -61,7 +60,6 @@
                         <tr>
                             <td><input type="checkbox" name="" id=""></td>
                             <td>10</td>
-                            <td>긴급</td>
                             <td><a href="">서버점검안내</a></td>
                             <td>운영자1</td>
                             <td>2022-09-04</td>
@@ -70,79 +68,6 @@
                         <tr>
                             <td><input type="checkbox" name="" id=""></td>
                             <td>9</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>8</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>7</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>6</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>5</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>4</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>3</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>2</td>
-                            <td></td>
-                            <td><a href=""></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>1</td>
-                            <td></td>
                             <td><a href=""></a></td>
                             <td></td>
                             <td></td>
@@ -150,7 +75,7 @@
                         </tr>
 
                     </table>
-                    <div class="admin_Paging">
+                   <!-- <div class="admin_Paging">
                         <a href="#">이전</a>
                         <a href="#">1</a>
                         <a href="#">2</a>
@@ -158,7 +83,7 @@
                         <a href="#">4</a>
                         <a href="#">5</a>
                         <a href="#">다음</a>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- 여기까지 복붙라인 -->
                 <!-- ==============작업공간============== -->

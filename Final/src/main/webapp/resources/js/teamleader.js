@@ -45,25 +45,6 @@ for(let i=0; i<update_after.length; i++){
 }
 
 
-
-
-
-
-// ! =====================함수존=======================
-// 22-09-28 SLEEP 탈퇴시 확인 알림창
-function MemDeleteBtn() {
-	let UserOut = document.querySelector("#UserOut");
-    if (confirm("정말 탈퇴하시겠습니까? 탈퇴시 기존 정보는 복구불가입니다.")){
-        alert("탈퇴완료되었습니다.");
-        UserOut.action = '/UserDelete';
-        UserOut.submit();
-    }
-    else {
-        return false;
-    }
-}
-
-
 // * 22-09-02 HIKARI 텍스트호버 함수
 /**
  * 해당 함수를 적용하려면 querySelectorAll로 li 요소를 가져와야함
@@ -86,75 +67,63 @@ function MemDeleteBtn() {
     }
 }
 
+function acceptbtn(a,b){
+		if(!confirm("팀가입신청을 수락하시겠습니까?")){
+			return false;
+			
+		}else{
+			
+			$.ajax({
+				method:"POST",
+				url:"/teamjoinaccept",
+				data: {Team_unaccept_member: b, Team_name: a},
+				dataType:"text",
+				success:function(result){
+					location.href = "/teamleader"
+				},
+				error:function(request,status,error){
+					 alert("실패");
+				}
+			})
+		
+	  }
 
-
-// * 22-09-02 HIKARI 드롭다운 함수
-/**
- * 이벤트 발생시? 어떤 요소가? 어떤 스위치가?
- * @example dropDown(myAlarm,myAlarm_drop,flagMyAlarm);
- */
-function dropDown(param,ele,flag){
-    param.addEventListener('click',function(){
-        if(flag == false){
-            //본인 코드 알아서 들감
-            display(ele,"block");
-            flag =! flag;
-        }
-        else if(flag == true){
-            //본인 코드 알아서 들감
-            display(ele,"none");
-            flag =! flag;
-        }
-    })
 }
 
-
-// * 22-08-23 HIKARI 컬러 함수
-/**
- * 효과줄 변수 및 컬러 설정
- * @example backColor(Btn,"red")
- */
- function textColor(param,textColor){
-    param.style.color=textColor;
+function refusebtn(a){
+	if(!confirm("팀가입신청을 거절하시겠습니까?")){
+		return false;
+		
+	}else{
+		
+		$.ajax({
+			method:"POST",
+			url:"/teamjoinrefuse",
+			data: {Team_unaccept_member: a},
+			dataType:"text",
+			success:function(result){
+				location.href = "/teamleader"
+			},
+			error:function(request,status,error){
+				 alert("실패");
+			}
+		})
+	
+  }
 }
 
-// * 22-08-23 HIKARI 트랜지션 함수
-/**
- * 효과줄 변수입력 및 시간 설정
- * @example transition(Btn,"1s")
- */
- function transition(param,second){
-    param.style.transition=second;
-    
+const teammemberdelForm = document.querySelector('#teammemberdelForm');
+
+function teammemberdel(){
+	if(!confirm("팀원을 추방하시겠습니까?")){
+		return false;
+		
+	}else{
+		teammemberdelForm.submit();
+  }
 }
 
-// * 22-08-23 HIKARI 디스플레이 함수
-/**
- * 효과줄 변수 및 컬러 설정
- * @example display(sideBar,"none or block")
- */
- function display(param,state){
-    param.style.display=state;
-}
- //스크롤
+//스크롤
  
  
-// //수정을 눌렀을 때 input이 disable풀리고 나타나도록
-// const corbtn = document.getElementById('corbtn');
-// const corbtn2 = document.getElementById('corbtn2');
-// const teamnotice_text = document.getElementById('teamnotice_text');
-// const teamnotice_form = document.getElementById('teamnotice_form');
-// function corbtnclick(){
-//     corbtn.style.display = 'none';
-//     corbtn2.style.display = 'block';
-////     teamnotice_text.disabled = false;
-// }
-// 
-// function corbtnclick2(){
-//     corbtn.style.display = 'block';
-//     corbtn2.style.display = 'none';
-////     teamnotice_text.disabled = true;
-//     
-//     teamnotice_form.submit();
-// }
  

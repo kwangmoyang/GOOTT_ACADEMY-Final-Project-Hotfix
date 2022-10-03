@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rank">
+	<select id="selectteamrank" parameterType="com.Final.Final1.ranking.model.RankingDTO" resultType="hashMap">
+		select FORMAT(@rownum:=@rownum+1, 0) rowNum, A.* from 
+		(select Team_name, ROUND(avg(User_score)) Team_AVG, SUM(commission) Team_SUM from User 
+		where not Team_name is null group by Team_name order by User_score desc) A, (select @rownum := 0) B;
+	</select>
+	<select id="teamrank_commission" parameterType="com.Final.Final1.ranking.model.RankingDTO" resultType="hashMap">
+		select FORMAT(@rownum:=@rownum+1, 0) rowNum, A.* from 
+		(select Team_name, ROUND(avg(User_score)) Team_AVG, SUM(commission) Team_SUM from User 
+		where not Team_name is null group by Team_name order by sum(commission) desc) A, (select @rownum := 0) B;
+	</select>
+	
+	<select id="RankingcountUser" parameterType="com.Final.Final1.ranking.model.RankingDTO" resultType="hashMap">
+		select FORMAT(@rownum:=@rownum+1, 0) rowNum, A.* from (select User_nickname, User_score, commission from User order by User_score desc) A, (select @rownum := 0) B;
+	</select>
+	
+	<select id="RankingcommissionUser" parameterType="com.Final.Final1.ranking.model.RankingDTO" resultType="hashMap">
+		select FORMAT(@rownum:=@rownum+1, 0) rowNum, A.* from (select User_nickname, User_score, commission from User order by commission desc) A, (select @rownum := 0) B;
+	</select>
+</mapper>

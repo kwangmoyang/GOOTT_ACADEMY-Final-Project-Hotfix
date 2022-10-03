@@ -82,15 +82,27 @@
                     <!-- 해결 게시판 -->
                     <c:forEach var="row" items="${resolver2}" varStatus="vs">
                     <div class="RmBoard">
-                        <div class="RmBoardLeft">
-                            <p>진행중</p>
+                        <div class="RmBoardLeft">   	
+                        	<c:if test="${row.result == 0}">
+                            <p class="ing">진행중</p>
+                            </c:if>
+                            <c:if test="${row.result == 1}">
+                            <p class="okok">해결완료! 커미션을 확인해보세요</p>
+                            </c:if>
+                            
                             <p>요청자 :${row.Requester }</p>
                             <p>요청 내용 : ${row.Request_title }</p>
                         </div>
                         <div class="RmBoardRight">
-                            <p>커미션: ${row.Commission } FIx</p>
-                            <p>남은 시간 : 3:00:00</p>
-                            <button class="DetailModal">채팅창 열기</button>
+                        	<c:if test="${row.result == 0}">
+                            	<p>커미션: ${row.Commission } FIx</p>
+                            	<button class="DetailModal">해결 포기(미구현)</button>
+                            	<button class="DetailModal">채팅창 열기</button>
+                            </c:if>
+                            <c:if test="${row.result == 1}">
+                            	<p>지급  커미션: ${row.Commission } FIx</p>
+                            	<button class="DetailModal">해결한 내용 보기</button>
+                            </c:if>
                         </div>
                     </div>
                     </c:forEach>
@@ -137,14 +149,9 @@
 
 
 
-
-    </div>
-
-
-
-    </div>
     <!-- 푸터 -->
     <div class="common_footer">푸터임다 d </div>
+	
 
     <!-- 모달 -->
     <div class="RmModal_background"></div>
@@ -154,7 +161,7 @@
         <div class="ModalText">
             여기에 채팅 화면 모달 띄우면됨
         </div>
-
+	
 </body>
 
 

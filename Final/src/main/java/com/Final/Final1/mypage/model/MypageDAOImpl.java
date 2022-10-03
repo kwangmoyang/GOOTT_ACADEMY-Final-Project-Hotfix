@@ -90,7 +90,29 @@ public class MypageDAOImpl implements MypageDAO {
 	public int commentCount(MyCommentListDTO dto) {
 		return sqlSession.selectOne("userinfo.commentCount" ,dto);
 	}
-	
+
+//	@Override
+//	public void insert(MypageDTO dto) {
+//		sqlSession.insert("userinfo.insert" ,dto);
+//		
+//	}
+
+	@Override
+	public void updateUserPhoto(MypageDTO dto) {
+		sqlSession.update("userinfo.updateUserPhoto" ,dto);
+	}
+
+	@Override
+	public String UserPhotoView(MypageDTO dto) {
+		return sqlSession.selectOne("userinfo.UserPhotoView",dto);
+	}
+
+	@Override
+	public void UserContactSet(MypageDTO dto) {
+		sqlSession.selectOne("userinfo.UserContactSet",dto);
+		
+	}
+
 	
 	
 	

@@ -65,21 +65,47 @@ public class TeamleaderDAOImpl implements TeamleaderDAO {
 	}
 
 	@Override
-	public int teammember_delete(TeamMemberDTO dto, String user_nickname) {
-		Map<String, Object> map2  = new HashMap<>();
-		map2.put("dto", dto);
-		map2.put("user_nickname", user_nickname);
-		
-		return this.sqlSessionTemplate.delete("teamleader.teammember_delete", map2);
+	public int teammember_delete(TeamMemberdelDTO dto) {
+		return this.sqlSessionTemplate.update("teamleader.teammember_delete1", dto);
 	}
 
 	@Override
-	public int teammember_delete2(TeamMemberDTO dto, String user_nickname) {
+	public int teammember_delete2(TeamMemberdelDTO dto) {
+		return this.sqlSessionTemplate.update("teamleader.teammember_delete2", dto);
+	}
+
+	@Override
+	public List<Map<String, Object>> team_notmembers(TeamnotMemberDTO dto3, String teamname) {
 		Map<String, Object> map2  = new HashMap<>();
-		map2.put("dto", dto);
-		map2.put("user_nickname", user_nickname);
+		map2.put("dto", dto3);
+		map2.put("teamname", teamname);
 		
-		return this.sqlSessionTemplate.update("teamleader.teammember_delete2", map2);
+		return this.sqlSessionTemplate.selectList("teamleader.team_notmembers", map2);
+	}
+
+	@Override
+	public String teamjoin_team(Map<String, Object> map) {
+		return this.sqlSessionTemplate.selectOne("teamleader.teamjoin_team", map);
+	}
+
+	@Override
+	public int teamjoin_accept(Map<String, Object> map) {
+		return this.sqlSessionTemplate.update("teamleader.teamjoin_accept", map);
+	}
+
+	@Override
+	public int teamjoininsert(Map<String, Object> map) {
+		return this.sqlSessionTemplate.insert("teamleader.teamjoininsert", map);
+	}
+
+	@Override
+	public int teamnotmember_del(Map<String, Object> map) {
+		return this.sqlSessionTemplate.delete("teamleader.teamnotmember_del", map);
+	}
+
+	@Override
+	public int teamjoinrefuse(Map<String, Object> map) {
+		return this.sqlSessionTemplate.delete("teamleader.teamjoinrefuse", map);
 	}
 
 

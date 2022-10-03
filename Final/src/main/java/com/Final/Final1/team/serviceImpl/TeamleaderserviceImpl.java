@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Final.Final1.team.model.TeamMemberDTO;
+import com.Final.Final1.team.model.TeamMemberdelDTO;
 import com.Final.Final1.team.model.TeamleaderDAO;
 import com.Final.Final1.team.model.TeamlistDTO;
+import com.Final.Final1.team.model.TeamnotMemberDTO;
 import com.Final.Final1.team.service.Teamleaderservice;
 
 @Service
@@ -43,13 +45,43 @@ public class TeamleaderserviceImpl implements Teamleaderservice {
 	}
 
 	@Override
-	public int teammember_delete(TeamMemberDTO dto, String user_nickname) {
-		return teamleaderdao.teammember_delete(dto, user_nickname);
+	public int teammember_delete(TeamMemberdelDTO dto) {
+		return teamleaderdao.teammember_delete(dto);
 	}
 
 	@Override
-	public int teammember_delete2(TeamMemberDTO dto, String user_nickname) {
-		return teamleaderdao.teammember_delete2(dto, user_nickname);
+	public int teammember_delete2(TeamMemberdelDTO dto) {
+		return teamleaderdao.teammember_delete2(dto);
+	}
+
+	@Override
+	public List<Map<String, Object>> team_notmembers(TeamnotMemberDTO dto3, String teamname) {
+		return teamleaderdao.team_notmembers(dto3, teamname);
+	}
+
+	@Override
+	public String teamjoin_team(Map<String, Object> map) {
+		return teamleaderdao.teamjoin_team(map);
+	}
+
+	@Override
+	public int teamjoin_accept(Map<String, Object> map) {
+		return teamleaderdao.teamjoin_accept(map);
+	}
+
+	@Override
+	public int teamjoininsert(Map<String, Object> map) {
+		return teamleaderdao.teamjoininsert(map);
+	}
+
+	@Override
+	public int teamnotmember_del(Map<String, Object> map) {
+		return teamleaderdao.teamnotmember_del(map);
+	}
+
+	@Override
+	public int teamjoinrefuse(Map<String, Object> map) {
+		return teamleaderdao.teamjoinrefuse(map);
 	}
 
 	

@@ -53,5 +53,17 @@ public class AdminDAOImpl implements AdminDAO {
 //		return sqlsession.selectOne("admin.userBoardCount", dto);
 //	}
 
+	@Override
+	public void boardMemDelete(int no) {
+		sqlsession.delete("admin.boardMemDelete", no);
+	}
+
+	@Override
+	public List<Map<String, Object>> adminBoard(Map<String, Object> map) {
+		return sqlsession.selectList("admin.adminBoard",map);
+	}
+
+	
+
 }
 

@@ -32,4 +32,17 @@ public interface MypageService {
 
 	public int commentCount(MyCommentListDTO dto);
 
+//	void insert(MypageDTO dto);
+	
+	
+	void updateUserPhoto(MypageDTO dto);
+	
+	public String UserPhotoView(MypageDTO dto);
+	
+	public void UserContactSet(MypageDTO dto);
+
+
+	
+	
+	
 }

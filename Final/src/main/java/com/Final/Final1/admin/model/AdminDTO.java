@@ -22,9 +22,12 @@ public class AdminDTO {
 	private int Post_view;
 	
 	private int userBoardCount;
-	
+	private int admin_BoardMem;
+	private String Post_contents;
+
+
 	//select_option
-		private String select;
+	private String select;
 		
 	public String getSelect() {
 			return select;
@@ -32,6 +35,21 @@ public class AdminDTO {
 		public void setSelect(String select) {
 			this.select = select;
 		}
+
+	
+	public String getPost_contents() {
+		return Post_contents;
+	}
+	public void setPost_contents(String post_contents) {
+		Post_contents = post_contents;
+	}
+	public int getAdmin_BoardMem() {
+		return admin_BoardMem;
+	}
+	public void setAdmin_BoardMem(int admin_BoardMem) {
+		this.admin_BoardMem = admin_BoardMem;
+	}
+
 	public int getUserBoardCount() {
 		return userBoardCount;
 	}
@@ -132,7 +150,9 @@ public class AdminDTO {
 	@Override
 	public String toString() {
 		return "AdminDTO [User_name="+User_name+", User_id="+User_id+", User_nickname="+User_nickname+""
-				+ ", Email_address="+Email_address+", Phone_num="+Phone_num+", SignDate="+SignDate+", User_score="+User_score+"]";
+				+ ", Email_address="+Email_address+", Phone_num="+Phone_num+", SignDate="+SignDate+", "
+						+ "User_score="+User_score+", userBoardCount="+userBoardCount+","
+								+ "Post_contents="+Post_contents+"]";
 	}
 	
 	

@@ -14,8 +14,6 @@ public interface TeamlistDAO {
 
 	List<Map<String, Object>> tags(Map<String, Object> map);
 
-	int teamjoin(Map<String, Object> map);
-
 	Map<String, Object> teammakecheck(Map<String, Object> map);
 
 	Map<String, Object> teammakecheck2(Map<String, Object> map);
@@ -30,10 +28,6 @@ public interface TeamlistDAO {
 
 	void teamsecession_teamleaderdelete(Map<String, Object> map);
 
-	String teamjoin_team(Map<String, Object> map);
-
-	void teamjoininsert(Map<String, Object> map);
-
 	List<Map<String, Object>> teaminfo_notice(Map<String, Object> map);
 
 	List<Map<String, Object>> teaminfo_teamleader(Map<String, Object> map);
@@ -44,6 +38,13 @@ public interface TeamlistDAO {
 	List<Map<String, Object>> teaminfo_int(Map<String, Object> map);
 
 	int count(String search_option, String keyword);
+
+
+	int teamjoinmessage(Map<String, Object> map);
+
+	Map<String, Object> teamjoin_team(Map<String, Object> map);
+
+	int taginsert(String maketeamname, String tagarray);
 
 
 

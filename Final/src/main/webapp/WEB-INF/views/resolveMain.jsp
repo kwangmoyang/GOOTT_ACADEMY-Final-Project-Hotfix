@@ -180,9 +180,8 @@
 					<div class="ModalCon"></div>
 					<div class="ModalFooter">
 						<p>모집 마감 : 2022. 09.08 목요일</p>
-						<input type="text" name="User_nickname"
-							value="${sessionScope.User_nickname}"> <input type="text"
-							name="Request_code" value="${row.Request_code}">
+						<input type="text" name="User_nickname" value="${sessionScope.User_nickname}"> 
+						<input type="text" name="Request_code" value="${row.Request_code}">
 
 
 

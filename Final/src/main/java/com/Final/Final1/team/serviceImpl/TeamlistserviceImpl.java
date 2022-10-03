@@ -43,11 +43,6 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	}
 
 	@Override
-	public int teamjoin(Map<String, Object> map) {
-		return this.teamlistdao.teamjoin(map);
-	}
-
-	@Override
 	public Map<String, Object> teammakecheck(Map<String, Object> map) {
 		return this.teamlistdao.teammakecheck(map);
 	}
@@ -83,16 +78,6 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	}
 
 	@Override
-	public String teamjoin_team(Map<String, Object> map) {
-		return this.teamlistdao.teamjoin_team(map);
-	}
-
-	@Override
-	public void teamjoininsert(Map<String, Object> map) {
-		this.teamlistdao.teamjoininsert(map);
-	}
-
-	@Override
 	public List<Map<String, Object>> teaminfo_notice(Map<String, Object> map) {
 		return this.teamlistdao.teaminfo_notice(map);
 	}
@@ -109,7 +94,6 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	// 팀 카운트
 	@Override
 	public int count(String search_option, String keyword) {
-		// TODO Auto-generated method stub
 		return teamlistdao.count(search_option ,keyword);
   }
 
@@ -118,7 +102,21 @@ public class TeamlistserviceImpl implements Teamlistservice {
 		return this.teamlistdao.teaminfo_int(map);
 	}
 
-	
+	@Override
+	public int teamjoinmessage(Map<String, Object> map) {
+		return this.teamlistdao.teamjoinmessage(map);
+	}
+
+	@Override
+	public Map<String, Object> teamjoin_team(Map<String, Object> map) {
+		return this.teamlistdao.teamjoin_team(map);
+	}
+
+	@Override
+	public int taginsert(String maketeamname, String tagarray) {
+		return this.teamlistdao.taginsert(maketeamname, tagarray);
+	}
+
 
 
 }

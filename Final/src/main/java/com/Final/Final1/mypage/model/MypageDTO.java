@@ -1,5 +1,7 @@
 package com.Final.Final1.mypage.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MypageDTO {
 	
 //	select User_code, User_id, User_pw, User_name,User_nickname,User_score,
@@ -24,8 +26,48 @@ public class MypageDTO {
 	private String User_contact2;
 	private String User_contact3;
 	
+	private String ORG_File_name;
+	private String STORED_File_name;
 	
 	
+	private String IMG_File_name;
+	private String IMG_URL_name;
+	
+	
+	
+	
+	
+	
+	public String getIMG_File_name() {
+		return IMG_File_name;
+	}
+	public void setIMG_File_name(String iMG_File_name) {
+		IMG_File_name = iMG_File_name;
+	}
+	public String getIMG_URL_name() {
+		return IMG_URL_name;
+	}
+	public void setIMG_URL_name(String iMG_URL_name) {
+		IMG_URL_name = iMG_URL_name;
+	}
+	
+	
+	public String getORG_File_name() {
+		return ORG_File_name;
+	}
+	public void setORG_File_name(String oRG_File_name) {
+		ORG_File_name = oRG_File_name;
+	}
+	
+	
+	
+	
+	public String getSTORED_File_name() {
+		return STORED_File_name;
+	}
+	public void setSTORED_File_name(String sTORED_File_name) {
+		STORED_File_name = sTORED_File_name;
+	}
 	public int getUser_code() {
 		return User_code;
 	}
