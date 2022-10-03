@@ -18,8 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import com.Final.Final1.team.model.TeamMemberDTO;
+import com.Final.Final1.team.model.TeamMemberdelDTO;
 import com.Final.Final1.team.model.TeamlistDTO;
+import com.Final.Final1.team.model.TeamnotMemberDTO;
 import com.Final.Final1.team.service.Teamleaderservice;
+import com.Final.Final1.team.service.Teamlistservice;
 
 
 @Controller
@@ -28,38 +31,41 @@ public class Teamleadercontroller {
 	@Autowired
 	Teamleaderservice teamleaderservice;
 	
+	
 	//팀관리자페이지 불러오기
 	@RequestMapping(value="/teamleader", method= RequestMethod.GET)
-	public ModelAndView teamleader(ModelAndView mv, TeamlistDTO dto, TeamMemberDTO dto2, HttpSession session
+	public ModelAndView teamleader(ModelAndView mv, TeamlistDTO dto, TeamMemberDTO dto2,TeamnotMemberDTO dto3, HttpSession session
 			,HttpServletResponse response) throws IOException {
 		
 		String teamname = (String) session.getAttribute("Team_name");
+		
+		String User_id = (String) session.getAttribute("User_id");
 		Integer leader = (Integer)session.getAttribute("Leader_auth");
 		
 		
-		System.out.println(leader);
-		
-		
-		if(leader.equals(1)) {
+		if(leader.equals(1) || User_id != null) {
 
 			//공지사항
 			Map<String, Object> teaminfo = teamleaderservice.team_list(dto, teamname);
 			
-			System.out.println(teaminfo);
 			//팀 활동점수 & 커미션
 			Map<String, Object> teaminfo2 = teamleaderservice.team_info(dto2, teamname);
 			
-			System.out.println(teaminfo2);
 			//팀멤버들
 			List<Map<String, Object>> team_members = teamleaderservice.team_members(dto2, teamname);
 			
-			System.out.println(team_members);
+			//팀가입신청목록
+			List<Map<String, Object>> teamnotmember = teamleaderservice.team_notmembers(dto3, teamname);
+			
+			System.out.println("teamnotmember"+ dto3.toString());
+
 			
 			Map<String, Object> map2 = new HashMap<>();
 			
 			map2.put("teaminfo", teaminfo);
 			map2.put("teaminfo2", teaminfo2);
 			map2.put("team_members", team_members);
+			map2.put("teamnotmerber", teamnotmember);
 			
 			mv.addObject("map", map2);
 			
@@ -67,7 +73,7 @@ public class Teamleadercontroller {
 			return mv;
 		}
 		//안됨
-		else if(!leader.equals(1)) {
+		else{
 			
 			 System.out.println("dd");
 			 response.setContentType("text/html; charset=UTF-8");
@@ -75,17 +81,11 @@ public class Teamleadercontroller {
 	         out.println("<script>alert('팀장만 접근 가능한 페이지입니다.'); location.href = /MainPage</script>");
 	         out.flush();
 
-	         mv.setViewName("redirect:/teamleader");
+	         mv.setViewName("/MainPage");
 	         return mv;
 			
 			
 		}
-		else {
-			mv.setViewName("redirect:/MainPage");
-			return mv;
-		}
-		
-		
 	
 	}
 	
@@ -136,16 +136,70 @@ public class Teamleadercontroller {
 		return mv;
 	}
 	
+	//팀가입신청목록 - 수락
+	@RequestMapping(value="/teamjoinaccept" , method= RequestMethod.POST)
+	public ModelAndView teamjoin(@RequestParam Map<String, Object> map, HttpSession session) {
+			ModelAndView mv = new ModelAndView();
+			
+			
+			System.out.println("teamjoinaccept=="+map.toString());
+			
+		
+			//유저한테 팀이 없으면 가능하게
+			String teamjoin_team = teamleaderservice.teamjoin_team(map);
+			//세션팀이름
+			String teamname = (String) session.getAttribute("Team_name");
+			
+			
+			if(teamjoin_team == null) {
+				
+				//나중에 그냥 팀관리페이지로 보내고 거기서 가입가능하게
+				
+				//user 팀이름 update
+				teamleaderservice.teamjoin_accept(map);
+				//teammember테이블에 insert
+				teamleaderservice.teamjoininsert(map);
+				//teamnotmember테이블 delete
+				teamleaderservice.teamnotmember_del(map);
+				session.setAttribute("Team_name", teamname);
+				
+				mv.setViewName("redirect:/teamleader");
+				mv.addObject("teamjoin", "성공");
+								
+				return mv;
+			}
+			else {
+				mv.addObject("teamjoin", "실패");
+				return mv;
+			}		
+
+	}
+	
+	
+	
+	//팀가입신청목록 - 거절
+	@RequestMapping(value="/teamjoinrefuse" , method= RequestMethod.POST)
+	public ModelAndView teamjoinrefuse(@RequestParam Map<String, Object> map, HttpSession session) {
+			ModelAndView mv = new ModelAndView();
+					
+			//teamnotteam에서 삭제 이름가져와야댐
+			teamleaderservice.teamjoinrefuse(map);
+			
+			mv.setViewName("redirect:/teamleader");
+			
+			return mv;
+	}
+		
+		
+		
 	
 	//팀원추방하기
 	@RequestMapping(value="/teammemberdel", method= RequestMethod.POST)
-	//TeamMemberDTO가 아니라 T_MemberDTO따로 만들어줄것
-	public ModelAndView teammember_delete(ModelAndView mv, HttpSession session, TeamMemberDTO dto
-			,@RequestParam("User_nickname") String User_nickname) {
-	
+	public ModelAndView teammember_delete(ModelAndView mv, HttpSession session, TeamMemberdelDTO dto) {
 		//팀원추방하기
-		int teammember_delete = teamleaderservice.teammember_delete(dto, User_nickname);
-		int teammember_delete2 = teamleaderservice.teammember_delete2(dto, User_nickname);
+		
+		int teammember_delete = teamleaderservice.teammember_delete(dto);
+		int teammember_delete2 = teamleaderservice.teammember_delete2(dto);
 		
 		
 		Map<String, Object> map2 = new HashMap<>();

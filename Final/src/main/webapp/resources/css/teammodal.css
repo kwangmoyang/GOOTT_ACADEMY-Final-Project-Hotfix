@@ -43,7 +43,7 @@
 	
 	
 	animation-name: opacity;
-    animation-duration: 3s;
+    animation-duration: 2s;
 
 }
 #teammodal-div{
@@ -52,7 +52,7 @@
     background-color: var(--basic-white-color);
 
 	animation-name: opacity;
-    animation-duration: 3s;
+    animation-duration: 2s;
     
 
 	overflow-y: auto;
@@ -80,11 +80,18 @@
     justify-content: space-around;
 }
 
-#team-category button{
-    text-decoration: none;
+.teamjoin-btn, .teamsecession-btn{
     color: var(--basic-black-color);
     letter-spacing: 1.2px;
     background-color: var(--basic-gainsboro-color);
+    padding: 5px 10px;
+    border-radius: var(--basic-border-radius);
+    border: none;
+}
+.teaminfo-btn{
+    color: var(--basic-black-color);
+    letter-spacing: 1.2px;
+   	background-color: var(--hover-btn-color);
     padding: 5px 10px;
     border-radius: var(--basic-border-radius);
     border: none;
@@ -103,7 +110,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border: 3px solid red;
     
 }
 /* 공지사항 */
@@ -371,6 +377,7 @@ input[id="teaminput"]:focus{
 }
 .teamtag .clickbtn{
 	background-color: rgb(251, 171, 79);
+	animation: popup .3s linear;
 }
 /* x icon */
 .fa-xmark{
@@ -396,6 +403,9 @@ input[id="teaminput"]:focus{
     padding: 15px 0;
     cursor: pointer;
 }
+.make-btn button:active{
+	background: linear-gradient(to left, rgb(255, 38, 0), rgb(255, 132, 0));
+}
 
 @keyframes opacity {
     0%{
@@ -406,6 +416,18 @@ input[id="teaminput"]:focus{
     }
     100%{
         opacity: 1;
+    }
+}
+
+@keyframes popup {
+    0%{
+        transform: scale(1.0);
+    }
+	50%{
+		transform: scale(1.1);
+	}
+    100%{
+        transform: scale(1.0);
     }
 }
 

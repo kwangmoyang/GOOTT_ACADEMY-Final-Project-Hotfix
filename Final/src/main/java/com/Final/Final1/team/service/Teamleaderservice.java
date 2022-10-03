@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.Final.Final1.team.model.TeamMemberDTO;
+import com.Final.Final1.team.model.TeamMemberdelDTO;
 import com.Final.Final1.team.model.TeamlistDTO;
+import com.Final.Final1.team.model.TeamnotMemberDTO;
 
 public interface Teamleaderservice {
 
@@ -17,10 +19,22 @@ public interface Teamleaderservice {
 	List<TeamlistDTO> teamnotice_correction(TeamlistDTO dto, String teamname, String teamnotice_correction);
 
 	Map<String, Object> teamname_correction(TeamlistDTO dto, String teamname, String Team_name);
+	
+	String teamjoin_team(Map<String, Object> map);
 
-	int teammember_delete(TeamMemberDTO dto, String user_nickname);
+	int teammember_delete(TeamMemberdelDTO dto);
+	
+	int teammember_delete2(TeamMemberdelDTO dto);
 
-	int teammember_delete2(TeamMemberDTO dto, String user_nickname);
+	List<Map<String, Object>> team_notmembers(TeamnotMemberDTO dto3, String teamname);
+
+	int teamjoin_accept(Map<String, Object> map);
+
+	int teamjoininsert(Map<String, Object> map);
+
+	int teamnotmember_del(Map<String, Object> map);
+
+	int teamjoinrefuse(Map<String, Object> map);
 
 	
 
