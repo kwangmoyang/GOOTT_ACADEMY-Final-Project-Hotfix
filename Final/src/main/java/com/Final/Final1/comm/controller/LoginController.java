@@ -127,7 +127,7 @@ public class LoginController {
 	
 
 	@RequestMapping("/loginChk")
-	public ModelAndView loginChk(LoginDTO dto, HttpSession session, @RequestParam Map<String, Object> map) {
+	public ModelAndView loginChk(LoginDTO dto, HttpSession session, @RequestParam Map<String, Object> map, MypageDTO mydto) {
 
 		ModelAndView mv = new ModelAndView();
 
@@ -136,6 +136,8 @@ public class LoginController {
 		// 유저 ID 가입여부 확인
 		Map<String, Object> UserOnlyId_Chk = loginService.UserOnlyId_Chk(map);
 
+		
+		
 		// 유저 ID PW 둘다 일치시 정상 로그인
 		if (UserInfo_Chk != null) {
 
@@ -186,8 +188,15 @@ public class LoginController {
 			mv.setViewName("/login_etc/login");
 			// 등록되지 않은 메세지 표시
 			mv.addObject("notid", dto.getUser_id() + "는 존재하지 않는 아이디입니다.");
-
+			
 		}
+		
+				// 활동점수
+				//세션 값 불러옴
+				String name = (String)session.getAttribute("User_nickname");
+				mydto.setUser_nickname(name);
+				loginService.activeInsert(mydto);
+				
 		return mv;
 	}
 }

@@ -26,5 +26,7 @@ public interface LoginService {
 	String UserEmailinfo(MypageDTO dto);
 	
 	String UserEmailAndIDinfo(MypageDTO dto);
+
+	void activeInsert(MypageDTO mydto);
 	
 }

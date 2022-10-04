@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,7 +98,7 @@
 
 						</div>
 					</div>
-					<span>${count}개의 해결 게시글</span> `
+					<span class="resolveCount">${count}개의 해결 게시글</span> `
 					<c:forEach var="row" items="${list}" varStatus="vs">
 
 						<!-- 해결 게시판 -->
@@ -110,7 +111,10 @@
 							<div class="RmBoardRight">
 								<p>모집인원 : ${row.SolverReady_cnt}명</p>
 								<p>커미션: ${row.Commission} 픽스</p>
-								<p>남은 시간 : ${row.Recruiting_time}</p>
+								<p>생성시간 : ${row.Request_start_date}         
+								
+						
+                    
 
 								<div class="DetailModal"
 									onclick="document.getElementById('modal${vs.index}').style.display='block'">내용보기</div>
@@ -118,7 +122,7 @@
 						</div>
 
 					</c:forEach>
-					<table>
+					<table class="boardPaging">
 						<tr>
 							<td colspan="5" align="center" class="boardPagingTd"><c:if
 									test="${page_info.curBlock > 1 }">

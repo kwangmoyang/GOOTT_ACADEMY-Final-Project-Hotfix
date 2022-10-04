@@ -121,6 +121,19 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 
+	@Override
+	public void myBoardDelete(int no) {
+		sqlSession.delete("userinfo.myBoardDelete", no);
+		
+	}
+
+	@Override
+	public void myCommentDelete(int no) {
+		sqlSession.delete("userinfo.myCommentDelete", no);
+		
+	}
+
+
 
 	@Override
 	public int UserReq_cnt(MypageDTO dto) {
@@ -138,11 +151,6 @@ public class MypageDAOImpl implements MypageDAO {
 	public int UserDrop_Sol_cnt(MypageDTO dto) {
 		return sqlSession.selectOne("userinfo.UserDrop_Sol_cnt",dto);
 	}
-
-
-
-	
-	
 
 	
 	

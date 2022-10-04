@@ -497,3 +497,11 @@ html, body {
     border: none;
     background-color: rgb(234, 126, 18);
 }
+.boardPaging {
+   margin: auto;
+}
+.boardPagingTd a{
+            text-decoration: none;
+            color: black;
+            font-size: 25px;
+        }

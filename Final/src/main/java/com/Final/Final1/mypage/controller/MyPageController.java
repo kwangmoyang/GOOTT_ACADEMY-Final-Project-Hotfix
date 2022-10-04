@@ -37,11 +37,38 @@ import com.Final.Final1.mypage.service.MypageService;
 //留덉씠 �럹�씠吏� 而⑦듃濡ㅻ윭
 @Controller
 public class MyPageController {
-
+	
 	@Inject
 	MypageDAO mypageDao;
 	@Autowired
 	MypageService mypageService;
+	
+	// 마이페이지 게시글 선택삭제
+		@ResponseBody
+		@RequestMapping(value = "/myBoardDelete", method = RequestMethod.POST)
+			//public String boardDelete(HttpServletRequest request) {
+			public String boardDelete(int[] valueArr) {
+			int[] boardDeleteMsg = valueArr;
+			int size = boardDeleteMsg.length;
+			for(int i=0; i<size; i++) {
+				mypageService.myBoardDelete(boardDeleteMsg[i]);
+			}
+			return "redirect:/mypage/writer";
+	}
+	
+	// 마이페이지 댓글 선택삭제
+				@ResponseBody
+				@RequestMapping(value = "/myCommentDelete", method = RequestMethod.POST)
+					//public String boardDelete(HttpServletRequest request) {
+					public String CommentDelete(int[] valueArr) {
+					int[] boardDeleteMsg = valueArr;
+					int size = boardDeleteMsg.length;
+					for(int i=0; i<size; i++) {
+						mypageService.myCommentDelete(boardDeleteMsg[i]);
+					}
+					return "redirect:/mypage/comments";
+	}	
+	
 	
 	// 마이 페이지
 	@RequestMapping("/fileTest")
@@ -100,7 +127,7 @@ public class MyPageController {
 		
 		return "/mypage/mypage";
 	}
-
+	
 	
 	// 마이 페이지
 	@ResponseBody

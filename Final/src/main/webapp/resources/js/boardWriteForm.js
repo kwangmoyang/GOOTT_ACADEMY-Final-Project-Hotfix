@@ -8,7 +8,7 @@
 	Submitbtn.addEventListener('click', function(){
 		//카테고리 유효성 검사
 		if(boardCode.value === "") {
-			alert("카테고리를 선택하세요")
+			alert("토픽을 선택하세요")
 			boardCode.focus();
 			return false;
 		};	

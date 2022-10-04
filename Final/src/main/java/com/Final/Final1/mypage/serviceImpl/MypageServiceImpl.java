@@ -124,6 +124,18 @@ public class MypageServiceImpl implements MypageService{
 
 
 	@Override
+	public void myBoardDelete(int no) {
+		mypageDao.myBoardDelete(no);
+		
+	}
+
+
+	@Override
+	public void myCommentDelete(int no) {
+		mypageDao.myCommentDelete(no);
+		
+	}
+
 	public int UserReq_cnt(MypageDTO dto) {
 		return mypageDao.UserReq_cnt(dto);
 	}

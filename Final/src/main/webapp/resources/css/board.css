@@ -82,6 +82,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    margin-right: 30px;
 }
 
 .search-box input[type="text"]{

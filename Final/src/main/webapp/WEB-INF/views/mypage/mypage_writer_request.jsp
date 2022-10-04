@@ -130,7 +130,7 @@
 						</div>
 						
 					</c:forEach>
-   					<table>
+   					<table class="boardPaging">
 						<tr>
 							<td colspan="5" align="center" class="boardPagingTd"><c:if
 									test="${page_info.curBlock > 1 }">

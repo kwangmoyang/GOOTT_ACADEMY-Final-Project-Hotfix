@@ -1,21 +1,6 @@
-/*
-$(function() {
-
-	$("#searchBtnI").on("click", function() {
-		
-		let keyword = $("[name=keyword]").val();
-		location.href = "/mypage/writer?keyword="+keyword;
-		
-
-	});	
-
-
-});*/
-
-
 
 function removeValue() {
-	 let url = "/myBoardDelete;"; // Controller로 보내고자 하는 URL
+	 let url = "/myCommentDelete;"; // Controller로 보내고자 하는 URL
 	 let valueArr = new Array();
 	 let list = $("input[name='del_Abd']");
 	 //console.log(list[0].dataset.adminbd);
@@ -37,7 +22,7 @@ function removeValue() {
 			 success : function(jdata){
 				 if(jdata = 1) {
 					 alert("삭제되었습니다!");
-					 location.href = '/mypage/writer';
+					 location.href = '/mypage/comments';
 				 }
 				 else{
 					 alert("삭제실패하였습니다!");

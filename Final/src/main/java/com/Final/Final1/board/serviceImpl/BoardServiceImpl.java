@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.Final.Final1.board.model.BoardDAO;
 import com.Final.Final1.board.model.BoardDTO;
 import com.Final.Final1.board.service.BoardService;
+import com.Final.Final1.mypage.model.MypageDTO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -76,6 +77,13 @@ public class BoardServiceImpl implements BoardService{
 	public int Likedown(int post_num) {
 		// TODO Auto-generated method stub
 		return boardDAO.Likedown(post_num);
+	}
+
+
+	@Override
+	public void activeInsert(MypageDTO mydto) {
+		 boardDAO.activeInsert(mydto);
+		
 	}
 
 

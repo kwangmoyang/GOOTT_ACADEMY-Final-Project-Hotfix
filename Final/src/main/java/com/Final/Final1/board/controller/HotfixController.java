@@ -264,7 +264,7 @@ public class HotfixController {
 			byte[] bytes = upload.getBytes();
 
 			//이미지 경로 생성
-			String path = "/Users/seoair/Goott/Project/FinalProjectSpring/untitled/Final/src/main/webapp/resources/img/clientImg" + "ckImage/";
+			String path = "C:\\clientImg" + "ckImage/";
 			String ckUploadPath = path + uid + "_" + fileName;
 			File folder = new File(path);
 
@@ -318,8 +318,9 @@ public class HotfixController {
 			throws ServletException, IOException{
 
 		//서버에 저장된 이미지 경로
-		String path = "/Users/seoair/Goott/Project/FinalProjectSpring/untitled/Final/src/main/webapp/resources/img/clientImg" + "ckImage/";
-
+		
+		String path = "C:\\clientImg" + "ckImage/";
+//				"/Users/seoair/Goott/Project/FinalProjectSpring/untitled/Final/src/main/webapp/resources/img/clientImg" + "ckImage/";
 		String sDirPath = path + uid + "_" + fileName;
 
 		File imgFile = new File(sDirPath);

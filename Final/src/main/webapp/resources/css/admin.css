@@ -224,3 +224,12 @@ a {
     border: 1px solid grey;
 }
 
+/* 페이징 */
+.boardPaging {
+   margin: auto;
+}
+.boardPagingTd a{
+            text-decoration: none;
+            color: black;
+            font-size: 25px;
+        }
