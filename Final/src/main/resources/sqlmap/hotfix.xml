@@ -16,14 +16,23 @@
 				where Request_title like CONCAT('%',#{keyword},'%')
 			 </if>  
 			 
+			 <choose>
+			<when test="search_option == 'new'">
+				order by Request_start_date desc, Request_code desc
+			</when>
+				<when test="search_option == 'com'">
+					 order by Commission desc, Request_code desc
+				</when>
+				
+				<otherwise>
+					order by Request_start_date desc, Request_code desc
+				</otherwise>
+			</choose>
+			  
+			 
 			<include refid="paging_footer" />	
 			
-		    <if test="search_option == 'new'">
-				 order by Request_start_date desc, Request_code desc
-			</if>	
-			<if test="search_option =='com' ">
-				 order by Commission desc, Request_code desc
-			</if>  
+		  
 			
 			
 	</select> 

@@ -38,5 +38,9 @@ public interface MypageDAO {
 	
 	public void UserContactSet(MypageDTO dto);
 
+	public void myBoardDelete(int no);
+
+	public void myCommentDelete(int no);
+
 	
 }

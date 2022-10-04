@@ -2,7 +2,18 @@
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	<mapper namespace="userinfo">
-
+	
+	<!-- 마이페이지 내 게시글선택 삭제 -->
+	<delete id="myBoardDelete" parameterType="int">
+	delete from Board where Post_num = #{Post_num};
+	</delete>
+	
+	<!-- 마이페이지 내 댓글 선택 삭제 -->
+	<delete id="myCommentDelete" parameterType="int">
+	delete from Comment where Comment_code = #{Comment_code};
+	</delete>
+	
+	
 		<!-- 
 			* 22-09-23 HIKARI 쿼리 작성
 			유저 정보 모두 뽑아올수 있음
@@ -124,8 +135,7 @@
 		update User set User_contact1 = #{User_contact1}, User_contact2 = #{User_contact2}, User_contact3 = #{User_contact2} where User_id = #{User_id};
 	</update>
 
-		
-
+	
 
 	<!-- 계좌정보 변경 -->
 	

@@ -71,7 +71,7 @@
         	</div>
         	
     
-				현재 ${map.count}개의 팀이 있습니다	
+		
             	<c:forEach var="row" items="${map.teamlist}" begin="0" end="9">
 				  <div class="teamlistbox">
 				      <div class="img">

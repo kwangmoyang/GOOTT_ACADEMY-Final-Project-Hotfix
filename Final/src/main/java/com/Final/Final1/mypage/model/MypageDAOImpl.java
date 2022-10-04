@@ -113,6 +113,18 @@ public class MypageDAOImpl implements MypageDAO {
 		
 	}
 
+	@Override
+	public void myBoardDelete(int no) {
+		sqlSession.delete("userinfo.myBoardDelete", no);
+		
+	}
+
+	@Override
+	public void myCommentDelete(int no) {
+		sqlSession.delete("userinfo.myCommentDelete", no);
+		
+	}
+
 	
 	
 	

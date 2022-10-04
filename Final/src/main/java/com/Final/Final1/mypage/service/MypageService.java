@@ -41,6 +41,10 @@ public interface MypageService {
 	
 	public void UserContactSet(MypageDTO dto);
 
+	public void myBoardDelete(int boardDeleteMsg);
+
+	public void myCommentDelete(int boardDeleteMsg);
+
 
 	
 	

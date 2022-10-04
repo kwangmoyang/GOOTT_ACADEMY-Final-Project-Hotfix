@@ -43,7 +43,7 @@ public class AdminController {
 	
 	
 	// 게시판관리페이지
-	@RequestMapping("/admin/board")
+	@RequestMapping("/admin/board")	
 	public String adminBoard(AdminDTO dto) {
 		return "/admin/admin_BoardMng";
 	}

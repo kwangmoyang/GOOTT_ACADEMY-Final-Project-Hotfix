@@ -56,7 +56,12 @@
 	</update>
 	
 	
-	
+	<!--활동점수 -->	
+	<insert id="activeInsert" >
+		update User set 
+		User_score = User_score+1
+		where User_nickname = #{User_nickname};
+	</insert>
 	
 	
 	
