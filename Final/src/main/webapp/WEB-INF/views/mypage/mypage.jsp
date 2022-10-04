@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,33 +78,42 @@
 					</div>
 					<!-- 커미션 -->
 					<p class="mypage_title">
-						님의 커미션 <i class="uil uil-question-circle"></i>
+						커미션 <i class="uil uil-question-circle"></i>
 					</p>
 					<div class="comition_1">
-						<div>${sessionScope.commission } 픽스</div>
+						<div>${Userinfolist[0].commission } 픽스</div>
 						<div>
 							<a href="#" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a>
 						</div>
+
 					</div>
 
 					<!-- 나의 해결률 -->
-					<p class="mypage_title">님의 전적</p>
+					<p class="mypage_title">해결요청 전적</p> 
 					<div class="myHistory">
-						<div>해결 : 50 건 요청 : 100 건</div>
 						<div>
-							<a href="#" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a>
+						 총 해결요청수 ${RequesterAll }건 해결요청 수락율${RequesterAvg }%
 						</div>
 					</div>
-
+					
+					<p class="mypage_title">해결내역 전적</p>
+          
+					<div class="myHistory">
+						<div>
+						총 해결수 ${SolverAll }건 해결율${SolverAvg }%
+						</div>
+					</div>
+          
 					<!-- 나의 팀 -->
-					<p class="mypage_title">님의 팀정보</p>
+					<p class="mypage_title">팀정보</p>
 					<div class="myTeam">
 						
 						<c:choose>
 					      <c:when test="${sessionScope.Team_name != null }">
 					      	<!-- 가입된 팀정보가 있을때 -->
-					      	<div class="mypage_teamname">${sessionScope.Team_name }</div>
-							<div class="teaminfo_modal"><a href="#" onclick="teaminfoFuc('${sessionScope.Team_name}')" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a></div>
+
+					      	<div>${Userinfolist[0].Team_name }</div>
+							    <div><a href="#">확인<i class="uil uil-angle-right-b"></i></a></div>
 					      </c:when>
 					      <c:when test="${teamnotmember != null}">
 					      	<form action="/mypage/index" method="POST" id="teamnotmemberform" class="teamnotmemberform">
@@ -120,12 +130,9 @@
 					</div>
 
 					<!-- 나의 활동점수 -->
-					<p class="mypage_title">님의 활동점수</p>
+					<p class="mypage_title">활동점수</p>
 					<div class="myScore">
-						<div>현재활동점수</div>
-						<div>
-							<a href="#" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a>
-						</div>
+						<div>${Userinfolist[0].User_score } 점</div>
 					</div>
 
 					

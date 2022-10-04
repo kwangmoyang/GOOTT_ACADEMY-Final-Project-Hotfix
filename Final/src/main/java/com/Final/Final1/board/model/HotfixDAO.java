@@ -38,8 +38,10 @@ public interface HotfixDAO {
 	
 	void Drop_Req_cnt(HotfixDTO dto);
 	
+	void Drop_Sol_cnt(HotfixDTO dto);
+	
 	void Completion(HotfixDTO dto);
 
-	
+	List<HotfixDTO> resolveChk(HotfixDTO dto);
 	
 }

@@ -1,5 +1,6 @@
 package com.Final.Final1.comm.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -64,6 +65,14 @@ public class LoginDAOImpl implements LoginDAO{
 	@Override
 	public String UserEmailAndIDinfo(MypageDTO dto) {
 		return sqlSession.selectOne("userinfo.UserEmailAndIDinfo",dto);
+	}
+
+	@Override
+	public void activeInsert(MypageDTO mydto) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("User_nickname",mydto.getUser_nickname());
+		sqlSession.insert("login.activeInsert",map);
+		
 	}
 
 	

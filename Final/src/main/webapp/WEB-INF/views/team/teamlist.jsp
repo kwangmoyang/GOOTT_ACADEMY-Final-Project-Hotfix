@@ -69,8 +69,6 @@
                     </div>
                 </div>
         	</div>
-        	
-    	
             	<c:forEach var="row" items="${map.teamlist}" begin="0" end="9">
 				  <div class="teamlistbox">
 				      <div class="img">

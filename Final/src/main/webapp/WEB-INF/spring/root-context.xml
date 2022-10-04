@@ -12,8 +12,6 @@
 			value="jdbc:mysql://hotfixproject.cgil54vrqbl6.ap-northeast-2.rds.amazonaws.com/HOTFIX?serverTimezone=Asia/Seoul&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
 
 		<property name="username" value="admin" />
-
-
 		<property name="password" value="QqWwEe0909!" />
 		<property name="initialSize" value="5"></property>
 	</bean>

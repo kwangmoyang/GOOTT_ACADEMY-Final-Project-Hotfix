@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,7 +98,7 @@
 
 						</div>
 					</div>
-					<span>${count}개의 해결 게시글</span> `
+					<span class="resolveCount">${count}개의 해결 게시글</span> `
 					<c:forEach var="row" items="${list}" varStatus="vs">
 
 						<!-- 해결 게시판 -->
@@ -110,7 +111,10 @@
 							<div class="RmBoardRight">
 								<p>모집인원 : ${row.SolverReady_cnt}명</p>
 								<p>커미션: ${row.Commission} 픽스</p>
-								<p>남은 시간 : ${row.Recruiting_time}</p>
+								<p>생성시간 : ${row.Request_start_date}         
+								
+						
+                    
 
 								<div class="DetailModal"
 									onclick="document.getElementById('modal${vs.index}').style.display='block'">내용보기</div>
@@ -118,7 +122,7 @@
 						</div>
 
 					</c:forEach>
-					<table>
+					<table class="boardPaging">
 						<tr>
 							<td colspan="5" align="center" class="boardPagingTd"><c:if
 									test="${page_info.curBlock > 1 }">
@@ -154,7 +158,6 @@
 	<div class="RmModal_background"></div>
 
 	<!-- ==============모달공간============== -->
-
 	<c:forEach var="row" items="${list}" varStatus="vs">
 		<form method="POST" id="requestform">
 			<div class="RmModal_wrap" id="modal${vs.index}">
@@ -167,8 +170,6 @@
 				<div class="ModalText">
 					<h1>해결요청!</h1>
 					<div class="ModalHeader">
-
-
 						<p>커미션 : ${row.Commission} 픽스</p>
 						<p>모집인원 : ${row.SolverReady_cnt}명</p>
 					</div>
@@ -180,10 +181,8 @@
 					<div class="ModalCon"></div>
 					<div class="ModalFooter">
 						<p>모집 마감 : 2022. 09.08 목요일</p>
-						<input type="text" name="User_nickname" value="${sessionScope.User_nickname}"> 
+						<input type="text" name="User_nickname" id="nickNameChk" value="${sessionScope.User_nickname}"> 
 						<input type="text" name="Request_code" value="${row.Request_code}">
-
-
 
 						<button class="solutionSubmit">해결신청</button>
 
@@ -193,7 +192,6 @@
 			</div>
 		</form>
 	</c:forEach>
-
 	<!-- ==============모달공간============== -->
 
 </body>
@@ -201,6 +199,9 @@
 <script src="../resources/js/BasicFrame.js"></script>
 <script src="../resources/js/resolveMain.js"></script>
 <script>
+
+	
+	
 	let solutionSubmit = document.querySelectorAll('.solutionSubmit');
 	let requestform = document.querySelectorAll('#requestform');
 
@@ -211,9 +212,10 @@
 
 	for (let i = 0; i < solutionSubmit.length; i++) {
 		solutionSubmit[i].addEventListener('click', function() {
-			alert("신청이 완료되었습니다.");
-			requestform[i].action = "solutionRequest";
-			requestform[i].submit();
+				alert("신청이 완료되었습니다.");
+				requestform[i].action = "solutionRequest";
+				requestform[i].submit();
+			
 		});
 
 	}

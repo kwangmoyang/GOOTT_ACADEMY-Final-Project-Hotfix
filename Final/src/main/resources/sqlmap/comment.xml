@@ -19,7 +19,13 @@
 	<select id="count" parameterType="hashMap" resultType="int">
 		select count(*) from Comment where Post_num =#{Post_num};
 	</select>
-	  
+	
+	  <insert id="activeInsert" parameterType="hashMap">
+		update User set 
+		User_score = User_score+2
+		where User_nickname = #{User_nickname};
+	</insert>
+	
 </mapper>
 
 

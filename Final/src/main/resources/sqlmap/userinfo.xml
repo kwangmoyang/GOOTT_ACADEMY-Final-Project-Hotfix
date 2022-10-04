@@ -2,7 +2,18 @@
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	<mapper namespace="userinfo">
-
+	
+	<!-- 마이페이지 내 게시글선택 삭제 -->
+	<delete id="myBoardDelete" parameterType="int">
+	delete from Board where Post_num = #{Post_num};
+	</delete>
+	
+	<!-- 마이페이지 내 댓글 선택 삭제 -->
+	<delete id="myCommentDelete" parameterType="int">
+	delete from Comment where Comment_code = #{Comment_code};
+	</delete>
+	
+	
 		<!-- 
 			* 22-09-23 HIKARI 쿼리 작성
 			유저 정보 모두 뽑아올수 있음
@@ -53,8 +64,22 @@
 	<select id="Userinfo" resultType="hashMap">
 		select User_code, User_id, User_pw, User_name,User_nickname,User_score,
 		User_point,commission,Phone_num,Email_address,Team_name,User_introduce,
-		User_contact1,User_contact2,User_contact3 from User where 
-		User_id=#{User_id};
+		User_contact1,User_contact2,User_contact3,Req_cnt,Sol_cnt,Drop_Req_cnt,Drop_Sol_cnt from User where User_id=#{User_id};
+	</select>
+	
+	<!-- 유저 전적 카운트 뽑아오기 -->
+	
+	<select id="UserReq_cnt" resultType="int">
+		select Req_cnt from User where User_id=#{User_id};
+	</select>
+	<select id="UserSol_cnt" resultType="int">
+		select Sol_cnt from User where User_id=#{User_id};
+	</select>
+	<select id="UserDrop_Req_cnt" resultType="int">
+		select Drop_Req_cnt from User where User_id=#{User_id};
+	</select>
+	<select id="UserDrop_Sol_cnt" resultType="int">
+		select Drop_Sol_cnt from User where User_id=#{User_id};
 	</select>
 	
 	<!-- 이메일 확인후 정보 있을시 ㅇ이디 값 뱉어줌 -->
@@ -141,6 +166,8 @@
 	<delete id="teamnotmember_delete" parameterType="String">
 		delete from Team_NOT_Members where Team_unaccept_member = #{User_nickname};
 	</delete>
+	
+
 	<!-- 계좌정보 변경 -->
 	
   <!-- 회원탈퇴하기 -->

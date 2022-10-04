@@ -138,7 +138,7 @@ public class PageUtil {
 		if(blockEnd > totPage) {
 			blockEnd = totPage;
 			prevPage = (curBlock == 1) ? 1 : (curBlock - 1) * BLOCK_SCALE; 
-			nextPage = (curBlock > totBlock) ? (curBlock * BLOCK_SCALE) : (curBlock * BLOCK_SCALE) + 1; 
+			nextPage = (curBlock > totBlock) ? (curBlock * BLOCK_SCALE): (curBlock * BLOCK_SCALE)+1 ;
 		}
 		if(nextPage >= totPage) {
 			nextPage = totPage;

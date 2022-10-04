@@ -6,7 +6,9 @@
 			select count(*)from Team t1
       left outer join Team_has_Tags t2
       on t1.Team_name = t2.Team_name 
+      
       <include refid="search"/>
+     
       order by Team_cr_date DESC;
    </select>
 
@@ -16,11 +18,11 @@
       select t1.Team_code, t1.Team_name, t1.Team_intro, t1.Team_cr_date, t2.Tags_Tag_Name from Team t1
       left outer join Team_has_Tags t2
       on t1.Team_name = t2.Team_name
-      <include refid="search"/>
-      
-      group by t1.Team_name
+      <include refid="search"/> 
+       group by t1.Team_name
        order by Team_cr_date DESC
       <include refid="paging_footer" />
+      
    </select>
    
    <!-- 전체목록 중 팀 태그 따로 불러옴 -->
@@ -64,7 +66,8 @@
 
    <!-- 팀가입 신청보내기 -->   
    <insert id="teamjoinmessage" parameterType="hashMap">
-      insert into Team_NOT_Members (Team_unaccept_member, Team_name) values (#{User_nickname} , #{jointeamname});
+      insert into Team_NOT_Members (Team_unaccept_member, 
+) values (#{User_nickname} , #{jointeamname});
    </insert>
    
    

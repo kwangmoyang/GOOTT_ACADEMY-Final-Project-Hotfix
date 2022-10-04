@@ -20,14 +20,18 @@ $(function() {
 		
 			
 		//카테고리를 이미 선택한 후 검색이라면
-		if(searchParam("boardCode") !=null){
+		
+			if(searchParam("boardCode") !=null ){
 			
 			location.href = "/list?boardCode="+cat+"&keyword="+keyword+"&select="+select;
-			return;
-		}
-		location.href = "/list?keyword="+keyword+"&select="+select;
-	});	
-	
+			
+			} else if(searchParam("boardCode") == null) {
+				location.href = "/list?keyword="+keyword+"&select="+select;
+			}
+		
+			});
+		
+		
 	
 	
 	// 카테고리 클릭시 해당메뉴 관련 데이터 리스트 호출
@@ -36,12 +40,7 @@ $(function() {
 		
 		location.href = "/list?boardCode=" + cat;
 	});
-	
-/*	let select = $("select[name=search_option]").change(function(){
-		let select = $(this).val()
-		
-		location.href = "/list?select=" + select;
-	});*/
+
 	
 });
 //쿼리스트링의 주소를 받아옴

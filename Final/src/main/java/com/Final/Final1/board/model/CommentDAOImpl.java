@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.Final.Final1.mypage.model.MypageDTO;
+
 @Repository
 public class CommentDAOImpl implements CommentDAO {
 
@@ -32,6 +34,11 @@ public class CommentDAOImpl implements CommentDAO {
 	public int count(int post_num) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("Comment.count", post_num);
+	}
+	@Override
+	public void activeInsert(MypageDTO mydto) {
+		sqlSessionTemplate.insert("Comment.activeInsert", mydto);
+		
 	}
 
 }

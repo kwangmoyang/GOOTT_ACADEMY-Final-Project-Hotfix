@@ -19,6 +19,10 @@ public class MypageServiceImpl implements MypageService{
 	@Autowired
 	MypageDAO mypageDao;
 	
+	@Override
+	public List<MypageDTO> Userinfo(MypageDTO dto) {
+		return mypageDao.Userinfo(dto);
+	}
 	
 	
 	@Override
@@ -122,7 +126,11 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public Map<String, Object> mypageUserinfo(String User_nickname) {
 		return mypageDao.mypageUserinfo(User_nickname);
+  }  
+	public void myBoardDelete(int no) {
+		mypageDao.myBoardDelete(no);
 	}
+	
 
 
 	@Override
@@ -137,6 +145,29 @@ public class MypageServiceImpl implements MypageService{
 		
 	}
 
+	public void myCommentDelete(int no) {
+		mypageDao.myCommentDelete(no);
+		
+	}
+
+	public int UserReq_cnt(MypageDTO dto) {
+		return mypageDao.UserReq_cnt(dto);
+	}
+	@Override
+	public int UserSol_cnt(MypageDTO dto) {
+		return mypageDao.UserSol_cnt(dto);
+	}
+	@Override
+	public int UserDrop_Req_cnt(MypageDTO dto) {
+		return mypageDao.UserDrop_Req_cnt(dto);
+	}
+	@Override
+	public int UserDrop_Sol_cnt(MypageDTO dto) {
+		return mypageDao.UserDrop_Sol_cnt(dto);
+	}
+
+
+	
 
 	
 

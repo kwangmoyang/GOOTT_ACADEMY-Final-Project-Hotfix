@@ -15,8 +15,8 @@
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <link rel="stylesheet" href="../resources/css/resolveWriteForm.css">
 
-        <script type="text/javascript" src="<c:url value="/resources/ckeditor/ckeditor.js"/>"></script>
-      
+       
+        <script type="text/javascript" src="<c:url value="/resources/editor/ckeditor/ckeditor/ckeditor.js"/>"></script>
         <title>HotFix</title>
     </head>
 
