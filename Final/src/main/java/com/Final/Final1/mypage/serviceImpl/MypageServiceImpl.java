@@ -124,13 +124,27 @@ public class MypageServiceImpl implements MypageService{
 
 
 	@Override
+	public Map<String, Object> mypageUserinfo(String User_nickname) {
+		return mypageDao.mypageUserinfo(User_nickname);
+  }  
 	public void myBoardDelete(int no) {
 		mypageDao.myBoardDelete(no);
-		
+	}
+	
+
+
+	@Override
+	public String teamnotmember_select(String User_nickname) {
+		return mypageDao.teamnotmember_select(User_nickname);
 	}
 
 
 	@Override
+	public void teamnotmember_delete(String User_nickname) {
+		mypageDao.teamnotmember_delete(User_nickname);
+		
+	}
+
 	public void myCommentDelete(int no) {
 		mypageDao.myCommentDelete(no);
 		

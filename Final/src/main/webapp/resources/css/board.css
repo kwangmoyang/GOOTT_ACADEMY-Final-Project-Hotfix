@@ -180,3 +180,13 @@ input:-webkit-autofill {
             color: black;
             font-size: 25px;
         }
+
+/* 10-04 김양희 a태그 꾸미기 */
+.board_info{
+	cursor:pointer;
+	text-decoration: underline;
+	color:black;
+}
+.board_info:hover{
+	color: blue;
+}

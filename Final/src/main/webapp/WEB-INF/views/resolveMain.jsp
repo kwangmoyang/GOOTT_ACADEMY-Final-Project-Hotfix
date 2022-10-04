@@ -105,7 +105,7 @@
 						<div class="RmBoard">
 							<div class="RmBoardLeft">
 								<p>해결요청!</p>
-								<p>작성자 :${row.Requester}</p>
+								<p>작성자 : <a href="/mypage_view?User_nickname=${row.Requester}" target="_blank" class="resolve_info">${row.Requester}</a></p>
 								<p>제목 : ${row.Request_title}</p>
 							</div>
 							<div class="RmBoardRight">

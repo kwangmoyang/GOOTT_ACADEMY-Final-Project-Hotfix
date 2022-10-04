@@ -242,6 +242,16 @@ html, body {
     border: none;
     background-color: var(--btn-color);
 }
+/* 10-04 김양희 a태그 꾸미기 */
+.resolve_info{
+	cursor:pointer;
+	text-decoration: underline;
+	color:black;
+}
+.resolve_info:hover{
+	color: blue;
+}
+
 /* 페이징 */
 .boardPaging {
    margin: auto;

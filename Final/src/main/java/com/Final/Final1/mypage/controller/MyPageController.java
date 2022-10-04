@@ -2,6 +2,7 @@ package com.Final.Final1.mypage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,6 +138,41 @@ public class MyPageController {
 	public ModelAndView mypageIndex(MypageDTO dto,HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		
+		
+//		==================10-04 양희 추가==========================
+		//팀낫멤버 테이블에서 select ->
+		String User_nickname = (String) session.getAttribute("User_nickname");
+		
+		String teamnotmember = mypageService.teamnotmember_select(User_nickname);
+		
+//		HashMap<String, Object> map2 = new HashMap<>();
+//		map2.put("teamnotmember", teamnotmember);
+		
+		mv.addObject("teamnotmember", teamnotmember);
+//		=============================================
+		
+		
+//		String name = (String)session.getAttribute("User_id");
+//		dto.setUser_id(name);
+//		
+//		String photo = "\\"+mypageService.UserPhotoView(dto);
+//		System.out.println(photo);
+//		
+//		File file = new File("C:\\Users\\광트북\\img"+photo);
+//		ResponseEntity<byte[]> result = null;
+	
+//		try {
+//			HttpHeaders header = new HttpHeaders();
+//			header.add("Content-Type", Files.probeContentType(file.toPath()));
+//			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),
+//					header, HttpStatus.OK);
+//			mv.addObject("photo", result);
+			mv.setViewName("/mypage/mypage");
+//			
+//		} catch(IOException e) {
+//			e.printStackTrace();
+//		}
+
 		String Userid = (String)session.getAttribute("User_id") ;
 		System.out.println(Userid);
 		
@@ -175,6 +213,24 @@ public class MyPageController {
 		
 		return mv;
 	}
+	
+//	==================10-04 김양희 팀 신청 삭제추가==========================
+	@ResponseBody
+	@RequestMapping(value="/mypage/index", method=RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	public ModelAndView mypageIndex2(HttpSession session, ModelAndView mv) {
+		
+		
+		String User_nickname = (String) session.getAttribute("User_nickname");
+		
+		mypageService.teamnotmember_delete(User_nickname);
+		
+		mv.setViewName("/mypage/mypage");
+
+		return mv;
+	}
+	
+//	============================================
+	
 	
 	@ResponseBody
 	@RequestMapping("/mypage/index2")
@@ -376,6 +432,23 @@ public class MyPageController {
 		session.invalidate();
 		mv.setViewName("redirect:/MainPage"); // 탈퇴시 메인페이지로 연결됨
 		//mv.addObject("msg","완료2");
+		return mv;
+	}
+	
+	
+	
+	//10-04 김양희 추가
+	//유저 닉네임 클릭 시 유저의 마이페이지 둘러보기로 이동
+	@RequestMapping(value="/mypage_view", method = RequestMethod.GET)
+	public ModelAndView mypage_view(HttpSession session, ModelAndView mv, @RequestParam String User_nickname) {
+		
+		System.out.println(User_nickname);
+		
+		//클릭한 유저의 정보 가져오기
+		Map<String, Object> mypageUserinfo = mypageService.mypageUserinfo(User_nickname);
+		
+		mv.addObject("mypageUserinfo", mypageUserinfo);
+		mv.setViewName("/mypage/mypage_view");
 		return mv;
 	}
 	

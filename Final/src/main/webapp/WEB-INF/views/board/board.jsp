@@ -130,15 +130,19 @@
                <c:forEach var="row" items="${map.list}">
                   <div class="board_main">
                      <div class="board_header">
-                        <div class="board_write">		
-                         
-                           	 <span><strong> ${row.Post_writer}</strong></span>
-                               <span>
+                        <div class="board_write">
+                           <span><i class="fas fa-feather-alt"></i></span> <span>200
+                           <i class="fas fa-bolt"></i></span> <span>
+                           <a href="/mypage_view?User_nickname=${row.Post_writer}" target="_blank" class="board_info">${row.Post_writer}</a>
+                           </span>
+
+                      <span>
 					             <fmt:parseDate value="${row.Post_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 
 					             <fmt:formatDate value="${date1}" pattern="MM-dd  HH:mm"/>
 					            </span>
                                
                         </div>
+                        
                         <div class="board_view">
                            <span>${row.Post_view} 조회수</span> <span>${row.Post_like}
                               추천수</span>

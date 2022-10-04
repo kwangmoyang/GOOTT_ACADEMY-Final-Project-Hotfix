@@ -12,7 +12,8 @@
     --ex-border-color: crimson;  /* 보드 테스트 레드 칼라 */
     --new-border-orange: solid 1px rgb(235, 117, 48);
     
-
+	--border-btn-radius: 5px;
+    --btn-color: rgba(255, 95, 47, 0.906);
 }
 
 
@@ -132,4 +133,13 @@ ul{
 }
 
 /* input css */
+#corbtn{
+	padding: 5px 10px;
+	border: none;
+	background: var(--btn-color);
+	border-radius: var(--border-btn-radius);
+	cursor: pointer;
+	color: white;
+	margin-top:5px;
+}
 

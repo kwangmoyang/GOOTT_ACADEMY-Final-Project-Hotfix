@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -35,15 +36,32 @@ public class Teamleadercontroller {
 	//팀관리자페이지 불러오기
 	@RequestMapping(value="/teamleader", method= RequestMethod.GET)
 	public ModelAndView teamleader(ModelAndView mv, TeamlistDTO dto, TeamMemberDTO dto2,TeamnotMemberDTO dto3, HttpSession session
-			,HttpServletResponse response) throws IOException {
+			, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		String teamname = (String) session.getAttribute("Team_name");
 		
 		String User_id = (String) session.getAttribute("User_id");
 		Integer leader = (Integer)session.getAttribute("Leader_auth");
 		
+		System.out.println(leader);
 		
-		if(leader.equals(1) || User_id != null) {
+		if(User_id == null) {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('팀장만 접근 가능한 페이지입니다.'); location.href = /MainPage</script>");
+			out.flush();
+			
+//	         mv.setViewName("/MainPage");
+//				return mv;
+			
+		}
+		if(!leader.equals(1)) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('팀장만 접근 가능한 페이지입니다.'); location.href = '/MainPage' </script>");
+			out.flush();
+		}
 
 			//공지사항
 			Map<String, Object> teaminfo = teamleaderservice.team_list(dto, teamname);
@@ -71,23 +89,10 @@ public class Teamleadercontroller {
 			
 			mv.setViewName("/team/teamleader");
 			return mv;
-		}
-		//안됨
-		else{
 			
-			 System.out.println("dd");
-			 response.setContentType("text/html; charset=UTF-8");
-	         PrintWriter out = response.getWriter();
-	         out.println("<script>alert('팀장만 접근 가능한 페이지입니다.'); location.href = /MainPage</script>");
-	         out.flush();
+			
+		}
 
-	         mv.setViewName("/MainPage");
-	         return mv;
-			
-			
-		}
-	
-	}
 	
 	
 	//팀공지사항수정

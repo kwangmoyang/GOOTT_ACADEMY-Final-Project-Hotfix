@@ -100,17 +100,17 @@
    </select>
    
    <select id="teaminfo_int" parameterType="hashMap" resultType="hashMap">
-      select round(avg(User_Score)) TeamScore, sum(commission) Teampoint from User where Team_name = #{teaminfo_teamname};
+      select round(avg(User_Score)) TeamScore,  FORMAT(SUM(commission),0) Teampoint, sum(Sol_cnt) Sol_cnt from User where Team_name = #{teaminfo_teamname};
    </select>
    
    <select id="teaminfo_teamleader"  parameterType="hashMap" resultType="hashMap">
-      select User_score,  commission, Email_address , User_nickname from User 
+      select User_score,   FORMAT(commission,0), Email_address , User_nickname from User 
       where user_nickname in (select Team_leader from Team where Team_name = #{teaminfo_teamname});
    </select>
    
    <!-- 팀리더도 같이 불러올 것임 + 팀멤버 -->
    <select id="teaminfo_members"  parameterType="hashMap" resultType="hashMap">
-      select User_nickname, commission, Email_address, User_score from User where Team_name = #{teaminfo_teamname} and not Leader_auth = 1;
+      select User_nickname,  FORMAT(commission,0), Email_address, User_score from User where Team_name = #{teaminfo_teamname} and not Leader_auth = 1;
    </select>
    
    <!-- 클릭한 팀의 이름 -->

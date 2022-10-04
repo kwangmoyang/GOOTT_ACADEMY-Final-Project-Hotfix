@@ -30,6 +30,7 @@
     height: 10vh;
     display: flex;
     align-items: flex-end;
+    margin-bottom: 10px;
     /* border: 1px solid black; */
 }
 .search{
@@ -77,6 +78,11 @@ input:-webkit-autofill {
     border: none;
     background-color: white;
     cursor:pointer;
+}
+
+.search_option{
+	padding:5px;
+	border:var(--teamlist-border);
 }
 
 /* 팀만들기 버튼 */
@@ -233,12 +239,14 @@ input:-webkit-autofill {
     background-color: gainsboro;
 	cursor: pointer;
 }
+
 /* 페이징 */
 .boardPaging {
-   margin: auto;
+   	margin: auto;
+   	margin-top:10px;
 }
 .boardPagingTd a{
-            text-decoration: none;
-            color: black;
-            font-size: 25px;
-        }
+	text-decoration: none;
+	color: black;
+	font-size: 25px;
+}

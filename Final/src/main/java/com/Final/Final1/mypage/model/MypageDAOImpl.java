@@ -120,6 +120,19 @@ public class MypageDAOImpl implements MypageDAO {
 		
 	}
 
+	@Override
+	public Map<String, Object> mypageUserinfo(String User_nickname) {
+		return sqlSession.selectOne("userinfo.mypageUserinfo", User_nickname);
+	}
+
+	@Override
+	public String teamnotmember_select(String User_nickname) {
+		return sqlSession.selectOne("userinfo.teamnotmember_select", User_nickname);
+	}
+
+	@Override
+	public void teamnotmember_delete(String User_nickname) {
+		sqlSession.delete("userinfo.teamnotmember_delete", User_nickname);
 
 	@Override
 	public void myBoardDelete(int no) {

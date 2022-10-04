@@ -67,6 +67,9 @@ for(let i=0; i<update_after.length; i++){
     }
 }
 
+ 
+ 
+//10-04 김양희 팀관리 페이지 추가 
 function acceptbtn(a,b){
 		if(!confirm("팀가입신청을 수락하시겠습니까?")){
 			return false;
@@ -122,8 +125,6 @@ function teammemberdel(){
 		teammemberdelForm.submit();
   }
 }
-
-//스크롤
  
  
  

@@ -67,7 +67,6 @@
     color: var(--basic-black-color);
     font-weight: 700;
     letter-spacing: 1.2px;
-    text-transform: uppercase;
     /* border: 1px solid red; */
     width: 30%;
     text-align: center;
@@ -115,6 +114,8 @@
 /* 공지사항 */
 .content-team-date{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    border-radius: var(--basic-border-radius);
+    border: 1px solid var(--dark-border-color);
     width: 95%;
     height: 30%;
     margin-top: 5%;
@@ -129,7 +130,8 @@
     margin-top: 5%;
 }
 .content-team-profile div{
-    border-bottom: 1px solid var(--dark-border-color);
+	border-radius: var(--basic-border-radius);
+    border: 1px solid var(--dark-border-color);
     width: 100%;
     height: 33.3%;
     display: flex;
@@ -140,16 +142,21 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
     border-radius: var(--basic-border-radius);
     width: 95%;
-    height: 60%;
+    
     margin-top: 5%;
 }
 .content-team-member table{
     border-collapse: collapse;
     width: 100%;
-    height: 100%;
+    
+}
+.content-team-member table tr{
+    height: 10vh;
 }
 .content-team-member td{
     border: 1px solid var(--dark-border-color);
+    border-radius: var(--basic-border-radius);
+  
 }
 
 /* 링크 아이콘 */
@@ -170,81 +177,6 @@
     font-size: 1.8rem;
 }
 
-/* 툴팁 */
-.tooltip{
-    position: absolute;
-    top: 100%;
-    left: -40%;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: var(--main-text-color);
-    border-radius: 5px;
-    font-size: 0.8rem;
-    padding: 5px 10px;
-
-    transition: all .2s;
-    opacity: 0;
-}
-.tooltip.ani{
-    animation-name: copy;
-    animation-duration: .1s;
-}
-
-@keyframes copy {
-    0%{
-        opacity: 0.2;
-        top: 120%;
-    }
-    30%{
-        opacity: 0.5;
-        top: 115%;
-    }
-    50%{
-        opacity: 0.7;
-        top: 110%;
-    }
-    70%{
-        opacity: 0.9;
-        top: 105%;
-    }
-    100%{
-        opacity: 1;
-        top: 100%;
-    }
-}
-
-.tooltip::after{
-    content: "";
-    position: absolute;
-    top: -63%;
-    left: 35%;
-    border-width: 8px;
-    border-style: solid;
-    border-color: transparent transparent rgba(0, 0, 0, 0.5) transparent;
-}
-
-.tooltiptwo{
-    position: absolute;
-    top: 100%;
-    left: -50%;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: var(--main-text-color);
-    border-radius: 5px;
-    font-size: 0.8rem;
-    padding: 5px 10px;
-
-    transition: all .2s;
-    opacity: 0;
-}
-
-.tooltiptwo::after{
-    content: "";
-    position: absolute;
-    top: -63%;
-    left: 35%;
-    border-width: 8px;
-    border-style: solid;
-    border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
-}
 
 
 
@@ -359,6 +291,7 @@ input[id="teaminput"]:focus{
 }
 .teamtag{
     width: 100%;
+    margin-top: 10px;
 }
 .teamtag button{
     border: none;
@@ -385,13 +318,16 @@ input[id="teaminput"]:focus{
     cursor: pointer;
     margin-right: 10px;
 }
-/* 약관 나중에삭제 */
-.divfour{
-    border: 1px solid red;
-}
-.divfour p{
+
+/* 약관 */
+.divfour div{
+	border: var(--main-border);
+    height: 200px;
+    overflow-y: scroll;
+    margin: 10px 0;
     padding: 10px 0;
 }
+
 .make-btn form{
     width: 100%;
 }
