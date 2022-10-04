@@ -17,7 +17,8 @@
    <link rel='stylesheet' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0-rc.5/angular-material.css'>
 
    <link rel="stylesheet" href="../../resources/css/board.css">
-    <title>HotFix</title>
+    <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
+    <title>HOTFIX - Easy Solution For You</title>
 </head>
 
 <body>

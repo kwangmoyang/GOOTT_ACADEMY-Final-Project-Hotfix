@@ -11,8 +11,9 @@
     <!-- 유니콘 아이콘 사이트 -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
 </head>
-    <title>HotFix</title>
+    <title>HOTFIX - Easy Solution For You</title>
 </head>
 
 <body>

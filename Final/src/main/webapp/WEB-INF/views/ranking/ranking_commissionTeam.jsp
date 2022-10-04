@@ -18,7 +18,8 @@
    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
    <!-- 폰트어썸 아이콘 사이트 -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <title>HotFix</title>
+    <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
+    <title>HOTFIX - Easy Solution For You</title>
 </head>
 <body>
          

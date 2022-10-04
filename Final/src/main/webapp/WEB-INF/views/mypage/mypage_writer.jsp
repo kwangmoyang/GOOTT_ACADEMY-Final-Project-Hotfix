@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!-- 폰트어썸 사이트 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
+    <title>HOTFIX - Easy Solution For You</title>
     <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>HotFix</title>
 </head>
 
 <script>

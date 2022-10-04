@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="../../resources/css/admin.css?after">
     <!-- 유니콘 아이콘 사이트 -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <title>HotFix_admin</title>
+    <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
+    <title>HOTFIX - Easy Solution For You</title>
 </head>
 
 <body>

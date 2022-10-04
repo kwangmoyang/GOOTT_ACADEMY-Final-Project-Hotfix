@@ -6,10 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>채팅방 틀</title>
+    <title>HOTFIX - Easy Solution For You</title>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="../resources/css/chatmodal.css">
+    <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
 </head>
 <body>
     <div class="modalbackground">

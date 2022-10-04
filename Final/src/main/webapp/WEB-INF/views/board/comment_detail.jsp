@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HOTFIX - Easy Solution For You</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
 <script>
 	
 </script>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +24,9 @@
     <!-- 에디터 -->
     <script type="text/javascript" src="<c:url value="/resources/ckeditor/ckeditor.js"/>"></script>
 
-    <title>HOTFIX</title>
+    <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
+
+    <title>HOTFIX - Easy Solution For You</title>
 
 </head>
 
@@ -68,7 +71,7 @@
         <div id="main_community_preview">
             <div id="fir_com_preview">
                 <div id="request_preview">
-                    <div class="preview_title" onclick="location.href='resolveMain'"><span>HOTFIX</span></div>
+                    <div class="preview_title" onclick="location.href='resolveMain'"><div class="titleDiv1">HOTFIX</div><div class="titleDiv2"><img src="../../resources/img/preview/HotfixPreview.png"></div></div>
                     <div class="preview_content">
                         <c:forEach var="Req" items="${Request}" begin="0" end="5">
                             <div class="content_item">
@@ -78,16 +81,16 @@
                                     <span><ion-icon name="construct-sharp"></ion-icon>&nbsp;
                                         ${Req.Commission}</span></div>
                                 <div class="item_info"><span><ion-icon name="timer-sharp"></ion-icon> ${Req_time_cut}</span></div>
-                                <div class="item_title"><span class="title_color">${Req.Request_title}</span></div>
+                                <div class="item_title"><span class="title_color" onclick="location.href='resolveMain'">${Req.Request_title}</span></div>
                                 <div class="item_info2">
-                                    <span><ion-icon name="people-sharp"></ion-icon> ${Req.SolverReady_cnt2}&nbsp;&nbsp;/&nbsp;&nbsp;${Req.SolverReady_cnt}&nbsp;</span>
+                                    <span><ion-icon name="people-sharp"></ion-icon>&nbsp;${Req.SolverReady_cnt}&nbsp;</span>
                                 </div>
                             </div>
                         </c:forEach>
                     </div>
                 </div>
                 <div id="board1_preview">
-                    <div class="preview_title" onclick="location.href='list'"><span>COMMUNITY</span></div>
+                    <div class="preview_title" onclick="location.href='list'"><div class="titleDiv1">COMMUNITY</div><div class="titleDiv2"><img src="../../resources/img/preview/ComnPreview.png" style="height: 16vh; bottom: -2vh"></div></div>
                     <div class="preview_content">
                         <c:forEach var="Boa" items="${Boardlist}" begin="0" end="5">
                             <div class="content_item">
@@ -111,7 +114,7 @@
             </div>
             <div id="sec_com_preview">
                 <div id="team_preview">
-                    <div class="preview_title" onclick="location.href='teamlist'"><span>TEAM</span></div>
+                    <div class="preview_title" onclick="location.href='teamlist'"><div class="titleDiv1">TEAM</div><div class="titleDiv2"><img src="../../resources/img/preview/TeamPreview.png" style="height:16vh;"></div></div>
                     <div class="preview_content">
                         <c:forEach var="Tea" items="${Teamlist}" begin="0" end="5">
                             <div class="content_item">
@@ -121,14 +124,14 @@
                                 <c:set var="Team_date" value="${Tea.Team_cr_date}"/>
                                 <c:set var="Team_date_cut" value="${fn:substring(Team_date,0 ,10)}"/>
                                 <div class="item_info"><span>${Team_date_cut}</span></div>
-                                <div class="item_title"><span class="title_color">${Tea.Team_intro}</span></div>
+                                <div class="item_title"><span class="title_color" onclick="location.href='teamlist'">${Tea.Team_intro}</span></div>
                                 <div class="item_info2"></div>
                             </div>
                         </c:forEach>
                     </div>
                 </div>
                 <div id="board2_preview">
-                    <div class="preview_title"><span>공지사항</span></div>
+                    <div class="preview_title"><div class="titleDiv1">공지사항</div><div class="titleDiv3"><img src="../../resources/img/preview/NoticePreview.png"></div></div>
                     <div class="preview_content">
                     	<c:forEach var="Not" items="${Notice}" begin="0" end="5">
                             <div class="content_item">
