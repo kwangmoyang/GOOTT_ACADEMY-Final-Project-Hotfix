@@ -13,7 +13,8 @@
     <!-- 유니콘 아이콘 사이트 -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <title>join</title>
+    <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
+    <title>HOTFIX - Easy Solution For You</title>
 </head>
 
 <body>

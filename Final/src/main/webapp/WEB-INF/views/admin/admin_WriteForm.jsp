@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="../../resources/css/global.css">
     <link rel="stylesheet" href="../../resources/css/admin.css">
     <link href="${path}/resources/css/boardWriteForm.css?after" rel="stylesheet"/>
+    <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
     <!-- 유니콘 아이콘 사이트 -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     
     
     <!-- CK 에디터 -->
     <script type="text/javascript" src="<c:url value="/resources/editor/ckeditor/ckeditor/ckeditor.js"/>"></script>
-    <title>HotFix</title>
+    <title>HOTFIX - Easy Solution For You</title>
 </head>
 
 <body>

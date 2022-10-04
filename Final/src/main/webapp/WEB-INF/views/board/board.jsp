@@ -14,12 +14,13 @@
 <!-- 유니콘 아이콘 사이트 -->
 <link rel="stylesheet"
    href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+   <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
 <!-- 폰트어썸 아이콘 사이트 -->
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
 <link href="${path}/resources/css/board.css?after" rel="stylesheet" />
-<title>HotFix</title>
+<title>HOTFIX - Easy Solution For You</title>
 </head>
 <script>
 /*    $(function()}

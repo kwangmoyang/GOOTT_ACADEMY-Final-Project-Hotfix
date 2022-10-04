@@ -13,9 +13,9 @@
             <!-- 카테고리 -->
             <ul class="header_menu">
                 <li><a href="/resolveMain">HOTFIX</a></li>
-                <li><a href="/teamlist">팀페이지</a></li>
-                <li><a href="/RankingcountTeam">랭킹</a></li>
-                <li><a href="/list">커뮤니티</a></li>
+                <li><a href="/teamlist">TEAM</a></li>
+                <li><a href="/RankingcountTeam">RANK</a></li>
+                <li><a href="/list">COMMUNITY</a></li>
             </ul>
             
         </div>

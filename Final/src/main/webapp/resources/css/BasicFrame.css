@@ -2,9 +2,10 @@
 
 :root{
     --main-black-color: rgb(29,32,34); /* 메인 블랙칼라 */
-    --main-white-color:rgb(247,247,247);  /* 메인 화이트칼라 */
+    --main-white-color:rgb(255,255,255);  /* 메인 화이트칼라 */
     --main-red-color: rgb(238,43,42);  /* 메인 레드 칼라 */
     --main-text-color: rgb(247,247,247);
+
 
     --ex-border-color: crimson;  /* 보드 테스트 레드 칼라 */
 }
@@ -18,7 +19,7 @@
 }
 /* =============헤더 전체틀============ */
 .common_header{
-    width: 100%;
+    width: 100vw;
     height: 8vh; 
     min-width: 1280px;
     
@@ -26,12 +27,15 @@
     position: fixed;
     z-index: 100;
     
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-areas:
+    "h_left h_center h_right";
+    /*justify-content: center;*/
     align-items: center;
     /* border: solid 2px #ccc; */
 
     background-color: rgba(255, 255, 255, 1);
+    /*background-color: rgba(25, 25, 25, 1);*/
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
 }
 
@@ -39,27 +43,29 @@
 
 /* 헤더 왼쪽 */
 .common_header_left{
-    width: 10%;
-    height: 100%;
+    width: 20vw;
+    height: 8vh;
+    grid-area: h_left;
     /* border: 2px solid pink; */
 
     /* color: black; */
     /* 09.05 로고 커서:포인터 추가 -SEO */
 }
 .common_header_left>a>img{
-    width: 80%;
+    width: 10vw;
     height: 100%;
     cursor: pointer;
     object-fit: contain;
+    margin: 0 0 0 4vw;
 }
 /* 헤더 가운데 */
 .common_header_center{
-    width: 60%;
-    height: 100%;
+    width: 60vw;
+    height: 8vh;
     /* border: 2px solid pink; */
-
+    grid-area: h_center;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -83,7 +89,9 @@
 
 .header_menu>li>a{
     color:rgba(25, 25, 25, 1) ;
+    /*color:var(--main-white-color);*/
     text-decoration: none;
+    font-weight:500;
 }
 
 .header_menu>li>a:hover{
@@ -93,12 +101,12 @@
 /* 헤더 오른쪽 */
 .common_header_right{
     /* 09-21 10%->14% 변경 HIKARI */
-    width: 14%;
-    height: 100%;
+    width: 20vw;
+    height: 8vh;
+    grid-area: h_right;
     /* border: 2px solid pink; */
-
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
 }
 
@@ -236,26 +244,43 @@
 }
 
 /* 비로그인시 css 효과 적용틀 09-21 HIKARI*/
-.mainToLogin,.mainToJoin{
-    width: 50%;
-    height: 100%;
-    /* border: 1px solid red; */
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
-    background-color: rgb(238,43,42);
+.mainToLogin{
+
+    width: 6vw;
+    height: 6vh;
+    margin: 1vh 1vw 1vh 0;
+
+    border: 1px solid rgba(248, 58, 37, 0.9);
+    background-color: var(--main-white-color);
     border-radius: 10px;
     /* padding: 0 5px; */
-    font-size: 20px;
-    line-height: 40px;
+    font-size: 0.6em;
+    line-height: 6vh;
     text-align: center;
 }
+.mainToJoin {
+    width: 8vw;
+    height: 6vh;
+    margin: 1vh 0 1vh 1vw;
 
-.mainToJoin{
-     margin-left: 5%;
+    /* border: 1px solid red; */
+    background-color: rgba(248, 58, 37, 0.9);
+    border-radius: 10px;
+    /* padding: 0 5px; */
+    font-size: 0.6em;
+    line-height: 6vh;
+    text-align: center;
+    margin: 0 4vw 0 0;
 }
 
-.mainToLogin>a,.mainToJoin>a{
+.mainToLogin > a, .mainToJoin > a {
     text-decoration-line: none;
-    color: rgb(29,32,34);
+}
+.mainToLogin > a {
+    color: rgba(248, 58, 37, 0.9);
+}
+.mainToJoin > a {
+    color:var(--main-white-color);
 }
 
 
@@ -266,6 +291,7 @@
     width: 100%;
     /* height: 150vh; */
     background-color: white;
+    /*background-color: var(--main-black-color);*/
     min-width: 1280px;
 
     /* border: 3px solid red; */
@@ -288,7 +314,7 @@
 /* 오른쪽 사이드 */
 .sideRight{
     background-color: white;
-    border: solid 2px var(--ex-border-colohttps://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.comr);
+    /*border: solid 2px var(--ex-border-colohttps://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.comr);*/
     /* height: 150vh; */
     width: 15%;
 }
@@ -296,14 +322,15 @@
 /* ====================푸터=================== */
 /* SLEEP 푸터작업함 2022-10-03 */
 .common_footer{
-    width: 100%;
-    height: 22vh;
+    width: 100vw;
+    height: 20vh;
     min-width: 1280px;
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    background-color: var(--main-white-color);
+    border-top: 1px solid rgba(0,0,0, .3);
+
     
     /* HIKARI 메인섹션이랑 띄어놓음 */
-    margin-top: 3%;
+    /*margin-top: 3%;*/
 }
 
 .common_footerTop{

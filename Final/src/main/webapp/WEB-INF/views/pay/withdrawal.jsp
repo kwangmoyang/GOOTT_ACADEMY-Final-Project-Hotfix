@@ -8,10 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../resources/css/withdrawal.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
     
   
 
-    <title>Document</title>
+    <title>HOTFIX - Easy Solution For You</title>
 </head>
 <body>
     <div class="WdContainer">

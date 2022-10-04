@@ -11,7 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 유니콘 아이콘 사이트 -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <title>login</title>
+    <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
+    <title>HOTFIX - Easy Solution For You</title>
      <link rel="stylesheet" href="resources/css/login.css?after">
 </head>
 

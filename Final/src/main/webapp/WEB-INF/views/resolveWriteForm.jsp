@@ -16,8 +16,9 @@
         <link rel="stylesheet" href="../resources/css/resolveWriteForm.css">
 
         <script type="text/javascript" src="<c:url value="/resources/ckeditor/ckeditor.js"/>"></script>
+        <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
       
-        <title>HotFix</title>
+        <title>HOTFIX - Easy Solution For You</title>
     </head>
 
 <body>

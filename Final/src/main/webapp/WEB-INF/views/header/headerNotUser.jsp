@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HOTFIX - Easy Solution For You</title>
 </head>
 <body>
 	<!-- 헤더 섹션 오른쪽 -->

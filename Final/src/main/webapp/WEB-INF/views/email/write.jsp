@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HOTFIX - Easy Solution For You</title>
 </head>
 <body>
 <h2>이메일 보내기</h2>

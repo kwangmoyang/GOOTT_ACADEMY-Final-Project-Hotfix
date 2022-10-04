@@ -9,7 +9,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>comment_list</title>
+<title>HOTFIX - Easy Solution For You</title>
+	<link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
 <link href="${path}/resources/css/comment_list.css" rel="stylesheet" >
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>

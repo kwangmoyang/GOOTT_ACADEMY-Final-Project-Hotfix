@@ -17,11 +17,11 @@ body{
 
 .mains {
     margin: 0 auto;
-    
+
+
 
     width: 70%;
     background-color: white;
-
     display: grid;
     grid-template-areas: 
     "first_preview"
@@ -182,18 +182,55 @@ body{
 .preview_title{
     width: 33vw;
     height: 12vh;
-    background-color: var(--btn-color);
+    background-color: rgba(248, 58, 37, 0.9);
     /* background-color: rgba(0, 0, 0, .12); */
     border-radius: var(--border-radius);
-    line-height:8vh;
-    padding: 2vh 2vw;
     cursor: pointer;
+    display: grid;
+    grid-template-areas:
+    "titleView titleImg";
 }
-.preview_title > span {
+.titleDiv1 {
     font-size: 2em;
     /* color: rgba(248, 58, 37, .9); */
     color: #fff;
+    width: 22vw;
+    height: 12vh;
+    line-height:8vh;
+    padding: 2vh 2vw;
+    grid-area: titleView;
+    /*border: 1px solid gold;*/
 }
+.titleDiv2 {
+    width: 11vw;
+    height: 12vh;
+    grid-area: titleImg;
+    text-align: center;
+    position: relative;
+    /*border: 1px solid green;*/
+}
+.titleDiv2 > img {
+    position: absolute;
+    bottom: -1.4vh;
+    height: 15vh;
+    left: 0;
+}
+.titleDiv3 {
+    width: 11vw;
+    height: 12vh;
+    grid-area: titleImg;
+    text-align: center;
+    position: relative;
+    /*border: 1px solid green;*/
+}
+.titleDiv3 > img {
+    position: absolute;
+    height: 18vh;
+    bottom: -2vh;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
 .preview_content{
     width: 33vw;
     height: 71.5vh;
