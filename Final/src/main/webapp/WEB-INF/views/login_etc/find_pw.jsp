@@ -29,12 +29,12 @@
             </div>
             <form action="/find_user_pwChk" method="POST">
             <div class="find_Email">
-                <h4>정보 입력</h4>
-                <input type="email" name="Email_address" id="" value="" placeholder="이메일을 입력해주세요">
+                <h4>이메일 입력</h4>
+                <input type="email" name="Email_address" id="" value="" placeholder="가입했던 이메일주소를 입력해주세요">
             </div>
             <div class="find_Email">
                 <h4>ID 입력</h4>
-                <input type="text" name="User_id" id="" value="" placeholder="이메일을 입력해주세요">
+                <input type="text" name="User_id" id="" value="" placeholder="가입했던 ID를 입력해주세요">
             </div>
             <p>${noJoinUser }</p>
             <div class="find_BtnId">

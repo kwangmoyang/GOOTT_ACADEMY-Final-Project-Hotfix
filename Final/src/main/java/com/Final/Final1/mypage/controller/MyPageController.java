@@ -2,6 +2,7 @@ package com.Final.Final1.mypage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,7 @@ import com.Final.Final1.board.model.BoardDTO;
 import com.Final.Final1.board.model.MyCommentListDTO;
 import com.Final.Final1.board.model.MyWriterListDTO;
 import com.Final.Final1.board.model.PageUtil;
+import com.Final.Final1.comm.model.MainDTO;
 import com.Final.Final1.mypage.model.MypageDAO;
 import com.Final.Final1.mypage.model.MypageDTO;
 import com.Final.Final1.mypage.service.MypageService;
@@ -36,11 +40,38 @@ import com.Final.Final1.mypage.service.MypageService;
 //留덉씠 �럹�씠吏� 而⑦듃濡ㅻ윭
 @Controller
 public class MyPageController {
-
+	
 	@Inject
 	MypageDAO mypageDao;
 	@Autowired
 	MypageService mypageService;
+	
+	// 마이페이지 게시글 선택삭제
+		@ResponseBody
+		@RequestMapping(value = "/myBoardDelete", method = RequestMethod.POST)
+			//public String boardDelete(HttpServletRequest request) {
+			public String boardDelete(int[] valueArr) {
+			int[] boardDeleteMsg = valueArr;
+			int size = boardDeleteMsg.length;
+			for(int i=0; i<size; i++) {
+				mypageService.myBoardDelete(boardDeleteMsg[i]);
+			}
+			return "redirect:/mypage/writer";
+	}
+	
+	// 마이페이지 댓글 선택삭제
+				@ResponseBody
+				@RequestMapping(value = "/myCommentDelete", method = RequestMethod.POST)
+					//public String boardDelete(HttpServletRequest request) {
+					public String CommentDelete(int[] valueArr) {
+					int[] boardDeleteMsg = valueArr;
+					int size = boardDeleteMsg.length;
+					for(int i=0; i<size; i++) {
+						mypageService.myCommentDelete(boardDeleteMsg[i]);
+					}
+					return "redirect:/mypage/comments";
+	}	
+	
 	
 	// 마이 페이지
 	@RequestMapping("/fileTest")
@@ -99,13 +130,27 @@ public class MyPageController {
 		
 		return "/mypage/mypage";
 	}
-
+	
 	
 	// 마이 페이지
 	@ResponseBody
 	@RequestMapping("/mypage/index")
 	public ModelAndView mypageIndex(MypageDTO dto,HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		
+		
+//		==================10-04 양희 추가==========================
+		//팀낫멤버 테이블에서 select ->
+		String User_nickname = (String) session.getAttribute("User_nickname");
+		
+		String teamnotmember = mypageService.teamnotmember_select(User_nickname);
+		
+//		HashMap<String, Object> map2 = new HashMap<>();
+//		map2.put("teamnotmember", teamnotmember);
+		
+		mv.addObject("teamnotmember", teamnotmember);
+//		=============================================
+		
 		
 //		String name = (String)session.getAttribute("User_id");
 //		dto.setUser_id(name);
@@ -127,11 +172,65 @@ public class MyPageController {
 //		} catch(IOException e) {
 //			e.printStackTrace();
 //		}
+
+		String Userid = (String)session.getAttribute("User_id") ;
+		System.out.println(Userid);
+		
+		dto.setUser_id(Userid);
+		List<MypageDTO> Userinfolist =  mypageService.Userinfo(dto);
+		//차후 수정 예정
+		//각 해결카운트
+		double Req_cnt = mypageService.UserReq_cnt(dto);
+		double Drop_Req_cnt = mypageService.UserDrop_Req_cnt(dto);
+		double Sol_cnt = mypageService.UserSol_cnt(dto);
+		double Drop_Sol_cnt = mypageService.UserDrop_Sol_cnt(dto);
+		
+		int Req_cnt2 = mypageService.UserReq_cnt(dto);
+		int Drop_Req_cnt2 = mypageService.UserDrop_Req_cnt(dto);
+		int Sol_cnt2 = mypageService.UserSol_cnt(dto);
+		int Drop_Sol_cnt2 = mypageService.UserDrop_Sol_cnt(dto);
+		//총 해결 건수
+		double RequesterAll = Req_cnt+Drop_Req_cnt;
+		double SolverAll = Sol_cnt+Drop_Sol_cnt;
+		
+		int RequesterAll2 = Req_cnt2+Drop_Req_cnt2;
+		int SolverAll2 = Sol_cnt2+Drop_Sol_cnt2;
+		//해결 백분율
+		double RequesterAvg = Math.round((double)(Req_cnt/RequesterAll)*100);
+		double SolverAvg = Math.round((double)(Sol_cnt/SolverAll)*100);
 		
 		
+		
+		mv.addObject("RequesterAll", RequesterAll2);
+		mv.addObject("SolverAll", SolverAll2);
+		mv.addObject("RequesterAvg", RequesterAvg);
+		mv.addObject("SolverAvg", SolverAvg);
+		
+		
+		mv.addObject("Userinfolist", Userinfolist);
+		mv.setViewName("/mypage/mypage");
+
 		
 		return mv;
 	}
+	
+//	==================10-04 김양희 팀 신청 삭제추가==========================
+	@ResponseBody
+	@RequestMapping(value="/mypage/index", method=RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	public ModelAndView mypageIndex2(HttpSession session, ModelAndView mv) {
+		
+		
+		String User_nickname = (String) session.getAttribute("User_nickname");
+		
+		mypageService.teamnotmember_delete(User_nickname);
+		
+		mv.setViewName("/mypage/mypage");
+
+		return mv;
+	}
+	
+//	============================================
+	
 	
 	@ResponseBody
 	@RequestMapping("/mypage/index2")
@@ -333,6 +432,23 @@ public class MyPageController {
 		session.invalidate();
 		mv.setViewName("redirect:/MainPage"); // 탈퇴시 메인페이지로 연결됨
 		//mv.addObject("msg","완료2");
+		return mv;
+	}
+	
+	
+	
+	//10-04 김양희 추가
+	//유저 닉네임 클릭 시 유저의 마이페이지 둘러보기로 이동
+	@RequestMapping(value="/mypage_view", method = RequestMethod.GET)
+	public ModelAndView mypage_view(HttpSession session, ModelAndView mv, @RequestParam String User_nickname) {
+		
+		System.out.println(User_nickname);
+		
+		//클릭한 유저의 정보 가져오기
+		Map<String, Object> mypageUserinfo = mypageService.mypageUserinfo(User_nickname);
+		
+		mv.addObject("mypageUserinfo", mypageUserinfo);
+		mv.setViewName("/mypage/mypage_view");
 		return mv;
 	}
 	

@@ -6,7 +6,9 @@
 			select count(*)from Team t1
       left outer join Team_has_Tags t2
       on t1.Team_name = t2.Team_name 
+      
       <include refid="search"/>
+     
       order by Team_cr_date DESC;
    </select>
 
@@ -16,11 +18,11 @@
       select t1.Team_code, t1.Team_name, t1.Team_intro, t1.Team_cr_date, t2.Tags_Tag_Name from Team t1
       left outer join Team_has_Tags t2
       on t1.Team_name = t2.Team_name
-      <include refid="search"/>
-      
-      group by t1.Team_name
+      <include refid="search"/> 
+       group by t1.Team_name
        order by Team_cr_date DESC
       <include refid="paging_footer" />
+      
    </select>
    
    <!-- 전체목록 중 팀 태그 따로 불러옴 -->
@@ -64,7 +66,8 @@
 
    <!-- 팀가입 신청보내기 -->   
    <insert id="teamjoinmessage" parameterType="hashMap">
-      insert into Team_NOT_Members (Team_unaccept_member, Team_name) values (#{User_nickname} , #{jointeamname});
+      insert into Team_NOT_Members (Team_unaccept_member, 
+) values (#{User_nickname} , #{jointeamname});
    </insert>
    
    
@@ -97,17 +100,17 @@
    </select>
    
    <select id="teaminfo_int" parameterType="hashMap" resultType="hashMap">
-      select round(avg(User_Score)) TeamScore, sum(commission) Teampoint from User where Team_name = #{teaminfo_teamname};
+      select round(avg(User_Score)) TeamScore,  FORMAT(SUM(commission),0) Teampoint, sum(Sol_cnt) Sol_cnt from User where Team_name = #{teaminfo_teamname};
    </select>
    
    <select id="teaminfo_teamleader"  parameterType="hashMap" resultType="hashMap">
-      select User_score,  commission, Email_address , User_nickname from User 
+      select User_score,   FORMAT(commission,0), Email_address , User_nickname from User 
       where user_nickname in (select Team_leader from Team where Team_name = #{teaminfo_teamname});
    </select>
    
    <!-- 팀리더도 같이 불러올 것임 + 팀멤버 -->
    <select id="teaminfo_members"  parameterType="hashMap" resultType="hashMap">
-      select User_nickname, commission, Email_address, User_score from User where Team_name = #{teaminfo_teamname} and not Leader_auth = 1;
+      select User_nickname,  FORMAT(commission,0), Email_address, User_score from User where Team_name = #{teaminfo_teamname} and not Leader_auth = 1;
    </select>
    
    <!-- 클릭한 팀의 이름 -->

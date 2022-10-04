@@ -2,10 +2,11 @@
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 
-
+	<!-- 회원관리 가입자 목록 리스트 -->
 	<select id="list" resultType="hashMap">
 	select User_name, User_id, User_nickname, 
-	Email_address, Phone_num, SignDate, User_score from User;
+	Email_address, Phone_num, SignDate, User_score from User
+	order by SignDate desc;
 	</select>
 	
 	<select id="userCount" resultType="int">
@@ -20,7 +21,6 @@
 	select Post_num, Board_code, Post_title, Post_writer, 
 	Post_cr_date, Post_view from Board 
 	
-	
 	<where>
 		 <if test="search_option =='life' ">
 		and Board_code = "일상"
@@ -34,13 +34,12 @@
 	<if test="search_option =='career' ">
 		and Board_code = "커리어"
 	</if>  
-	</where>
-  
-	
-		
-	<include refid="paging_footer" />	
-	 
-	 order by Post_num desc 
+	</where> 
+   order by Post_num desc
+  	
+    <include refid="paging_footer" />         
+
+	 	
 	</select>
 	
 	<select id="userBoardCount" resultType="int">
@@ -48,7 +47,6 @@
 	</select>
 	
 
-	
 	<sql id="paging_header">
 		select *
 		from(
@@ -62,14 +60,29 @@
 	
 	</sql>
 	
-
+	<!-- 회원게시글 삭제 -->
 	<delete id="boardMemDelete" parameterType="int">
 	delete from Board where Post_num = #{Post_num};
 	</delete>
 	
-	<insert id="adminBoard" parameterType="hashMap">
-	insert into Board(Board_code,Post_writer,Post_title,Post_contents)
-	values('공지사항',#{Post_writer},#{Post_title},#{Post_contents});
+	<!-- 공지사항 작성 -->
+	<insert id="adminBoardinsert" parameterType="hashMap">
+	insert into Notice(Notice_writer,Notice_title,Notice_contents)
+	values(#{Notice_writer},#{Notice_title},#{Notice_contents});
 	</insert>
+	
+	<!-- 공지사항 작성하고 리스트에 보여줄때 -->
+	<select id="adminBoardlist" resultType="hashMap">
+	select Notice_num, Notice_title, Notice_writer, Notice_contents,
+	Notice_cr_date, Notice_status from Notice
+	order by Notice_cr_date desc;
+	</select>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="NoticeDelete" parameterType="int">
+	delete from Notice where Notice_num = #{Notice_num};
+	</delete>
+	
+	
 
 </mapper>

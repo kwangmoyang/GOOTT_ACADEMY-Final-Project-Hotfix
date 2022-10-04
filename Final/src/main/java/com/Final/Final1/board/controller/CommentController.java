@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Final.Final1.board.model.CommentDTO;
 import com.Final.Final1.board.service.CommentService;
+import com.Final.Final1.mypage.model.MypageDTO;
 
 
 @Controller
@@ -27,7 +30,15 @@ public class CommentController {
 	
 	@ResponseBody
 	@RequestMapping("comment/insert")
-	public ModelAndView insert(CommentDTO dto) {
+	public ModelAndView insert(CommentDTO dto, HttpSession session, MypageDTO mydto) {
+		
+		//세션 값 불러옴
+		String name = (String)session.getAttribute("User_nickname");
+		mydto.setUser_nickname(name);
+				
+		commentService.activeInsert(mydto);
+		
+		
 		commentService.insert(dto);
 		List<CommentDTO> list = commentService.list(dto.getPost_num());
 		ModelAndView mv = new ModelAndView();

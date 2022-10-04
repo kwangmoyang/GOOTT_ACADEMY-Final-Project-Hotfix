@@ -26,16 +26,45 @@ public class MypageDTO {
 	private String User_contact2;
 	private String User_contact3;
 	
+	private int Req_cnt;
+	private int Sol_cnt;
+	private int Drop_Req_cnt;
+	private int Drop_Sol_cnt;
+	
+	
 	private String ORG_File_name;
 	private String STORED_File_name;
 	
 	
 	private String IMG_File_name;
 	private String IMG_URL_name;
+
+
 	
-	
-	
-	
+	public int getReq_cnt() {
+		return Req_cnt;
+	}
+	public void setReq_cnt(int req_cnt) {
+		Req_cnt = req_cnt;
+	}
+	public int getSol_cnt() {
+		return Sol_cnt;
+	}
+	public void setSol_cnt(int sol_cnt) {
+		Sol_cnt = sol_cnt;
+	}
+	public int getDrop_Req_cnt() {
+		return Drop_Req_cnt;
+	}
+	public void setDrop_Req_cnt(int drop_Req_cnt) {
+		Drop_Req_cnt = drop_Req_cnt;
+	}
+	public int getDrop_Sol_cnt() {
+		return Drop_Sol_cnt;
+	}
+	public void setDrop_Sol_cnt(int drop_Sol_cnt) {
+		Drop_Sol_cnt = drop_Sol_cnt;
+	}
 	
 	
 	public String getIMG_File_name() {
@@ -164,8 +193,12 @@ public class MypageDTO {
 				+ User_name + ", User_nickname=" + User_nickname + ", User_score=" + User_score + ", User_point="
 				+ User_point + ", commission=" + commission + ", Phone_num=" + Phone_num + ", Email_address="
 				+ Email_address + ", Team_name=" + Team_name + ", User_introduce=" + User_introduce + ", User_contact1="
-				+ User_contact1 + ", User_contact2=" + User_contact2 + ", User_contact3=" + User_contact3 + "]";
+				+ User_contact1 + ", User_contact2=" + User_contact2 + ", User_contact3=" + User_contact3 + ", Req_cnt="
+				+ Req_cnt + ", Sol_cnt=" + Sol_cnt + ", Drop_Req_cnt=" + Drop_Req_cnt + ", Drop_Sol_cnt=" + Drop_Sol_cnt
+				+ ", ORG_File_name=" + ORG_File_name + ", STORED_File_name=" + STORED_File_name + ", IMG_File_name="
+				+ IMG_File_name + ", IMG_URL_name=" + IMG_URL_name + "]";
 	}
+	
 	
 	
 	

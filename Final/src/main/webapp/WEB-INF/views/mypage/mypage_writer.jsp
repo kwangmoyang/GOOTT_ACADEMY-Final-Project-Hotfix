@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
     <title>HOTFIX - Easy Solution For You</title>
+    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <script>
@@ -50,24 +51,9 @@
                  <%@ include file="/WEB-INF/views/mypage/mypageWriterbar.jsp"%>
 	
                 <div class="board_nav">
-                    <button class="cancle">삭제하기</button>
-                    <div class="board_nav_search">
-                        <div class="search">
-                            <div class="search-box">
-                                <form method="POST">
-                                  <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요" name="keyword" />
-                                  <button type="submit" class="searchbtn"><i class="fa-solid fa-magnifying-glass" id="searchBtnI"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="board_nav_btn">
-                        <select name="">
-                            <option value="">최신순</option>
-                            <option value="">추천순</option>
-                            <option value="">조회순</option>
-                        </select>
-                    </div>
+                    <input type="button" class="cancle" name="removeBtn" class="removeBtn" value="선택삭제" onclick="removeValue()">
+                   
+                    
                    
                 </div> 
              	   내 게시글 수 : ${count}개 <br>
@@ -81,11 +67,10 @@
              			<!-- 게시글 삭제 박스 -->
                 		
 						<div class="board_main">
-							<p><input type="checkbox"></p>
+							<p><input type="checkbox" name="del_Abd" class="del_Abd" data-adminBd="${row.Post_num}"></p>
 							<div class="board_header">
 								<div class="board_write">
-									<span><i class="fas fa-feather-alt"></i></span> <span>200<i
-										class="fas fa-bolt"></i></span> <span>${row.Post_writer}</span> <span>${row.Post_cr_date}</span>
+									<span><i class="fas fa-feather-alt"></i></span><span>${row.Post_writer}</span> <span>${row.Post_cr_date}</span>
 								</div>
 								<div class="board_view">
 									<span>${row.Post_view} 조회수</span> <span>${row.Post_like}
@@ -96,12 +81,10 @@
 								<span><a href="/detail?Post_num=${row.Post_num}">${row.Post_title}</a></span>
 
 							</div>
-							<div class="board_tag">
-								<span>${row.Tags_Board}</span>
-							</div>
+							
 						</div>
 					</c:forEach>
-              			<table>
+              			<table class="boardPaging">
 						<tr>
 							<td colspan="5" align="center" class="boardPagingTd"><c:if
 									test="${page_info.curBlock > 1 }">

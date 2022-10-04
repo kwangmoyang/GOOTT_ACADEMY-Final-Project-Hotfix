@@ -80,19 +80,16 @@
 						       });
 		            	</script>
                 </div>
-                <div class="WF_input_box">
-                    <p>태그</p>
-                    <input type="text" placeholder="태그를 입력하세요" name="Post_tag" id="Post_tag">
-                </div>
+               	<br>
                 <div class="boardWF_btn">
                     <!-- 해당부분 링크는 연결할곳이 없고 프론트단에서 할게 아니라서
                             ('토픽'칸의 설정에 따라서 다르게 이동되어야함) 정리했습니다 -SEO- -->
-                   <span onclick="location.href='/insert' ">취소</span> 
+                   <span onclick="location.href='/list' ">취소</span> 
                     <button type="button" id="Submitbtn" >등록</button>
                 </div>
 
                 </form>
-                 
+                 <br>
             </div>
         </div>
             

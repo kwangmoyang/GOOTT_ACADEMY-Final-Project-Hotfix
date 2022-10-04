@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.Final.Final1.mypage.model.MypageDTO;
+
 @Repository
 public class BoardDAOImpl implements BoardDAO{
 	
@@ -81,6 +83,13 @@ public class BoardDAOImpl implements BoardDAO{
 	public int Likedown(int post_num) {
 		// TODO Auto-generated method stub
 		return  sqlSessionTemplate.update("board.updateLikeDown",post_num);
+	}
+
+
+	@Override
+	public void activeInsert(MypageDTO mydto) {
+		 sqlSessionTemplate.update("board.activeInsert",mydto);
+		
 	}
 
 	

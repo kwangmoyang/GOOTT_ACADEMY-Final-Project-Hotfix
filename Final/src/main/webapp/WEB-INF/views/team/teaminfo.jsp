@@ -16,6 +16,7 @@
 			<div class="content-team-profile">
 			     <div>팀 평균 활동 점수: ${row2.TeamScore}</div> 
 				 <div>팀 총 커미션 : ${row2.Teampoint}</div>
+				 <div>팀 총 해결 완료 건수  : ${row2.Sol_cnt}</div>					
 			</div>
 		</c:forEach>
 	
@@ -39,7 +40,7 @@
 	          <c:forEach var="row" items="${map.teamleader}">
 		          <td><i class="fa-solid fa-fire"></i>  ${row.User_score}</td>
 		          <td> 
-			          <a href="../../mypage/mypage" target="_blank"><i class="fa-solid fa-crown"></i>${row.User_nickname}</a>
+			          <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank"><i class="fa-solid fa-crown"></i>${row.User_nickname}</a>
 		          </td>
 		          <td>
 		             ${row.commission}
@@ -54,8 +55,8 @@
 		          <tr>
 		          	  <td><i class="fa-solid fa-fire"></i>  ${row1.User_score}</td>
 			          <td>
-				          <a href="../../mypage/mypage" target="_blank"><i class="fa-solid fa-user"></i></a> 
-				          <a href="../../mypage/mypage" target="_blank">${row1.User_nickname}</a>
+				          <a href="/mypage_view?User_nickname=${row1.User_nickname}" target="_blank"><i class="fa-solid fa-user"></i></a> 
+				          <a href="/mypage_view?User_nickname=${row1.User_nickname}" target="_blank">${row1.User_nickname}</a>
 			          </td>
 			          <td>
 			             ${row1.commission}

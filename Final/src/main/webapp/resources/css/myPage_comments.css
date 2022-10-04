@@ -205,82 +205,18 @@ input[type="checkbox"]{
     height: 5vh;
     margin-bottom: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
     /* border: 1px solid red; */
 }
-/* 검색기능 틀 */
-.board_nav_search{
-    width: 75%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    /* border: 1px solid blue; */
-}
-.search{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    /* border: 1px solid green; */
-}
-/* 검색창 */
-.search-box{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.search-box form{
-    width: 65%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-.search-box input[type="text"]{
-    border: var(--teamlist-border);
-    border-radius: 50px;
-    width: 65%;
-    height: 100%;
-    padding: 0 20px;
-}
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px white inset;
- }
-.search-box form input[type="text"]:focus{
-    outline: none;
-}
-.searchbtn{
-    position: relative;
-    right: 6%;
-    
-    border: none;
-    background-color: white;
-}
 
-
-.board_nav>button {
+.board_nav> input[type="button"]{
     color: white;
     border: none;
     padding: 10px 20px;
     border: none;
     background: var(--btn-color);
     border-radius: 5px;
-}
-
-.board_nav_btn > select {
-    padding: 10px 20px;
-    border: none;
-    background: var(--btn-color);
-    border-radius: 5px;
-    color: white;
-}
-.board_nav_btn > select > option {
-    color: black;
 }
 
 /* 게시글 메인 컨텐츠 시작 */
@@ -377,3 +313,11 @@ input:-webkit-autofill {
 	color:#fff;
 	border:1px solid #42454c;
 }
+.boardPaging {
+   margin: auto;
+}
+.boardPagingTd a{
+            text-decoration: none;
+            color: black;
+            font-size: 25px;
+        }

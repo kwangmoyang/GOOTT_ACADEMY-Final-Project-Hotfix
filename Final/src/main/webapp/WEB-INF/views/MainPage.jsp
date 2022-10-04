@@ -133,6 +133,19 @@
                 <div id="board2_preview">
                     <div class="preview_title"><div class="titleDiv1">공지사항</div><div class="titleDiv3"><img src="../../resources/img/preview/NoticePreview.png"></div></div>
                     <div class="preview_content">
+                    	<c:forEach var="Not" items="${Notice}" begin="0" end="5">
+                            <div class="content_item">
+                                <div class="item_writer"><span>${Not.Notice_title}</span>&nbsp;<%--<span><ion-icon
+                                        name="flame-sharp"></ion-icon>
+                                        ${Tea.User_score}</span><span>${Tea.Team_num_mem}</span>--%></div>
+                                <c:set var="Notice_date" value="${Not.Notice_cr_date}"/>
+                                <c:set var="Notice_date_cut" value="${fn:substring(Notice_date,0 ,10)}"/>
+                                <c:set var="Notice_date_cut2" value="${fn:substring(Notice_date,11 ,16)}"/>
+                                <div class="item_info"><span>${Notice_date_cut}&nbsp;&nbsp;${Notice_date_cut2}</span></div>
+                                <div class="item_title"><span class="title_color">${Not.Notice_contents}</span></div>
+                                <div class="item_info2"></div>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

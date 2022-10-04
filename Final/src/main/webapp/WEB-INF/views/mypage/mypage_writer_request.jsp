@@ -89,8 +89,7 @@
 								<p>${row.Solver} 님과 해결중입니다.</p>
 							</c:if>	
 							<c:if test="${row.result == 1}">  
-								<p>해결 완료된 게시글입니다!</p>
-								<div><button class="ChatOpenBtn" id="test">대화내용 확인</button></div>
+								<p style="color: blue;">해결 완료된 게시글입니다!</p>
 							</c:if>	
 			
 								<p>제목 : ${row.Request_title}</p>
@@ -106,7 +105,7 @@
 									<input type="hidden"  name="Commission" value="${row.Commission}">
 						            <input type="button"  class="ResultOk" value="해결완료!" onclick="CompletionResolve()">
 					            </form>
-					            <div><button class="ChatOpenBtn" id="test">채팅방열기</button></div>
+					            <button class="ChatOpenBtn"  onclick="window.open('/chatting','window_name','width=800,height=500,location=center,status=no,scrollbars=yes');">채팅 열기</button>
 					        </c:if>
         					</div>
 							<div class="RmBoardRight">
@@ -132,7 +131,7 @@
 						</div>
 						
 					</c:forEach>
-   					<table>
+   					<table class="boardPaging">
 						<tr>
 							<td colspan="5" align="center" class="boardPagingTd"><c:if
 									test="${page_info.curBlock > 1 }">

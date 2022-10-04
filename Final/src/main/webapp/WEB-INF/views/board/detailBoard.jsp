@@ -158,8 +158,8 @@ function updateLikeDown(){
 
 				<div class="detailBoard_container">
 					<div class="detailSubTitle">
-						<span><i class="fas fa-feather-alt"></i></span> <span>200<i
-							class="fas fa-bolt"></i></span> <span>${data.Post_writer}</span> 
+						<span><i class="fas fa-feather-alt"></i></span> 
+							<span><strong>${data.Post_writer}</strong> </span> 
 							 <span>
 					             <fmt:parseDate value="${data.Post_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 
 					             <fmt:formatDate value="${date1}" pattern="MM-dd  HH:mm"/>

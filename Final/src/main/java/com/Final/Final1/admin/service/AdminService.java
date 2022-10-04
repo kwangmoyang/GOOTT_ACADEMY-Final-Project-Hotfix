@@ -17,11 +17,16 @@ public interface AdminService {
 
 	int userBoardCount(AdminDTO dto);
 	
-	//public void boardMemDelete(int boardDeleteMsg);
-
 	void boardMemDelete(int boardDeleteMsg);
 	
 	List<Map<String, Object>> adminBoard(Map<String, Object> map);
+
+	void adminBoardinsert(AdminDTO dto);
+	
+	List<Map<String, Object>> adminBoardlist();
+
+	void NoticeDelete(int NoticeDeleteMsg);
+
 
 }
 

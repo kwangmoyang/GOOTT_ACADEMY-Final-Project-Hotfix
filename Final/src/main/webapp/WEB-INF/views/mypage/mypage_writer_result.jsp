@@ -97,17 +97,19 @@
                         <div class="RmBoardRight">
                         	<c:if test="${row.result == 0}">
                             	<p>커미션: ${row.Commission } FIx</p>
-                            	<button class="DetailModal">해결 포기(미구현)</button>
-                            	<button class="DetailModal">채팅창 열기</button>
+                            	<form action="/giveUpSolver" id="giveUpSolver" method="POST">
+								<input type="hidden"  id="Request_code" name="Request_code" value="${row.Request_code}">
+								<input type="button"  class="GiveUpBtn" value="포기하기" onclick="GiveUpBtn()">
+								</form>
+                            	<button class="ChatOpenBtn"  onclick="window.open('/chatting','window_name','width=800,height=500,location=center,status=no,scrollbars=yes');">채팅 열기</button>
                             </c:if>
                             <c:if test="${row.result == 1}">
                             	<p>지급  커미션: ${row.Commission } FIx</p>
-                            	<button class="DetailModal">해결한 내용 보기</button>
                             </c:if>
                         </div>
                     </div>
                     </c:forEach>
-					<table>
+					<table class="boardPaging">
 						<tr>
 							<td colspan="5" align="center" class="boardPagingTd"><c:if
 									test="${page_info.curBlock > 1 }">
@@ -167,6 +169,21 @@
 
 
 <script>
+
+//해결포기 버튼
+function GiveUpBtn(){
+    	let giveUpSolver = document.querySelector("#giveUpSolver");
+        if (confirm("포기 하실건가요? 커미션은 지급되지 않아요!")){
+            alert("해결내역 게시글 리스트가 삭제됩니다.");
+            giveUpSolver.action = '/giveUpSolver2';
+            giveUpSolver.submit();
+        }
+        else {
+        	alert("조금만 더 시도해보세요!");
+            return false;
+        }
+}
+
 
     let cancle = document.querySelector(".cancle");
     cancle.addEventListener('click', function () {

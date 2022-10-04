@@ -29,6 +29,11 @@ public class MainDAOImpl implements MainDAO{
         return sqlSessionTemplate.selectList("main.boardlist");
     }
 
+	@Override
+	public List<MainDTO> listNotice() {
+		return sqlSessionTemplate.selectList("main.noticelist");
+	}
+
 
 }
 

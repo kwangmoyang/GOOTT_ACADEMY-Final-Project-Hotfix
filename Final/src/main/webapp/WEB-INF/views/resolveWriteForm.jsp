@@ -19,6 +19,7 @@
         <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
       
         <title>HOTFIX - Easy Solution For You</title>
+       
     </head>
 
 <body>

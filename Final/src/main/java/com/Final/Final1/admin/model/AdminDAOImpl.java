@@ -43,16 +43,6 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlsession.selectOne("admin.userBoardCount");
 	}	
 	
-//	@Override
-//	public List<Map<String, Object>> userBoard(Map<String, Object> map) {
-//		return sqlsession.selectList("admin.userBoard",map);
-//	}
-//
-//	@Override
-//	public int userBoardCount(AdminDTO dto) {
-//		return sqlsession.selectOne("admin.userBoardCount", dto);
-//	}
-
 	@Override
 	public void boardMemDelete(int no) {
 		sqlsession.delete("admin.boardMemDelete", no);
@@ -68,6 +58,22 @@ public class AdminDAOImpl implements AdminDAO {
 	public int userBoardCount(AdminDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void adminBoardinsert(AdminDTO dto) {
+		sqlsession.insert("admin.adminBoardinsert",dto);
+		
+	}
+
+	@Override
+	public List<Map<String, Object>> adminBoardlist() {
+		return sqlsession.selectList("admin.adminBoardlist");
+	}
+
+	@Override
+	public void NoticeDelete(int no) {
+		sqlsession.delete("admin.NoticeDelete", no);
 	}
 
 	
