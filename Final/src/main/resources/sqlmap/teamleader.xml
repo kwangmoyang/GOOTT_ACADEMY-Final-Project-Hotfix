@@ -9,12 +9,12 @@
 	
 	<!-- 현재 팀 총 활동점수, 현재 팀 총 커미션 -->
 	<select id="team_info"  parameterType="hashMap" resultType="hashMap">
-		select round(avg(User_Score)) TeamScore, sum(commission) Teampoint from User where Team_name = #{teamname};
+		select round(avg(User_Score)) TeamScore,  FORMAT(SUM(commission),0) Teampoint from User where Team_name = #{teamname};
 	</select>
 
 	<!-- 팀멤버들 -->
 	<select id="team_members"  parameterType="hashMap" resultType="hashMap">
-		select User_nickname, commission, Email_address, User_score from User where Team_name = #{teamname} and not Leader_auth = 1;
+		select User_nickname,  FORMAT(commission,0), Email_address, User_score from User where Team_name = #{teamname} and not Leader_auth = 1;
 	</select>
 	
 	

@@ -23,8 +23,6 @@
 	<div class="container">
 		<!-- ======================== 작업 섹션 ======================= -->
 		<div class="common_section">
-		<!-- 왼쪽 사이드 -->
-		<%@ include file="/WEB-INF/views/team/teamSidebar.jsp"%>
 			<!-- 메인섹션 -->
 			<div class="main">
 				<!-- 

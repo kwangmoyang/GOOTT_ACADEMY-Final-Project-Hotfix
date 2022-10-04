@@ -38,5 +38,9 @@ public interface MypageDAO {
 	
 	public void UserContactSet(MypageDTO dto);
 
-	
+	public Map<String, Object> mypageUserinfo(String User_nickname);
+
+	public String teamnotmember_select(String User_nickname);
+
+	public void teamnotmember_delete(String User_nickname);	
 }

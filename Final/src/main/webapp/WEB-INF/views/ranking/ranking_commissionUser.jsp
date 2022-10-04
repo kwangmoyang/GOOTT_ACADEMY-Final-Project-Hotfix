@@ -45,13 +45,50 @@
                      </div>
                 
                    <div class="rankingtopdiv">
-                    <c:forEach var="row" items="${RankingcommissionUser}" begin="0" end="2">
-	                        <div class="rankingtop">
-	                        	<p>${row.rowNum} 위</p>
-	                        	<span>유저 이름 : </span><span>${row.User_nickname}</span> <br>
-	                        	<span>유저 커미션 : </span><span>${row.commission}</span>
-	                        	<span>유저  활동점수 : </span><span>${row.User_score}</span> <br>
-	                        </div>
+                    <c:forEach var="row" items="${RankingcommissionUser}" begin="0" end="0">
+	                         <div class="rankingtop">
+                                    <i class="fa-solid fa-medal" id="medalgold"></i>
+                                    <p><span>${row.rowNum}</span> 위</p>
+                                    <div class="teamlogofile">
+                                        <div class="rank_teamlogo_image"><img src="" alt=""></div>
+                                    </div>
+                                    <div class="rank_content">
+                                        <span class="rank_title">유저 이름</span>
+                                        <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
+                                        <span class="rank_title">유저 커미션</span><span>${row.commission}</span>
+                                        <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span> <br>
+                                    </div>
+                             </div>
+                    </c:forEach>
+                    <c:forEach var="row" items="${RankingcommissionUser}" begin="1" end="1">
+	                         <div class="rankingtop-gray">
+                                    <i class="fa-solid fa-medal" id="medalgray"></i>
+                                    <p><span>${row.rowNum}</span> 위</p>
+                                    <div class="teamlogofile">
+                                        <div class="rank_teamlogo_image"><img src="" alt=""></div>
+                                    </div>
+                                    <div class="rank_content">
+                                        <span class="rank_title">유저 이름</span>
+                                        <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
+                                        <span class="rank_title">유저 커미션</span><span>${row.commission}</span>
+                                        <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span> <br>
+                                    </div>
+                             </div>
+                    </c:forEach>
+                    <c:forEach var="row" items="${RankingcommissionUser}" begin="2" end="2">
+	                         <div class="rankingtop-dong">
+                                    <i class="fa-solid fa-medal" id="medaldong"></i>
+                                    <p><span>${row.rowNum}</span> 위</p>
+                                    <div class="teamlogofile">
+                                        <div class="rank_teamlogo_image"><img src="" alt=""></div>
+                                    </div>
+                                    <div class="rank_content">
+                                        <span class="rank_title">유저 이름</span>
+                                        <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
+                                        <span class="rank_title">유저 커미션</span><span>${row.commission}</span>
+                                        <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span> <br>
+                                    </div>
+                             </div>
                     </c:forEach>
                    </div>
                 
@@ -63,10 +100,10 @@
 	                          <td>유저 커미션</td>
 	                          <td>유저 활동점수</td>
 	                       </thead>
-							<c:forEach var="row1" items="${RankingcommissionUser}" begin="3" end="8">
+							<c:forEach var="row1" items="${RankingcommissionUser}" begin="3" end="9">
 		                       <tbody>
 		                           <td>${row1.rowNum} 위</td>
-		                           <td>${row1.User_nickname}</td>
+		                           <td><a href="/mypage_view?User_nickname=${row1.User_nickname}" target="_blank" class="ranking_teaminfo">${row1.User_nickname}</a></td>
 		                           <td>${row1.commission}</td>
 		                           <td>${row1.User_score}</td>
 		                       </tbody>
