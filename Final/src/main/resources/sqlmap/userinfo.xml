@@ -53,8 +53,22 @@
 	<select id="Userinfo" resultType="hashMap">
 		select User_code, User_id, User_pw, User_name,User_nickname,User_score,
 		User_point,commission,Phone_num,Email_address,Team_name,User_introduce,
-		User_contact1,User_contact2,User_contact3 from User where 
-		User_id=#{User_id};
+		User_contact1,User_contact2,User_contact3,Req_cnt,Sol_cnt,Drop_Req_cnt,Drop_Sol_cnt from User where User_id=#{User_id};
+	</select>
+	
+	<!-- 유저 전적 카운트 뽑아오기 -->
+	
+	<select id="UserReq_cnt" resultType="int">
+		select Req_cnt from User where User_id=#{User_id};
+	</select>
+	<select id="UserSol_cnt" resultType="int">
+		select Sol_cnt from User where User_id=#{User_id};
+	</select>
+	<select id="UserDrop_Req_cnt" resultType="int">
+		select Drop_Req_cnt from User where User_id=#{User_id};
+	</select>
+	<select id="UserDrop_Sol_cnt" resultType="int">
+		select Drop_Sol_cnt from User where User_id=#{User_id};
 	</select>
 	
 	<!-- 이메일 확인후 정보 있을시 ㅇ이디 값 뱉어줌 -->

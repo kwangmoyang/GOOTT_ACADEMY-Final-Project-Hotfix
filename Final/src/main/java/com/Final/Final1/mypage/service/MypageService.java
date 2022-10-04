@@ -11,6 +11,8 @@ import com.Final.Final1.mypage.model.MypageDTO;
 
 public interface MypageService {
 	
+	public List<MypageDTO> Userinfo(MypageDTO dto);
+	
 	public int UserPoint(MypageDTO dto);
 	
 	public void UserSetNickname(MypageDTO dto);
@@ -41,7 +43,10 @@ public interface MypageService {
 	
 	public void UserContactSet(MypageDTO dto);
 
-
+	public int UserReq_cnt(MypageDTO dto);
+	public int UserSol_cnt(MypageDTO dto);
+	public int UserDrop_Req_cnt(MypageDTO dto);
+	public int UserDrop_Sol_cnt(MypageDTO dto);
 	
 	
 	

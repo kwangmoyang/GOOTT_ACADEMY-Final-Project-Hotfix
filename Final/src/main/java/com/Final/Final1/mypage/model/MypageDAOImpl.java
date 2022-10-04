@@ -22,6 +22,13 @@ public class MypageDAOImpl implements MypageDAO {
 	SqlSessionTemplate sqlSession;
 
 	@Override
+	public List<MypageDTO> Userinfo(MypageDTO dto) {
+		return sqlSession.selectList("userinfo.Userinfo",dto);
+	}
+	
+	
+	
+	@Override
 	public void UserSetNickname(MypageDTO dto) {
 		sqlSession.selectOne("userinfo.UserSetNickname",dto);
 	}
@@ -112,6 +119,30 @@ public class MypageDAOImpl implements MypageDAO {
 		sqlSession.selectOne("userinfo.UserContactSet",dto);
 		
 	}
+
+
+
+	@Override
+	public int UserReq_cnt(MypageDTO dto) {
+		return sqlSession.selectOne("userinfo.UserReq_cnt",dto);
+	}
+	@Override
+	public int UserSol_cnt(MypageDTO dto) {
+		return sqlSession.selectOne("userinfo.UserSol_cnt",dto);
+	}
+	@Override
+	public int UserDrop_Req_cnt(MypageDTO dto) {
+		return sqlSession.selectOne("userinfo.UserDrop_Req_cnt",dto);
+	}
+	@Override
+	public int UserDrop_Sol_cnt(MypageDTO dto) {
+		return sqlSession.selectOne("userinfo.UserDrop_Sol_cnt",dto);
+	}
+
+
+
+	
+	
 
 	
 	

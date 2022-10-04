@@ -141,6 +141,14 @@ public class HotfixDAOImpl implements HotfixDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("hotfix.myRequestlist",dto);
 	}
+	@Override
+	public List<HotfixDTO> resolveChk(HotfixDTO dto) {
+		return sqlSession.selectList("hotfix.resolveChk",dto);
+	}
+	@Override
+	public void Drop_Sol_cnt(HotfixDTO dto) {
+		sqlSession.selectOne("hotfix.Drop_Sol_cnt",dto);
+	}
 
 
 	
