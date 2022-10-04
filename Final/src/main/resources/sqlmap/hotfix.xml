@@ -72,9 +72,13 @@
 
 	</select>
 	
-	
-	
-	
+	<!-- 똑같은 게시글 해결신청 눌렀으면 다시 신청못함 -->
+	<select id="resolveChk"
+		parameterType="com.Final.Final1.board.model.HotfixDTO"
+		resultType="hashMap">
+	select Solver_member,Request_code from Solver_member where 
+	Solver_member=#{Solver_member} and Request_code=#{Request_code};
+	</select>
   
 	<!-- 해결자 불러오기 -->
 	<select id="mySolverlist"
@@ -141,6 +145,10 @@
 
 	<update id="Drop_Req_cnt" parameterType="hashMap">
 		update User set Drop_Req_cnt = Drop_Req_cnt+1 where User_nickname =#{User_nickname };
+	</update>
+	<!-- 해결자가 포기시 -->
+	<update id="Drop_Sol_cnt" parameterType="hashMap">
+		update User set Drop_Sol_cnt = Drop_Sol_cnt+1 where User_nickname =#{User_nickname };
 	</update>
 
 	<!-- 요청자 커미션 다운-->

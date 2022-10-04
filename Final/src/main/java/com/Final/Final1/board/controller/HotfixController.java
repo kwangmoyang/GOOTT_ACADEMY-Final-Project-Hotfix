@@ -29,7 +29,24 @@ public class HotfixController {
 
 	@Autowired
 	HotfixService hotfixService;
-
+	
+	//10 04 HIKARI 채팅프로그램
+	@RequestMapping(value = "/chatting", method = RequestMethod.GET)
+	public ModelAndView chat(ModelAndView mv, HttpSession session) {
+		mv.setViewName("chattingview");
+		//사용자 정보 출력(세션)//
+		//User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		//세션 값 따오기 수정
+		System.out.println("유저 닉네임 :" + session.getAttribute("User_nickname"));
+		
+		System.out.println("normal chat page");
+		
+		mv.addObject("User_nickname", session.getAttribute("User_nickname"));
+		
+		return mv;
+	}
+	
 	//09.30 수근 작업 HOTFIX
 	@RequestMapping(value = "/resolveMain", method = RequestMethod.GET)
 	public ModelAndView resolveMain(HttpServletRequest req, @RequestParam(defaultValue="1")int curPage,
@@ -78,6 +95,7 @@ public class HotfixController {
 	public ModelAndView mypageresult(HotfixDTO dto,HttpSession session,
 			@RequestParam(defaultValue="1")int curPage) {
 		
+		session.getId();
 		
 		String nickToResolve = (String) session.getAttribute("User_nickname");
 		dto.setSolver(nickToResolve);
@@ -104,6 +122,7 @@ public class HotfixController {
 	public ModelAndView resolveMainPost(HotfixDTO dto) {
 
 		ModelAndView mv = new ModelAndView();
+		
 		hotfixService.insert(dto);
 		mv.setViewName("redirect:/resolveMain");
 		return mv;
@@ -112,14 +131,33 @@ public class HotfixController {
 
 	//핫픽스 해결자 게시판
 	@RequestMapping("/solutionRequest")
-	public ModelAndView solutionRequest(HotfixDTO dto, HttpSession session) {
+	public ModelAndView solutionRequest(HotfixDTO dto, HttpSession session,
+			@RequestParam("User_nickname") String User_nickname,
+			@RequestParam("Request_code") int Request_code){
 		ModelAndView mv = new ModelAndView();
 
 		//로그인된 사람의 닉네임을 불러와 신청자 리스트에 담아준다
-		String name = (String) session.getAttribute("User_nickname");
-		dto.setSolver_member(name);
-		hotfixService.resolveMember(dto);
+		//String name = (String) session.getAttribute("User_nickname");
+		dto.setSolver_member(User_nickname);
+		//dto.setRequest_code(Request_code);
+		
+		System.out.println(dto.getRequest_code());
+		System.out.println(User_nickname);
+		System.out.println(Request_code);
+		
+		
+		List<HotfixDTO> resolveChk = hotfixService.resolveChk(dto);
+		System.out.println(resolveChk);
+		//셀렉트 먼저 불러오기 
+		//만약 불러온값이 있다면 
 
+		if(resolveChk.isEmpty()) {
+			System.out.println("신청하셨음");
+			hotfixService.resolveMember(dto); //인설트문 실행
+		}else {
+			System.out.println("이미 신청하셨음");
+		}
+		
 		mv.setViewName("redirect:/resolveMain");
 		return mv;
 	}
@@ -187,9 +225,7 @@ public class HotfixController {
 		String name = (String) session.getAttribute("User_nickname");
 		dto.setRequester(name); // 불러온 세션값을 dto에 설정
 		
-		// 요청자 해결포기 카운트
-		dto.setUser_nickname(name);
-		hotfixService.Drop_Req_cnt(dto);
+		
 		
 		
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
@@ -325,32 +361,44 @@ public class HotfixController {
 	}
 
 	//포기하기 버튼 클릭시
-	@RequestMapping("/giveUpSolver")
+	@RequestMapping({"/giveUpSolver","/giveUpSolver2"})
 	public ModelAndView giveUpSolver(HotfixDTO dto,@RequestParam("Request_code") int Request_code,
-			HttpSession session,@RequestParam(defaultValue="1")int curPage) {
+			HttpSession session,@RequestParam(defaultValue="1")int curPage,HttpServletRequest request) {
 		
 		ModelAndView mv = new ModelAndView();
-		dto.setRequest_code(Request_code);
-		hotfixService.giveUpResolve(dto);
+		
 		
 		int count = hotfixService.count(dto);
 		PageUtil page_info = new PageUtil(count, curPage);
 		int start = page_info.getPageBegin();
 		int end = page_info.getPageEnd();
 		
-		
 		// 세션 값 불러옴
 		String name = (String) session.getAttribute("User_nickname");
+		
+		dto.setRequest_code(Request_code);
 		dto.setRequester(name); // 불러온 세션값을 dto에 설정
+		hotfixService.giveUpResolve(dto); // 게시판 테이블의 Solver가 null로 변경
+		
+		dto.setUser_nickname(name);
+		if(request.getServletPath().equals("/giveUpSolver")) {
+			System.out.println("1번링크");
+			hotfixService.Drop_Req_cnt(dto);//해결요청가 포기 했을경우 카운트 UP
+		}else if(request.getServletPath().equals("/giveUpSolver2")) {
+			System.out.println("2번링크");
+			hotfixService.Drop_Sol_cnt(dto);//해결자가 포기 했을경우 카운트 UP
+		}
+		
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
 		List<BoardDTO> list = hotfixService.myRequestlist(dto,start,end);
 		mv.addObject("list", list);
 		
-		//전적 떨어지는거 추가해야함 (테이블 문의)
+		
 		
 		mv.setViewName("/mypage/mypage_writer_request");
 		return mv;
 	}
+	
 		//해결완료 버튼 클릭시
 		@RequestMapping("/CompletionResolve")
 		public ModelAndView CompletionResolve(HotfixDTO dto,@RequestParam("Requester") String Requester,

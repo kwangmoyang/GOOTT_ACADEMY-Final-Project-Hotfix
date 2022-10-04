@@ -29,6 +29,7 @@ import com.Final.Final1.board.model.BoardDTO;
 import com.Final.Final1.board.model.MyCommentListDTO;
 import com.Final.Final1.board.model.MyWriterListDTO;
 import com.Final.Final1.board.model.PageUtil;
+import com.Final.Final1.comm.model.MainDTO;
 import com.Final.Final1.mypage.model.MypageDAO;
 import com.Final.Final1.mypage.model.MypageDTO;
 import com.Final.Final1.mypage.service.MypageService;
@@ -134,28 +135,43 @@ public class MyPageController {
 	public ModelAndView mypageIndex(MypageDTO dto,HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		
-//		String name = (String)session.getAttribute("User_id");
-//		dto.setUser_id(name);
-//		
-//		String photo = "\\"+mypageService.UserPhotoView(dto);
-//		System.out.println(photo);
-//		
-//		File file = new File("C:\\Users\\광트북\\img"+photo);
-//		ResponseEntity<byte[]> result = null;
-	
-//		try {
-//			HttpHeaders header = new HttpHeaders();
-//			header.add("Content-Type", Files.probeContentType(file.toPath()));
-//			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),
-//					header, HttpStatus.OK);
-//			mv.addObject("photo", result);
-			mv.setViewName("/mypage/mypage");
-//			
-//		} catch(IOException e) {
-//			e.printStackTrace();
-//		}
+		String Userid = (String)session.getAttribute("User_id") ;
+		System.out.println(Userid);
+		
+		dto.setUser_id(Userid);
+		List<MypageDTO> Userinfolist =  mypageService.Userinfo(dto);
+		//차후 수정 예정
+		//각 해결카운트
+		double Req_cnt = mypageService.UserReq_cnt(dto);
+		double Drop_Req_cnt = mypageService.UserDrop_Req_cnt(dto);
+		double Sol_cnt = mypageService.UserSol_cnt(dto);
+		double Drop_Sol_cnt = mypageService.UserDrop_Sol_cnt(dto);
+		
+		int Req_cnt2 = mypageService.UserReq_cnt(dto);
+		int Drop_Req_cnt2 = mypageService.UserDrop_Req_cnt(dto);
+		int Sol_cnt2 = mypageService.UserSol_cnt(dto);
+		int Drop_Sol_cnt2 = mypageService.UserDrop_Sol_cnt(dto);
+		//총 해결 건수
+		double RequesterAll = Req_cnt+Drop_Req_cnt;
+		double SolverAll = Sol_cnt+Drop_Sol_cnt;
+		
+		int RequesterAll2 = Req_cnt2+Drop_Req_cnt2;
+		int SolverAll2 = Sol_cnt2+Drop_Sol_cnt2;
+		//해결 백분율
+		double RequesterAvg = Math.round((double)(Req_cnt/RequesterAll)*100);
+		double SolverAvg = Math.round((double)(Sol_cnt/SolverAll)*100);
 		
 		
+		
+		mv.addObject("RequesterAll", RequesterAll2);
+		mv.addObject("SolverAll", SolverAll2);
+		mv.addObject("RequesterAvg", RequesterAvg);
+		mv.addObject("SolverAvg", SolverAvg);
+		
+		
+		mv.addObject("Userinfolist", Userinfolist);
+		mv.setViewName("/mypage/mypage");
+
 		
 		return mv;
 	}

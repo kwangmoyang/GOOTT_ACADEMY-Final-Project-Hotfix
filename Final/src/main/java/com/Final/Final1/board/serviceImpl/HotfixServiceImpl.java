@@ -132,6 +132,17 @@ public class HotfixServiceImpl implements HotfixService{
 		HotfixDao.Completion(dto);
 	}
 
+	@Override
+	public List<HotfixDTO> resolveChk(HotfixDTO dto) {
+		// TODO Auto-generated method stub
+		return HotfixDao.resolveChk(dto);
+	}
+
+	@Override
+	public void Drop_Sol_cnt(HotfixDTO dto) {
+		HotfixDao.Drop_Sol_cnt(dto);
+	}
+
 	
 
 	

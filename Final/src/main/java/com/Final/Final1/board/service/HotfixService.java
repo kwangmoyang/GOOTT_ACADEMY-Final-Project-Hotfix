@@ -37,6 +37,7 @@ public interface HotfixService {
 	
 	void resolverCommissionUp(HotfixDTO dto);
 	
+	void Drop_Sol_cnt(HotfixDTO dto);
 	
 	void Drop_Req_cnt(HotfixDTO dto);
 	
@@ -44,5 +45,5 @@ public interface HotfixService {
 
 	int resultCount(HotfixDTO dto);
 
-	
+	List<HotfixDTO> resolveChk(HotfixDTO dto);
 }
