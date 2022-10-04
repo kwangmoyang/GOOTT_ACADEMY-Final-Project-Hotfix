@@ -14,6 +14,23 @@
 
     --border-btn-radius: 10px;
     --btn-color: rgba(255, 95, 47, 0.906);
+    
+    
+    /* 10-04 김양희 팀모달 css 추가*/
+    --modal-bg-color: rgba(0, 0, 0, 0.4);
+    --border-color: #e5e4e9;
+    --dark-border-color:#ccc;
+
+    --basic-white-color:white;
+    --basic-gainsboro-color:gainsboro;
+    --basic-gray-color:gray;
+    --basic-black-color:#333;
+    
+    --hover-btn-color:#e4e6f5;
+    --basic-border-radius:5px;
+    --main-border: 1px solid gainsboro;
+    
+    --btn-color: rgba(255, 95, 47, 0.906);
 }
 
 /* ================================================ */
@@ -40,7 +57,7 @@
     border-radius: 10px;
 }
 
-a{
+.a_btn{
     text-decoration-line: none;
     color: var(--main-black-color);
 }
@@ -281,7 +298,7 @@ a{
 /* 나의 해결률 */
 .myHistory{
     width: 100%;
-    height: 7%;
+    height: 10%;
     border: solid 1px #ccc;
     border-radius: var(--border-btn-radius);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
@@ -417,3 +434,271 @@ a{
     align-items: center;
 }
 /* ================================= */
+
+/* 10-04 김양희 팀정보 모달 추가 */
+
+/* ==========================팀정보 모달================================ */
+.modal-div{
+    background-color: var(--modal-bg-color);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+
+    display: none;
+}
+#xicon{
+    font-size: 1.5rem;
+    border-radius: var(--basic-border-radius);
+    box-shadow: 1px 1px 3px 1px var(--basic-gray-color);
+    background-color: var(--basic-white-color);
+    position: relative;
+    top: -46%;
+    left: 1%;
+    cursor: pointer;
+
+    display: none;
+	
+	
+	animation-name: opacity;
+    animation-duration: 2s;
+
+}
+#teammodal-div{
+    width: 60%;
+    height: 95%;
+    background-color: var(--basic-white-color);
+
+	animation-name: opacity;
+    animation-duration: 2s;
+    
+
+	overflow-y: auto;
+}
+#team-navbar{
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+}
+#teamname{
+    text-decoration: none;
+    color: var(--basic-black-color);
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    /* border: 1px solid red; */
+    width: 30%;
+    text-align: center;
+    padding: 5px 10px;
+}
+#team-category{
+    /* border: 1px solid red; */
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.teamjoin-btn, .teamsecession-btn{
+    color: var(--basic-black-color);
+    letter-spacing: 1.2px;
+    background-color: var(--basic-gainsboro-color);
+    padding: 5px 10px;
+    border-radius: var(--basic-border-radius);
+    border: none;
+}
+.teaminfo-btn{
+    color: var(--basic-black-color);
+    letter-spacing: 1.2px;
+   	background-color: var(--hover-btn-color);
+    padding: 5px 10px;
+    border-radius: var(--basic-border-radius);
+    border: none;
+}
+#team-category button a{
+    color: var(--basic-black-color);
+    text-decoration: none;
+}
+#team-category button:hover{
+    background-color: var(--hover-btn-color);
+}
+#team-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+/* 공지사항 */
+.content-team-date{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    width: 95%;
+    height: 30%;
+    margin-top: 5%;
+}
+
+/* 팀정보 */
+.content-team-profile{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    border-radius: var(--basic-border-radius);
+    width: 95%;
+    height: 30%;
+    margin-top: 5%;
+}
+.content-team-profile div{
+    border-bottom: 1px solid var(--dark-border-color);
+    width: 100%;
+    height: 33.3%;
+    display: flex;
+    align-items: center;
+}
+/* 팀원정보 */
+.content-team-member{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
+    border-radius: var(--basic-border-radius);
+    width: 95%;
+    height: 60%;
+    margin-top: 5%;
+}
+.content-team-member table{
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
+.content-team-member td{
+    border: 1px solid var(--dark-border-color);
+}
+
+/* 링크 아이콘 */
+.teamicons{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 20px;
+    width: 100%;
+}
+/* 링크 */
+.linkcopy{
+    cursor: pointer;
+    border: none;
+    position: relative;
+}
+.linkcopy ion-icon{
+    font-size: 1.8rem;
+}
+
+
+
+/* =========================팀탈퇴 모달=============================== */
+.modal4-div{
+    background-color: var(--modal-bg-color);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+
+
+    display: none;
+}
+
+#xicon4{
+    font-size: 1.5rem;
+    border-radius: var(--basic-border-radius);
+    box-shadow: 1px 1px 3px 1px var(--basic-gray-color);
+    background-color: var(--basic-white-color);
+    position: relative;
+    top: -11.5%;
+    left: 1%;
+    cursor: pointer;
+
+    display: none;
+
+    animation-name: opacity;
+    animation-duration: 1s;
+}
+.teammodal4-div{
+    width: 450px;
+    height: 250px;
+    background-color: var(--basic-white-color);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+
+    animation-name: opacity;
+    animation-duration: 1s;
+}
+.toptitle3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toptitle3 p{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.teamsecssioncheck{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+    margin-top: 30px;
+}
+.teamsecssioncheck p{
+    font-size: 1.1rem;
+}
+.secssion-btn button{
+    width: 100%;
+    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+    color: whitesmoke;
+    border: none;
+    padding: 15px 0;
+    cursor: pointer;
+
+}
+
+
+@keyframes opacity {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes popup {
+    0%{
+        transform: scale(1.0);
+    }
+	50%{
+		transform: scale(1.1);
+	}
+    100%{
+        transform: scale(1.0);
+    }
+}
+.teamnotmemberform{
+	display:flex;
+	flex-direction:row;
+}
+.teamnotmember_delete{
+	border:none;
+	border-radius:5px;
+	color: white;
+	background-color: var(--btn-color);
+	margin: 0 10px;
+	cursor:pointer;
+}

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.Final.Final1.board.model.CommentDAO;
 import com.Final.Final1.board.model.CommentDTO;
 import com.Final.Final1.board.service.CommentService;
+import com.Final.Final1.mypage.model.MypageDTO;
 
 @Service
 public class CommentServiceImpl implements CommentService{
@@ -40,6 +41,12 @@ public class CommentServiceImpl implements CommentService{
 	public int count(int post_num) {
 		// TODO Auto-generated method stub
 		return commentDAO.count(post_num);
+	}
+
+	@Override
+	public void activeInsert(MypageDTO mydto) {
+		 commentDAO.activeInsert(mydto);
+		
 	}
 
 }

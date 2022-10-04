@@ -11,6 +11,8 @@ import com.Final.Final1.mypage.model.MypageDTO;
 
 public interface MypageService {
 	
+	public List<MypageDTO> Userinfo(MypageDTO dto);
+	
 	public int UserPoint(MypageDTO dto);
 	
 	public void UserSetNickname(MypageDTO dto);
@@ -41,7 +43,20 @@ public interface MypageService {
 	
 	public void UserContactSet(MypageDTO dto);
 
+	public Map<String, Object> mypageUserinfo(String User_nickname);
 
+	public String teamnotmember_select(String User_nickname);
+
+	public void teamnotmember_delete(String User_nickname);
+	public void myBoardDelete(int boardDeleteMsg);
+
+	public void myCommentDelete(int boardDeleteMsg);
+
+
+	public int UserReq_cnt(MypageDTO dto);
+	public int UserSol_cnt(MypageDTO dto);
+	public int UserDrop_Req_cnt(MypageDTO dto);
+	public int UserDrop_Sol_cnt(MypageDTO dto);
 	
 	
 	

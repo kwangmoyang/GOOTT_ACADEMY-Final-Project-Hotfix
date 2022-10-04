@@ -25,5 +25,7 @@ public interface LoginDAO {
 	String UserEmailinfo(MypageDTO dto);
 	
 	String UserEmailAndIDinfo(MypageDTO dto);
+
+	void activeInsert(MypageDTO mydto);
 	
 }

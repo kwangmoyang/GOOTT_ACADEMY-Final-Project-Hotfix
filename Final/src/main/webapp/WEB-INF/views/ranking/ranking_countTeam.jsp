@@ -11,9 +11,12 @@
 	<link rel="stylesheet" href="../../resources/css/global.css">
     <link rel="stylesheet" href="../../resources/css/ranking.css">
      <link rel="stylesheet" href="../resources/css/BasicFrame.css">
-    <!-- 유니콘 아이콘 사이트 -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <!-- 폰트어썸 아이콘 사이트 -->
+    <!-- modal css -->
+   <link rel="stylesheet" href="${path}/resources/css/teammodal.css">
+   <!-- 유니콘 아이콘 사이트 -->
+   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+   <!-- 폰트어썸 아이콘 사이트 -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <title>HotFix</title>
 </head>
@@ -48,13 +51,50 @@
                      </div>
                 
                    <div class="rankingtopdiv">
-                    <c:forEach var="row" items="${teamrank}" begin="0" end="2">
+                    <c:forEach var="row" items="${teamrank}" begin="0" end="0">	                        
 	                        <div class="rankingtop">
-	                        	<p>${row.rowNum} 위</p>
-	                        	<span>팀 이름 : </span><span>${row.Team_name}</span> <br>
-	                        	<span>팀 활동점수 : </span><span>${row.Team_AVG}</span> <br>
-	                        	<span>팀 커미션 : </span><span>${row.Team_SUM}</span>
-	                        </div>
+                                    <i class="fa-solid fa-medal" id="medalgold"></i>
+                                    <p><span>${row.rowNum}</span> 위</p>
+                                    <div class="teamlogofile">
+                                        <div class="rank_teamlogo_image"><img src="" alt=""></div>
+                                    </div>
+                                    <div class="rank_content">
+                                        <span class="rank_title">팀 이름</span>
+                                        <a onclick="teaminfoFuc('${row.Team_name}')" class="ranking_teaminfo"><span>${row.Team_name}</span></a><br>
+                                        <span class="rank_title">팀 활동점수</span><span>${row.Team_AVG}</span> <br>
+                                        <span class="rank_title">팀 커미션</span><span>${row.Team_SUM}</span>
+                                    </div>
+                             </div>
+                    </c:forEach>
+                    <c:forEach var="row" items="${teamrank}" begin="1" end="1">	                        
+	                        <div class="rankingtop-gray">
+                                    <i class="fa-solid fa-medal" id="medalgray"></i>
+                                    <p><span>${row.rowNum}</span> 위</p>
+                                    <div class="teamlogofile">
+                                        <div class="rank_teamlogo_image"><img src="" alt=""></div>
+                                    </div>
+                                    <div class="rank_content">
+                                        <span class="rank_title">팀 이름</span>
+                                        <a onclick="teaminfoFuc('${row.Team_name}')" class="ranking_teaminfo"><span>${row.Team_name}</span></a><br>
+                                        <span class="rank_title">팀 활동점수</span><span>${row.Team_AVG}</span> <br>
+                                        <span class="rank_title">팀 커미션</span><span>${row.Team_SUM}</span>
+                                    </div>
+                             </div>
+                    </c:forEach>
+                    <c:forEach var="row" items="${teamrank}" begin="2" end="2">	                        
+	                        <div class="rankingtop-dong">
+                                    <i class="fa-solid fa-medal" id="medaldong"></i>
+                                    <p><span>${row.rowNum}</span> 위</p>
+                                    <div class="teamlogofile">
+                                        <div class="rank_teamlogo_image"><img src="" alt=""></div>
+                                    </div>
+                                    <div class="rank_content">
+                                        <span class="rank_title">팀 이름</span>
+                                        <a onclick="teaminfoFuc('${row.Team_name}')" class="ranking_teaminfo"><span>${row.Team_name}</span></a><br>
+                                        <span class="rank_title">팀 활동점수</span><span>${row.Team_AVG}</span> <br>
+                                        <span class="rank_title">팀 커미션</span><span>${row.Team_SUM}</span>
+                                    </div>
+                             </div>
                     </c:forEach>
                    </div>
                 
@@ -66,10 +106,12 @@
 	                                <td>팀 활동점수</td>
 	                                <td>팀 커미션</td>
 	                            </thead>
-	                            <c:forEach var="row1" items="${teamrank}" begin="3" end="8">
+	                            <c:forEach var="row1" items="${teamrank}" begin="3" end="9">
 		                            <tbody>
 		                                <td>${row1.rowNum} 위</td>
-		                                <td>${row1.Team_name}</td>
+		                                <td>
+		                                	<a onclick="teaminfoFuc('${row1.Team_name}')" class="ranking_teaminfo">${row1.Team_name}</a>
+		                                </td>
 		                                <td>${row1.Team_AVG}</td>
 		                                <td>${row1.Team_SUM}</td>
 		                            </tbody>
@@ -81,6 +123,25 @@
             </div>
         </div>
     </div>
+    
+<!-- ===================================================팀정보 모달=====================================================-->
+
+	<div class="modal-div">
+	    <div id="teammodal-div">
+	        <div id="team-navbar">
+	            <div id="teamname"></div>
+	            <div id="team-category">		
+	            </div>
+	        </div>
+	        <div id="team-content">
+				
+	        </div>
+	    </div>
+	    <ion-icon name="close-outline" id="xicon"></ion-icon>
+	</div>
+	
+
    </body>
 <script src="../resources/js/BasicFrame.js"></script>
+<script src="../resources/js/ranking.js"></script>
 </html>

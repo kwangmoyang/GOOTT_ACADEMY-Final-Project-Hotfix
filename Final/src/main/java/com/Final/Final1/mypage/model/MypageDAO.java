@@ -10,6 +10,9 @@ import com.Final.Final1.comm.model.LoginDTO;
 
 public interface MypageDAO {
 	
+	
+	public List<MypageDTO> Userinfo(MypageDTO dto);
+	
 	public int UserPoint(MypageDTO dto);
 	
 	public void UserSetNickname(MypageDTO dto);
@@ -37,6 +40,22 @@ public interface MypageDAO {
 	public String UserPhotoView(MypageDTO dto);
 	
 	public void UserContactSet(MypageDTO dto);
+
+	public Map<String, Object> mypageUserinfo(String User_nickname);
+
+	public String teamnotmember_select(String User_nickname);
+
+	public void teamnotmember_delete(String User_nickname);	
+
+	public void myBoardDelete(int no);
+
+	public void myCommentDelete(int no);
+
+
+	public int UserReq_cnt(MypageDTO dto);
+	public int UserSol_cnt(MypageDTO dto);
+	public int UserDrop_Req_cnt(MypageDTO dto);
+	public int UserDrop_Sol_cnt(MypageDTO dto);
 
 	
 }

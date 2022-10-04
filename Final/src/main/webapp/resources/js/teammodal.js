@@ -3,22 +3,11 @@
 
 var teamname = document.querySelectorAll('.teamtitle');
 const modaldiv = document.querySelector('.modal-div');
-const teammodaldiv = document.getElementById('teammodal-div');
+//const teammodaldiv = document.getElementById('teammodal-div');
 const xicon = document.getElementById('xicon');
 const teambtn = document.querySelectorAll('.join');
-const checked = document.querySelector('#checked');
+//const checked = document.querySelector('#checked');
 const teaminfobtn = document.querySelectorAll('.btn');
-
-for(let i=0; i<teaminfobtn.length; i++){
-	teaminfobtn[i].addEventListener('click', function(){
-
-		teamnameinfo.innerHTML = teamname[i].textContent;
-		teamjoincheck.innerHTML = teamname[i].textContent;
-		teamsecssioncheck.innerHTML = teamname[i].textContent;
-
-
-	})
-};
 
 //팀이름 누르면 모달창 키기
 for(let i=0; i<teamname.length; i++){
@@ -58,6 +47,7 @@ const teamjoincheck = document.querySelector('.teamjoincheck span');
 //팀탈퇴 모달에 표시된 팀이름
 const teamsecssioncheck = document.querySelector('.teamsecssioncheck span');
 
+//팀이름 클릭 시
 for(let i=0; i<teamname.length; i++){
     teamname[i].addEventListener('click', function(){
 
@@ -70,7 +60,7 @@ for(let i=0; i<teamname.length; i++){
 };
 
 
-
+//팀 정보 보기 버튼 클릭 시
 for(let i=0; i<teaminfobtn.length; i++){
 	teaminfobtn[i].addEventListener('click', function(){
 
@@ -234,8 +224,7 @@ function teamcheck(usernickname){
 	    		    	alert("20자 이내로 입력해주세요.");
 	    		    }
 	    			else{
-	    				 alert("팀이름이 중복됐거나 ,유저가 속해있는 팀, 혹은 오류");
-//	    				alert("code:"+request.status+"\n"+"textStatus:"+textStatus+"\n"+"error:"+error);
+	    				 alert("팀이름이 중복됐거나 ,유저가 속해있는 팀 있음, 혹은 오류");
 	    			}
 	    		}
 	    	});
@@ -326,10 +315,6 @@ modaldiv4.addEventListener('click', function(e){
         xicon4.style.display = 'none';
     }
 });
-
-//let secession_teamname = document.getElementByName('secession_teamname');
-
-//console.log("sss",secession_teamname);
 
 function teamcheck3(a,b){
 	

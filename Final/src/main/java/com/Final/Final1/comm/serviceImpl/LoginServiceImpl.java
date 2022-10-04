@@ -71,4 +71,10 @@ public class LoginServiceImpl implements LoginService{
 		return loginDao.UserEmailAndIDinfo(dto);	
 	}
 
+	@Override
+	public void activeInsert(MypageDTO mydto) {
+		loginDao.activeInsert(mydto);	
+		
+	}
+
 }

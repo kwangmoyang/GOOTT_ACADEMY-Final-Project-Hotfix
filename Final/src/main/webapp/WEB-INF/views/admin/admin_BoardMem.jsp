@@ -111,9 +111,10 @@
                             </td>
                             <td class="adminBoard">${row.Post_view}</td>
                         </tr>
-						</c:forEach>
+						          </c:forEach>
                     </table>
             <table>
+
 						<tr>
 							<td colspan="5" align="center" class="boardPagingTd"><c:if
 									test="${page_info.curBlock > 1 }">

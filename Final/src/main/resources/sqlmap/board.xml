@@ -15,19 +15,26 @@
 				and Post_title like CONCAT('%',#{keyword},'%')
 			</if>
 			
-		</where>		
+		</where>			
+			 
+			 <choose>
+			<when test="search_option == 'new'">
+				order by Post_cr_date desc, Post_num desc
+			</when>
+				<when test="search_option == 'view'">
+					order by Post_view desc, Post_num desc
+				</when>
+				<when test="search_option == 'like'">
+					order by Post_like desc, Post_num desc
+				</when>
+				<otherwise>
+					order by Post_cr_date desc, Post_num desc
+				</otherwise>
+			</choose>
+			
 			<include refid="paging_footer" />			
 			
-			 <if test="search_option =='view' ">
-				  order by Post_view desc, Post_num desc
-			</if>
-			<if test="search_option =='like' ">
-				 order by Post_like desc, Post_num desc
-			</if> 
-			<if test="search_option == 'new'">
-				 order by Post_cr_date desc, Post_num desc
-			</if>
-		
+			
 				
 	</select>
 
@@ -93,6 +100,12 @@
 		Post_like = Post_like-1
 		where Post_num = #{Post_num}
 	</update>
+	
+	<insert id="activeInsert" parameterType="hashMap">
+		update User set 
+		User_score = User_score+5
+		where User_nickname = #{User_nickname};
+	</insert>
 	
 	
 </mapper>

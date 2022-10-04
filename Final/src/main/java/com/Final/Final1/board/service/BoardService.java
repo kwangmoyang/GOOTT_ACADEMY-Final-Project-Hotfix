@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.Final.Final1.board.model.BoardDTO;
+import com.Final.Final1.mypage.model.MypageDTO;
 
 public interface BoardService {
 
@@ -24,6 +25,8 @@ public interface BoardService {
 	int Likeup(int post_num);
 
 	int Likedown(int post_num);
+
+	void activeInsert(MypageDTO mydto);
 
 
 

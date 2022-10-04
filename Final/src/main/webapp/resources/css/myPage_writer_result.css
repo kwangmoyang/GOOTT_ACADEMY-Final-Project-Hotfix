@@ -17,6 +17,14 @@
     --btn-color: rgba(255, 95, 47, 0.906);
 
 }
+.GiveUpBtn{
+	margin: 10px 30px;
+    padding: 12px 20px;
+    border: none;
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+}
 
 .noPost{
 	text-align: center;
@@ -489,3 +497,11 @@ html, body {
     border: none;
     background-color: rgb(234, 126, 18);
 }
+.boardPaging {
+   margin: auto;
+}
+.boardPagingTd a{
+            text-decoration: none;
+            color: black;
+            font-size: 25px;
+        }

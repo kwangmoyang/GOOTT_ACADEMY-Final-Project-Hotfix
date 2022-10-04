@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.Final.Final1.board.model.BoardDTO;
 import com.Final.Final1.board.model.PageUtil;
 import com.Final.Final1.board.service.BoardService;
+import com.Final.Final1.mypage.model.MypageDTO;
 
 @Controller
 public class BoardController {
@@ -66,9 +68,18 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public ModelAndView insertPost(BoardDTO dto) {
+	public ModelAndView insertPost(BoardDTO dto, HttpSession session, MypageDTO mydto) {
+		
+		
+		//세션 값 불러옴
+		String name = (String)session.getAttribute("User_nickname");
+		mydto.setUser_nickname(name);
+		
+		boardService.activeInsert(mydto);
+		
 		boardService.insert(dto);
 		ModelAndView mv = new ModelAndView();
+		
 		
 		mv.setViewName("redirect:/list");
 		

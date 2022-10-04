@@ -12,7 +12,7 @@
 .RmHeader {
     text-align: center;
     line-height: 100px;
-    height: 100px;
+    height: 130px;
 }
 .RmHeader > h1 {
     font-size: 30px;
@@ -43,25 +43,21 @@
 /* 검색창 */
 .search-box{
     width: 100%;
-    height: 70%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-}
-.search-box form{
-    width: 65%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: center;
     position: relative;
+    margin-right: 30px;
 }
+
 .search-box input[type="text"]{
     border: var(--teamlist-border);
     border-radius: 50px;
-    width: 80%;
+    width: 65%;
     height: 100%;
     padding: 0 20px;
+    margin-left: 45px;
 }
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset;
@@ -71,8 +67,7 @@ input:-webkit-autofill {
 }
 .searchbtn{
     position: relative;
-    right: 8%;
-    
+    right: 6%;
     border: none;
     background-color: white;
 }
@@ -247,3 +242,27 @@ html, body {
     border: none;
     background-color: var(--btn-color);
 }
+/* 10-04 김양희 a태그 꾸미기 */
+.resolve_info{
+	cursor:pointer;
+	text-decoration: underline;
+	color:black;
+}
+.resolve_info:hover{
+	color: blue;
+}
+
+/* 페이징 */
+.boardPaging {
+   margin: auto;
+}
+.boardPagingTd a{
+            text-decoration: none;
+            color: black;
+            font-size: 25px;
+        }
+        
+.resolveCount {
+	margin-left : 30px;
+	font-size: 18px;
+}        

@@ -14,6 +14,7 @@
 <!-- 유니콘 아이콘 사이트 -->
 <link rel="stylesheet"
    href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <!-- 폰트어썸 아이콘 사이트 -->
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -22,24 +23,31 @@
 <title>HotFix</title>
 </head>
 <script>
-/*    $(function()}
-    $("#btnWrite").click(function(){
-       locataion.hred="/board/write";
-   }); */
 
-   function list(page) {
-      if(searchParam("boardCode") == null){
-         location.href="list?curPage="+page;
+    function list(page) {
+  	 
+  	   if(searchParam("boardCode") != null){
+  		   location.href="list?boardCode=${map.boardCode}&keyword=${map.keyword}&curPage="+page;
+  	    	
+  	
+  	   } else if(searchParam("boardCode") == null){
+  		   
+      	  if(searchParam("keyword") != null) {
+      		  location.href="list?keyword=${map.keyword}&curPage="+page;
+      		  return true
+      	 }
+           location.href="list?curPage="+page;
+        }else{       
          
-      }else {
-         
-         location.href="list?boardCode=${map.boardCode}&keyword=${map.keyword}&curPage="+page;
-      }
-      
-      
-            
-   }
+           location.href="list?boardCode=${map.boardCode}&keyword=${map.keyword}&curPage="+page;
+        }   
+        
+     }   
+    
    
+   
+   
+     
    
 </script>
 
@@ -123,14 +131,18 @@
                   <div class="board_main">
                      <div class="board_header">
                         <div class="board_write">
-                           <span><i class="fas fa-feather-alt"></i></span> <span>200<i
-                              class="fas fa-bolt"></i></span> <span>${row.Post_writer}</span>
-                               <span>
+                           <span><i class="fas fa-feather-alt"></i></span> <span>200
+                           <i class="fas fa-bolt"></i></span> <span>
+                           <a href="/mypage_view?User_nickname=${row.Post_writer}" target="_blank" class="board_info">${row.Post_writer}</a>
+                           </span>
+
+                      <span>
 					             <fmt:parseDate value="${row.Post_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 
 					             <fmt:formatDate value="${date1}" pattern="MM-dd  HH:mm"/>
 					            </span>
                                
                         </div>
+                        
                         <div class="board_view">
                            <span>${row.Post_view} 조회수</span> <span>${row.Post_like}
                               추천수</span>
@@ -140,9 +152,7 @@
                         <span><a href="/detail?Post_num=${row.Post_num}">${row.Post_title}</a></span>
 
                      </div>
-                     <div class="board_tag">
-                        <span>${row.Tags_Board}</span>
-                     </div>
+                   
                   </div>
             </c:forEach>
             <table class="boardPaging">
@@ -207,7 +217,7 @@
 
 let BackTologin = document.querySelector(".BackTologin");
 BackTologin.addEventListener('click', function(){
-   alert("로그인 먼저해주세요");
+   alert("로그인 후 이용해주세요");
 });
 
 </script>
