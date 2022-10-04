@@ -28,7 +28,7 @@
                 <div class="adminList">
                     <li><a href="/admin/index">회원관리</a></li>
                    <!-- <li><a href="/admin/report">신고관리</a></li> -->
-                    <li><a href="/admin/board">게시판관리</a></li>
+                    <li><a href="/admin/board_mng">게시판관리</a></li>
                    <!-- <li><a href="/admin/ask">1:1문의</a></li> -->
                 </div>
             </div>
@@ -50,8 +50,8 @@
                     <br>
                     <br>
                     <table border="1" class="admin_Customer">
-                        <tr>
-                            <td><input type="checkbox" name="" id=""></td>
+                        <tr class=admin_CustomerList>
+                           <!-- <td><input type="checkbox" name="" id=""></td> -->
                             <td>이름</td>
                             <td>아이디</td>
                             <td>닉네임</td>
@@ -62,8 +62,8 @@
                         </tr>
                         <c:forEach var="row" items="${map}">
                         <tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>${row.User_name}</td>
+                           <!-- <td style="height: 40px;"><input type="checkbox" name="" id=""></td> -->
+                            <td style="height: 40px;">${row.User_name}</td>
                             <td>${row.User_id}</td>
                             <td>${row.User_nickname}</td>
                             <td>${row.Email_address}</td>

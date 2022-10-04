@@ -21,6 +21,11 @@
         FROM Board AS b LEFT OUTER JOIN User AS u ON b.Post_writer = u.User_nickname
                         LEFT OUTER JOIN Comment  AS c ON b.Post_num = c.Post_num ORDER BY b.Post_cr_date DESC;
     </select>
+    
+    <select id="noticelist" parameterType="hashmap" resultType="hashmap">
+        SELECT Notice_writer, Notice_title, Notice_contents, Notice_cr_date FROM Notice
+        ORDER BY Notice_cr_date desc;
+    </select>
 
 
 

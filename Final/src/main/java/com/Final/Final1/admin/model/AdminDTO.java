@@ -24,7 +24,38 @@ public class AdminDTO {
 	private int userBoardCount;
 	private int admin_BoardMem;
 	private String Post_contents;
+	
+	private String Notice_writer;
+	private String Notice_title;
+	private String Notice_contents;
+	
+	private int Notice_num;
 
+
+	public int getNotice_num() {
+		return Notice_num;
+	}
+	public void setNotice_num(int notice_num) {
+		Notice_num = notice_num;
+	}
+	public String getNotice_writer() {
+		return Notice_writer;
+	}
+	public void setNotice_writer(String notice_writer) {
+		Notice_writer = notice_writer;
+	}
+	public String getNotice_title() {
+		return Notice_title;
+	}
+	public void setNotice_title(String notice_title) {
+		Notice_title = notice_title;
+	}
+	public String getNotice_contents() {
+		return Notice_contents;
+	}
+	public void setNotice_contents(String notice_contents) {
+		Notice_contents = notice_contents;
+	}
 
 	//select_option
 	private String select;

@@ -35,10 +35,12 @@ public class MainController {
 		List<MainDTO> list = mainService.list();
 		List<MainDTO> listTeam = mainService.listTeam();
 		List<MainDTO> listBoard = mainService.listBoard();
+		List<MainDTO> listNotice = mainService.listNotice();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("Request",list);
 		mav.addObject("Teamlist",listTeam);
 		mav.addObject("Boardlist",listBoard);
+		mav.addObject("Notice",listNotice);
 		mav.setViewName("MainPage");
 
 		return mav;
@@ -94,7 +96,6 @@ public class MainController {
 	//=========유저 권한 분류에 따라 아래의 페이지가 표시됨========
 
 	//관리자 페이지
-	
 	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
 	public ModelAndView adminMemList(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		ModelAndView mv = new ModelAndView();
@@ -112,11 +113,7 @@ public class MainController {
 	    	PrintWriter out = response.getWriter();
 	    	out.println("<script>alert('잘못된 접근입니다.');location.href='/MainPage'</script>");
 	    	out.flush();
-	    	//out.close();
-	    	//mv.setViewName("redirect:/MainPage");
-	    	//return mv;
 	    } 
-		
 		int userCount = adminService.userCount(dto);
 		System.out.println(dto.getUserCount());
 		mv.addObject("count", userCount);
