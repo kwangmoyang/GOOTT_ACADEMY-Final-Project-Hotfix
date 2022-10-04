@@ -149,34 +149,34 @@ function dropDown(param,ele,flag){
  //팀탈퇴 모달에 표시된 팀이름
  const teamsecssioncheck = document.querySelector('.teamsecssioncheck span');
 
-//teaminfobtn.addEventListener('click', function(){
-//
-//	teamnameinfo.innerHTML = teamname.textContent;
-// 	teamsecssioncheck.innerHTML = teamname.textContent;
-//
-//
-//})
+teaminfobtn.addEventListener('click', function(){
+
+	teamnameinfo.innerHTML = teamname.textContent;
+ 	teamsecssioncheck.innerHTML = teamname.textContent;
+
+
+})
 
 
  //팀보기 누르면 모달창 키기
-//teaminfobtn.addEventListener('click', function(){
-//     modaldiv.style.display = 'flex';
-//     xicon.style.display = 'block';
-//})
+teaminfobtn.addEventListener('click', function(){
+     modaldiv.style.display = 'flex';
+     xicon.style.display = 'block';
+})
 
  // 모달창 끄기
-// xicon.addEventListener('click', function(){
-//     modaldiv.style.display = 'none';
-//     xicon.style.display = 'none';
-// });
+ xicon.addEventListener('click', function(){
+     modaldiv.style.display = 'none';
+     xicon.style.display = 'none';
+ });
 
  //모달창 배경 눌러도 꺼질 수 있도록
-// modaldiv.addEventListener('click', function(e){    
-//     if(e.target.className == 'modal-div'){
-//         modaldiv.style.display = 'none';
-//         xicon.style.display = 'none';
-//     }
-// });
+ modaldiv.addEventListener('click', function(e){    
+     if(e.target.className == 'modal-div'){
+         modaldiv.style.display = 'none';
+         xicon.style.display = 'none';
+     }
+ });
 
 
 //팀정보 ajax

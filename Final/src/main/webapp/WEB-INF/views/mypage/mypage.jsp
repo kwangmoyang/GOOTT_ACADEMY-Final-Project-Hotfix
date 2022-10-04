@@ -115,9 +115,8 @@
 						<c:choose>
 					      <c:when test="${sessionScope.Team_name != null }">
 					      	<!-- 가입된 팀정보가 있을때 -->
-
 					      	<div>${Userinfolist[0].Team_name }</div>
-							    <div><a href="#">확인<i class="uil uil-angle-right-b"></i></a></div>
+							    <div class="teaminfo_modal"><a href="#" onclick="teaminfoFuc('${sessionScope.Team_name}')" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a></div>
 					      </c:when>
 					      <c:when test="${teamnotmember != null}">
 					      	<form action="/mypage/index" method="POST" id="teamnotmemberform" class="teamnotmemberform">

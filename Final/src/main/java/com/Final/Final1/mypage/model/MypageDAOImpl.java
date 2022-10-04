@@ -133,7 +133,7 @@ public class MypageDAOImpl implements MypageDAO {
 	@Override
 	public void teamnotmember_delete(String User_nickname) {
 		sqlSession.delete("userinfo.teamnotmember_delete", User_nickname);
-
+	}
 	@Override
 	public void myBoardDelete(int no) {
 		sqlSession.delete("userinfo.myBoardDelete", no);
