@@ -27,35 +27,24 @@ import com.Final.Final1.admin.model.AdminDTO;
 public class AdminController {
 
 	
-
 	@Autowired
 	AdminService adminService;
 	
 	// 회원관리페이지는 메인컨트롤에 있음
-	
-//	@RequestMapping(value = "/admin/memlist", method = RequestMethod.GET)
-//	public ModelAndView adminMemList(AdminDTO dto, HttpSession session, Map<String, Object> map) {
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("map", adminService.adminMemList(map));
-//		mv.setViewName("/admin/memlist");
-//		return mv;
-//	}
-	
-	
+
+		
 	// 게시판관리페이지
-	@RequestMapping("/admin/board")
+	@RequestMapping("/admin/board_mng")
 	public String adminBoard(AdminDTO dto) {
 		return "/admin/admin_BoardMng";
 	}
 	
 	// 게시판관리에 공지사항페이지
-	@RequestMapping("/admin/board_mng")
-	public String adminBoardMng() {
-		return "/admin/admin_BoardMng";
-	}
+//	@RequestMapping("/admin/board_mng")
+//	public String adminBoardMng() {
+//		return "/admin/admin_BoardMng";
+//	}
 	
-	// 게시판 회원 게시판 
-
 	// 게시판관리에 공지사항 작성페이지
 	@RequestMapping("/admin/write")
 	public String adminBoardWrite() {
@@ -63,21 +52,39 @@ public class AdminController {
 	}
 	
 	// 게시판관리에 공지사항 작성했을때
-//		@RequestMapping(value = "/adminBoard", method = RequestMethod.POST)
-//		public ModelAndView adminBoard(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request) {
-//			ModelAndView mv = new ModelAndView();
-//			adminService.adminBoard(dto);
-//			
-//			
-//			
-//			
-//			return "/admin/admin_BoardMng";
-//		}
+	@RequestMapping(value = "/adminBoard", method = RequestMethod.POST)
+	public ModelAndView adminBoardinsert(AdminDTO dto) {
+		adminService.adminBoardinsert(dto);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/admin/board_mng");
+		return mv;
+	}
 	
+	// 게시판관리에 공지사항 작성했을때 관리자 공지사항 테이블에 표시
+	@RequestMapping(value="/admin/board_mng", method =RequestMethod.GET)
+	  public ModelAndView adminBoardlist() {
+		  ModelAndView mv = new ModelAndView();
+		  List<Map<String, Object>> list = adminService.adminBoardlist();
+		  mv.setViewName("admin/admin_BoardMng");
+		  mv.addObject("data", list);
+		  return mv;
+	  }
+
+	// 게시판관리 공지사항 선택삭제
+		@ResponseBody
+		@RequestMapping(value = "/NoticeDelete", method = RequestMethod.POST)
+			//public String boardDelete(HttpServletRequest request) {
+			public String NoticeDelete(int[] VALUEArr) {
+			int[] NoticeDeleteMsg = VALUEArr;
+			int size = NoticeDeleteMsg.length;
+			for(int i=0; i<size; i++) {
+				adminService.NoticeDelete(NoticeDeleteMsg[i]);
+			}
+			return "redirect:/admin/admin_BoardMng";
+		}
 	
 	
 	// 게시판관리에 회원게시글페이지
-
 	@RequestMapping(value = "/admin/board_mem", method = RequestMethod.GET)
 	public ModelAndView adminBoardMem(HttpServletRequest req, @RequestParam(defaultValue="1")int curPage,
 			@RequestParam(defaultValue ="all")String search_option) {
@@ -100,23 +107,9 @@ public class AdminController {
 		mv.addObject("page_info", page_info);
 		mv.addObject("search_option", dto.getSelect());
 		
-		
-		
 		return mv;
 	}	
 		
-
-	
-//	@RequestMapping(value = "/admin/board_mem", method = RequestMethod.GET)
-//	public ModelAndView adminBoardMem(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request) {
-//		ModelAndView mv = new ModelAndView();
-//		int userBoardCount = adminService.userBoardCount(dto);
-//		mv.addObject("count", userBoardCount);
-//		mv.addObject("map", adminService.userBoard(map));
-//		mv.setViewName("/admin/admin_BoardMem");
-//		return mv;
-//	}
-	
 	// 게시판관리 게시글 선택삭제
 	@ResponseBody
 	@RequestMapping(value = "/boardMemDelete", method = RequestMethod.POST)

@@ -9,16 +9,9 @@ public interface AdminDAO {
 	
 	int userCount(AdminDTO dto);
 
-
 	List<AdminDTO> userBoard(int start, int end, String select);
 	
 	int userBoardCount();
-
-	
-
-//	List<Map<String, Object>> userBoard(Map<String, Object> map);
-//	
-//	int userBoardCount(AdminDTO dto);
 
 	int userBoardCount(AdminDTO dto);
 	
@@ -26,6 +19,11 @@ public interface AdminDAO {
 	
 	List<Map<String, Object>> adminBoard(Map<String, Object> map);
 
+	void adminBoardinsert(AdminDTO dto);
+	
+	List<Map<String, Object>> adminBoardlist();
+
+	public void NoticeDelete(int no);
 
 }
 

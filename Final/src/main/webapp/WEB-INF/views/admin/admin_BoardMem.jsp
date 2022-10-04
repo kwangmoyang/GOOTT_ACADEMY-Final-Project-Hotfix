@@ -111,7 +111,7 @@
                             </td>
                             <td class="adminBoard">${row.Post_view}</td>
                         </tr>
-						            </c:forEach>
+						</c:forEach>
                     </table>
             <table>
 						<tr>

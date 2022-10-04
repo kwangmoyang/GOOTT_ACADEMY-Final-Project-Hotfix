@@ -63,43 +63,8 @@ function textColor(param,textColor){
 }
 
 //===================제이쿼리사용=======================//
-//체크박스 전체선택 
-// $("#admin_allChBox").click(function(){
-//	 let chk = $("#admin_allChBox").prop("checked");
-//	 if(chk) {
-//		 $(".del_Abd").prop("checked", true);
-//	 } else {
-//		 $(".del_Abd").prop("checked", false);
-//	 }
-// });
-//체크박스 전체선택된 상태에서 개별 체크 박스 선택시  전체 선책 체크박스 해제
-// $(".del_Abd").click(function(){
-//	 $("#admin_allChBox").prop("checked", false);
-// });
-//
-// $(".removeBtn").click(function(){
-//	 let confirm_val = confirm("정말 삭제하시겠습니까?");
-//	 
-//	 if(confirm_val) {
-//		 let checkArr = new Array();
-//		 
-//		 $("input[class='del_Abd']:checked").each(function(){
-//			 checkArr.push($(this).attr("data-adminBd"));
-//			 alert(checkArr);
-//		 });
-//		 
-//		 $.ajax({
-//			 url : "/admin/admin_BoardMem",
-//			 type : "post",
-//			 data : { del_Abd : checkArr },
-//			 success : function(){
-//				 location.href = "/admin/admin_BoardMem";
-//			 }
-//		 })
-// 
-//	 }
-// })
  
+// 회원게시글 선택 및 삭제 
  $(function(){
 	 let chkObj = document.getElementsByName("del_Abd");
 	 let delCnt = chkObj.length;
@@ -153,5 +118,102 @@ function textColor(param,textColor){
 			 }
 		 })
 	 }
+ }
+ 
+// 공지사항 선택 및 삭제
+ $(function(){
+	 let Bdlist_Ck = document.getElementsByName("Bdlist_Ck");
+	 let BdlistdelCnt = Bdlist_Ck.length;
+	 
+	 $("input[name='Bdlist_allChBox']").click(function(){
+		 let chkTwo_listArr = $("input[name='Bdlist_Ck']");
+		 for (let i=0; i<chkTwo_listArr.length; i++){
+			 chkTwo_listArr[i].checked = this.checked;
+		 }
+	 });
+	 
+	 $("input[name='Bdlist_Ck']").click(function(){
+		 if($("input[name='Bdlist_Ck']:checked").length == BdlistdelCnt){
+			 $("input[name='Bdlist_allChBox']")[0].checked = true;
+		 }
+		 else{
+			 $("input[name='Bdlist_allChBox']")[0].checked = false;
+		 }
+	 });
+ }); 
+ 
+ function Bdlistremove() {
+	 let URL = "/NoticeDelete"; // Controller로 보내고자 하는 URL
+	 let VALUEArr = new Array();
+	 let List = $("input[name='Bdlist_Ck']");
+	 for(let i=0; i<List.length; i++){
+		 if(List[i].checked){
+			 VALUEArr.push(List[i].dataset.adminnt);
+		 }
+	 }
+	 console.log(VALUEArr);
+	 if (VALUEArr.length == 0){
+		 alert("선택된 글이 없습니다.");
+	 }
+	 else{
+		 let check = confirm("정말 삭제하시겠습니까?");
+		 $.ajax({
+			 url : URL,
+			 type : 'POST',
+			 traditional : true,
+			 data : {VALUEArr : VALUEArr},
+			 success : function(ndata){
+				 if(ndata = 1) {
+					 alert("삭제되었습니다!");
+					 location.href = '/admin/board_mng';
+				 }
+				 else{
+					 alert("삭제실패하였습니다!");
+				 }
+			 }
+		 })
+	 }
+ }
+ 
+ 
+//========== 공지사항보기 ========== // 
+
+ let noticeCk = document.querySelectorAll('.noticeCk');
+ let Notice_xicon = document.getElementById('Notice_xicon');
+ let Notice_modal = document.querySelector('.Notice_modal');
+ let close_btn = document.querySelector('.close_btn');
+
+ for(let i=0; i<noticeCk.length; i++){
+	 noticeCk[i].addEventListener('click', function(){
+		 Notice_modal.style.display = 'flex';
+		 Notice_xicon.style.display = 'block'; 
+	 })
+ };
+
+
+ Notice_xicon.addEventListener('click',function(){
+	 Notice_modal.style.display = 'none';
+	 Notice_xicon.style.display = 'none';
+ })
+
+
+ Notice_modal.addEventListener('click',function(){
+	 Notice_modal.style.display = 'none';
+	 Notice_xicon.style.display = 'none';
+ })
+
+
+ close_btn.addEventListener('click',function(){
+	 Notice_modal.style.display = 'none';
+	 Notice_xicon.style.display = 'none';
+ }) 
+
+ 
+ 
+ let noticeCont = document.querySelector('.noticeCont');
+ function NoticeOn(a) {
+	 let notice_Con = a; // 공지사항 내용보기	 
+	 noticeCont.innerHTML = notice_Con;
+
  }
  

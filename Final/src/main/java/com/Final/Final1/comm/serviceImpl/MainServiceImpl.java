@@ -31,6 +31,11 @@ public class MainServiceImpl implements MainService{
         return MainDAO.listBoard();
     }
 
+	@Override
+	public List<MainDTO> listNotice() {
+		return MainDAO.listNotice();
+	}
+
 
 }
 

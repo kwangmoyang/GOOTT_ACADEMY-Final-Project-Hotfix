@@ -43,21 +43,21 @@
                     <h1>공지사항 등록하기</h1>
                 </div>
                 
-             <form id="adminform" name="adminform" method="post">
+             <form id="adminform" name="adminform" method="post" action="/adminBoard">
                 
                  <div class="WF_input_box">
                  	
-                   <input type="hidden" value="${sessionScope.User_nickname}" name="Post_writer" id="Post_writer">  
+                   <input type="hidden" value="${sessionScope.User_nickname}" name="Notice_writer" id="Notice_writer">  
 
                 </div>
                 <div class="WF_input_box">
                     <p>제목</p>
-                    <input type="text" placeholder="제목을 입력하세요" name="Post_title" id="Post_title" >
+                    <input type="text" placeholder="제목을 입력하세요" name="Notice_title" id="Notice_title" >
                 </div>
                 <div class="WF_detail_box">
                     <p>상세정보</p><br>
                   
-                       <textarea name="Post_contents" id="Post_contents" rows="20" cols="100" placeholder="내용을 입력해주세요"
+                       <textarea name="Notice_contents" id="Notice_contents" rows="20" cols="100" placeholder="내용을 입력해주세요"
                            style="width: 100%"></textarea>
                       
 		               <script type="text/javascript">   // 글쓰기 editor
@@ -72,7 +72,7 @@
                     <!-- 해당부분 링크는 연결할곳이 없고 프론트단에서 할게 아니라서
                             ('토픽'칸의 설정에 따라서 다르게 이동되어야함) 정리했습니다 -SEO- -->
                    <span onclick="location.href='/admin/board' ">취소</span> 
-                    <button type="button" id="Submitbtn" >등록</button>
+                    <button type="submit" id="Submitbtn" >등록</button>
                 </div>
 
                 </form>

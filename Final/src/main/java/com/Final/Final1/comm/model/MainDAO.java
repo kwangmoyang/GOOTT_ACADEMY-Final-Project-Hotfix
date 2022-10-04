@@ -8,4 +8,6 @@ public interface MainDAO {
     List<MainDTO> listTeam();
 
     List<MainDTO> listBoard();
+
+	List<MainDTO> listNotice();
 }
