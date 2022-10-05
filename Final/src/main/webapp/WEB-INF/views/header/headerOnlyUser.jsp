@@ -12,7 +12,7 @@
 	<div class="common_header_right">
 		<!-- 마이페이지 -->
 		<div class="user">
-			<div></div>
+			<div class="userImg"><img src="../resources/img/${photo }"/></div>
 			<ul>
 				<li><a href="/mypage/index">마이페이지</a></li>
 				<li><a href="/charge/index">충전하기</a></li>

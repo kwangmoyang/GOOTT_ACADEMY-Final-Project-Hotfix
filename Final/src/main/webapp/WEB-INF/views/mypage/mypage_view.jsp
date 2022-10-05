@@ -83,11 +83,18 @@
 					</div>
 
 					<!-- 나의 해결률 -->
-					<p class="mypage_title">님의 전적</p>
+					<p class="mypage_title">해결요청 전적</p> 
 					<div class="myHistory">
-						<div>해결 : 50 건 요청 : 100 건</div>
 						<div>
-							<a href="#" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a>
+						 총 해결요청수 ${RequesterAll }건 해결요청 수락율${RequesterAvg }%
+						</div>
+					</div>
+					
+					<p class="mypage_title">해결내역 전적</p>
+          
+					<div class="myHistory">
+						<div>
+						총 해결수 ${SolverAll }건 해결율${SolverAvg }%
 						</div>
 					</div>
 
@@ -112,10 +119,7 @@
 					<!-- 나의 활동점수 -->
 					<p class="mypage_title">님의 활동점수</p>
 					<div class="myScore">
-						<div>현재활동점수</div>
-						<div>
-							<a href="#" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a>
-						</div>
+						<div>${mypageUserinfo.User_score } 점</div>
 					</div>
 
 				</div>

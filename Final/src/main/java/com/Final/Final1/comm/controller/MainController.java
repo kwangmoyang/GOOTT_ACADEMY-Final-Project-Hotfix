@@ -2,12 +2,14 @@ package com.Final.Final1.comm.controller;
 
 import com.Final.Final1.admin.model.AdminDTO;
 import com.Final.Final1.admin.service.AdminService;
+import com.Final.Final1.board.model.PageUtil;
 import com.Final.Final1.comm.model.MainDTO;
 import com.Final.Final1.comm.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -97,7 +99,9 @@ public class MainController {
 
 	//관리자 페이지
 	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
-	public ModelAndView adminMemList(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public ModelAndView adminMemList(AdminDTO dto, HttpSession session, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(defaultValue="1")int curPage) throws IOException {
+			
 		ModelAndView mv = new ModelAndView();
 		
 //		Enumeration<String> attributes = request.getSession().getAttributeNames();
@@ -115,9 +119,14 @@ public class MainController {
 	    	out.flush();
 	    } 
 		int userCount = adminService.userCount(dto);
+		PageUtil page_info = new PageUtil(userCount, curPage);
+		int start = page_info.getPageBegin();
+		int end = page_info.getPageEnd();
+		
 		System.out.println(dto.getUserCount());
+		mv.addObject("map", adminService.adminMemList(map, start, end));
 		mv.addObject("count", userCount);
-		mv.addObject("map", adminService.adminMemList(map));
+		mv.addObject("page_info", page_info);
 		mv.setViewName("/admin/admin"); // JSP파일명
 		return mv;
 	}

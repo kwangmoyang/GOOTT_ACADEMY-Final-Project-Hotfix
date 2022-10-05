@@ -27,7 +27,7 @@ public class CommentController {
 	
 	@Autowired
 	CommentService commentService; 
-	
+	// 댓글 입력하기 
 	@ResponseBody
 	@RequestMapping("comment/insert")
 	public ModelAndView insert(CommentDTO dto, HttpSession session, MypageDTO mydto) {
@@ -53,7 +53,7 @@ public class CommentController {
 		
 		
 	}
-	
+	// 댓글 리스트 
 	@RequestMapping("comment/list")
 	public ModelAndView list(int Post_num, ModelAndView mv) {
 		

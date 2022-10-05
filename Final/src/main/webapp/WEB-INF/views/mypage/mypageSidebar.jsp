@@ -14,7 +14,7 @@
 		<div class="myList">
 			<ul>
 				<li>
-					<div></div>
+					<div class="userImg"><img src="../resources/img/${photo }"/></div>
 				</li>
 				<li>
 					<p>${sessionScope.User_nickname }</p>

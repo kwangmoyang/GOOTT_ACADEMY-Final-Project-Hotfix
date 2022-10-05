@@ -132,7 +132,7 @@
     width: 4.5vh;
     height: 4.5vh;
   
-    border: solid 2px red;  
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px; 
     border-radius: 50%;
    
     position: absolute;
@@ -258,6 +258,9 @@
     line-height: 6vh;
     text-align: center;
 }
+.mainToLogin:hover{
+    background-color: rgb(247, 247, 247);
+}
 .mainToJoin {
     width: 8vw;
     height: 6vh;
@@ -271,6 +274,9 @@
     line-height: 6vh;
     text-align: center;
     margin: 0 4vw 0 0;
+}
+.mainToJoin:hover {
+    background-color: rgba(234, 53, 31, 0.9);
 }
 
 .mainToLogin > a, .mainToJoin > a {

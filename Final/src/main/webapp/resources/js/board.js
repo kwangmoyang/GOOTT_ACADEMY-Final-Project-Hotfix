@@ -24,7 +24,7 @@ $(function() {
 			if(searchParam("boardCode") !=null ){
 			
 			location.href = "/list?boardCode="+cat+"&keyword="+keyword+"&select="+select;
-			
+			 
 			} else if(searchParam("boardCode") == null) {
 				location.href = "/list?keyword="+keyword+"&select="+select;
 			}

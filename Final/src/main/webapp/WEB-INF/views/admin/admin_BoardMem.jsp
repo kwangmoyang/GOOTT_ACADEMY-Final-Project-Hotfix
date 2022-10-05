@@ -114,7 +114,8 @@
                         </tr>
 						          </c:forEach>
                     </table>
-            <table>
+                    <br>
+            <table class = "boardPaging">
 
 						<tr>
 							<td colspan="5" align="center" class="boardPagingTd"><c:if

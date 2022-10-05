@@ -47,7 +47,7 @@ public class HotfixController {
 		return mv;
 	}
 	
-	//09.30 수근 작업 HOTFIX
+	//09.30 수근 작업 HOTFIX 
 	@RequestMapping(value = "/resolveMain", method = RequestMethod.GET)
 	public ModelAndView resolveMain(HttpServletRequest req, @RequestParam(defaultValue="1")int curPage,
 			@RequestParam(defaultValue ="new")String search_option) {
@@ -206,32 +206,34 @@ public class HotfixController {
 		//신청자 목록 리스트 리턴
 		return resolver;
 	}
+	
 	//해결자 선택하기
 	@RequestMapping("/choiceResolve")
 	public ModelAndView choiceResolve(HotfixDTO dto,HttpSession session,@RequestParam(defaultValue="1")int curPage) {
 		ModelAndView mv = new ModelAndView();
 		//ajax로 통해 전달받은 값을 쿼리에 넣어줌
 		
-		//업데이트
-		hotfixService.choiceResolve(dto);
-		
-		
 		int count = hotfixService.count(dto);
 		PageUtil page_info = new PageUtil(count, curPage);
 		int start = page_info.getPageBegin();
 		int end = page_info.getPageEnd();
 		
+		
+				
 		// 세션 값 불러옴
 		String name = (String) session.getAttribute("User_nickname");
 		dto.setRequester(name); // 불러온 세션값을 dto에 설정
 		
-		
+		//업데이트
+		hotfixService.choiceResolve(dto, start, end);
 		
 		
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
 		List<BoardDTO> list = hotfixService.myRequestlist(dto,start,end);
 		System.out.println(list);
 		mv.addObject("list", list);
+		mv.addObject("count", count);
+		mv.addObject("page_info", page_info);
 		mv.setViewName("/mypage/mypage_writer_request");
 		return mv;
 	}
@@ -392,7 +394,8 @@ public class HotfixController {
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
 		List<BoardDTO> list = hotfixService.myRequestlist(dto,start,end);
 		mv.addObject("list", list);
-		
+		mv.addObject("count", count);
+		mv.addObject("page_info", page_info);
 		
 		
 		mv.setViewName("/mypage/mypage_writer_request");
@@ -439,7 +442,8 @@ public class HotfixController {
 			System.out.println(list);
 			
 			mv.addObject("list", list);
-			
+			mv.addObject("count", count);
+			mv.addObject("page_info", page_info);
 			//전적 떨어지는거 추가해야함 (테이블 문의)
 			
 			mv.setViewName("/mypage/mypage_writer_request");

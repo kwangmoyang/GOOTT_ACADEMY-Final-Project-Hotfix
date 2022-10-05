@@ -66,7 +66,7 @@
 		select Request_code,Requester,Request_title,
 		Request_contents,Solver,
 		SolverReady_cnt, Commission, Recruiting_time,result from Request where
-		Requester=#{Requester}
+		Requester=#{Requester}order by Request_start_date desc, Request_code desc
     
 		<include refid="paging_footer" />	
 
@@ -116,7 +116,7 @@
 
 	<!-- 채택 당했을때 해당 게시물의 해결자 테이블컬럼에 이름이 들어감 -->
 	<update id="choiceResolve" parameterType="hashMap">
-		update Request set Solver=#{Solver} where Request_code = #{Request_code};
+		update Request set Solver=#{Solver} where Request_code = #{Request_code}
 	</update>
 	
 	<!-- 채택당한 사람들의 해결중인 게시판에 표시됨-->
@@ -125,6 +125,7 @@
 		select Request_code,Request_title,Request_contents,Solver,Request_status,Request_start_date,
 		Request_contact_date,Request_end_date,Recruiting_time,Requester,SolverReady_cnt,
 		Commission,SolverReady_cnt2,result from Request where Solver=#{Solver}
+		order by Request_start_date desc, Request_code desc
     <include refid="paging_footer" />	
 
 	</select>

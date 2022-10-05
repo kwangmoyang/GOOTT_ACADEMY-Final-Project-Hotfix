@@ -78,8 +78,9 @@
                 			활동점수를 높여보는건 어떨까요?
                 		</p>
                 	</c:if>
-                    
+            
                   	  해결내역 :${count}개
+                  	
                     <!-- 해결 게시판 -->
                     <c:forEach var="row" items="${resolver2}" varStatus="vs">
                     <div class="RmBoard">
