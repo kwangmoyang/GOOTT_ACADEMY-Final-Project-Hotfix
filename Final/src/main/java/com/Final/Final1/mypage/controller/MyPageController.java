@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -60,23 +61,23 @@ public class MyPageController {
 	}
 	
 	// 마이페이지 댓글 선택삭제
-				@ResponseBody
-				@RequestMapping(value = "/myCommentDelete", method = RequestMethod.POST)
-					//public String boardDelete(HttpServletRequest request) {
-					public String CommentDelete(int[] valueArr) {
-					int[] boardDeleteMsg = valueArr;
-					int size = boardDeleteMsg.length;
-					for(int i=0; i<size; i++) {
-						mypageService.myCommentDelete(boardDeleteMsg[i]);
-					}
-					return "redirect:/mypage/comments";
+	@ResponseBody
+	@RequestMapping(value = "/myCommentDelete", method = RequestMethod.POST)
+		//public String boardDelete(HttpServletRequest request) {
+		public String CommentDelete(int[] valueArr) {
+		int[] boardDeleteMsg = valueArr;
+		int size = boardDeleteMsg.length;
+		for(int i=0; i<size; i++) {
+		mypageService.myCommentDelete(boardDeleteMsg[i]);
+		}
+		return "redirect:/mypage/comments";
 	}	
 	
 	
 	// 마이 페이지
 	@RequestMapping("/fileTest")
-	public String fileTest(MypageDTO dto, @RequestParam MultipartFile file, HttpSession session) {
-		
+	public ModelAndView fileTest(MypageDTO dto, @RequestParam MultipartFile file, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
 		String name = (String)session.getAttribute("User_id");
 		System.out.println(name);
 		dto.setUser_id(name); // 불러온 세션값을 dto에 설정
@@ -88,7 +89,7 @@ public class MyPageController {
 		System.out.println("용량크기(byte) : " + size);
 		//서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-		String uploadFolder = "\\Users\\광트북\\img";
+		String uploadFolder = "\\Users\\광트북\\Documents\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Final\\resources\\img";
 		
 
 		/*
@@ -105,9 +106,6 @@ public class MyPageController {
 		String uniqueName = uuids[0];
 		System.out.println("생성된 고유문자열" + uniqueName);
 		System.out.println("확장자명" + fileExtension);
-		
-		
-		
 		
 		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
 		
@@ -126,19 +124,19 @@ public class MyPageController {
 
 		mypageService.updateUserPhoto(dto);
 		
+		mv.setViewName("/mypage/mypage");
 		
-		
-		return "/mypage/mypage";
+		return mv;
 	}
 	
 	
 	// 마이 페이지
 	@ResponseBody
 	@RequestMapping("/mypage/index")
-	public ModelAndView mypageIndex(MypageDTO dto,HttpSession session) {
+	public ModelAndView mypageIndex(MypageDTO dto,HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		
-		
+		String cwd = System.getProperty("user.dir");
+		System.out.println("내경로"+cwd);
 //		==================10-04 양희 추가==========================
 		//팀낫멤버 테이블에서 select ->
 		String User_nickname = (String) session.getAttribute("User_nickname");
@@ -152,30 +150,36 @@ public class MyPageController {
 //		=============================================
 		
 		
-//		String name = (String)session.getAttribute("User_id");
-//		dto.setUser_id(name);
-//		
-//		String photo = "\\"+mypageService.UserPhotoView(dto);
-//		System.out.println(photo);
-//		
-//		File file = new File("C:\\Users\\광트북\\img"+photo);
-//		ResponseEntity<byte[]> result = null;
+		String name = (String)session.getAttribute("User_id");
+		dto.setUser_id(name);
+		
+		String photo = "/"+mypageService.UserPhotoView(dto);
+		System.out.println(photo);
+		
+		ServletContext application = request.getSession().getServletContext();
+        String path = application.getRealPath("/resources/img/");
+        
+		File file = new File(photo);
+		ResponseEntity<byte[]> result = null;
 	
 //		try {
 //			HttpHeaders header = new HttpHeaders();
 //			header.add("Content-Type", Files.probeContentType(file.toPath()));
 //			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),
 //					header, HttpStatus.OK);
-//			mv.addObject("photo", result);
-			mv.setViewName("/mypage/mypage");
+//			System.out.println("파일만tostring:"+result.toString());
+//			System.out.println("파일만tostring:"+file.toPath().toString());
 //			
+//			System.out.println("파일만:"+file);
+			
+			mv.addObject("photo", file);
+			mv.setViewName("/mypage/mypage");
+			
 //		} catch(IOException e) {
 //			e.printStackTrace();
 //		}
 
-		String Userid = (String)session.getAttribute("User_id") ;
-		System.out.println(Userid);
-		
+		String Userid = (String)session.getAttribute("User_id") ;		
 		dto.setUser_id(Userid);
 		List<MypageDTO> Userinfolist =  mypageService.Userinfo(dto);
 		//차후 수정 예정
@@ -440,12 +444,46 @@ public class MyPageController {
 	//10-04 김양희 추가
 	//유저 닉네임 클릭 시 유저의 마이페이지 둘러보기로 이동
 	@RequestMapping(value="/mypage_view", method = RequestMethod.GET)
-	public ModelAndView mypage_view(HttpSession session, ModelAndView mv, @RequestParam String User_nickname) {
+	public ModelAndView mypage_view(HttpSession session, ModelAndView mv, @RequestParam String User_nickname,
+			MypageDTO dto) {
 		
 		System.out.println(User_nickname);
 		
 		//클릭한 유저의 정보 가져오기
 		Map<String, Object> mypageUserinfo = mypageService.mypageUserinfo(User_nickname);
+		
+		//각 해결카운트
+		String Userid = (String)session.getAttribute("User_id") ;		
+		dto.setUser_id(Userid);
+		//차후 수정 예정
+		//각 해결카운트
+		double Req_cnt = mypageService.UserReq_cnt(dto);
+		double Drop_Req_cnt = mypageService.UserDrop_Req_cnt(dto);
+		double Sol_cnt = mypageService.UserSol_cnt(dto);
+		double Drop_Sol_cnt = mypageService.UserDrop_Sol_cnt(dto);
+		
+		int Req_cnt2 = mypageService.UserReq_cnt(dto);
+		int Drop_Req_cnt2 = mypageService.UserDrop_Req_cnt(dto);
+		int Sol_cnt2 = mypageService.UserSol_cnt(dto);
+		int Drop_Sol_cnt2 = mypageService.UserDrop_Sol_cnt(dto);
+		//총 해결 건수
+		double RequesterAll = Req_cnt+Drop_Req_cnt;
+		double SolverAll = Sol_cnt+Drop_Sol_cnt;
+		
+		int RequesterAll2 = Req_cnt2+Drop_Req_cnt2;
+		int SolverAll2 = Sol_cnt2+Drop_Sol_cnt2;
+		//해결 백분율
+		double RequesterAvg = Math.round((double)(Req_cnt/RequesterAll)*100);
+		double SolverAvg = Math.round((double)(Sol_cnt/SolverAll)*100);
+		
+		
+		
+		mv.addObject("RequesterAll", RequesterAll2);
+		mv.addObject("SolverAll", SolverAll2);
+		mv.addObject("RequesterAvg", RequesterAvg);
+		mv.addObject("SolverAvg", SolverAvg);
+		
+		
 		
 		mv.addObject("mypageUserinfo", mypageUserinfo);
 		mv.setViewName("/mypage/mypage_view");

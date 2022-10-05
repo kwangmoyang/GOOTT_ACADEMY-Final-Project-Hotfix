@@ -19,7 +19,7 @@
 <!-- 유니콘 아이콘 사이트 -->
 <link rel="stylesheet"
 	href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-	<link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
+<link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
 <title>HOTFIX - Easy Solution For You</title>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
@@ -46,12 +46,14 @@
 				<!-- 마이 페이지부분 -->
 				<div class="myPage">
 					<p class="myPage_titleText">마이페이지</p>
+					
+					
+					
 					<!-- 자기소개 -->
 					<p class="mypage_title">Introduce</p>
 					<div class="introduce">
 						<!-- 사진&자기소개&팔로잉 -->
-						
-						<img src="<%= request.getContextPath() + "C:\\Users/광트북/img/399f5015.png" %>"/>
+						<div class="userImg"><img src="../resources/img/${photo }"/></div>
 						<div>
 						
 							<div class="introduce_nickname">
@@ -82,13 +84,10 @@
 					</div>
 					<!-- 커미션 -->
 					<p class="mypage_title">
-						커미션 <i class="uil uil-question-circle"></i>
+						커미션 
 					</p>
 					<div class="comition_1">
 						<div>${Userinfolist[0].commission } 픽스</div>
-						<div>
-							<a href="#" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a>
-						</div>
 
 					</div>
 
