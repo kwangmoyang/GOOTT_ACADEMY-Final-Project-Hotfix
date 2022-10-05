@@ -58,13 +58,13 @@
                     <br>
                     <table border="1" class="admin_Customer">
                         <tr class="admin_Bdlist">
-                            <td><input type="checkbox" name="Bdlist_allChBox" id="Bdlist_allChBox"></td>
-                            <td>No.</td>
-                            <td>제목</td>
-                            <td>작성글</td>
-                            <td>작성자</td>
-                            <td>작성일</td>
-                            <td>조회수</td>
+                            <th style="width: 3vw; height: 5vh; margin: 0 auto;"><input type="checkbox" name="Bdlist_allChBox" id="Bdlist_allChBox"></th>
+                            <th>No.</th>
+                            <th>제목</th>
+                            <th>작성글</th>
+                            <th>작성자</th>
+                            <th>작성일</th>
+                            <th>조회수</th>
                         </tr>
                         <c:forEach var="mng" items="${data}">
                         <tr class="notice_consent">

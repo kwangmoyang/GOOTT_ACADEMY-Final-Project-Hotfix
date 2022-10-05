@@ -43,15 +43,15 @@
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <!-- 일단 테스트 이미지고 향후 이벤트배너등으로 활용가능 -->
-                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage1.jpeg" alt=""></div>
-                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage2.jpeg" alt=""></div>
-                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage3.jpeg" alt=""></div>
-                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage4.jpeg" alt=""></div>
-                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage5.jpeg" alt=""></div>
-                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage6.jpeg" alt=""></div>
-                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage7.jpeg" alt=""></div>
-                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage8.jpeg" alt=""></div>
-                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage9.jpeg" alt=""></div>
+                    <div class="swiper-slide"><img src="../resources/img/TestImage/TestImage1.png" alt=""></div>
+                    <div class="swiper-slide"><img src="../resources/img/TestImage/TestImage2.png" alt=""></div>
+<%--                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage3.jpeg" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage4.jpeg" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage5.jpeg" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage6.jpeg" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage7.jpeg" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage8.jpeg" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage9.jpeg" alt=""></div>--%>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
