@@ -43,7 +43,7 @@ public interface MypageDAO {
 
 	public Map<String, Object> mypageUserinfo(String User_nickname);
 
-	public String teamnotmember_select(String User_nickname);
+	public Map<String, Object> teamnotmember_select(String User_nickname);
 
 	public void teamnotmember_delete(String User_nickname);	
 

@@ -106,7 +106,7 @@
 					      <c:when test="${mypageUserinfo.Team_name != null }">
 					      	<!-- 가입된 팀정보가 있을때 -->
 					      	<div class="mypage_teamname">${mypageUserinfo.Team_name }</div>
-							<div class="teaminfo_modal"><a href="#" onclick="teaminfoFuc('${mypageUserinfo.Team_name}')" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a></div>
+							<div class="teaminfo_modal"><span onclick="teaminfoFuc('${mypageUserinfo.Team_name}')" class="a_btn">확인<i class="uil uil-angle-right-b"></i></span></div>
 					      </c:when>
 					      
 					      <c:otherwise>
@@ -138,7 +138,7 @@
 	<div class="modal-div">
 	    <div id="teammodal-div">
 	        <div id="team-navbar">
-	            <div id="teamname"></div>
+	            <div id="teamname">${mypageUserinfo.Team_name}</div>
 	            <div id="team-category">		
 	            </div>
 	        </div>

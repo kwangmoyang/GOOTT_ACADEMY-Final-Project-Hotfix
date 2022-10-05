@@ -149,7 +149,7 @@
 	            <div id="team-category">
 	                <button class="teaminfo-btn">팀정보</button>
 	                <button class="teamjoin-btn">팀가입</button>
-		            <button class="teamsecession-btn">팀탈퇴</button>			
+		            <!-- <button class="teamsecession-btn">팀탈퇴</button>-->			
 	            </div>
 	        </div>
 	        <div id="team-content">
@@ -192,9 +192,10 @@
 	                    <p>동의 시 팀 생성</p>
 	                    <br>
 	                    <p>1. 팀 생성 시 생성한 유저가 팀 리더가 된다.</p>
-	                    <p>2. 팀리더가 팀 탈퇴 시 팀 자체가 삭제된다. </p>
-	                    <p>3. 팀리더는 팀원의 가입 신청을 받을 수 있고, </p>
-	                    <p>4. 추방시킬 수도 있다.</p>
+	                    <p>2. 팀리더가 팀 탈퇴 시 팀멤버가 있는 경우 첫번째로 들어온 팀원에게 후임 후 팀 탈퇴된다. </p>
+	                    <p>3. 팀리더가 팀 탈퇴 시 팀멤버가 없는 경우 팀자체가 삭제된다. </p>
+	                    <p>4. 팀리더는 팀원의 가입 신청을 수락 또는 거절할 수 있고, </p>
+	                    <p>	     팀원을 추방시킬 수도 있다.</p>
 	                    <br>
 	                    <br>
 	                    <p>개인정보처리방침</p>
@@ -233,7 +234,7 @@
 	                동의 <input type="checkbox" id="team-checkbox">
 	            </div>
 	            <div class="team make-btn">
-	                <button id="makingbtn" type="button" onclick="teamcheck('${sessionScope.User_nickname}')">팀생성하기</button>
+	                <button id="makingbtn" type="button" onclick="teamcheck('${sessionScope.User_nickname}','${sessionScope.Team_name}')">팀생성하기</button>
 	            </div>
 	        </div>
 	        <ion-icon name="close-outline" id="xicon2"></ion-icon>

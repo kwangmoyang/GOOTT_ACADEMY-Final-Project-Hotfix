@@ -49,10 +49,10 @@
 						 	</div>
 						 	<div class="teamcommission">
 							 	현재 팀 총 커미션 : 
-							 	<c:if test="${map.teaminfo2.Teampoint ne 0}">
+							 	<c:if test="${map.teaminfo2.Teampoint ne '0'}">
 							 		${map.teaminfo2.Teampoint} 
 							 	</c:if>
-							 	<c:if test="${map.teaminfo2.Teampoint eq 0}">
+							 	<c:if test="${map.teaminfo2.Teampoint eq '0'}">
 							 		0 
 							 	</c:if>
 						 	</div>

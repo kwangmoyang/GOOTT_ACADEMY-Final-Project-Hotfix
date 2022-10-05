@@ -717,3 +717,7 @@
 	margin: 0 10px;
 	cursor:pointer;
 }
+/*10-05 추가 */
+.teaminfo_modal span{
+	cursor:pointer;
+}

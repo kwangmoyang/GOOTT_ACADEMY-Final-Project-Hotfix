@@ -170,9 +170,8 @@ for(let i=0 ; i<tagbtn.length ; i++){
 
 
 
-
 //체크가되어야 팀만들어지게
-function teamcheck(usernickname){
+function teamcheck(usernickname,TeamName){
 	
 	//만들팀이름, 팀소개글, 태그들, 팀만드는유저
 	var objParams = {
@@ -182,9 +181,7 @@ function teamcheck(usernickname){
 			"usernickname": usernickname
 	}
 	
-	
-	
-	
+
 	if(usernickname === null || usernickname === ""){
 		alert("로그인이 필요합니다.");
 		//로그인페이지로 이동하도록
@@ -197,35 +194,37 @@ function teamcheck(usernickname){
 	        alert("팀이름을 입력해주세요.");
 	        return false;
 	    }
+	    if(maketeamname.value.length >= 20){
+	    	alert("20자 이내로 입력해주세요.");
+	    }
 	    if(maketeamintro.value == ''){
 	        alert("소개글을 입력해주세요.");
 	        return false;
 	    }
-	    //tagbtn추가할 것
-	//    if()
 	    if(teamcheckbox.checked == false){
 	        alert("약관에 동의해주세요.");
 	        return false;
 	    }
-	    if(maketeamname.value != '' && maketeamintro.value !='' && teamcheckbox.checked == true){
-	    	
-	    	console.log("objParams="+objParams);
+	    if(TeamName != ''){
+	    	alert("이미 속해있는 팀이 있습니다.")
+	    }
+	    if(maketeamname.value != ''
+	    	&& maketeamname.value.length < 20
+	    	&& maketeamintro.value !='' 
+	    	&& teamcheckbox.checked == true 
+	    	&& TeamName == ''){
 	    	
 	    	$.ajax({
 	    		url:"/teammake",
 	    		type:'POST',
 	    		data: objParams,
 	    		success: function(data){
-	    			alert("팀생성이 완료되었습니다!");
+	    			alert(data);
 	    			location.href = "/teamlist";
 	    		},
-	    		error:function(request,status,error){
-	    			if(maketeamname.value.length >= 20){
-	    		    	alert("20자 이내로 입력해주세요.");
-	    		    }
-	    			else{
-	    				 alert("팀이름이 중복됐거나 ,유저가 속해있는 팀 있음, 혹은 오류");
-	    			}
+	    		error:function(request, HttpStatus, jqXHR){
+	    			
+	    			alert(request.responseText);
 	    		}
 	    	});
 	    	
@@ -279,7 +278,6 @@ function teamcheck2(a){
 			url:"/teamjoin",
 			dataType:"text",
 			success: function(data){
-//				alert("팀가입이 완료되었습니다.");
 				alert("팀신청이 완료되었습니다.(팀신청이 완료되면 알림이 갑니다.) ")
 				location.href = "/teamlist";
 			},
@@ -325,7 +323,7 @@ function teamcheck3(a,b){
 	}
 	else if(a != null || a != "")
 	{
-		if(!confirm("정말 탈퇴하시겠습니까?(팀리더가 탈퇴할 경우 팀이 삭제됩니다.)")){
+		if(!confirm("정말 탈퇴하시겠습니까?(팀리더 탈퇴 시 팀원이 있는 경우 후임 후 탈퇴 / 팀원없을 시 팀자체가 삭제)")){
 			return false;
 		}else{
 				let ssteamname = teamnameinfo.textContent; //클릭한 팀이름

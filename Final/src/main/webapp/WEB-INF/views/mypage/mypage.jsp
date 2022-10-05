@@ -23,9 +23,6 @@
 <title>HOTFIX - Easy Solution For You</title>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
-
-
-</head>
 <body>
 	<%@ include file="/WEB-INF/views/header/header.jsp"%>
 
@@ -114,16 +111,16 @@
 						<c:choose>
 					      <c:when test="${sessionScope.Team_name != null }">
 					      	<!-- 가입된 팀정보가 있을때 -->
-					      	<div>${Userinfolist[0].Team_name }</div>
-							    <div class="teaminfo_modal"><a href="#" onclick="teaminfoFuc('${sessionScope.Team_name}')" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a></div>
+					      	<div class="mypage_teamname">${Userinfolist[0].Team_name }</div>
+							    <div class="teaminfo_modal"><span onclick="teaminfoFuc('${sessionScope.Team_name}')" class="a_btn">확인<i class="uil uil-angle-right-b"></i></span></div>
 					      </c:when>
 					      <c:when test="${teamnotmember != null}">
-					      	<form action="/mypage/index" method="POST" id="teamnotmemberform" class="teamnotmemberform">
-					      		<div>${teamnotmember} 팀 신청 취소하기</div>
-					      		<input type="button" value="취소" onclick="teamnotmember()" class="teamnotmember_delete"/>
+					      	<form action="/mypage/index" method="POST" id="teamnotmemberform1" class="teamnotmemberform">
+					      		<div>${teamnotmember.Team_name} 팀 신청 취소하기</div>
+					      		<input type="button" value="취소" onclick="teamnotmember();" class="teamnotmember_delete"/>
 					      	</form>
 					      </c:when>
-					      <c:when test="${sessionScope.Team_name == null }">
+					      <c:when test="${sessionScope.Team_name == null } ">
 					      	<!-- 가입된 팀정보가 없을때 -->
 					      	<div>가입된 팀이없어요 ㅠ 팀에 속해 활동하면 더 높은 커미션을 받을수 있어요!</div>
 							<div><a href="/teamlist">팀 둘러보기<i class="uil uil-angle-right-b"></i></a></div>
@@ -163,7 +160,7 @@
 	<div class="modal-div">
 	    <div id="teammodal-div">
 	        <div id="team-navbar">
-	            <div id="teamname"></div>
+	            <div id="teamname">${sessionScope.Team_name}</div>
 	            <div id="team-category">
 	            	<c:choose>
 	            		<c:when test="${sessionScope.Leader_auth eq 0}">
@@ -172,7 +169,7 @@
 	            		</c:when>
 	            		<c:when test="${sessionScope.Leader_auth eq 1}">
 	            			<button class="teaminfo-btn">팀정보</button>
-		            		<button class="teamsecession-btn">팀리더 탈퇴하기(팀리더가 탈퇴할 경우 팀 삭제됨)</button>	
+		            		<button class="teamsecession-btn">팀리더 탈퇴하기</button>	
 	            		</c:when>
 	            	</c:choose>	
 	            </div>
@@ -198,6 +195,14 @@
 	</div>	
 
 </body>
+
+<script>
+	var teamnotmemberform1 = document.querySelector('#teamnotmemberform1');  
+	function teamnotmember(){
+		alert('팀신청 취소가 완료되었습니다.'); 
+		teamnotmemberform1.submit();	
+	}
+</script>
 
 <script src="../../resources/js/BasicFrame.js"></script>
 <script src="../../resources/js/mypage_new_real.js"></script>
