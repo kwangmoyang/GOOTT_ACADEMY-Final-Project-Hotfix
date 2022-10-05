@@ -135,14 +135,14 @@
                     <div class="preview_content">
                     	<c:forEach var="Not" items="${Notice}" begin="0" end="5">
                             <div class="content_item">
-                                <div class="item_writer"><span>${Not.Notice_title}</span>&nbsp;<%--<span><ion-icon
+                                <div class="item_writer"><span>${Not.Notice_writer}</span>&nbsp;<%--<span><ion-icon
                                         name="flame-sharp"></ion-icon>
                                         ${Tea.User_score}</span><span>${Tea.Team_num_mem}</span>--%></div>
                                 <c:set var="Notice_date" value="${Not.Notice_cr_date}"/>
                                 <c:set var="Notice_date_cut" value="${fn:substring(Notice_date,0 ,10)}"/>
                                 <c:set var="Notice_date_cut2" value="${fn:substring(Notice_date,11 ,16)}"/>
                                 <div class="item_info"><span>${Notice_date_cut}&nbsp;&nbsp;${Notice_date_cut2}</span></div>
-                                <div class="item_title"><span class="title_color">${Not.Notice_contents}</span></div>
+                                <div class="item_title" onclick="NoticeOn('${Not.Notice_contents}')"><span class="title_color">${Not.Notice_title}</span></div>
                                 <div class="item_info2"></div>
                             </div>
                         </c:forEach>
@@ -163,6 +163,20 @@
 
 
 </div>
+
+<!-- ====================== 공지사항 모달창 ====================== -->
+<div class="Notice_modal">
+    <div class="Notice_modal2">
+    	<div><ion-icon name="close-outline" id="Notice_xicon"></ion-icon></div>
+        <div class="noticeTitle"><p>공지사항</p></div>
+        <div class="noticeCont"></div>
+        <div class="close_btn">
+                <button>닫기</button>
+        </div>
+    </div>
+</div> 
+
+
 <!-- 푸터 SLEEP 작업중 20221003-->
 <div class="common_footer">
     <div class="common_footerTop">
