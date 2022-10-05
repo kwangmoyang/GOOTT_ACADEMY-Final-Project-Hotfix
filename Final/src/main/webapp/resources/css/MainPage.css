@@ -7,6 +7,9 @@
 :root{
     --border-radius: 10px;
     --btn-color: rgba(255, 95, 47, 0.906);
+    --modal-bg-color: rgba(0, 0, 0, 0.4);
+    --basic-white-color:white;
+    --basic-border-radius:5px;
 }
 
 
@@ -346,6 +349,83 @@ ion-icon{
     /* background-color: red; */
     /*border: 1px solid red;*/
     color: rgba(0,0,0, .5);
+}
+
+
+/* ========== 공지사항보기 ========== */
+
+.Notice_modal {
+    background-color: var(--modal-bg-color);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+    display: none;
+}
+#Notice_xicon{
+    font-size: 1.5rem;
+    border-radius: var(--basic-border-radius);
+    /* box-shadow: 1px 1px 3px 1px var(--basic-gray-color); */
+    background-color: var(--basic-white-color);
+    position: relative;
+    top: -25px;
+    left: 100%;
+    cursor: pointer;
+    display: none;
+}
+.Notice_modal2 {
+    width: 550px;
+    height: 530px;
+    background-color: var(--basic-white-color);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+	position: relative;
+    /* animation-name: opacity;
+    animation-duration: 1s; */
+}
+.noticeTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.noticeTitle p {
+    font-weight: bold;
+    font-size: 1.7rem;
+    /* border: 1px solid black; */
+}
+.noticeCont {
+	width: 490px;
+    height: 340px;
+    display: flex;
+   /* align-items: center; */
+    justify-content: center;
+    padding: 10px 0;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    word-break : normal;
+}
+.close_btn button{
+    width: 100%;
+    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+    color: whitesmoke;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+.close_btn {
+	position: relative;
+	top: 25px;
+}
+.item_title {
+	cursor: pointer;
 }
 
 
