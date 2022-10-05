@@ -158,8 +158,8 @@
 		User_nickname=#{User_nickname};
 	</select>
 	<!-- 10-04 김양희 유저가 팀 신청한 적 있는지(조건) -->
-	<select id="teamnotmember_select" parameterType="String" resultType="String">
-		select * from Team_NOT_Members where Team_unaccept_member = #{User_nickname};
+	<select id="teamnotmember_select" parameterType="hashMap" resultType="hashMap">
+		select Team_unaccept_member, Team_name from Team_NOT_Members where Team_unaccept_member = #{User_nickname};
 	</select>
 	
 	<!-- 10-04 김양희 신청취소하면 delete -->

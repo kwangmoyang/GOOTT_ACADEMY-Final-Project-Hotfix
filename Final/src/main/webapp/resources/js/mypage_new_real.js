@@ -232,6 +232,8 @@ teaminfobtn.addEventListener('click', function(){
  });
 
  function teamcheck3(a,b){
+	 console.log(a);
+	 console.log(b);
  	
  	if(a === null || a === ""){
  		alert("로그인이 필요합니다.");
@@ -240,42 +242,26 @@ teaminfobtn.addEventListener('click', function(){
  	}
  	else if(a != null || a != "")
  	{
- 		if(!confirm("정말 탈퇴하시겠습니까?(팀리더가 탈퇴할 경우 팀이 삭제됩니다.)")){
+ 		if(!confirm("정말 탈퇴하시겠습니까?(팀리더 탈퇴 시 팀원이 있는 경우 후임 후 탈퇴 / 팀원없을 시 팀자체가 삭제)")){
  			return false;
  		}else{
- 				let ssteamname = teamnameinfo.textContent; //클릭한 팀이름
  				let secessionteamname = b; //팀이름
  				let Usernickname = a; //유저 닉네임
  				
- 				console.log("dddddd");
+ 				$.ajax({
+						type:'POST',
+						data: {Usernickname: Usernickname, secessionteamname: secessionteamname},
+						url:"/teamsecession",
+						dataType:"text",
+						success: function(data){
+						alert("팀탈퇴가 완료되었습니다.");
+							location.href = "/teamlist";
+						}
+ 				});
  				
- 				if(ssteamname == secessionteamname){
- 					console.log("dssdas");
- 					$.ajax({
- 						type:'POST',
- 						data: {Usernickname: Usernickname, secessionteamname: secessionteamname},
- 						url:"/teamsecession",
- 						dataType:"text",
- 						success: function(data){
- 						alert("팀탈퇴가 완료되었습니다.");
- 							location.href = "/teamlist";
- 						}
- 					});
- 				}else if(secessionteamname == null || ssteamname != secessionteamname){
- 					console.log(secessionteamname);
- 					console.log(ssteamname);
- 					alert("유저가 속한 팀이 아닙니다.");
- 				}
-
  		}
  	}
  };
  
 
- var teamnotmemberform = document.querySelector('#teamnotmemberform');  
- function teamnotmember(){
- 	alert('팀신청 취소가 완료되었습니다.'); 
- 	teamnotmemberform.submit();
- 	
- }
  

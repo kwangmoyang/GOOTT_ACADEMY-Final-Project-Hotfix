@@ -5,7 +5,6 @@ var teamname = document.querySelectorAll('.ranking_teaminfo');
 const modaldiv = document.querySelector('.modal-div');
 const xicon = document.getElementById('xicon');
 
-const teaminfobtn = document.querySelectorAll('.btn');
 
 //팀이름 누르면 모달창 키기
 for(let i=0; i<teamname.length; i++){
@@ -32,10 +31,6 @@ modaldiv.addEventListener('click', function(e){
 
 //팀정보 모달에 표시된 팀이름
 const teamnameinfo = document.querySelector('#teamname');
-//팀가입 모달에 표시된 팀이름
-const teamjoincheck = document.querySelector('.teamjoincheck span');
-//팀탈퇴 모달에 표시된 팀이름
-const teamsecssioncheck = document.querySelector('.teamsecssioncheck span');
 
 //팀이름 클릭 시
 for(let i=0; i<teamname.length; i++){

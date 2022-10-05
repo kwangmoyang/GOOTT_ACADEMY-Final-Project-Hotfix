@@ -17,6 +17,6 @@
 	</select>
 	
 	<select id="RankingcommissionUser" parameterType="com.Final.Final1.ranking.model.RankingDTO" resultType="hashMap">
-		select FORMAT(@rownum:=@rownum+1, 0) rowNum, A.* from (select User_nickname, User_score, FORMAT(commission,0) commission from User order by commission desc) A, (select @rownum := 0) B;
+		select FORMAT(@rownum:=@rownum+1, 0) rowNum, A.* from (select User_nickname, User_score, FORMAT(commission,0) commission from User order by commission+0 desc) A, (select @rownum := 0) B;
 	</select>
 </mapper>

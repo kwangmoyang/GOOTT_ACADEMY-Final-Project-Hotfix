@@ -143,12 +143,11 @@ public class MyPageController {
 		//팀낫멤버 테이블에서 select ->
 		String User_nickname = (String) session.getAttribute("User_nickname");
 		
-		String teamnotmember = mypageService.teamnotmember_select(User_nickname);
+		Map<String, Object> teamnotmember =  mypageService.teamnotmember_select(User_nickname);
 		
-//		HashMap<String, Object> map2 = new HashMap<>();
-//		map2.put("teamnotmember", teamnotmember);
+		System.out.println(teamnotmember);
 		
-		mv.addObject("teamnotmember", teamnotmember);
+		mv.addObject("teamnotmember",teamnotmember);
 //		=============================================
 		
 		
@@ -167,7 +166,7 @@ public class MyPageController {
 //			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),
 //					header, HttpStatus.OK);
 //			mv.addObject("photo", result);
-			mv.setViewName("/mypage/mypage");
+			
 //			
 //		} catch(IOException e) {
 //			e.printStackTrace();

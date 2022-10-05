@@ -1,13 +1,20 @@
 package com.Final.Final1.team.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -65,57 +72,73 @@ public class Teamlistcontroller {
 	
 
 	//팀생성
-	@RequestMapping(value="/teammake" , method= RequestMethod.POST)
-	public ModelAndView teammake2(@RequestParam Map<String, Object> map, HttpSession session
+	@RequestMapping(value="/teammake" , method= RequestMethod.POST, produces = "application/text; charset=utf8")
+	public ResponseEntity<String> teammake2(@RequestParam Map<String, Object> map, HttpSession session
 			,@RequestParam("maketeamname") String maketeamname
-			,@RequestParam("tagarray[]") List<String> tagarray) {
+			,@RequestParam("tagarray[]") List<String> tagarray
+			,@RequestParam("usernickname") String usernickname
+			, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 			
-			System.out.println("maketeamname=" + maketeamname);
+			ResponseEntity<String> entity = null;
+		
+			try {
+				//팀이름 중복된 거 있나
+				Map<String, Object> teammakecheck = teamlistservice.teammakecheck(map);
+				//유저가 이미 팀에 가입되어 있나 -> js에서 거르지만 혹시 몰라서
+				Map<String, Object> teammakecheck2 = teamlistservice.teammakecheck2(map);
+				//이미 신청한 팀이 있으면
+				Map<String, Object> teammakecheck3 = teamlistservice.teammakecheck3(map);
+				
+				System.out.println(teammakecheck3);
+				
+				if(teammakecheck == null && teammakecheck2 == null && teammakecheck3 == null) {
+					
+					//팀 insert
+					teamlistservice.teammake(map);
+					//user테이블에서 팀만들기한 유저의 team_name 컬럼에 만든 팀 추가
+					teamlistservice.teammakeupdate(map);
+					
+					
+					//내가 만든 팀네임
+					session.setAttribute("Team_name", maketeamname);
+					//팀리더도 
+					session.setAttribute("Leader_auth", 1);
 
-			ModelAndView mv = new ModelAndView();
-			
-			//팀이름 중복된 거 있나
-			Map<String, Object> teammakecheck = teamlistservice.teammakecheck(map);
-			//유저가 이미 팀에 가입되어 있나
-			Map<String, Object> teammakecheck2 = teamlistservice.teammakecheck2(map);
-			
-			if(teammakecheck == null && teammakecheck2 == null) {
+					for(String s :tagarray) {
+						teamlistservice.taginsert(maketeamname, s);
+					}
 				
-				//팀 insert
-				teamlistservice.teammake(map);
-				//user테이블에서 팀만들기한 유저의 team_name 컬럼에 만든 팀 추가
-				teamlistservice.teammakeupdate(map);
-				
-				
-				//내가 만든 팀네임
-				session.setAttribute("Team_name", maketeamname);
-				//팀리더도 
-				session.setAttribute("Leader_auth", 1);
-
-				for(String s :tagarray) {
-					teamlistservice.taginsert(maketeamname, s);
+					entity = new ResponseEntity<String>("팀생성이 완료되었습니다!", HttpStatus.OK);
+					
+					return entity;
 				}
-			
-				
-				mv.setViewName("redirect:/teamlist");
-				
-				return mv;
-			}
-			else if(teammakecheck != null) {
-				mv.addObject("message", "팀이름중복");
+				else if(teammakecheck != null) {
 					
-				return mv;
-			}
-			else if(teammakecheck2 != null) {
-				mv.addObject("message", "유저이미팀있음");
+					System.out.println("팀중복"+teammakecheck);
 					
-				return mv;
-			}
-			else {
-				return mv;
-			}
-			
+					entity = new ResponseEntity<String>("팀이름이 중복되었습니다.",HttpStatus.INTERNAL_SERVER_ERROR);
+	
+					return entity;
 
+				}
+				else if(teammakecheck3 != null) {
+					
+					System.out.println("신청한 팀 있음"+teammakecheck3);
+
+					
+					entity = new ResponseEntity<String>("유저께서 이미 다른 팀신청을 하셨습니다.",HttpStatus.BAD_REQUEST);
+
+					return entity;
+					
+				}
+			} catch (Exception e) {
+				
+				entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+				return entity;
+			}
+			
+			return entity;
+			
 	}
 	
 	//팀 가입
@@ -130,16 +153,14 @@ public class Teamlistcontroller {
 
 			if(teamjoin_team == null) {
 				
-				//그냥 팀관리페이지로 보내고 거기서 가입가능하게
+				//그냥 팀관리페이지로 보내고 거기서 가입가능하게 && 여기서 팀가입신청 한번밖에 못하도록 되어있음
 				teamlistservice.teamjoinmessage(map);
 				
 				mv.setViewName("redirect:/teamlist");
-				mv.addObject("teamjoin", "성공");
 								
 				return mv;
 			}
 			else {
-				mv.addObject("teamjoin", "실패");
 				return mv;
 			}
 
@@ -167,9 +188,10 @@ public class Teamlistcontroller {
 			if(secession_teamname.equals(secessionteamname) && !teamleader.equals(secssion_nickname)) {
 				
 				
-				teamlistservice.teamsecession(map);
 				//팀멤버테이블에서 멤버컬럼 삭제
 				teamlistservice.teamsecessiondelete(map);
+				//유저테이블의 팀리더(어차피유저는 0이니까 상관 ㄴ)와 팀네임 제거
+				teamlistservice.teamsecession(map);
 				
 
 				session.setAttribute("Team_name", null);
@@ -185,21 +207,73 @@ public class Teamlistcontroller {
 			//유저가 속한 팀과 클릭한 팀이 같고 팀리더면
 			else if(secession_teamname.equals(secessionteamname) && teamleader.equals(secssion_nickname)) {
 				
+				//만약 팀멤버가 없으면 걍 삭제 -> 팀자체삭제
+				List<Map<String, Object>> if_Teammember = teamlistservice.if_Teammember(map);
 				
-				teamlistservice.teamsecession(map);
+				System.out.println("if_Teammember"+if_Teammember);
 				
-				//그냥 팀 자체 삭제
-				teamlistservice.teamsecession_teamleaderdelete(map);
+				if(if_Teammember == null) {
+					
+					System.out.println("팀자체삭제됨"+if_Teammember);
+					
+					//팀자체 삭제됨
+					teamlistservice.teamsecession_teamleaderdelete(map);
+					
+					//원래 팀리더 유저테이블의 팀리더와 팀네임 제거
+					teamlistservice.teamsecession(map);
+					
+					
+					
+					session.setAttribute("Leader_auth", 0);
+					
+					session.setAttribute("Team_name", null);
+					
+					mv.setViewName("redirect:/teamlist");
+					
+					mv.addObject("teamsecession", "팀삭제됨");
+					
+					return mv;
+				}
+				else {
+					//팀멤버 있으면 팀장 위임 후 탈퇴됨
+					
+					System.out.println("들어옴");
+					
+					//원래 팀장 나감 -> 지금유저
+					teamlistservice.Teamleader_update(map);
+					teamlistservice.teamsecession(map);
+					//팀멤버중 1명 불러와서
+					Map<String, Object> Teamleader_candidate = teamlistservice.Teamleader_candidate(map);
+					
+					System.out.println("Teamleader_candidate"+Teamleader_candidate);
+					
+					//걔를 team테이블의 팀리더에 박아놓고 update
+					teamlistservice.Teamleader_update2(map, Teamleader_candidate);
+					
+					System.out.println("후보자를 team테이블의 팀리더에 박아놓고"+teamlistservice.Teamleader_update2(map, Teamleader_candidate));
+					//걔 팀멤버테이블에서 삭제하고
+					teamlistservice.Teammember_candidate_delete(Teamleader_candidate);
+					
+					System.out.println("후보자 팀멤버테이블에서 삭제"+teamlistservice.Teammember_candidate_delete(Teamleader_candidate));
+					
+					//유저테이블의 팀리더와 팀네임 update
+					teamlistservice.Teamcandidate_teamleader(map, Teamleader_candidate);
+					
+					System.out.println("유저테이블의 팀리더랑 팀네임"+teamlistservice.Teamcandidate_teamleader(map, Teamleader_candidate));
+					
+					
+					
+					session.setAttribute("Leader_auth", 0);
+					
+					session.setAttribute("Team_name", null);
+					
+					mv.setViewName("redirect:/teamlist");
+					
+					mv.addObject("teamsecession", "팀삭제됨");
+					
+					return mv;
+				}
 				
-				session.setAttribute("Leader_auth", 0);
-
-				session.setAttribute("Team_name", null);
-				
-				mv.setViewName("redirect:/teamlist");
-				
-				mv.addObject("teamsecession", "팀삭제됨");
-				
-				return mv;
 			}
 			else if(!secession_teamname.equals(secessionteamname)) {
 				

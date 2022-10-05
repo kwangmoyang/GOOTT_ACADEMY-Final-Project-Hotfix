@@ -62,8 +62,8 @@
                                     <div class="rank_content">
                                         <span class="rank_title">팀 이름</span>
                                         <a onclick="teaminfoFuc('${row.Team_name}')" class="ranking_teaminfo"><span>${row.Team_name}</span></a><br>
-                                        <span class="rank_title">팀 커미션</span><span>${row.Team_SUM}</span>
-                                        <span class="rank_title">팀 활동점수</span><span>${row.Team_AVG}</span> <br>
+                                        <span class="rank_title">팀 커미션</span><span>${row.Team_SUM}</span><br>
+                                        <span class="rank_title">팀 활동점수</span><span>${row.Team_AVG}</span>
                                     </div>
                              </div>
                     </c:forEach>
@@ -77,8 +77,8 @@
                                     <div class="rank_content">
                                         <span class="rank_title">팀 이름</span>
                                         <a onclick="teaminfoFuc('${row.Team_name}')" class="ranking_teaminfo"><span>${row.Team_name}</span></a><br>
-                                        <span class="rank_title">팀 커미션</span><span>${row.Team_SUM}</span>
-                                        <span class="rank_title">팀 활동점수</span><span>${row.Team_AVG}</span> <br>
+                                        <span class="rank_title">팀 커미션</span><span>${row.Team_SUM}</span><br>
+                                        <span class="rank_title">팀 활동점수</span><span>${row.Team_AVG}</span>
                                     </div>
                              </div>
                     </c:forEach>
@@ -92,8 +92,8 @@
                                     <div class="rank_content">
                                         <span class="rank_title">팀 이름</span>
                                         <a onclick="teaminfoFuc('${row.Team_name}')" class="ranking_teaminfo"><span>${row.Team_name}</span></a><br>
-                                        <span class="rank_title">팀 커미션</span><span>${row.Team_SUM}</span>
-                                        <span class="rank_title">팀 활동점수</span><span>${row.Team_AVG}</span> <br>
+                                        <span class="rank_title">팀 커미션</span><span>${row.Team_SUM}</span><br>
+                                        <span class="rank_title">팀 활동점수</span><span>${row.Team_AVG}</span>
                                     </div>
                              </div>
                     </c:forEach>
@@ -125,6 +125,9 @@
             </div>
         </div>
     </div>
+    
+    <!-- 푸터 -->
+<div class="common_footer">푸터임다</div>
     
 <!-- ===================================================팀정보 모달=====================================================-->
 

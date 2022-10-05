@@ -21,7 +21,6 @@ public class TeamlistserviceImpl implements Teamlistservice {
 
 	@Override
 	public List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword, int start, int end) {
-		// TODO Auto-generated method stub
 		return teamlistdao.list(map, search_option,keyword,start,end);
 	}
 	
@@ -115,6 +114,55 @@ public class TeamlistserviceImpl implements Teamlistservice {
 	@Override
 	public int taginsert(String maketeamname, String tagarray) {
 		return this.teamlistdao.taginsert(maketeamname, tagarray);
+	}
+
+
+
+	@Override
+	public Map<String, Object> teammakecheck3(Map<String, Object> map) {
+		return this.teamlistdao.teammakecheck3(map);
+	}
+
+
+
+	@Override
+	public List<Map<String, Object>> if_Teammember(Map<String, Object> map) {
+		return this.teamlistdao.if_Teammember(map);
+	}
+
+
+
+	@Override
+	public int Teamleader_update(Map<String, Object> map) {
+		return this.teamlistdao.Teamleader_update(map);
+	}
+
+
+
+	@Override
+	public Map<String, Object> Teamleader_candidate(Map<String, Object> map) {
+		return this.teamlistdao.Teamleader_candidate(map);
+	}
+
+
+
+	@Override
+	public int Teamleader_update2(Map<String, Object> map, Map<String, Object> teamleader_candidate) {
+		return this.teamlistdao.Teamleader_update2(map, teamleader_candidate);
+	}
+
+
+
+	@Override
+	public int Teammember_candidate_delete(Map<String, Object> teamleader_candidate) {
+		return this.teamlistdao.Teammember_candidate_delete(teamleader_candidate);
+	}
+
+
+
+	@Override
+	public int Teamcandidate_teamleader(Map<String, Object> map, Map<String, Object> teamleader_candidate) {
+		return this.teamlistdao.Teamcandidate_teamleader(map, teamleader_candidate);
 	}
 
 

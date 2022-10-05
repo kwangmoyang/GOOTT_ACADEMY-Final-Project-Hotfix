@@ -14,7 +14,7 @@
 
 	<!-- 팀멤버들 -->
 	<select id="team_members"  parameterType="hashMap" resultType="hashMap">
-		select User_nickname,  FORMAT(commission,0), Email_address, User_score from User where Team_name = #{teamname} and not Leader_auth = 1;
+		select User_nickname,  FORMAT(commission,0) commission, Email_address, User_score from User where Team_name = #{teamname} and not Leader_auth = 1;
 	</select>
 	
 	

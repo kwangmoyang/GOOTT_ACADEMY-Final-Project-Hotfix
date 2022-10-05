@@ -37,61 +37,67 @@ public class Teamleadercontroller {
 	@RequestMapping(value="/teamleader", method= RequestMethod.GET)
 	public ModelAndView teamleader(ModelAndView mv, TeamlistDTO dto, TeamMemberDTO dto2,TeamnotMemberDTO dto3, HttpSession session
 			, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-		String teamname = (String) session.getAttribute("Team_name");
-		
-		String User_id = (String) session.getAttribute("User_id");
-		Integer leader = (Integer)session.getAttribute("Leader_auth");
-		
-		System.out.println(leader);
-		
-		if(User_id == null) {
-			
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('팀장만 접근 가능한 페이지입니다.'); location.href = /MainPage</script>");
-			out.flush();
-			
-//	         mv.setViewName("/MainPage");
-//				return mv;
-			
-		}
-		if(!leader.equals(1)) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('팀장만 접근 가능한 페이지입니다.'); location.href = '/MainPage' </script>");
-			out.flush();
-		}
 
-			//공지사항
-			Map<String, Object> teaminfo = teamleaderservice.team_list(dto, teamname);
-			
-			//팀 활동점수 & 커미션
-			Map<String, Object> teaminfo2 = teamleaderservice.team_info(dto2, teamname);
-			
-			//팀멤버들
-			List<Map<String, Object>> team_members = teamleaderservice.team_members(dto2, teamname);
-			
-			//팀가입신청목록
-			List<Map<String, Object>> teamnotmember = teamleaderservice.team_notmembers(dto3, teamname);
-			
-			System.out.println("teamnotmember"+ dto3.toString());
+			try {
+				String teamname = (String) session.getAttribute("Team_name");
+				String User_id = (String) session.getAttribute("User_id");
+				Integer leader = (Integer)session.getAttribute("Leader_auth");
+				
+				HashMap<String, Object> map3 = new HashMap<>();
+				map3.put("User_id", User_id);
+				map3.put("leader", leader);
+				
+				
+				//로그인 안한 상태에서 팀리더 페이지에 들어가려하면
+				if(map3.equals(null)) {
+				
+					throw new NullPointerException();
+					
+				}
+				//로그인 한 상태에서 팀리더가 아닌 유저가 팀리더 페이지에 들어가려하면
+				if(!leader.equals(1)) {
+					
+					throw new NullPointerException();
+				}
+				
+				//공지사항
+				Map<String, Object> teaminfo = teamleaderservice.team_list(dto, teamname);
+				
+				//팀 활동점수 & 커미션
+				Map<String, Object> teaminfo2 = teamleaderservice.team_info(dto2, teamname);
+				
+				//팀멤버들
+				List<Map<String, Object>> team_members = teamleaderservice.team_members(dto2, teamname);
+				
+				//팀가입신청목록
+				List<Map<String, Object>> teamnotmember = teamleaderservice.team_notmembers(dto3, teamname);
+				
+				System.out.println("teamnotmember"+ dto3.toString());
+
+				
+				Map<String, Object> map2 = new HashMap<>();
+				
+				map2.put("teaminfo", teaminfo);
+				map2.put("teaminfo2", teaminfo2);
+				map2.put("team_members", team_members);
+				map2.put("teamnotmerber", teamnotmember);
+				
+				mv.addObject("map", map2);
+				
+				mv.setViewName("/team/teamleader");
+				
+				return mv;
+				
+			} catch (NullPointerException e) {
+				
+				mv.setViewName("/team/teamleadererror");
+				
+				return mv;
+			}
 
 			
-			Map<String, Object> map2 = new HashMap<>();
 			
-			map2.put("teaminfo", teaminfo);
-			map2.put("teaminfo2", teaminfo2);
-			map2.put("team_members", team_members);
-			map2.put("teamnotmerber", teamnotmember);
-			
-			mv.addObject("map", map2);
-			
-			mv.setViewName("/team/teamleader");
-			return mv;
-			
-			
-		}
+	}
 
 	
 	

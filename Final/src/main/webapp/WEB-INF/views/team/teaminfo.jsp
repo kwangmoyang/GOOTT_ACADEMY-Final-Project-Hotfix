@@ -43,7 +43,7 @@
 			          <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank"><i class="fa-solid fa-crown"></i>${row.User_nickname}</a>
 		          </td>
 		          <td>
-		             ${row.commission}
+		             ${row.Teampoint}
 		          </td>
 		          <td>
 		          	${row.Email_address}
@@ -59,7 +59,7 @@
 				          <a href="/mypage_view?User_nickname=${row1.User_nickname}" target="_blank">${row1.User_nickname}</a>
 			          </td>
 			          <td>
-			             ${row1.commission}
+			             ${row1.Teampoint}
 			          </td>
 			          <td>
 			          	${row1.Email_address}

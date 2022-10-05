@@ -139,4 +139,68 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 	}
 
 
+
+	
+	@Override
+	public Map<String, Object> teammakecheck3(Map<String, Object> map) {
+		return sqlSessionTemplate.selectOne("team.teammakecheck3", map);
+	}
+
+	//팀탈퇴 추가
+
+	@Override
+	public List<Map<String, Object>> if_Teammember(Map<String, Object> map) {
+		return sqlSessionTemplate.selectList("team.if_Teammember", map);
+	}
+
+
+	@Override
+	public int Teamleader_update(Map<String, Object> map) {
+		return sqlSessionTemplate.update("team.Teamleader_update", map);
+	}
+
+
+
+
+	@Override
+	public Map<String, Object> Teamleader_candidate(Map<String, Object> map) {
+		return sqlSessionTemplate.selectOne("team.Teamleader_candidate", map);
+	}
+
+
+
+
+	@Override
+	public int Teamleader_update2(Map<String, Object> map, Map<String, Object> teamleader_candidate) {
+		HashMap<String, Object> map2 = new HashMap<>();
+		map2.put("map",map);
+		map2.put("teamleader_candidate",teamleader_candidate);
+		
+		System.out.println("Teamleader_update2dao"+map);
+		System.out.println("Teamleader_update2dao"+teamleader_candidate);
+		
+		return sqlSessionTemplate.update("team.Teamleader_update2", map2);
+	}
+
+
+
+
+	@Override
+	public int Teammember_candidate_delete(Map<String, Object> teamleader_candidate) {
+		return sqlSessionTemplate.delete("team.Teammember_candidate_delete", teamleader_candidate);
+	}
+
+
+
+
+	@Override
+	public int Teamcandidate_teamleader(Map<String, Object> map, Map<String, Object> teamleader_candidate) {
+		Map<String, Object> map2 = new HashMap<>();
+		map2.put("map",map);
+		map2.put("teamleader_candidate",teamleader_candidate);
+		
+		return sqlSessionTemplate.update("team.Teamcandidate_teamleader", map2);
+	}
+
+
 }

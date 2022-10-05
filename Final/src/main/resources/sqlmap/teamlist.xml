@@ -48,6 +48,11 @@
       select Team_name from User where User_nickname = #{usernickname};
    </select>
    
+   <!-- 이미 팀신청을 했으면 -->
+   <select id="teammakecheck3" parameterType="hashMap" resultType="hashMap">
+      select Team_unaccept_member from Team_NOT_Members where Team_unaccept_member = #{usernickname};
+   </select>
+   
    <!-- 팀만들기에서 tag insert -->
    <insert id="taginsert" parameterType="hashMap">
          insert into Team_has_Tags (Team_name, Tags_Tag_Name) values (#{maketeamname}, #{tagarray});
@@ -58,6 +63,8 @@
       select Tag_Name from Tags;
    </select>
    
+   
+   
    <!-- 조건 쿼리 -->
    <!-- 유저한테 팀이 있으면 -->
    <select id="teamjoin_team" parameterType="hashMap" resultType="hashMap">
@@ -66,33 +73,74 @@
 
    <!-- 팀가입 신청보내기 -->   
    <insert id="teamjoinmessage" parameterType="hashMap">
-      insert into Team_NOT_Members (Team_unaccept_member, 
-) values (#{User_nickname} , #{jointeamname});
+      insert into Team_NOT_Members (Team_unaccept_member, Team_name) values (#{User_nickname} , #{jointeamname});
    </insert>
    
+  <!-- ===================================================================================== --> 
    
-   
-   <!-- 팀 탈퇴하기 (공통)-->
+   <!-- 팀 탈퇴하기 (유저 or 원래 팀리더)-->
    <update id="teamsecession" parameterType="hashMap">
       update User set Team_name =null, Leader_auth = 0 where User_nickname = #{Usernickname};
    </update>
-
-   <!-- 일반 유저면 이것도 같이 삭제-->
+   
+    <!-- 일반 유저는 이거 같이 삭제-->
    <delete id="teamsecessiondelete" parameterType="hashMap">
       delete from Team_Members where Team_Member = #{Usernickname};
    </delete>
    
-   <!-- 팀장이면 team테이블의 team_leader에서 삭제 -> 그냥 팀자체삭제됨 -->
-   <!--update Team set Team_leader = null where Team_name = #{secessionteamname}-->
+   
+   <!-- 팀멤버있나 -->
+   <select id="if_Teammember" parameterType="hashMap" resultType="hashMap">
+   		select Team_member from Team_Members where Team_name = #{secessionteamname};
+   </select>
+   
+   <!-- 팀멤버없으면 그냥 팀자체 삭제됨 -->
    <delete id="teamsecession_teamleaderdelete" parameterType="hashMap">
-      delete from Team where Team_name = #{secessionteamname};
+   	delete from Team where Team_name = #{secessionteamname};
    </delete>
+   
+   <!-- 팀멤버 있으면 -->
+   <!-- 원래 팀장은 team테이블의 team_leader null로 -->
+   <update id="Teamleader_update" parameterType="hashMap">
+   		update Team set Team_leader = null where Team_leader = #{Usernickname};
+   </update>
+   
+   
+   <!-- 팀리더 후보 데려와 -->
+   <select id="Teamleader_candidate" parameterType="hashMap" resultType="hashMap">
+   		select C.Team_member AS teamleader_candidate from 
+		(select FORMAT(@rownum:=@rownum+1, 0) rowNum, A.* from 
+		(select Team_member from Team_Members where Team_name = #{secessionteamname}) A, 
+		(select @rownum := 0) B) C
+		where rowNum = 1;
+   </select>
+   
+   
+   <!-- 팀후보 넣을거임-->
+   <update id="Teamleader_update2" parameterType="hashMap">
+   		update Team set Team_leader = #{teamleader_candidate} where Team_name = #{secessionteamname};
+   </update>
+   
+   <!-- 팀멤버였던 팀후보 삭제할 거임 -->
+   <delete id="Teammember_candidate_delete">
+   		delete from Team_Members where Team_member = #{teamleader_candidate};
+   </delete>
+   
+   <!-- 팀후보 유저테이블 update -->
+   <update id="Teamcandidate_teamleader" parameterType="hashMap">
+      update User set Team_name =#{secessionteamname}, Leader_auth = 1 where User_nickname = #{teamleader_candidate};
+   </update>
+   
+   
    
    <!-- 조건 쿼리 -->
    <!-- 팀리더면 -->
    <select id="teamsecession_teamleader" parameterType="hashMap" resultType="String">
       select Team_leader from Team where Team_name = #{secessionteamname};
    </select>
+   
+   <!-- ===================================================================================== -->
+   
    
    <!-- 팀모달창 -->
    <select id="teaminfo_notice"  parameterType="hashMap" resultType="hashMap">
@@ -104,13 +152,13 @@
    </select>
    
    <select id="teaminfo_teamleader"  parameterType="hashMap" resultType="hashMap">
-      select User_score,   FORMAT(commission,0), Email_address , User_nickname from User 
+      select User_score,   FORMAT(commission,0) Teampoint, Email_address , User_nickname from User 
       where user_nickname in (select Team_leader from Team where Team_name = #{teaminfo_teamname});
    </select>
    
    <!-- 팀리더도 같이 불러올 것임 + 팀멤버 -->
    <select id="teaminfo_members"  parameterType="hashMap" resultType="hashMap">
-      select User_nickname,  FORMAT(commission,0), Email_address, User_score from User where Team_name = #{teaminfo_teamname} and not Leader_auth = 1;
+      select User_nickname,  FORMAT(commission,0) Teampoint, Email_address, User_score from User where Team_name = #{teaminfo_teamname} and not Leader_auth = 1;
    </select>
    
    <!-- 클릭한 팀의 이름 -->

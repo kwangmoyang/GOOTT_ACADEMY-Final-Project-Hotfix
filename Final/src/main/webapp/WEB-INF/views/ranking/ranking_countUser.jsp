@@ -56,7 +56,7 @@
                                     <div class="rank_content">
                                         <span class="rank_title">유저 이름</span>
                                         <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
-                                        <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span> <br>
+                                        <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span><br>
                                         <span class="rank_title">유저 커미션</span><span>${row.commission}</span>
                                     </div>
                              </div>
@@ -71,7 +71,7 @@
                                     <div class="rank_content">
                                         <span class="rank_title">유저 이름</span>
                                         <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
-                                        <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span> <br>
+                                        <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span><br>
                                         <span class="rank_title">유저 커미션</span><span>${row.commission}</span>
                                     </div>
                              </div>
@@ -86,7 +86,7 @@
                                     <div class="rank_content">
                                         <span class="rank_title">유저 이름</span>
                                         <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
-                                        <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span> <br>
+                                        <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span><br>
                                         <span class="rank_title">유저 커미션</span><span>${row.commission}</span>
                                     </div>
                              </div>
@@ -116,6 +116,9 @@
             </div>
         </div>
     </div>
+    
+<!-- 푸터 -->
+<div class="common_footer">푸터임다</div>
 </body>
 <script src="../../resources/js/BasicFrame.js"></script>
 </html>

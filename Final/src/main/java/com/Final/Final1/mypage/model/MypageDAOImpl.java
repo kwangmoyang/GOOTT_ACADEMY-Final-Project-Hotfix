@@ -126,7 +126,7 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
-	public String teamnotmember_select(String User_nickname) {
+	public  Map<String, Object> teamnotmember_select(String User_nickname) {
 		return sqlSession.selectOne("userinfo.teamnotmember_select", User_nickname);
 	}
 

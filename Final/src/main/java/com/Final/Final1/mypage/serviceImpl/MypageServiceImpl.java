@@ -134,7 +134,7 @@ public class MypageServiceImpl implements MypageService{
 
 
 	@Override
-	public String teamnotmember_select(String User_nickname) {
+	public Map<String, Object> teamnotmember_select(String User_nickname) {
 		return mypageDao.teamnotmember_select(User_nickname);
 	}
 
