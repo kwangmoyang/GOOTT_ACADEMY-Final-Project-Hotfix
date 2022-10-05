@@ -74,11 +74,11 @@ public class HotfixDAOImpl implements HotfixDAO{
 		return sqlSession.selectOne("hotfix.count",keyword);
 	}
 	
-	@Override
-	public void choiceResolve(HotfixDTO dto) {
-		sqlSession.selectOne("hotfix.choiceResolve",dto);
-		
-	}
+//	@Override
+//	public void choiceResolve(HotfixDTO dto) {
+//		sqlSession.selectOne("hotfix.choiceResolve",dto);
+//		
+//	}
 	
 	// 마이페이지 해결내역
 	@Override
@@ -148,6 +148,16 @@ public class HotfixDAOImpl implements HotfixDAO{
 	@Override
 	public void Drop_Sol_cnt(HotfixDTO dto) {
 		sqlSession.selectOne("hotfix.Drop_Sol_cnt",dto);
+	}
+	@Override
+	public void choiceResolve(HotfixDTO dto, int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("Solver", dto.getSolver());
+		map.put("Request_code", dto.getRequest_code());
+		map.put("start", start);
+		map.put("end", end);
+		sqlSession.selectOne("hotfix.choiceResolve",map);
+		
 	}
 
 

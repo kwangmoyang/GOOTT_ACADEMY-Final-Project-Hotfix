@@ -132,10 +132,9 @@
                   <div class="board_main">
                      <div class="board_header">
                         <div class="board_write">
-                           <span><i class="fas fa-feather-alt"></i></span> <span>200
-                           <i class="fas fa-bolt"></i></span> <span>
+                            <span><strong>
                            <a href="/mypage_view?User_nickname=${row.Post_writer}" target="_blank" class="board_info">${row.Post_writer}</a>
-                           </span>
+                          </strong></span>
 
                       <span>
 					             <fmt:parseDate value="${row.Post_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 

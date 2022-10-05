@@ -19,6 +19,13 @@
 			Post_title.focus();
 			return false;
 		}
+		//제목 유효성 검사 
+		if(Post_title.value.length > 70 ) {
+			alert("제목은 70글자 이하로 제한합니다")
+			Post_title.focus();
+			return false;
+		}
+		
 		
 		alert("글이 수정됬습니다")
 		document.form1.submit(); 

@@ -26,6 +26,7 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
+	//게시판 리스트  카테고리별 검색, select_option
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(HttpServletRequest req,@RequestParam(defaultValue="1")int curPage,
 		@RequestParam(defaultValue ="new")String search_option) {
@@ -61,12 +62,12 @@ public class BoardController {
 		
 		
 	}
-	
+	// 게시판 작성
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String insert() {	
 		return "board/boardWriteForm";
 	}
-	
+	// 게시판 작성
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public ModelAndView insertPost(BoardDTO dto, HttpSession session, MypageDTO mydto) {
 		
@@ -85,6 +86,7 @@ public class BoardController {
 		
 		return mv;
 	}
+	// 게시판 상세보기
 	@RequestMapping(value= "/detail", method = RequestMethod.GET)
 	public ModelAndView detail(BoardDTO dto) {
 		boardService.viewCount(dto);
@@ -96,6 +98,7 @@ public class BoardController {
 			
 		return mv;	
 	}
+	// 게시판 업데이트 이전 내용 불러오기
 	@RequestMapping(value= "/update", method = RequestMethod.GET)
 	public ModelAndView update(BoardDTO dto) {
 		Map<String, Object> PostInfo = boardService.detail(dto);
@@ -108,6 +111,7 @@ public class BoardController {
 		
 		
 	}
+	// 게시판 업데이트 하기
 	@RequestMapping(value="/update", method = RequestMethod.POST)
 	public ModelAndView updatePost(BoardDTO dto) {
 		ModelAndView mv = new ModelAndView();
@@ -117,6 +121,7 @@ public class BoardController {
 		return mv;
 				
 	}
+	//게시판 내용 삭제
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public ModelAndView deletePost(BoardDTO dto) {
 		// 鈺곌퀬�돳占쎈땾 筌앹빓占�
@@ -134,7 +139,7 @@ public class BoardController {
 			
 		return mv;
 	}
-	
+	//게시판 추천수 올리기
 	@ResponseBody
 	@RequestMapping(value = "/board/Likeup" , method = RequestMethod.POST)
 	public int Likeup(int Post_num)throws Exception{
@@ -142,7 +147,7 @@ public class BoardController {
 			
 			return Likeup;
 	}
-	
+	//게시판 추천수 내리기
 	@ResponseBody
 	@RequestMapping(value = "/board/Likedown" , method = RequestMethod.POST)
 	public int Likedown(int Post_num)throws Exception{

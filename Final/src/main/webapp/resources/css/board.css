@@ -184,9 +184,9 @@ input:-webkit-autofill {
 /* 10-04 김양희 a태그 꾸미기 */
 .board_info{
 	cursor:pointer;
-	text-decoration: underline;
+	text-decoration: none;
 	color:black;
 }
 .board_info:hover{
-	color: blue;
+	color: tomato;
 }

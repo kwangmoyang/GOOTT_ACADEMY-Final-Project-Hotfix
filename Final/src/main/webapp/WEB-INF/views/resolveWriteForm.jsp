@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <link rel="stylesheet" href="../resources/css/resolveWriteForm.css">
 
-        <script type="text/javascript" src="<c:url value="/resources/ckeditor/ckeditor.js"/>"></script>
+      <script type="text/javascript" src="<c:url value="/resources/editor/ckeditor/ckeditor/ckeditor.js"/>"></script>
         <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
       
         <title>HOTFIX - Easy Solution For You</title>
@@ -61,8 +61,9 @@
                                 });
                             </script>
                         </div>
-
+			
                 </div>
+                <br>
                 <div class="WF_input_box">
                     <p>모집 인원</p>
                     <input type="text" placeholder="모집 인원을 입력하세요" name="ReadySolver_cnt">
@@ -70,11 +71,6 @@
                 <div class="WF_input_box">
                     <p>해결 커미션</p>
                     <input type="text" placeholder="해결 커미션을 입력하세요" name="Commission">
-                </div>
-                <div class="WF_input_box">
-                    <p>모집 기한</p>
-                   <!--   <input type="text" placeholder="모집 기한을 입력하세요" name="Recruiting_time">-->
-      
                 </div>
                 <div class="boardWF_btn">
                    <!--  <div class="hotfixCancleBtn">취소</div> -->

@@ -66,11 +66,12 @@ public class HotfixServiceImpl implements HotfixService{
 
 	
 
-	@Override
-	public void choiceResolve(HotfixDTO dto) {
-		HotfixDao.choiceResolve(dto);
-		
-	}
+	/*
+	 * @Override public void choiceResolve(HotfixDTO dto) {
+	 * HotfixDao.choiceResolve(dto);
+	 * 
+	 * }
+	 */
 
 	@Override
 	public List<HotfixDTO> resolveZone(HotfixDTO dto, int start, int end) {
@@ -141,6 +142,12 @@ public class HotfixServiceImpl implements HotfixService{
 	@Override
 	public void Drop_Sol_cnt(HotfixDTO dto) {
 		HotfixDao.Drop_Sol_cnt(dto);
+	}
+
+	@Override
+	public void choiceResolve(HotfixDTO dto, int start, int end) {
+		HotfixDao.choiceResolve(dto, start, end);
+		
 	}
 
 	

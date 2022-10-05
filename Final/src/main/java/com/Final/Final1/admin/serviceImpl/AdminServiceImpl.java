@@ -18,8 +18,8 @@ public class AdminServiceImpl implements AdminService{
 	AdminDAO adminDao;
 	
 	@Override
-	public List<Map<String, Object>> adminMemList( Map<String, Object> map) {
-		return adminDao.adminMemList(map);
+	public List<Map<String, Object>> adminMemList( Map<String, Object> map, int start, int end) {
+		return adminDao.adminMemList(map, start, end);
 	}
 
 	@Override
