@@ -169,7 +169,7 @@ a {
    text-align: center;
    border-collapse: collapse;
    border-color: #ccc;
-   
+
 }
 .adminBoard {
 	width : 5%;
@@ -206,10 +206,12 @@ a {
 .admin_CustomerList:nth-child(1) {
 	height : 40px;
 }
-.admin_Bdlist:nth-child(1) {
-	width : 10%;
-	height : 40px;
-}
+
+/*.admin_Bdlist:nth-child(1) {*/
+/*    padding: 1vw;*/
+/*	width: 10vw;*/
+/*    height: 2vh;*/
+/*}*/
 
 /* 회원정보 페이징 영역 */
 .admin_Paging {
