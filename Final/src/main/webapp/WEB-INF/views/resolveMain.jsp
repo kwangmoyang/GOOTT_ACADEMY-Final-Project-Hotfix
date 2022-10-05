@@ -112,7 +112,11 @@
 							<div class="RmBoardRight">
 								<p>모집인원 : ${row.SolverReady_cnt}명</p>
 								<p>커미션: ${row.Commission} 픽스</p>
-								<p>생성시간 : ${row.Request_start_date}         
+								<p>생성시간 : 
+					             <fmt:parseDate value="${row.Request_start_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 
+					             <fmt:formatDate value="${date1}" pattern="MM-dd  HH:mm"/>
+				  				 </p>   
+								
 								
 						
                     

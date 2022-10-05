@@ -67,7 +67,10 @@
                         </div>
 
                     </div>
-                   	 해결요청내역 : ${count}개
+                    
+						 해결요청내역 : ${count}개 
+					
+                   	 
                     <!-- 요청한 내역이 없어요 -->
                		<c:set var="name" value="${list}" />
                 	<c:if test="${empty name}">   

@@ -17,8 +17,12 @@ public class AdminDAOImpl implements AdminDAO {
 	SqlSessionTemplate sqlsession;
 	
 	@Override
-	public List<Map<String, Object>> adminMemList(Map<String, Object> map) {
-		return sqlsession.selectList("admin.list",map);
+	public List<Map<String, Object>> adminMemList(Map<String, Object> map, int start, int end) {
+		Map<String, Object> map1 = new HashMap<>();
+		map1.put("start", start);
+		map1.put("end", end);
+		map1.put("map", map);
+		return sqlsession.selectList("admin.list",map1);
 	}
 
 	@Override

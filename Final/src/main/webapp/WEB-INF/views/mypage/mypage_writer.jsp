@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +71,13 @@
 							<p><input type="checkbox" name="del_Abd" class="del_Abd" data-adminBd="${row.Post_num}"></p>
 							<div class="board_header">
 								<div class="board_write">
-									<span><i class="fas fa-feather-alt"></i></span><span>${row.Post_writer}</span> <span>${row.Post_cr_date}</span>
+									
+									<span><strong>${row.Post_writer}</strong></span> 
+									  <span>
+					             <fmt:parseDate value="${row.Post_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 
+					             <fmt:formatDate value="${date1}" pattern="MM-dd  HH:mm"/>
+					            </span>
+									
 								</div>
 								<div class="board_view">
 									<span>${row.Post_view} 조회수</span> <span>${row.Post_like}

@@ -24,7 +24,7 @@ public interface HotfixService {
 	int count(String keyword);
 	
 
-	void choiceResolve(HotfixDTO dto);
+	void choiceResolve(HotfixDTO dto, int start, int end);
 
 	List<HotfixDTO> resolveZone(HotfixDTO dto, int start, int end);
 
