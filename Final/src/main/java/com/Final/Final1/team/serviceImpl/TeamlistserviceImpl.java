@@ -140,29 +140,29 @@ public class TeamlistserviceImpl implements Teamlistservice {
 
 
 	@Override
-	public Map<String, Object> Teamleader_candidate(Map<String, Object> map) {
+	public String Teamleader_candidate(Map<String, Object> map) {
 		return this.teamlistdao.Teamleader_candidate(map);
 	}
 
 
 
 	@Override
-	public int Teamleader_update2(Map<String, Object> map, Map<String, Object> teamleader_candidate) {
-		return this.teamlistdao.Teamleader_update2(map, teamleader_candidate);
+	public int Teamleader_update2(String secessionteamname, String teamleader_candidate) {
+		return this.teamlistdao.Teamleader_update2(secessionteamname, teamleader_candidate);
 	}
 
 
 
 	@Override
-	public int Teammember_candidate_delete(Map<String, Object> teamleader_candidate) {
+	public int Teammember_candidate_delete(String teamleader_candidate) {
 		return this.teamlistdao.Teammember_candidate_delete(teamleader_candidate);
 	}
 
 
 
 	@Override
-	public int Teamcandidate_teamleader(Map<String, Object> map, Map<String, Object> teamleader_candidate) {
-		return this.teamlistdao.Teamcandidate_teamleader(map, teamleader_candidate);
+	public int Teamcandidate_teamleader(String secessionteamname, String teamleader_candidate) {
+		return this.teamlistdao.Teamcandidate_teamleader(secessionteamname, teamleader_candidate);
 	}
 
 

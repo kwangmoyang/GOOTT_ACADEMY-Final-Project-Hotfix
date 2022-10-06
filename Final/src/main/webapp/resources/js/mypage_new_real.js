@@ -233,7 +233,7 @@ teaminfobtn.addEventListener('click', function(){
 
  function teamcheck3(a,b){
 	 console.log(a);
-	 console.log(b);
+	 console.log(b)
  	
  	if(a === null || a === ""){
  		alert("로그인이 필요합니다.");
@@ -242,7 +242,7 @@ teaminfobtn.addEventListener('click', function(){
  	}
  	else if(a != null || a != "")
  	{
- 		if(!confirm("정말 탈퇴하시겠습니까?(팀리더 탈퇴 시 팀원이 있는 경우 후임 후 탈퇴 / 팀원없을 시 팀자체가 삭제)")){
+ 		if(!confirm("정말 탈퇴하시겠습니까?(팀리더 탈퇴 시 팀원이 있는 경우 위임 후 탈퇴 / 팀원없을 시 팀자체가 삭제)")){
  			return false;
  		}else{
  				let secessionteamname = b; //팀이름

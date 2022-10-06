@@ -133,7 +133,14 @@
                      <div class="board_header">
                         <div class="board_write">
                             <span><strong>
-                           <a href="/mypage_view?User_nickname=${row.Post_writer}" target="_blank" class="board_info">${row.Post_writer}</a>
+                            <c:choose>
+								<c:when test="${sessionScope.User_id == null}">
+								  <a target="_blank" class="board_info" onclick="alert('로그인 후 이용해주세요.')">${row.Post_writer}</a>				
+								</c:when>
+								<c:otherwise>
+								  <a href="/mypage_view?User_nickname=${row.Post_writer}" target="_blank" class="board_info">${row.Post_writer}</a>
+								</c:otherwise>
+							</c:choose>
                           </strong></span>
 
                       <span>

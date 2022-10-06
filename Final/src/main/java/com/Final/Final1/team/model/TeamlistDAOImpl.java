@@ -81,6 +81,7 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 
 	@Override
 	public void teamsecession_teamleaderdelete(Map<String, Object> map) {
+		System.out.println("teamsecession_teamleaderdelete"+map);
 		sqlSessionTemplate.delete("team.teamsecession_teamleaderdelete", map);
 	}
 
@@ -163,7 +164,7 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 
 
 	@Override
-	public Map<String, Object> Teamleader_candidate(Map<String, Object> map) {
+	public String Teamleader_candidate(Map<String, Object> map) {
 		return sqlSessionTemplate.selectOne("team.Teamleader_candidate", map);
 	}
 
@@ -171,12 +172,12 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 
 
 	@Override
-	public int Teamleader_update2(Map<String, Object> map, Map<String, Object> teamleader_candidate) {
-		HashMap<String, Object> map2 = new HashMap<>();
-		map2.put("map",map);
+	public int Teamleader_update2(String secessionteamname, String teamleader_candidate) {
+		Map<String, Object> map2 = new HashMap<>();
+		map2.put("secessionteamname",secessionteamname);
 		map2.put("teamleader_candidate",teamleader_candidate);
 		
-		System.out.println("Teamleader_update2dao"+map);
+		System.out.println("Teamleader_update2dao"+secessionteamname);
 		System.out.println("Teamleader_update2dao"+teamleader_candidate);
 		
 		return sqlSessionTemplate.update("team.Teamleader_update2", map2);
@@ -186,7 +187,7 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 
 
 	@Override
-	public int Teammember_candidate_delete(Map<String, Object> teamleader_candidate) {
+	public int Teammember_candidate_delete(String teamleader_candidate) {
 		return sqlSessionTemplate.delete("team.Teammember_candidate_delete", teamleader_candidate);
 	}
 
@@ -194,10 +195,13 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 
 
 	@Override
-	public int Teamcandidate_teamleader(Map<String, Object> map, Map<String, Object> teamleader_candidate) {
+	public int Teamcandidate_teamleader(String secessionteamname, String teamleader_candidate) {
 		Map<String, Object> map2 = new HashMap<>();
-		map2.put("map",map);
+		map2.put("secessionteamname",secessionteamname);
 		map2.put("teamleader_candidate",teamleader_candidate);
+		
+		System.out.println("secessionteamname"+secessionteamname);
+		System.out.println("Teamcandidate_teamleader"+teamleader_candidate);
 		
 		return sqlSessionTemplate.update("team.Teamcandidate_teamleader", map2);
 	}

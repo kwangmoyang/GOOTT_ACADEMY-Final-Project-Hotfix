@@ -57,7 +57,7 @@
 
                 <!-- 로그인 제출 영역 -->
                 <div class="login_Btn">
-                    <input type="button" id="login_submit" value="로그인">
+                    <input type="submit" id="login_submit" value="로그인">
                 </div>
             </form>
 

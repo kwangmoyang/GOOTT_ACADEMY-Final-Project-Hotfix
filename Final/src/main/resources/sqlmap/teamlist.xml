@@ -107,7 +107,7 @@
    
    
    <!-- 팀리더 후보 데려와 -->
-   <select id="Teamleader_candidate" parameterType="hashMap" resultType="hashMap">
+   <select id="Teamleader_candidate" parameterType="hashMap" resultType="String">
    		select C.Team_member AS teamleader_candidate from 
 		(select FORMAT(@rownum:=@rownum+1, 0) rowNum, A.* from 
 		(select Team_member from Team_Members where Team_name = #{secessionteamname}) A, 
