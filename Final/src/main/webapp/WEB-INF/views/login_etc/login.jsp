@@ -20,7 +20,7 @@
     <div class="login_Container">
         <div class="loginDiv">
             <div class="loginLogo">
-                <img src="/resources/img/HOT.png" alt="" srcset="">
+                <img src="/resources/img/HOT.png" alt="" srcset="" onclick="location.href='MainPage'">
             </div>
 
             <div class="login_header">
