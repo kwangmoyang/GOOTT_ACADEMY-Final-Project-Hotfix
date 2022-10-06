@@ -28,6 +28,7 @@ public class TeamleaderDAOImpl implements TeamleaderDAO {
 
 	@Override
 	public Map<String, Object> team_info(TeamMemberDTO dto2, String teamname) {
+		
 		Map<String, Object> map2  = new HashMap<>();
 		map2.put("dto2", dto2);
 		map2.put("teamname", teamname);
@@ -37,6 +38,7 @@ public class TeamleaderDAOImpl implements TeamleaderDAO {
 
 	@Override
 	public List<Map<String, Object>> team_members(TeamMemberDTO dto2, String teamname) {
+		
 		Map<String, Object> map2  = new HashMap<>();
 		map2.put("dto2", dto2);
 		map2.put("teamname", teamname);
@@ -46,6 +48,7 @@ public class TeamleaderDAOImpl implements TeamleaderDAO {
 
 	@Override
 	public List<TeamlistDTO> teamnotice_correction(TeamlistDTO dto, String teamname, String teamnotice_correction) {
+		
 		Map<String, Object> map2  = new HashMap<>();
 		map2.put("map", dto);
 		map2.put("teamname", teamname);
@@ -56,6 +59,7 @@ public class TeamleaderDAOImpl implements TeamleaderDAO {
 
 	@Override
 	public Map<String, Object> teamname_correction(TeamlistDTO dto, String teamname, String Team_name) {
+		
 		Map<String, Object> map2  = new HashMap<>();
 		map2.put("dto", dto);
 		map2.put("teamname", teamname);
@@ -76,6 +80,7 @@ public class TeamleaderDAOImpl implements TeamleaderDAO {
 
 	@Override
 	public List<Map<String, Object>> team_notmembers(TeamnotMemberDTO dto3, String teamname) {
+		
 		Map<String, Object> map2  = new HashMap<>();
 		map2.put("dto", dto3);
 		map2.put("teamname", teamname);

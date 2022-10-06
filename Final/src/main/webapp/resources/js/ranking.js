@@ -44,7 +44,6 @@ for(let i=0; i<teamname.length; i++){
 
 //팀정보 ajax
 //팀이름 또는 팀정보보기를 클릭하면
-
 function teaminfoFuc(a){
 
 	let teaminfo_teamname = a; //팀이름

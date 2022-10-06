@@ -31,7 +31,6 @@
     display: flex;
     align-items: flex-end;
     margin-bottom: 10px;
-    /* border: 1px solid black; */
 }
 .search{
     width: 100%;
@@ -39,7 +38,6 @@
     display: flex;
     align-items: center;
     justify-content: center; 
-    /* border: 1px solid red; */
 }
 /* 검색창 */
 .search-box{
@@ -116,7 +114,6 @@ input:-webkit-autofill {
 .teamlistboxright{
     width: 20%;
     border-left: var(--teamlist-border);
-    /* border: 1px solid black; */
 }
 /* 팀 프로필 이미지 */
 .img{
@@ -176,69 +173,7 @@ input:-webkit-autofill {
     color: var(--main-text-color);
     cursor: pointer;
 }
-/* 페이징 */
-.teamlistpaging{
-    height: 5%;
-}
 
-/* 태그검색 */
-.select-tagsearch{
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.select-search-div{
-    width:33%;
-}
-.select-search-div button{
-    border: none;
-    padding: 5px;
-    margin: 3px;
-    border-radius: var(--border-btn-radius);
-    cursor: pointer;
-}
-.tagclickbtn1{
-    background-color: rgba(255, 95, 47, 0.906);
-    color: white;
-}
-.plusbtn{
-    border: none;
-    padding: 5px 10px;
-    border-radius: var(--border-btn-radius);
-    background-color: gainsboro;
-    cursor: pointer;
-}
-
-.plustagdiv{
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    display: none;
-}
-.plustag{
-  width: 33%;
-}
-.plustag button{
-    border: none;
-    padding: 5px;
-    margin: 3px;
-    border-radius: var(--border-btn-radius);
-    cursor: pointer;
-}
-.tagclickbtn2{
-    background-color: rgba(255, 95, 47, 0.906);
-    color: white;
-}
-.closebtn{
-    border: none;
-    padding: 5px 10px;
-    border-radius: var(--border-btn-radius);
-    background-color: gainsboro;
-	cursor: pointer;
-}
 
 /* 페이징 */
 .boardPaging {

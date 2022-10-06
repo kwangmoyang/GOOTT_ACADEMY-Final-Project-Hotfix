@@ -19,7 +19,6 @@ let formsection = document.querySelectorAll(".formsection");
 
 for(let i=0; i<update_before.length; i++){
     update_before[i].addEventListener('click', function(){
-    	console.log("gd");
         display(info_after[i],"block");
         display(update_after[i],"block");
         display(formsection[i],"block");
@@ -56,12 +55,10 @@ for(let i=0; i<update_after.length; i++){
         param[i].addEventListener('mouseover',function(){
             textColor(param[i],"rgba(248,58,37,1)");
             transition(param[i],".5s");
-            console.log("ok");
     
             param[i].addEventListener('mouseout',function(){
             textColor(param[i],"rgba(25, 25, 25, 1)");
             transition(param[i],"1s");
-            console.log("ok");
             })
         })
     }

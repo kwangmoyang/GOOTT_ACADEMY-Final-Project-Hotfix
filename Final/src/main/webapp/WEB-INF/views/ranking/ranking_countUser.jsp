@@ -17,7 +17,7 @@
     <title>HOTFIX - Easy Solution For You</title>
 </head>
 <body>
-           <%@ include file="/WEB-INF/views/header/header.jsp" %>
+<%@ include file="/WEB-INF/views/header/header.jsp" %>
     
     <div class="container">
         <!-- ======================== 작업 섹션 ======================= -->
@@ -45,7 +45,7 @@
                         </ul>
                      </div>
                 
-                   <div class="rankingtopdiv">
+                  <div class="rankingtopdiv">
                     <c:forEach var="row" items="${RankingcountUser}" begin="0" end="0">
 	                        <div class="rankingtop">
                                     <i class="fa-solid fa-medal" id="medalgold"></i>

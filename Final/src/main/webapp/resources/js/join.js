@@ -68,10 +68,36 @@ join_modal.addEventListener('click',function(){
     join_xicon.style.display = 'none';
 })
 agree_btn.addEventListener('click',function(){
-    join_modal.style.display = 'none';
-    join_xicon.style.display = 'none';
+    join_modal2.style.display = 'none';
+    join_xicon2.style.display = 'none';
     clause.checked = true;
 })
+
+// 10-06 김양희  체크 추가
+clause.addEventListener('click', function(){
+	alert("서비스 이용약관을 클릭하여 동의 버튼을 눌러주세요.");
+	clause.checked = false;
+})
+
+
+//10-06 김양희 개인정보처리방침 추가
+let agree2 = document.getElementById('agree2');
+let join_xicon2 = document.getElementById('join_xicon2');
+let join_modal2 = document.querySelector('.join_modal3');
+
+agree2.addEventListener('click', function(){
+      join_modal2.style.display = 'flex';
+      join_xicon2.style.display = 'block';
+})
+join_xicon2.addEventListener('click',function(){
+    join_modal2.style.display = 'none';
+    join_xicon2.style.display = 'none';
+})
+join_modal2.addEventListener('click',function(){
+    join_modal2.style.display = 'none';
+    join_xicon2.style.display = 'none';
+})
+
 
 
 // 2022.09.20 유효성 검사 90% 완료 추가 보완중
@@ -167,7 +193,6 @@ if(typeof(Storage)!== 'undefined'){
         } else if (!PHONE_CHECK.test(phone2.value)) {
             hotPH_alert.innerHTML = '<font color=red>&nbsp 숫자 8자리만 입력해주세요.</font>';
         } else {
-            hotPH_alert.innerHTML = '';
             userPH = true;
         }
     })
@@ -184,7 +209,7 @@ function joinForm_check() {
     // 유효성 조건 다 맞을 경우 제출됨
     if (userID && userPW && userPWCK && userEM && userNM && userNC && userPH){
         joinForm.submit();
-        alert("회원가입을 축하드립니다!");
+        alert("회원가입을 축하드립니다!"); 
     } else {
         alert("공란 또는 이용약관 확인 후 가입해주세요!");
     }
@@ -203,3 +228,23 @@ function hotDomain() {
     // 값 반영
     hotEmail_Add.value = val;
 }
+
+
+//아이디 중복 체크
+$('#hotID').keyup(function(){
+	let hotID = $('#hotID').val();
+	
+	$.ajax({
+		url : "/join",
+		type: "POST",
+		data :{hotID : hotID},
+		success : function(result){
+			
+		},
+		error : function(){
+			alert("서버요청실패");
+		}
+	})
+})
+
+

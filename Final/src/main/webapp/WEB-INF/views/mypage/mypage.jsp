@@ -174,14 +174,12 @@
 	            	</c:choose>	
 	            </div>
 	        </div>
-	        <div id="team-content">
-				
-	        </div>
+	        <div id="team-content"></div>
 	    </div>
 	    <ion-icon name="close-outline" id="xicon"></ion-icon>
 	</div>
 	
-<!-- ====================================팀 탈퇴 모달====================================== -->
+<!-- ===========================================팀 탈퇴 모달====================================================== -->
 
 	<div class="modal4-div">
 	    <div class="teammodal4-div">
@@ -191,7 +189,7 @@
 	           <button onclick="teamcheck3('${sessionScope.User_nickname}', '${sessionScope.Team_name}')">탈퇴하기</button>
 	        </div>
 	    </div>
-	<ion-icon name="close-outline" id="xicon4"></ion-icon>
+	 <ion-icon name="close-outline" id="xicon4"></ion-icon>
 	</div>	
 
 </body>

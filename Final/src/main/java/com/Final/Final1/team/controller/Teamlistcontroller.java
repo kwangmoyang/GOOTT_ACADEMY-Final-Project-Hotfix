@@ -1,8 +1,6 @@
 package com.Final.Final1.team.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,9 +48,6 @@ public class Teamlistcontroller {
 			List<Map<String, Object>> taglist = teamlistservice.taglist(map); //Team_has_Tags테이블에서 태그 불러오기 -> 팀목록에서 view
 			List<TeamlistDTO> teamlist = teamlistservice.list(map,search_option, keyword, start, end); //팀목록 불러오기
 			List<Map<String, Object>> tags = teamlistservice.tags(map); //팀만들기 부분에 태그 전체 불러오기
-
-			
-			System.out.println("teamlist"+teamlist);
 			
 			
 			Map<String, Object> map2 = new HashMap<>();
@@ -89,8 +84,6 @@ public class Teamlistcontroller {
 				//이미 신청한 팀이 있으면
 				Map<String, Object> teammakecheck3 = teamlistservice.teammakecheck3(map);
 				
-				System.out.println(teammakecheck3);
-				
 				if(teammakecheck == null && teammakecheck2 == null && teammakecheck3 == null) {
 					
 					//팀 insert
@@ -114,17 +107,12 @@ public class Teamlistcontroller {
 				}
 				else if(teammakecheck != null) {
 					
-					System.out.println("팀중복"+teammakecheck);
-					
 					entity = new ResponseEntity<String>("팀이름이 중복되었습니다.",HttpStatus.INTERNAL_SERVER_ERROR);
 	
 					return entity;
 
 				}
 				else if(teammakecheck3 != null) {
-					
-					System.out.println("신청한 팀 있음"+teammakecheck3);
-
 					
 					entity = new ResponseEntity<String>("유저께서 이미 다른 팀신청을 하셨습니다.",HttpStatus.BAD_REQUEST);
 
@@ -150,6 +138,7 @@ public class Teamlistcontroller {
 		
 			//유저한테 팀이 없으면 가능하게
 			Map<String, Object> teamjoin_team = teamlistservice.teamjoin_team(map);
+			
 
 			if(teamjoin_team == null) {
 				
@@ -210,13 +199,9 @@ public class Teamlistcontroller {
 				//만약 팀멤버가 없으면 걍 삭제 -> 팀자체삭제
 				List<Map<String, Object>> if_Teammember = teamlistservice.if_Teammember(map);
 				
-				System.out.println("if_Teammember"+if_Teammember);
-				
 				if(!if_Teammember.isEmpty()) {
 
 					//팀멤버 있으면 팀장 위임 후 탈퇴됨
-					
-					System.out.println("들어옴");
 					
 					//원래 팀장 나감 -> 지금유저
 					teamlistservice.Teamleader_update(map);
@@ -224,21 +209,14 @@ public class Teamlistcontroller {
 					//팀멤버중 1명 불러와서
 					String Teamleader_candidate = teamlistservice.Teamleader_candidate(map);
 					
-					System.out.println("Teamleader_candidate"+Teamleader_candidate);
-					
 					//걔를 team테이블의 팀리더에 박아놓고 update
 					teamlistservice.Teamleader_update2(secessionteamname, Teamleader_candidate);
 					
-					System.out.println("후보자를 team테이블의 팀리더에 박아놓고"+teamlistservice.Teamleader_update2(secessionteamname, Teamleader_candidate));
 					//걔 팀멤버테이블에서 삭제하고
 					teamlistservice.Teammember_candidate_delete(Teamleader_candidate);
 					
-					System.out.println("후보자 팀멤버테이블에서 삭제"+teamlistservice.Teammember_candidate_delete(Teamleader_candidate));
-					
 					//유저테이블의 팀리더와 팀네임 update
 					teamlistservice.Teamcandidate_teamleader(secessionteamname, Teamleader_candidate);
-					
-					System.out.println("유저테이블의 팀리더랑 팀네임"+teamlistservice.Teamcandidate_teamleader(secessionteamname, Teamleader_candidate));
 					
 					
 					
@@ -254,7 +232,6 @@ public class Teamlistcontroller {
 				
 				}
 				else {
-					System.out.println("팀자체삭제됨"+if_Teammember);
 					
 					//팀자체 삭제됨
 					teamlistservice.teamsecession_teamleaderdelete(map);
@@ -275,12 +252,6 @@ public class Teamlistcontroller {
 					return mv;
 				}
 				
-			}
-			else if(!secession_teamname.equals(secessionteamname)) {
-				
-				mv.addObject("teamsecession", "팀아님");
-				
-				return mv;
 			}
 			else {
 				return mv;

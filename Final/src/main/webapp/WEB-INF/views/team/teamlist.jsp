@@ -6,25 +6,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${path}/resources/css/BasicFrame.css?after">
-    <!-- 폰트 -->
-    <link rel="stylesheet" href="${path}/resources/css/global.css">
-   <!-- 팀목록 css -->
-   <link rel="stylesheet" href="${path}/resources/css/teamlist.css">
-   <!-- modal css -->
-   <link rel="stylesheet" href="${path}/resources/css/teammodal.css">
-   <!-- 유니콘 아이콘 사이트 -->
-   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-   <!-- 폰트어썸 아이콘 사이트 -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-	<link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
-    <title>HOTFIX - Easy Solution For You</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 기본틀 -->
+<link rel="stylesheet" href="${path}/resources/css/BasicFrame.css">
+<!-- 폰트 -->
+<link rel="stylesheet" href="${path}/resources/css/global.css">
+<!-- 팀목록 css -->
+<link rel="stylesheet" href="${path}/resources/css/teamlist.css">
+<!-- modal css -->
+<link rel="stylesheet" href="${path}/resources/css/teammodal.css">
+<!-- 유니콘 아이콘 사이트 -->
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<!-- 폰트어썸 아이콘 사이트 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
+<title>HOTFIX - Easy Solution For You</title>
 </head>
-
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	function list(page) {
@@ -32,7 +32,6 @@
 
 	}
 </script>
-
 <body>
 
 <%@ include file="/WEB-INF/views/header/header.jsp" %>
@@ -40,13 +39,8 @@
 <div class="container">
     <!-- ======================== 작업 섹션 ======================= -->
     <div class="common_section">
-
         <!-- 메인섹션 -->
         <div class="main">
-            <!-- 
-                *22-08-22 HIKARI
-                *** 테스트시  <div class="main"> 하고 테스트 할 것
-            -->
             <!-- ==============작업공간============== -->
             <div class="RmHeader">
                 <h1>TEAM</h1>
@@ -70,7 +64,8 @@
                     </div>
                 </div>
         	</div>
-            	<c:forEach var="row" items="${map.teamlist}" begin="0" end="9">
+        	
+            <c:forEach var="row" items="${map.teamlist}" begin="0" end="9">
 				  <div class="teamlistbox">
 				      <div class="img">
 				          <!-- 사진 불러오는 거 -->
@@ -101,39 +96,39 @@
 				       </div>
 				     </div>
 			       </div>
-			   </c:forEach>
+			  </c:forEach>
+			  
 			  <table class="boardPaging">
-         <tr>
-            <td colspan="5" align="center" class ="boardPagingTd">
-               <c:if test="${map.page_info.curBlock > 1 }">
-                  <a href="javascript:list('1')">[처음]</a>
-               </c:if> 
-               <c:if test="${map.page_info.curBlock > 1 }">
-                  <a href="javascript:list('${map.page_info.prevPage}')">[이전]</a>
-               </c:if> 
-               
-               <c:forEach var="num" begin="${map.page_info.blockBegin}"
-                  end="${map.page_info.blockEnd}">
-                  <c:choose>
-                     <c:when test="${num==map.page_info.curPage}">
-                        <span style="font-size:25px; color:red"  >${num}</span>                                     
-                     </c:when>
-                        <c:otherwise>
-                            <a href = "javascript:list('${num}')">${num}</a>
-                        </c:otherwise>
-                  </c:choose>
-               </c:forEach>
-               
-               <c:if test="${map.page_info.curBlock <= map.page_info.totBlock}">
-                  <a href="javascript:list('${map.page_info.nextPage}')">[다음]</a>
-               </c:if> 
-               <c:if test="${map.page_info.curPage <= map.page_info.totPage}">
-                  <a href="javascript:list('${map.page_info.totPage}')">[끝]</a>
-               </c:if> 
-            </td>
-         </tr>
-
-   </table>
+		         <tr>
+		            <td colspan="5" align="center" class ="boardPagingTd">
+		               <c:if test="${map.page_info.curBlock > 1 }">
+		                  <a href="javascript:list('1')">[처음]</a>
+		               </c:if> 
+		               <c:if test="${map.page_info.curBlock > 1 }">
+		                  <a href="javascript:list('${map.page_info.prevPage}')">[이전]</a>
+		               </c:if> 
+		               
+		               <c:forEach var="num" begin="${map.page_info.blockBegin}"
+		                  end="${map.page_info.blockEnd}">
+		                  <c:choose>
+		                     <c:when test="${num==map.page_info.curPage}">
+		                        <span style="font-size:25px; color:red"  >${num}</span>                                     
+		                     </c:when>
+		                        <c:otherwise>
+		                            <a href = "javascript:list('${num}')">${num}</a>
+		                        </c:otherwise>
+		                  </c:choose>
+		               </c:forEach>
+		               
+		               <c:if test="${map.page_info.curBlock <= map.page_info.totBlock}">
+		                  <a href="javascript:list('${map.page_info.nextPage}')">[다음]</a>
+		               </c:if> 
+		               <c:if test="${map.page_info.curPage <= map.page_info.totPage}">
+		                  <a href="javascript:list('${map.page_info.totPage}')">[끝]</a>
+		               </c:if> 
+		            </td>
+		         </tr>
+   				</table>
             <!-- ==============작업공간============== -->
         </div>
     </div>
@@ -148,22 +143,14 @@
 	            <div id="teamname"></div>
 	            <div id="team-category">
 	                <button class="teaminfo-btn">팀정보</button>
-	                <button class="teamjoin-btn">팀가입</button>
-		            <!-- <button class="teamsecession-btn">팀탈퇴</button>-->			
+	                <button class="teamjoin-btn">팀가입</button>		
 	            </div>
 	        </div>
-	        <div id="team-content">
-				
-	        </div>
+	        <div id="team-content"></div>
 	    </div>
 	    <ion-icon name="close-outline" id="xicon"></ion-icon>
 	</div>
-	
-	
-	
-<!-- =========================================팀만들기 모달================================================= -->
-
-	
+<!-- ===================================================팀만들기 모달================================================= -->
 	  <div class="modal2-div">
 	        <div class="teammodal2-div">
 	            <div class="toptitle"><p>${sessionScope.User_nickname}님의 팀 만들기</p></div>
@@ -231,7 +218,7 @@
 	                    <br>
 	                    <p>귀하께서 본 사이트의 개인정보보호방침 또는 이용약관의 내용에 대해 「동의 한다」버튼 또는 「동의하지 않는다」버튼을 클릭할 수 있는 절차를 마련하여, 「동의 한다」...</p>
                 	</div>
-	                동의 <input type="checkbox" id="team-checkbox">
+	               	 동의 <input type="checkbox" id="team-checkbox">
 	            </div>
 	            <div class="team make-btn">
 	                <button id="makingbtn" type="button" onclick="teamcheck('${sessionScope.User_nickname}','${sessionScope.Team_name}')">팀생성하기</button>
@@ -239,8 +226,7 @@
 	        </div>
 	        <ion-icon name="close-outline" id="xicon2"></ion-icon>
 	    </div>
-	
-<!-- ====================================팀 가입 모달====================================== -->
+<!-- =========================================================팀 가입 모달=================================================== -->
 
 	<div class="modal3-div">
 		<div class="teammodal3-div">
@@ -253,7 +239,7 @@
 		<ion-icon name="close-outline" id="xicon3"></ion-icon>
 	</div>
 	
-<!-- ====================================팀 탈퇴 모달====================================== -->
+<!-- =========================================================팀 탈퇴 모달======================================================= -->
 
 	<div class="modal4-div">
 	    <div class="teammodal4-div">
@@ -266,7 +252,6 @@
 	<ion-icon name="close-outline" id="xicon4"></ion-icon>
 	</div>	
 		
-
 </body>
 
 <!-- modal js -->
