@@ -23,6 +23,9 @@
     border: 1px solid #aaa;
     border-radius: 5px;
 }
+.WF_topic_box > select:focus {
+    outline: 1px solid rgba(248, 58, 37, 0.9);
+}
 /* 제목 박스 */
 .WF_input_box > input {
     width: 100%;
@@ -31,6 +34,9 @@
     border: 1px solid #aaa;
     border-radius: 5px;
     margin-bottom: 20px;
+}
+.WF_input_box > input:focus {
+    outline: 1px solid rgba(248, 58, 37, 0.9);
 }
 .WF_detail_box {
     margin-top: 10px;
@@ -55,6 +61,9 @@
     cursor: pointer;
 }	
 .boardWF_btn > button:last-child {
-    background-color: rgb(167, 161, 240);
+    background-color: rgba(248, 58, 37, .9);
     color: white;
+}
+#board_editor{
+    width: 100%;
 }

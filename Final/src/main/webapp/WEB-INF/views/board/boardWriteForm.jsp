@@ -19,7 +19,7 @@
     
     
     <!-- CK 에디터 -->
-    <script type="text/javascript" src="<c:url value="/resources/editor/ckeditor/ckeditor/ckeditor.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/ckeditor/ckeditor.js"/>"></script>
     <title>HOTFIX - Easy Solution For You</title>
 </head>
 
@@ -68,17 +68,14 @@
                 </div>
                 <div class="WF_detail_box">
                     <p>상세정보</p>
-                  
-                       
-                       <textarea name="Post_contents" id="Post_contents" rows="20" cols="100" placeholder="내용을 입력해주세요"
-                           style="width: 100%"></textarea>
-                      
-		               <script type="text/javascript">   // 글쓰기 editor
-					   CKEDITOR.replace('Post_contents',
-					   {filebrowserUploadUrl:'/food/imageUpload.do',
-						   height:350 //높이 조절
-						       });
-		            	</script>
+                    <textarea id="board_editor" name="Post_contents"></textarea>
+                    <script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
+                    CKEDITOR.replace('board_editor',
+                        {filebrowserUploadUrl:'board/imgUpload.do'
+                        });
+                    </script>
+
+
                 </div>
                	<br>
                 <div class="boardWF_btn">
