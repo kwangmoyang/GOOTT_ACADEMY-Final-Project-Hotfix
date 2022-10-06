@@ -20,7 +20,7 @@
     <div class="login_Container">
         <div class="loginDiv">
             <div class="loginLogo">
-                <img src="/resources/img/HOT.png" alt="" srcset="">
+                <img src="/resources/img/HOT.png" alt="" srcset="" onclick="location.href='MainPage'">
             </div>
 
             <div class="login_header">
@@ -28,7 +28,7 @@
             </div>
 
             <div class="login_Join">
-                회원이 아니신가요? &nbsp;<a href="/join">회원가입 하기</a>
+                <span>회원이 아니신가요? &nbsp;<a href="/join" class="hoverEvt">회원가입 하기</a></span>
             </div>
             <!-- ========== 로그인영역 ========== -->
             <form id="login_Form" method="POST" action="/loginChk">
@@ -52,7 +52,7 @@
                 <!-- 아이디 저장 및 찾기영역 -->
                 <div class="login_Forgot">
                    <!-- <label><input type="checkbox" name="rememberId" ${empty cookie.id.value ? "" :"checked" }> 아이디저장</label> -->
-                    <span><a href="/find_user_id">아이디  /</a><a href="/find_user_pw">비밀번호 찾기</a></span>
+                    <span><a href="/find_user_id">아이디</a> / <a href="/find_user_pw">비밀번호 찾기</a></span>
                 </div>
 
                 <!-- 로그인 제출 영역 -->

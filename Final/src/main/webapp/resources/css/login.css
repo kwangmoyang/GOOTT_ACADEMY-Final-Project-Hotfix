@@ -29,11 +29,11 @@
 .loginLogo {
     height: 10vh;
     margin-top: 8vh;
-    cursor: pointer;
     /* border: 2px solid blue; */
 }
 .loginLogo>img {
     height: 10vh;
+    cursor: pointer;
     /* border: 1px solid green; */
 }
 .login_header {
@@ -41,19 +41,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 3vh 0 0 0;
     /* border: 2px solid rgb(191, 104, 47); */
 }
 
 /*========== 회원 아닐 경우 회원가입하기 연결 ==========*/
 .login_Join {
+    margin: 2vh;
     height: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 2px solid violet; */
+    /*font-weight: 700;*/
+     /*border: 2px solid violet;*/
 }
-.login_Join>a {
-    color: rgb(234, 126, 18);
+.login_Join > span > a {
+    color: rgba(248, 58, 37, .9);
+    text-decoration: none;
+    font-weight: 600;
+}
+.hoverEvt:hover {
+    color: rgba(239, 73, 54, .9);
+    text-decoration: underline;
 }
 
 /*========== 로그인 영역 ==========*/
@@ -101,23 +110,21 @@
     font-size: 15px;
     display: flex;
    /* justify-content: space-between; */
-    font-weight: bold;
-    padding-left : 260px;
-   /* border: 2px solid rgb(48, 26, 240); */
+   /* font-weight: bold;*/
+    /*padding-left : 260px;*/
+    /*border: 2px solid rgb(48, 26, 240);*/
+    justify-content: flex-end;
 }
 .login_Forgot > label {
-    color: rgb(234, 126, 18);
+    color: rgba(248, 58, 37, .9);
 }
-
-.login_Forgot>a {
-    text-decoration: none;
-    color: rgb(234, 126, 18);
-}
-
 
 .login_Forgot>span>a {
     text-decoration: none;
-    color: rgb(234, 126, 18);
+    color: rgba(248, 58, 37, .9);
+}
+.login_Forgot>span>a:hover {
+    text-decoration: underline;
 }
 
 
@@ -135,11 +142,14 @@
     border: 0;
     outline: none;
     border-radius: 5px;
-    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+    background: linear-gradient(to left, rgb(248, 58, 37), rgb(255, 155, 47));
     color: white;
     font-size: 20px;
     letter-spacing: 2px;
     cursor: pointer;
+}
+.login_Btn input:hover {
+
 }
 
 /*========== sns 계정 로그인 영역 ==========*/

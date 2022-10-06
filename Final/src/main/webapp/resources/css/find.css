@@ -32,9 +32,11 @@
 }
 .findLogo>img {
     height: 10vh;
+    cursor: pointer;
     /* border: 1px solid green; */
 }
 .find_Header {
+    margin: 3vh 0 0 0;
     height: 5vh;
     display: flex;
     justify-content: center;
@@ -106,7 +108,7 @@ form{
     border: 0;
     outline: none;
     border-radius: 5px;
-    background: rgb(235, 117, 48);
+    background: linear-gradient(to left, rgb(248, 58, 37), rgb(255, 155, 47));
     color: white;
     font-size: 20px;
     letter-spacing: 2px;

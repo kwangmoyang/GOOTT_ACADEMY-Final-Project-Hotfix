@@ -126,7 +126,7 @@
                   </div>
 
                </div>
-               <h3>${map.count}개의 게시글</h3> <br>
+               <h3>${map.count}<span>개의 게시글</span></h3> <br>
                
                <c:forEach var="row" items="${map.list}">
                   <div class="board_main">
@@ -151,8 +151,8 @@
                         </div>
                         
                         <div class="board_view">
-                           <span>${row.Post_view} 조회수</span> <span>${row.Post_like}
-                              추천수</span>
+                           <span><ion-icon name="eye-sharp"></ion-icon>&nbsp;${row.Post_view}</span> <span><ion-icon name="swap-vertical-sharp"></ion-icon>&nbsp;${row.Post_like}
+                              </span>
                         </div>
                      </div>
                      <div class="board_content">

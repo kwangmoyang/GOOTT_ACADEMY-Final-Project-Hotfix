@@ -10,12 +10,12 @@
 	<!-- 헤더 섹션 오른쪽 -->
 	<div class="common_header_right">
 		<!-- 로그인 -->
-		<div class="mainToLogin">
-			<a href="/login">로그인</a>
+		<div class="mainToLogin" onclick="location.href='login'">
+			<a>로그인</a>
 		</div>
 		<!-- 회원가입 -->
-		<div class="mainToJoin">
-			<a href="/join">회원가입</a>
+		<div class="mainToJoin" onclick="location.href='join'">
+			<a>회원가입</a>
 		</div>
 	</div>
 </body>

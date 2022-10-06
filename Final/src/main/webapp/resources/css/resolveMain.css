@@ -1,7 +1,8 @@
 :root{
     --teamlist-border: 1px solid gainsboro;
     --border-btn-radius: 5px;
-    --btn-color: rgba(255, 95, 47, 0.906);
+    --btn-color: rgba(248, 58, 37, .9);
+
 }
 
 
@@ -17,6 +18,8 @@
 .RmHeader > h1 {
     font-size: 30px;
     font-weight: bolder;
+    border-radius: 5px;
+
 }
 /* 버튼, 서치바 */
 .RmSubtitle {
@@ -90,6 +93,9 @@ input:-webkit-autofill {
     padding: 10px 20px;
     cursor: pointer;
 }
+.RmWriteRequest > button:hover {
+    background-color: rgba(239, 73, 54, 0.9);
+}
 
 /* 전체 드롭다운 */
 .Rmlist {
@@ -107,7 +113,10 @@ input:-webkit-autofill {
     outline: none;
     cursor: pointer;
     text-align: center;
+}
 
+.Rmlist > select:hover {
+    background-color: rgba(239, 73, 54, 0.9);
 }
 
 .Rmlist > select > option {
@@ -123,7 +132,7 @@ input:-webkit-autofill {
     margin: 30px auto;
     width: 95%;
     height: 180px;
-    background-color: #ccc;
+    background-color: rgba(230, 230, 230, .8);
     border-radius: 5px;
     display: flex;
 
@@ -142,7 +151,7 @@ input:-webkit-autofill {
 }
 .RmBoardLeft > p:nth-child(1) {
     font-size: 30px;
-    color: red;
+    color: rgba(248, 58, 37, 1);
 }
 /* 해결 게시판 오른쪽 */
 .RmBoardRight {
@@ -162,6 +171,10 @@ input:-webkit-autofill {
     color: white;
     background-color: var(--btn-color);
     border-radius: var(--border-btn-radius);
+    cursor: pointer;
+}
+.RmBoardRight > .DetailModal:hover {
+    background-color: rgba(239, 73, 54, 0.9);
 }
 /* --------모달------------- */
 /* 스크롤막기 */
@@ -260,11 +273,11 @@ html, body {
 /* 10-04 김양희 a태그 꾸미기 */
 .resolve_info{
 	cursor:pointer;
-	text-decoration: underline;
+	text-decoration: none;
 	color:black;
 }
 .resolve_info:hover{
-	color: blue;
+    text-decoration: underline;
 }
 
 /* 페이징 */
