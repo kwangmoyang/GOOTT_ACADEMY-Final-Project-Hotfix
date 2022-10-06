@@ -40,6 +40,9 @@
     align-items: center;
     justify-content: center; 
 }
+
+
+
 /* 검색창 */
 .search-box{
     width: 100%;
@@ -247,7 +250,7 @@ html, body {
     justify-content: space-between;
     margin: 10px;
 }
-.ModalFooter >button {
+.solutionSubmit2,.solutionSubmit {
     padding: 10px 25px;
     border-radius: 5px;
     color: white;
