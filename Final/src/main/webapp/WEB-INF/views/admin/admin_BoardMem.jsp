@@ -91,26 +91,26 @@
                     <h3 class="userBoardCount">${count}개의 게시글</h3>
                     <table border="1" class="admin_Customer">
                         <tr>
-                            <td><input type="checkbox" name="admin_allChBox" id="admin_allChBox"></td>
-                            <td class="adminBoard">No.</td>
-                            <td class="adminBoard_Sel">구분</td>
-                            <td class="adminBoard_Title">제목</td>
-                            <td class="adminBoard_Add">작성자</td>
-                            <td class="adminBoard_Date">작성일</td>
-                            <td class="adminBoard">조회수</td>
+                            <th style="width: 3vw; height: 5vh; margin: 0 auto;"><input type="checkbox" name="admin_allChBox" id="admin_allChBox"></td>
+                            <th style="width: 3vw; height: 5vh; margin: 0 auto;" class="adminBoard">No.</td>
+                            <th style="width: 3vw; height: 5vh; margin: 0 auto;" class="adminBoard_Sel">구분</td>
+                            <th style="width: 30vw; height: 5vh; margin: 0 auto;" class="adminBoard_Title">제목</td>
+                            <th style="width: 5vw; height: 5vh; margin: 0 auto;" class="adminBoard_Add">작성자</td>
+                            <th style="width: 10vw; height: 5vh; margin: 0 auto;" class="adminBoard_Date">작성일</td>
+                            <th style="width: 5vw; height: 5vh; margin: 0 auto;" class="adminBoard">조회수</td>
                         </tr>
                         <c:forEach var="row" items="${map}">
                         <tr>
-                            <td class="adminBoard"><input type="checkbox" name="del_Abd" class="del_Abd" data-adminBd="${row.Post_num}"></td>
-                            <td class="adminBoard">${row.Post_num}</td>
-                            <td class="adminBoard">${row.Board_code}</td>
-                            <td class="adminBoard_Title"><a href="/detail?Post_num=${row.Post_num}">${row.Post_title}</a></td>
-                            <td class="adminBoard">${row.Post_writer}</td>
-                            <td class="adminBoard">
+                            <td style="width: 3vw; height: 5vh; margin: 0 auto;" class="adminBoard"><input type="checkbox" name="del_Abd" class="del_Abd" data-adminBd="${row.Post_num}"></td>
+                            <td style="width: 3vw; height: 5vh; margin: 0 auto;" class="adminBoard">${row.Post_num}</td>
+                            <td style="width: 3vw; height: 5vh; margin: 0 auto;" class="adminBoard">${row.Board_code}</td>
+                            <td style="width: 30vw; height: 5vh; margin: 0 auto;" class="adminBoard_Title"><a href="/detail?Post_num=${row.Post_num}">${row.Post_title}</a></td>
+                            <td style="width: 5vw; height: 5vh; margin: 0 auto;" class="adminBoard">${row.Post_writer}</td>
+                            <td style="width: 10vw; height: 5vh; margin: 0 auto;" class="adminBoard">
                             <fmt:parseDate value="${row.Post_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="ad_date" type="both"/>
                             <fmt:formatDate value="${ad_date}" pattern="yyyy-MM-dd HH:mm"/>
                             </td>
-                            <td class="adminBoard">${row.Post_view}</td>
+                            <td style="width: 5vw; height: 5vh; margin: 0 auto;" class="adminBoard">${row.Post_view}</td>
                         </tr>
 						          </c:forEach>
                     </table>
@@ -163,7 +163,7 @@
     </div>
 
     <!-- 푸터 -->
-    <div class="common_footer">푸터임다</div>
+    <%@ include file="/WEB-INF/views/footer.jsp" %>
 
 </body>
 

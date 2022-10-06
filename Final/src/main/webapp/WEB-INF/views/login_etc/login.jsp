@@ -51,8 +51,7 @@
 
                 <!-- 아이디 저장 및 찾기영역 -->
                 <div class="login_Forgot">
-                    <label><input type="checkbox" name="rememberId" ${empty cookie.id.value ? "" :"checked" }> 아이디저장</label>
-           
+                   <!-- <label><input type="checkbox" name="rememberId" ${empty cookie.id.value ? "" :"checked" }> 아이디저장</label> -->
                     <span><a href="/find_user_id">아이디  /</a><a href="/find_user_pw">비밀번호 찾기</a></span>
                 </div>
 
@@ -62,11 +61,11 @@
                 </div>
             </form>
 
-            <div class="sns_header">
+            <!-- <div class="sns_header">
                 <h4>SNS 간편 로그인</h4>
             </div>
 
-            <!-- ========== SNS 로그인영역 ========== -->
+             ========== SNS 로그인영역 ========== 
             <form id="SNSlogin_Form" method="POST" action="">
                 <div class="login_sns">
                     <li><a href=""><img src="resources/img/네이버 로고.png" alt="" srcset=""></a></li>
@@ -74,7 +73,7 @@
                     <li><a href=""><img src="resources/img/카카오톡 로고 라운드.png" alt="" srcset=""></a></li>
                     <li><a href=""><img src="resources/img/깃허브 로고.png" alt="" srcset=""></a></li>
                 </div>
-            </form>
+            </form> -->
         </div>
     </div>
 </body>

@@ -76,11 +76,11 @@
                         <option value="011">011</option>
                     </select>
                     <input id="phone2" name="phone2" type="text" placeholder="- 빼고 입력하세요">
-                    <p id="hotPH_alert"></p>
+                    <!-- <p id="hotPH_alert"></p>
                     <input id="phone_check" type="submit" value="인증번호 받기">
                     <input id="number_Write" type="text" name="" placeholder="인증번호를 입력하세요">
                     <input id="number_Check" type="button" value="확인">
-                    <p id="hotPH_alert"></p>
+                    <p id="hotPH_alert"></p> -->
                 </div>
 
                 <div class="join_consent">
@@ -102,9 +102,9 @@
 
             </form>
 
-	            <h4 class="sns_header">SNS 회원가입</h4>
+	           <!-- <h4 class="sns_header">SNS 회원가입</h4>
 
-            <!-- ========== SNS 회원가입 영역 ========== -->
+             ========== SNS 회원가입 영역 ========== 
             <form id="SNSjoin_Form" method="POST">
                 <div class="join_sns">
                     <li><a href=""><img src="resources/img/네이버 로고.png" alt="" srcset=""></a></li>
@@ -112,7 +112,7 @@
                     <li><a href=""><img src="resources/img/카카오톡 로고 라운드.png" alt="" srcset=""></a></li>
                     <li><a href=""><img src="resources/img/깃허브 로고.png" alt="" srcset=""></a></li>
                 </div>
-            </form>
+            </form> -->
         </div>
     </div>
 

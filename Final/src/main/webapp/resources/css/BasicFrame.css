@@ -311,7 +311,7 @@
 /* 메인섹션 */
 .main{
     background-color: white;
-    border: solid 2px var(--ex-border-color);
+    /*border: solid 2px var(--ex-border-color);*/
     
     height: 100%; 
     width: 70%;

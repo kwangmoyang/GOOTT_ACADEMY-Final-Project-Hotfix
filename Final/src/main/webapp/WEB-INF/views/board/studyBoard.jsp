@@ -139,7 +139,7 @@
     
     </div>
     <!-- 푸터 -->
-    <div class="common_footer">푸터임다 d </div>
+     <%@ include file="/WEB-INF/views/footer.jsp" %>
 
 </body>
 
