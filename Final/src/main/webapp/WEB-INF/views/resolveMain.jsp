@@ -99,7 +99,7 @@
 
 						</div>
 					</div>
-					<span class="resolveCount">${count}개의 해결 게시글</span> `
+					<span class="resolveCount">${count}<span>개의 해결 게시글</span></span>
 					<c:forEach var="row" items="${list}" varStatus="vs">
 
 						<!-- 해결 게시판 -->
@@ -158,7 +158,7 @@
 		</div>
 	</div>
 	<!-- 푸터 -->
-	<div class="common_footer">푸터임다</div>
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<!-- 모달 -->
 	<div class="RmModal_background"></div>
 

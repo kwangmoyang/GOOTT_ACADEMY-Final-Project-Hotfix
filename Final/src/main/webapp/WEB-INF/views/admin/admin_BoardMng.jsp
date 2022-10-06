@@ -115,7 +115,7 @@
     
 
     <!-- 푸터 -->
-    <div class="common_footer">푸터임다</div>
+     <%@ include file="/WEB-INF/views/footer.jsp" %>
 
 </body>
 

@@ -37,7 +37,7 @@ body{
 #main_big_preview {
     height: 40vh;
     grid-area: first_preview;
-    padding: 0 5vw;
+    /*padding: 0 5vw;*/
     display: grid;
     grid-template-areas: 
     "preview";
