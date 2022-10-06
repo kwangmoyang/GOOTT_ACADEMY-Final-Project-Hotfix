@@ -93,11 +93,11 @@
                <div class="board_nav">
                   <c:choose>
                      <c:when test="${sessionScope.User_id != null }">
-                        <button type="button" onclick="location.href='insert' ">작성하기</button>
+                        <button type="button" onclick="location.href='insert'" id="">작성하기</button>
                      </c:when>
 
                      <c:otherwise>
-                        <button type="button" class="BackTologin">작성하기</button>
+                        <button type="button" class="BackTologin" >작성하기</button>
 
                      </c:otherwise>
                   </c:choose>
@@ -143,7 +143,7 @@
 							</c:choose>
                           </strong></span>
 
-                      <span>
+                      <span class="Board_list_info">
 					             <fmt:parseDate value="${row.Post_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 
 					             <fmt:formatDate value="${date1}" pattern="MM-dd  HH:mm"/>
 					            </span>
@@ -157,7 +157,6 @@
                      </div>
                      <div class="board_content">
                         <span><a href="/detail?Post_num=${row.Post_num}">${row.Post_title}</a></span>
-
                      </div>
                    
                   </div>
