@@ -12,6 +12,7 @@ import com.Final.Final1.board.model.MyWriterListDTO;
 import com.Final.Final1.mypage.model.MypageDAO;
 import com.Final.Final1.mypage.model.MypageDTO;
 import com.Final.Final1.mypage.service.MypageService;
+import com.Final.Final1.team.model.TeamlistDTO;
 
 @Service
 public class MypageServiceImpl implements MypageService{
@@ -164,6 +165,24 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public int UserDrop_Sol_cnt(MypageDTO dto) {
 		return mypageDao.UserDrop_Sol_cnt(dto);
+	}
+
+
+	@Override
+	public void teamlogo(MypageDTO dto) {
+		mypageDao.teamlogo(dto);
+	}
+
+
+	@Override
+	public String TeamPhotoView(MypageDTO dto) {
+		return mypageDao.TeamPhotoView(dto);
+	}
+
+
+	@Override
+	public List<TeamlistDTO> TeamPhotolist(MypageDTO dto) {
+		return mypageDao.TeamPhotolist(dto);
 	}
 
 

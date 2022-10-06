@@ -11,6 +11,8 @@ public class RankingDTO {
 	private int Team_SUM; //팀 커미션
 	
 	
+	
+	
 	public int getRowNum() {
 		return rowNum;
 	}

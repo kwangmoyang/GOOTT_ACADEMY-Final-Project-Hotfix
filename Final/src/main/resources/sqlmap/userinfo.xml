@@ -101,13 +101,23 @@
 	<update id="updateUserPhoto" >
 		update User set IMG_File_name = #{IMG_File_name}, IMG_URL_name = #{IMG_URL_name} where User_id = #{User_id};
 	</update>
-	
+	<!-- 팀 프로필사진 업데이트 -->
+	<update id="teamlogo" parameterType="hashMap">
+      update Team set Team_ORG_File_name = #{Team_ORG_File_name}, STORED_File_name = #{STORED_File_name} where Team_leader = #{Team_leader};
+   	</update>
+
 	
 	<select id="UserPhotoView" resultType="String">
 		select IMG_File_name from User where user_id= #{User_id};
 	</select>
 	
+	<select id="TeamPhotoView" resultType="String">
+		select Team_ORG_File_name from Team where Team_leader = #{Team_leader};
+	</select>
 	
+	<select id="TeamPhotolist" parameterType="hashMap" resultType="hashMap">
+		select Team_ORG_FIle_name from Team;
+	</select>
 	
 	<!-- 회원의 포인트 뽑아옴 -->
 	<select id="UserPoint" resultType="int">

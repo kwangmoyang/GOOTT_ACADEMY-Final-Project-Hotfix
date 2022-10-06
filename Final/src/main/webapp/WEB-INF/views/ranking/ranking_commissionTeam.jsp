@@ -60,7 +60,7 @@
                                     <i class="fa-solid fa-medal" id="medalgold"></i>
                                     <p><span>${row.rowNum}</span> 위</p>
                                     <div class="teamlogofile">
-                                        <div class="rank_teamlogo_image"><img src="" alt=""></div>
+                                        <div class="rank_teamlogo_image"><img alt="미등록" src="../resources/img/${row.Team_ORG_FIle_name }"/></div>
                                     </div>
                                     <div class="rank_content">
                                         <span class="rank_title">팀 이름</span>
@@ -75,7 +75,7 @@
                                     <i class="fa-solid fa-medal" id="medalgray"></i>
                                     <p><span>${row.rowNum}</span> 위</p>
                                     <div class="teamlogofile">
-                                        <div class="rank_teamlogo_image"><img src="" alt=""></div>
+                                        <div class="rank_teamlogo_image"><img alt="미등록" src="../resources/img/${row.Team_ORG_FIle_name }"/></div>
                                     </div>
                                     <div class="rank_content">
                                         <span class="rank_title">팀 이름</span>
@@ -90,7 +90,7 @@
                                     <i class="fa-solid fa-medal" id="medaldong"></i>
                                     <p><span>${row.rowNum}</span> 위</p>
                                     <div class="teamlogofile">
-                                        <div class="rank_teamlogo_image"><img src="" alt=""></div>
+                                        <div class="rank_teamlogo_image"><img alt="미등록" src="../resources/img/${row.Team_ORG_FIle_name }"/></div>
                                     </div>
                                     <div class="rank_content">
                                         <span class="rank_title">팀 이름</span>

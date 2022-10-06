@@ -46,7 +46,7 @@ public class Rankingcontroller {
 	public ModelAndView RankingcountUser(ModelAndView mv, RankingDTO dto) {
 		
 		List<RankingDTO> RankingcountUser = rankingservice.RankingcountUser(dto);
-		
+		System.out.println(RankingcountUser);
 		mv.addObject("RankingcountUser", RankingcountUser);
 		mv.setViewName("/ranking/ranking_countUser");
 		return mv;
@@ -57,7 +57,7 @@ public class Rankingcontroller {
 	public ModelAndView RankingcommissionUser(ModelAndView mv, RankingDTO dto) {
 		
 		List<RankingDTO> RankingcommissionUser = rankingservice.RankingcommissionUser(dto);
-		
+		System.out.println(RankingcommissionUser);
 		mv.addObject("RankingcommissionUser", RankingcommissionUser);
 		mv.setViewName("/ranking/ranking_commissionUser");
 		return mv;

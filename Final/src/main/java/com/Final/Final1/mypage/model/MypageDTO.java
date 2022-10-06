@@ -26,20 +26,36 @@ public class MypageDTO {
 	private String User_contact2;
 	private String User_contact3;
 	
+	public String getTeam_leader() {
+		return Team_leader;
+	}
+	public void setTeam_leader(String team_leader) {
+		Team_leader = team_leader;
+	}
+	private String Team_leader;
+	
 	private int Req_cnt;
 	private int Sol_cnt;
 	private int Drop_Req_cnt;
 	private int Drop_Sol_cnt;
 	
 	
-	private String ORG_File_name;
+	private String Team_ORG_File_name;
 	private String STORED_File_name;
 	
 	
 	private String IMG_File_name;
+	
 	private String IMG_URL_name;
 
-
+	
+	
+	public String getTeam_ORG_File_name() {
+		return Team_ORG_File_name;
+	}
+	public void setTeam_ORG_File_name(String team_ORG_File_name) {
+		Team_ORG_File_name = team_ORG_File_name;
+	}
 	
 	public int getReq_cnt() {
 		return Req_cnt;
@@ -81,13 +97,7 @@ public class MypageDTO {
 	}
 	
 	
-	public String getORG_File_name() {
-		return ORG_File_name;
-	}
-	public void setORG_File_name(String oRG_File_name) {
-		ORG_File_name = oRG_File_name;
-	}
-	
+
 	
 	
 	
@@ -195,7 +205,7 @@ public class MypageDTO {
 				+ Email_address + ", Team_name=" + Team_name + ", User_introduce=" + User_introduce + ", User_contact1="
 				+ User_contact1 + ", User_contact2=" + User_contact2 + ", User_contact3=" + User_contact3 + ", Req_cnt="
 				+ Req_cnt + ", Sol_cnt=" + Sol_cnt + ", Drop_Req_cnt=" + Drop_Req_cnt + ", Drop_Sol_cnt=" + Drop_Sol_cnt
-				+ ", ORG_File_name=" + ORG_File_name + ", STORED_File_name=" + STORED_File_name + ", IMG_File_name="
+				+ ", ORG_File_name=" + Team_ORG_File_name + ", STORED_File_name=" + STORED_File_name + ", IMG_File_name="
 				+ IMG_File_name + ", IMG_URL_name=" + IMG_URL_name + "]";
 	}
 	

@@ -69,7 +69,7 @@
 				  <div class="teamlistbox">
 				      <div class="img">
 				          <!-- 사진 불러오는 거 -->
-				          <img src="/resources/img/pIiRs.jpg" alt="">
+				          <img src="../resources/img/${row.Team_ORG_FIle_name }"/>
 				      </div>
 				      <div class="teamlistboxleft">
 				         <div class="teamtitle" onclick="teaminfoFuc('${row.Team_name}')">${row.Team_name}</div>

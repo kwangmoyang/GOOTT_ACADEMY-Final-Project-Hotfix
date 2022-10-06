@@ -15,7 +15,7 @@
    <!-- 전체목록 불러오는 쿼리 -->
    <select id="list" parameterType="hashMap" resultType="hashMap">
    <include refid="paging_header" />
-      select t1.Team_code, t1.Team_name, t1.Team_intro, t1.Team_cr_date, t2.Tags_Tag_Name from Team t1
+      select t1.Team_code, t1.Team_name, t1.Team_intro, t1.Team_cr_date, t2.Tags_Tag_Name,t1.Team_ORG_FIle_name from Team t1
       left outer join Team_has_Tags t2
       on t1.Team_name = t2.Team_name
       <include refid="search"/> 
@@ -37,6 +37,9 @@
    <update id="teammakeupdate" parameterType="hashMap">
       update User set Team_name = #{maketeamname}, Leader_auth = 1 where User_nickname = #{usernickname};
    </update>
+   
+   
+   
    
    <!-- 팀이름 중복있나 -->
    <select id="teammakecheck" parameterType="hashMap" resultType="hashMap">

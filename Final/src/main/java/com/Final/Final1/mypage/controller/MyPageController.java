@@ -37,6 +37,7 @@ import com.Final.Final1.comm.model.MainDTO;
 import com.Final.Final1.mypage.model.MypageDAO;
 import com.Final.Final1.mypage.model.MypageDTO;
 import com.Final.Final1.mypage.service.MypageService;
+import com.Final.Final1.team.model.TeamlistDTO;
 
 //留덉씠 �럹�씠吏� 而⑦듃濡ㅻ윭
 @Controller
@@ -75,8 +76,9 @@ public class MyPageController {
 	
 	
 	// 마이 페이지
-	@RequestMapping("/fileTest")
-	public ModelAndView fileTest(MypageDTO dto, @RequestParam MultipartFile file, HttpSession session) {
+	@RequestMapping({"/fileTest","/fileTestTeam"})
+	public ModelAndView fileTest(MypageDTO dto, @RequestParam MultipartFile file, HttpSession session,
+			HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String name = (String)session.getAttribute("User_id");
 		System.out.println(name);
@@ -118,11 +120,25 @@ public class MyPageController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	
-		dto.setIMG_File_name(uniqueName+fileExtension);
-		dto.setIMG_URL_name(uploadFolder+"\\"+uniqueName+fileExtension);
+		
 
-		mypageService.updateUserPhoto(dto);
+		
+		if(request.getServletPath().equals("/fileTest")) {
+			//개인 프로필 사진 세팅
+			dto.setIMG_File_name(uniqueName+fileExtension);
+			dto.setIMG_URL_name(uploadFolder+"\\"+uniqueName+fileExtension);
+
+			mypageService.updateUserPhoto(dto);
+		}else if(request.getServletPath().equals("/fileTestTeam")) {
+			//팀 프로필 사진 세팅
+			String Teamleader = (String)session.getAttribute("User_nickname");
+			System.out.println(Teamleader);
+			dto.setTeam_leader(Teamleader);
+			dto.setTeam_ORG_File_name(uniqueName+fileExtension);
+			dto.setSTORED_File_name(uploadFolder+"\\"+uniqueName+fileExtension);
+			mypageService.teamlogo(dto);
+
+		}
 		
 		// 사진 업로드후 바로 프로필 적용
 		String name2 = (String)session.getAttribute("User_id");
@@ -135,6 +151,10 @@ public class MyPageController {
 		
 		mv.addObject("photo", file2);
 		mv.setViewName("/mypage/mypage_Set");
+		
+		
+		
+		
 		
 		return mv;
 	}

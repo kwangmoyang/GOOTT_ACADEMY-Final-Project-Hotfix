@@ -7,6 +7,7 @@ import com.Final.Final1.board.model.BoardDTO;
 import com.Final.Final1.board.model.MyCommentListDTO;
 import com.Final.Final1.board.model.MyWriterListDTO;
 import com.Final.Final1.comm.model.LoginDTO;
+import com.Final.Final1.team.model.TeamlistDTO;
 
 public interface MypageDAO {
 	
@@ -56,6 +57,12 @@ public interface MypageDAO {
 	public int UserSol_cnt(MypageDTO dto);
 	public int UserDrop_Req_cnt(MypageDTO dto);
 	public int UserDrop_Sol_cnt(MypageDTO dto);
+
+	public void teamlogo(MypageDTO dto);
+
+	public String TeamPhotoView(MypageDTO dto);
+
+	public List<TeamlistDTO> TeamPhotolist(MypageDTO dto);
 
 	
 }

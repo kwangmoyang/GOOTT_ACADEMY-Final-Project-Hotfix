@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.Final.Final1.board.model.BoardDTO;
 import com.Final.Final1.board.model.MyCommentListDTO;
 import com.Final.Final1.board.model.MyWriterListDTO;
+import com.Final.Final1.team.model.TeamlistDTO;
 
 
 
@@ -163,6 +164,27 @@ public class MypageDAOImpl implements MypageDAO {
 	@Override
 	public int UserDrop_Sol_cnt(MypageDTO dto) {
 		return sqlSession.selectOne("userinfo.UserDrop_Sol_cnt",dto);
+	}
+
+
+
+	@Override
+	public void teamlogo(MypageDTO dto) {
+		sqlSession.update("userinfo.teamlogo" ,dto);
+	}
+
+
+
+	@Override
+	public String TeamPhotoView(MypageDTO dto) {
+		return sqlSession.selectOne("userinfo.TeamPhotoView",dto);
+	}
+
+
+
+	@Override
+	public List<TeamlistDTO> TeamPhotolist(MypageDTO dto) {
+		return sqlSession.selectList("userinfo.TeamPhotolist",dto);
 	}
 
 	

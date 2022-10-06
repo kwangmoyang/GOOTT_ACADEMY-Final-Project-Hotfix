@@ -80,7 +80,7 @@
 					<div class="teammanage-box">
 						<p>팀 로고 등록 및 수정</p>
 						<form method="POST" enctype="multipart/form-data"
-							action="/fileTest">
+							action="/fileTestTeam">
 							<div>
 								<input type="file" name="file"> <input type="submit"
 									value="등록">

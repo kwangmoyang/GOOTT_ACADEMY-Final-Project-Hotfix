@@ -80,6 +80,16 @@
     height: 100px;
     margin: 10px;
 }
+
+.rank_teamlogo_image>img{
+    box-shadow: 1px 1px 5px 1px gainsboro;
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+
+
 .rank_content{
     display: flex;
     align-items: center;
