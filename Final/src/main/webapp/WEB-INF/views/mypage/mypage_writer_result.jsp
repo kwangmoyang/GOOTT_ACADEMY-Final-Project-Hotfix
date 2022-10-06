@@ -50,7 +50,6 @@
                     <p class="guide">요청자에게 채택을 받을 경우 해결중인 리스트에 요청내역이 표시됩니다!</p>
 
                     <div class="board_nav">
-                        <button class="cancle">뭐넣지</button>
                         <div class="board_nav_search">
                             <div class="search">
                                 <div class="search-box">
@@ -62,10 +61,7 @@
                             </div>
                         </div>
                         <div class="board_nav_btn">
-                            <select name="">
-                                <option value="">최신순</option>
-                                <option value="">조회순</option>
-                            </select>
+                            
                         </div>
 
                     </div>

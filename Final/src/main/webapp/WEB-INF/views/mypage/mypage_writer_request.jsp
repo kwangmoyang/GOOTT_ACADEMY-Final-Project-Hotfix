@@ -46,9 +46,8 @@
                         <h1>${sessionScope.User_nickname } 님의 해결요청 내역</h1>
                     </div>
                     <%@ include file="/WEB-INF/views/mypage/mypageWriterbar.jsp"%>
-
+					<p class="guide">${sessionScope.User_nickname }님이 요청한 해결글들이 표시됩니다!</p>
                     <div class="board_nav">
-                        <button class="cancle">삭제하기</button>
                         <div class="board_nav_search">
                             <div class="search">
                                 <div class="search-box">
@@ -60,15 +59,12 @@
                             </div>
                         </div>
                         <div class="board_nav_btn">
-                            <select name="">
-                                <option value="">최신순</option>
-                                <option value="">조회순</option>
-                            </select>
+                            
                         </div>
 
                     </div>
-                    
-						 해결요청내역 : ${count}개 
+                    <p>해결요청내역 : ${count}개 </p>
+						 
 					
                    	 
                     <!-- 요청한 내역이 없어요 -->
@@ -112,7 +108,6 @@
 					        </c:if>
         					</div>
 							<div class="RmBoardRight">
-								<p>모집인원 : ${row.SolverReady_cnt}명</p>
 								<p>커미션: ${row.Commission} 픽스</p>
 								<!--  <p>남은 시간 : ${row.Recruiting_time}</p>-->
 								

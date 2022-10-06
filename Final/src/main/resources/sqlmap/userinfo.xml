@@ -150,11 +150,11 @@
 	</update>
 
 		
-	<!--10-04 김양희 유저의 mypage 둘러보기 페이지에서 유저정보 다시 가져오기-->	
+	<!--10-04 김양희 유저의 mypage 둘러보기 페이지에서 유저정보 다시 가져오기 (양광모 이미지파일네임 추가)-->	
 	<select id="mypageUserinfo" parameterType="hashMap" resultType="hashMap">
 		select User_code, User_id, User_pw, User_name,User_nickname,User_score,
 		User_point,commission,Phone_num,Email_address,User_introduce, admin_auth,
-		User_contact1,User_contact2,User_contact3, Team_name, Leader_auth from User where 
+		User_contact1,User_contact2,User_contact3, Team_name, Leader_auth,IMG_File_name from User where 
 		User_nickname=#{User_nickname};
 	</select>
 	<!-- 10-04 김양희 유저가 팀 신청한 적 있는지(조건) -->

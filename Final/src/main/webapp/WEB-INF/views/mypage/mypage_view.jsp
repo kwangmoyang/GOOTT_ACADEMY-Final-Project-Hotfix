@@ -41,8 +41,9 @@
 					<p class="mypage_title">Introduce</p>
 					<div class="introduce">
 						<!-- 사진&자기소개&팔로잉 -->
+						<div class="userImg"><img alt="미등록" src="../resources/img/${mypageUserinfo.IMG_File_name }"/></div>
 						
-						<img src="<%= request.getContextPath() + "C:\\Users/광트북/img/399f5015.png" %>"/>
+						
 						<div>
 						
 							<div class="introduce_nickname">

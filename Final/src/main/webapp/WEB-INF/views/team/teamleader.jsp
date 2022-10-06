@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +14,10 @@
 <!-- 폰트-->
 <link rel="stylesheet" href="../../resources/css/global.css">
 <!-- 유니콘 아이콘 사이트 -->
+
 <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
+
 <title>HOTFIX - Easy Solution For You</title>
 </head>
 
@@ -28,91 +30,107 @@
 			<div class="main">
 				<!-- ==============작업공간============== -->
 				<div class="myPage">
-					 <input type="hidden" value="${sessionScope.Team_name}" name="session_teamname"/>
-					 <div class="teammanagetitle">${sessionScope.Team_name}팀 관리 페이지</div>
-					 
-					 	<div class="teamcommission-div">
-						 	<div class="teamcommission">
-							 	현재 팀 총 활동점수 : 	 	
-								 <c:if test="${map.teaminfo2.TeamScore ne 0}">
+					<input type="hidden" value="${sessionScope.Team_name}"
+						name="session_teamname" />
+					<div class="teammanagetitle">${sessionScope.Team_name}팀관리 페이지</div>
+
+					<div class="teamcommission-div">
+						<div class="teamcommission">
+							현재 팀 총 활동점수 :
+							<c:if test="${map.teaminfo2.TeamScore ne 0}">
 									 	${map.teaminfo2.TeamScore} 
 								 </c:if>
-								 <c:if test="${map.teaminfo2.TeamScore eq 0}">
+							<c:if test="${map.teaminfo2.TeamScore eq 0}">
 									 	0
-								 </c:if>	
-						 	</div>
-						 	<div class="teamcommission">
-							 	현재 팀 총 커미션 : 
-							 	<c:if test="${map.teaminfo2.Teampoint ne '0'}">
+								 </c:if>
+						</div>
+						<div class="teamcommission">
+							현재 팀 총 커미션 :
+							<c:if test="${map.teaminfo2.Teampoint ne '0'}">
 							 		${map.teaminfo2.Teampoint} 
 							 	</c:if>
-							 	<c:if test="${map.teaminfo2.Teampoint eq '0'}">
+							<c:if test="${map.teaminfo2.Teampoint eq '0'}">
 							 		0 
 							 	</c:if>
-						 	</div>
-					 	</div>
-					 
-					 
-					 	<div class="teammanage-twotitle">팀 정보수정</div>
-						 <div class="teammanage-box">
-						      <p>공지사항 수정</p>
-							  <form action="/teamnotice" method="POST">
-								 		 <textarea name="teamnotice_correction" id="teamnotice_correction" cols="80" rows="10">${map.teaminfo.Team_notice}</textarea>
-								  		<div>
-								  			<input type="submit" value="수정" id="corbtn"/>
-								  		</div>
-							</form>
-					  	</div>
-						<div class="teammanage-box">
-						        <p>팀 이름 수정</p>
-						        <form action="/teamnamecor" method="POST">
-						        	<input type="text" value="${sessionScope.Team_name}" name="Team_name">
-						        	<div>
-						        		<input type="submit" value="수정" id="corbtn"/>
-						        	</div>
-						        </form>
-						 </div>
-						 <div class="teammanage-box">
-						        <p>팀 로고 수정</p>
-						        <input type="file">
-						 </div>
-					 
-					
-					    <div class="teammanage-twotitle">팀 회원관리</div>
-					    <div class="teammanage-box">
-					        <form method="POST">
-		 						<p>팀 가입신청목록</p>
-						        <ul>
-						        	<c:forEach var="row1" items="${map.teamnotmerber}">
-						        		<input type="hidden" value="${sessionScope.Team_name}" name="Team_name">
-						        		<input type="hidden" value="${row1.Team_unaccept_member}" name="Team_unaccept_member"/>
-							            <li>
-							            	${row1.Team_unaccept_member} 님이 팀가입신청을 보냈습니다. 
-								            <input type="button" value="수락" onclick="acceptbtn('${sessionScope.Team_name}','${row1.Team_unaccept_member}')">
-								            <input type="button" value="거절" onclick="refusebtn('${row1.Team_unaccept_member}')">
-							            </li>					        	
-						        	</c:forEach>	
-						        </ul>
-					        </form>
-					    </div>
-						<div class="teammanage-box">
-							<form action="/teammemberdel" method="POST" id="teammemberdelForm">
-						        <p>팀원 목록</p>
-						        <ul>
-						            <c:forEach var="row2" items="${map.team_members}">
-								            <input type="hidden" value="${row2.User_nickname}" name="Team_member"/>
-								            <li>${row2.User_nickname} <input type="button" value="추방하기" onclick="teammemberdel()"></li>
-						            </c:forEach>
-						        </ul>
-							</form>
-						</div>	
+						</div>
+					</div>
+
+
+					<div class="teammanage-twotitle">팀 정보수정</div>
+					<div class="teammanage-box">
+						<p>공지사항 수정</p>
+						<form action="/teamnotice" method="POST">
+							<textarea name="teamnotice_correction" id="teamnotice_correction"
+								cols="80" rows="10">${map.teaminfo.Team_notice}</textarea>
+							<div>
+								<input type="submit" value="수정" id="corbtn" />
+							</div>
+						</form>
+					</div>
+					<div class="teammanage-box">
+						<p>팀 이름 수정</p>
+						<form action="/teamnamecor" method="POST">
+							<input type="text" value="${sessionScope.Team_name}"
+								name="Team_name">
+							<div>
+								<input type="submit" value="수정" id="corbtn" />
+							</div>
+						</form>
+					</div>
+					<div class="teammanage-box">
+						<p>팀 로고 등록 및 수정</p>
+						<form method="POST" enctype="multipart/form-data"
+							action="/fileTest">
+							<div>
+								<input type="file" name="file"> <input type="submit"
+									value="등록">
+							</div>
+						</form>
+					</div>
+
+
+					<div class="teammanage-twotitle">팀 회원관리</div>
+					<div class="teammanage-box">
+						<form method="POST">
+							<p>팀 가입신청목록</p>
+							<ul>
+								<c:forEach var="row1" items="${map.teamnotmerber}">
+									<input type="hidden" value="${sessionScope.Team_name}"
+										name="Team_name">
+									<input type="hidden" value="${row1.Team_unaccept_member}"
+										name="Team_unaccept_member" />
+									<li>${row1.Team_unaccept_member} 님이 팀가입신청을 보냈습니다. <input
+										type="button" value="수락"
+										onclick="acceptbtn('${sessionScope.Team_name}','${row1.Team_unaccept_member}')">
+										<input type="button" value="거절"
+										onclick="refusebtn('${row1.Team_unaccept_member}')">
+									</li>
+								</c:forEach>
+							</ul>
+						</form>
+					</div>
+					<div class="teammanage-box">
+						<form action="/teammemberdel" method="POST" id="teammemberdelForm">
+							<p>팀원 목록</p>
+							<ul>
+								<c:forEach var="row2" items="${map.team_members}">
+									<input type="hidden" value="${row2.User_nickname}"
+										name="Team_member" />
+									<li>${row2.User_nickname}<input type="button" value="추방하기"
+										onclick="teammemberdel()"></li>
+								</c:forEach>
+							</ul>
+						</form>
+					</div>
 				</div>
 				<!-- ==============작업공간============== -->
 			</div>
 		</div>
 	</div>
+
 <!-- 푸터 -->
 <%@ include file="/WEB-INF/views/footer.jsp" %>
+
 
 </body>
 <script src="../../resources/js/BasicFrame.js"></script>

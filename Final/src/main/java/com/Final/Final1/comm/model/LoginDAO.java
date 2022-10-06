@@ -28,4 +28,7 @@ public interface LoginDAO {
 
 	void activeInsert(MypageDTO mydto);
 	
+	
+	
+	
 }

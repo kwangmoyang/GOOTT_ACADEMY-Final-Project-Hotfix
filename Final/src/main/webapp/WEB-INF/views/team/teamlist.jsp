@@ -155,9 +155,11 @@
 	        <div class="teammodal2-div">
 	            <div class="toptitle"><p>${sessionScope.User_nickname}님의 팀 만들기</p></div>
 	            <div class="team profile">
-						팀 로고 첨부파일
+					
 	                <!-- <div class="teamlogo"><img src="이미지가 들어올 것" alt=""><i class="fa-solid fa-user" id="teamlogoicon"></i></div> -->
-	                 <button><input type="file"></button>
+						<div>
+							<p>팀 로고는 팀관리 페이지에서 등록해주세요</p>
+						</div>
 	            </div>
 	            <div class="team divone">
 	                <input type="text" id="teaminput" class="teamname" name="teamname" placeholder="팀이름" >
