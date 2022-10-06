@@ -50,6 +50,7 @@ p {
 .joinLogo {
     height: 10vh;
     margin-top: 8vh;
+    cursor: pointer;
     /* border: 2px solid blue; */
 }
 .joinLogo>img {
