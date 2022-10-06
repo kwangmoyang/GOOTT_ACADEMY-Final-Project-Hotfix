@@ -19,7 +19,6 @@ let formsection = document.querySelectorAll(".formsection");
 
 for(let i=0; i<update_before.length; i++){
     update_before[i].addEventListener('click', function(){
-    	console.log("gd");
         display(info_after[i],"block");
         display(update_after[i],"block");
         display(formsection[i],"block");
@@ -186,8 +185,6 @@ teaminfobtn.addEventListener('click', function(){
 
  	let teaminfo_teamname = a; //팀이름
  	
- 	console.log("마이페이지"+teaminfo_teamname);
- 	
  	$.ajax({
  		method:"POST",
  		url:"/teaminfo",
@@ -232,9 +229,8 @@ teaminfobtn.addEventListener('click', function(){
  });
 
  function teamcheck3(a,b){
-	 console.log(a);
-	 console.log(b)
  	
+	 //혹시몰라서
  	if(a === null || a === ""){
  		alert("로그인이 필요합니다.");
  		//로그인페이지로 이동하도록
@@ -242,7 +238,7 @@ teaminfobtn.addEventListener('click', function(){
  	}
  	else if(a != null || a != "")
  	{
- 		if(!confirm("정말 탈퇴하시겠습니까?(팀리더 탈퇴 시 팀원이 있는 경우 위임 후 탈퇴 / 팀원없을 시 팀자체가 삭제)")){
+ 		if(!confirm("정말 탈퇴하시겠습니까?(팀리더 탈퇴 시 팀원이 있는 경우 위임 후 탈퇴 / 팀원없을 시 팀자체가 삭제됩니다.)")){
  			return false;
  		}else{
  				let secessionteamname = b; //팀이름

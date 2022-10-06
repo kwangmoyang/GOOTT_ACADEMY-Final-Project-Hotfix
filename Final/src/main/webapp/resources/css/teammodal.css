@@ -159,23 +159,6 @@
   
 }
 
-/* 링크 아이콘 */
-.teamicons{
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    padding-right: 20px;
-    width: 100%;
-}
-/* 링크 */
-.linkcopy{
-    cursor: pointer;
-    border: none;
-    position: relative;
-}
-.linkcopy ion-icon{
-    font-size: 1.8rem;
-}
 
 
 

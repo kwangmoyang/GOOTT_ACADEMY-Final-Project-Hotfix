@@ -3,21 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- 메인 프레임 연동-->
 <link rel="stylesheet" href="../../resources/css/BasicFrame.css">
+<!-- 팀리더 css -->
 <link rel="stylesheet" href="../../resources/css/teamleader.css">
-<!-- 폰트 불러올라고-->
+<!-- 폰트-->
 <link rel="stylesheet" href="../../resources/css/global.css">
 <!-- 유니콘 아이콘 사이트 -->
-<link rel="stylesheet"
-	href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-<link rel="icon" href="${Path}/resources/img/HotFavicon.png"
-	type="image/png">
+
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
+
 <title>HOTFIX - Easy Solution For You</title>
 </head>
 
@@ -28,13 +28,7 @@
 		<div class="common_section">
 			<!-- 메인섹션 -->
 			<div class="main">
-				<!-- 
-                *22-08-22 HIKARI
-                *** 테스트시  <div class="main"> 하고 테스트 할 것
-            -->
 				<!-- ==============작업공간============== -->
-				<!-- 마이 페이지부분 -->
-
 				<div class="myPage">
 					<input type="hidden" value="${sessionScope.Team_name}"
 						name="session_teamname" />
@@ -131,16 +125,14 @@
 				</div>
 				<!-- ==============작업공간============== -->
 			</div>
-
 		</div>
-
 	</div>
-	<!-- 푸터 -->
-	<%@ include file="/WEB-INF/views/footer.jsp"%>
+
+<!-- 푸터 -->
+<%@ include file="/WEB-INF/views/footer.jsp" %>
+
 
 </body>
-
 <script src="../../resources/js/BasicFrame.js"></script>
-<script src="../../resources/js/teamleader.js?after"></script>
-
+<script src="../../resources/js/teamleader.js"></script>
 </html>

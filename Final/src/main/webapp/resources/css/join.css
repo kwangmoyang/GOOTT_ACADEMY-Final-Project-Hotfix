@@ -191,6 +191,42 @@ p {
 }
 .join_modal2 {
     width: 550px;
+    height: 550px;
+    background-color: var(--basic-white-color);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+
+    /* animation-name: opacity;
+    animation-duration: 1s; */
+}
+.join_modal3 {
+    background-color: var(--modal-bg-color);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+    display: none;
+}
+#join_xicon2{
+    font-size: 1.5rem;
+    border-radius: var(--basic-border-radius);
+    /* box-shadow: 1px 1px 3px 1px var(--basic-gray-color); */
+    background-color: var(--basic-white-color);
+    position: relative;
+    top: -25px;
+    left: 100%;
+    cursor: pointer;
+    /* animation-name: opacity;
+    animation-duration: 1s; */
+    display: none;
+}
+.join_modal4 {
+    width: 550px;
     height: 530px;
     background-color: var(--basic-white-color);
     border: 1px solid var(--border-color);
@@ -214,15 +250,16 @@ p {
     align-items: center;
     justify-content: center;
     padding: 10px 0;
-    margin-top: 10px;
+    margin: 10px 0;
+    overflow:scroll;
+    border-radius: 5px;
+    border:1px solid black;
 }
-.agreecheck p {
+.agreecheck .agreecheckp{
     height: 330px;
     font-size: 1.1rem;
     font-weight: lighter;
-    border-radius: 5px;
-    padding: 5px;
-    border: 1px solid black;
+    
 }
 .agree_btn button{
     width: 100%;

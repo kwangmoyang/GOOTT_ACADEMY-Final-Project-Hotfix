@@ -130,8 +130,6 @@ public class Teamleadercontroller {
 		
 		//세션팀이름
 		String teamname = (String) session.getAttribute("Team_name");
-		
-		System.out.println(dto.toString());
 
 		//팀이름수정
 		Map<String, Object> teamname_cor = teamleaderservice.teamname_correction(dto, teamname, Team_name);
@@ -151,9 +149,6 @@ public class Teamleadercontroller {
 	@RequestMapping(value="/teamjoinaccept" , method= RequestMethod.POST)
 	public ModelAndView teamjoin(@RequestParam Map<String, Object> map, HttpSession session) {
 			ModelAndView mv = new ModelAndView();
-			
-			
-			System.out.println("teamjoinaccept=="+map.toString());
 			
 		
 			//유저한테 팀이 없으면 가능하게

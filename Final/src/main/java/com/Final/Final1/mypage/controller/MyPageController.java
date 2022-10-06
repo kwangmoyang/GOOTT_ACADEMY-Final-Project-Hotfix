@@ -456,8 +456,6 @@ public class MyPageController {
 	public ModelAndView mypage_view(HttpSession session, ModelAndView mv, @RequestParam String User_nickname,
 			MypageDTO dto) {
 		
-		System.out.println(User_nickname);
-		
 		//클릭한 유저의 정보 가져오기
 		Map<String, Object> mypageUserinfo = mypageService.mypageUserinfo(User_nickname);
 		System.out.println(mypageUserinfo);
