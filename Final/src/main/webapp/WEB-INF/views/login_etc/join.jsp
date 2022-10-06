@@ -36,7 +36,7 @@
                 <div class="join_id">
                     <h4>아이디</h4>
                     <input type="text" name="User_id" id="hotID" placeholder="영문 또는 영문,숫자 조합 7~15자 이내">
-                    <p id="hotID_alert">${idfalse }</p>
+                    <p id="hotID_alert"></p>
                 </div>
                 <div class="join_pw">
                     <h4>비밀번호</h4>
@@ -68,7 +68,7 @@
                 <div class="join_nickname">
                     <h4>닉네임</h4>
                     <input type="text" name="User_nickname" id="hotNick" placeholder="특수문자 제외 2~12자 이내">
-                    <p id="hotNK_alert">${nickfalse }</p>
+                    <p id="hotNK_alert"></p>
                 </div>
                 <div class="join_phone">
                     <h4>핸드폰번호</h4>

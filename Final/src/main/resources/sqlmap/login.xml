@@ -22,7 +22,16 @@
 		User_id=#{User_id};
 	</select>
 	
+	<!-- 1006 김양희 추가 -->
+	<!-- 중복된 아이디가 있는가 -->
+	<select id="idcheck" parameterType="String" resultType="int">
+		select count(*) from User where User_id = #{hotID};
+	</select>
 	
+	<!-- 중복된 닉네임이 있는가 -->
+	<select id="nicknamecheck" parameterType="String" resultType="int">
+		select count(*) from User where User_nickname = #{hotNick};
+	</select>
 	
 	<!-- 회원정보중 일치하는 닉네임이 있는지? -->
 	<select id="User_nickname_Chk" resultType="hashMap">

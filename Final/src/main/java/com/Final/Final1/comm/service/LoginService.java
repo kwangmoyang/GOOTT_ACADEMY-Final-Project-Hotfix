@@ -28,5 +28,9 @@ public interface LoginService {
 	String UserEmailAndIDinfo(MypageDTO dto);
 
 	void activeInsert(MypageDTO mydto);
+
+	int idcheck(String hotID);
+
+	int nicknamecheck(String hotNick);
 	
 }

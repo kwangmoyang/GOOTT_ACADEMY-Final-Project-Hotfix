@@ -77,4 +77,14 @@ public class LoginServiceImpl implements LoginService{
 		
 	}
 
+	@Override
+	public int idcheck(String hotID) {
+		return loginDao.idcheck(hotID);
+	}
+
+	@Override
+	public int nicknamecheck(String hotNick) {
+		return loginDao.nicknamecheck(hotNick);
+	}
+
 }

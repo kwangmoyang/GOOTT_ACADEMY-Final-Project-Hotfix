@@ -75,6 +75,16 @@ public class LoginDAOImpl implements LoginDAO{
 		
 	}
 
+	@Override
+	public int idcheck(String hotID) {
+		return sqlSession.selectOne("login.idcheck",hotID);
+	}
+
+	@Override
+	public int nicknamecheck(String hotNick) {
+		return sqlSession.selectOne("login.nicknamecheck",hotNick);
+	}
+
 	
 
 	
