@@ -139,10 +139,10 @@
                                         name="flame-sharp"></ion-icon>
                                         ${Tea.User_score}</span><span>${Tea.Team_num_mem}</span>--%></div>
                                 <c:set var="Notice_date" value="${Not.Notice_cr_date}"/>
-                                <c:set var="Notice_date_cut" value="${fn:substring(Notice_date,0 ,10)}"/>
+                                <c:set var="Notice_date_cut" value="${fn:substring(Notice_date,2 ,10)}"/>
                                 <c:set var="Notice_date_cut2" value="${fn:substring(Notice_date,11 ,16)}"/>
                                 <div class="item_info"><span>${Notice_date_cut}&nbsp;&nbsp;${Notice_date_cut2}</span></div>
-                                <div class="item_title" onclick="NoticeOn('${Not.Notice_contents}')"><span class="title_color">${Not.Notice_title}</span></div>
+                                <div class="item_title" id="Main_notice" onclick="NoticeOn('<c:out value="${Not.Notice_contents}"/>')"><span class="title_color">${Not.Notice_title}</span></div>
                                 <div class="item_info2"></div>
                             </div>
                         </c:forEach>

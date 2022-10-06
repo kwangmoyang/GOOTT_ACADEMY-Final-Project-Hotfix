@@ -408,7 +408,10 @@ ion-icon{
     margin-top: 10px;
     border-radius: 5px;
     border: 1px solid black;
-    word-break : normal;
+    font-size: 20px;
+   /* overflow:hidden; */
+    word-wrap:break-all;
+
 }
 .close_btn button{
     width: 100%;

@@ -55,7 +55,6 @@ loginSubmit.addEventListener('click',function(){
     	login_Form.submit();
         
     }
-    // alert('로그인되었습니다');
 })
 
 

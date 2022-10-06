@@ -59,19 +59,17 @@
                     <table border="1" class="admin_Customer">
                         <tr class="admin_Bdlist">
                             <th style="width: 3vw; height: 5vh; margin: 0 auto;"><input type="checkbox" name="Bdlist_allChBox" id="Bdlist_allChBox"></th>
-                            <th>No.</th>
-                            <th>제목</th>
-                            <th>작성글</th>
+                            <th style="width: 3vw; height: 5vh; margin: 0 auto;">No.</th>
+                            <th style="width: 40vw; height: 5vh; margin: 0 auto;">제목</th>
                             <th>작성자</th>
-                            <th>작성일</th>
+                            <th style="width: 12vw; height: 5vh; margin: 0 auto;">작성일</th>
                             <th>조회수</th>
                         </tr>
                         <c:forEach var="mng" items="${data}">
                         <tr class="notice_consent">
-                            <td style="height: 40px;"><input type="checkbox" name="Bdlist_Ck" id="Bdlist_Ck" data-adminNt="${mng.Notice_num}"></td>
+                            <td style="width: 3vw; height: 5vh; margin: 0 auto;"><input type="checkbox" name="Bdlist_Ck" id="Bdlist_Ck" data-adminNt="${mng.Notice_num}"></td>
                             <td>${mng.Notice_num}</td>
                             <td style="text-align: left;" class="noticeCk" onclick="NoticeOn('${mng.Notice_contents}')">&nbsp;${mng.Notice_title}</td>
-                            <td>${mng.Notice_contents}</td>
                             <td>${mng.Notice_writer}</td>
                             <td>
                             <fmt:parseDate value="${mng.Notice_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="ad_date" type="both"/>
@@ -104,7 +102,7 @@
     <div class="Notice_modal2">
     	<div><ion-icon name="close-outline" id="Notice_xicon"></ion-icon></div>
         <div class="noticeTitle"><p>공지사항</p></div>
-        <div class="noticeCont"><p></p></div>
+        <div class="noticeCont"></div>
         <div class="close_btn">
                 <button>닫기</button>
         </div>
