@@ -7,7 +7,8 @@
 /*========== 로그인 페이지 전체 컨테이너 ==========*/
 .login_Container {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,19 +16,20 @@
 }
 .loginDiv {
     width: 70%;
-    height: 100%;
+    height: 80%;
     margin: auto;
     display: flex;
     align-items: center;
     flex-direction: column;
     min-width: 1280px;
-    /* border: 2px solid red; */
+   /* border: 2px solid red; */
 }
 
 /*========== 상단 핫픽스 로고 ==========*/
 .loginLogo {
     height: 10vh;
     margin-top: 8vh;
+    cursor: pointer;
     /* border: 2px solid blue; */
 }
 .loginLogo>img {
@@ -98,9 +100,10 @@
     margin-top: 2vh;
     font-size: 15px;
     display: flex;
-    justify-content: space-between;
+   /* justify-content: space-between; */
     font-weight: bold;
-    /* border: 2px solid rgb(48, 26, 240); */
+    padding-left : 260px;
+   /* border: 2px solid rgb(48, 26, 240); */
 }
 .login_Forgot > label {
     color: rgb(234, 126, 18);
@@ -110,6 +113,14 @@
     text-decoration: none;
     color: rgb(234, 126, 18);
 }
+
+
+.login_Forgot>span>a {
+    text-decoration: none;
+    color: rgb(234, 126, 18);
+}
+
+
 /*========== 로그인 제출 영역 ==========*/
 .login_Btn {
     width: 33%;

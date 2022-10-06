@@ -243,7 +243,8 @@ p {
     width: 33%;
     height: 6vh;
     display: flex;
-    margin-top: 2vh;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
     /* border: 2px solid orangered; */
 }
 .join_Btn input {

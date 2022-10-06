@@ -60,13 +60,12 @@
                   
                        <textarea name="Notice_contents" id="Notice_contents" rows="20" cols="100" placeholder="내용을 입력해주세요"
                            style="width: 100%"></textarea>
-                      
-		               <script type="text/javascript">   // 글쓰기 editor
-					   CKEDITOR.replace('Post_contents',
-					   {filebrowserUploadUrl:'/food/imageUpload.do',
-						   height:300 //높이 조절
-						       });
-		            	</script>
+		            	
+		            	<!-- <script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
+                            CKEDITOR.replace('request',
+                                {filebrowserUploadUrl:'hotfix/imgUpload.do'
+                                });
+                        </script> -->
                 </div>
 
                 <div class="boardWF_btn">

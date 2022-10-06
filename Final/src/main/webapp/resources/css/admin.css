@@ -171,26 +171,7 @@ a {
    border-color: #ccc;
 
 }
-.adminBoard {
-	width : 5%;
-	height : 40px;
-}
-.adminBoard_Sel {
-	width : 7%;
-	height : 50px;
-}
-.adminBoard_Title {
-	width : 30%;
-	height : 50px;
-}
-.adminBoard_Add {
-	width : 10%;
-	height : 40px;
-}
-.adminBoard_Date {
-	width : 20%;
-	height : 40px;
-}
+
 .admin_Customer > adminBoard_Title {
 	white-space:nowrap;
 	overflow:hidden;
@@ -260,8 +241,6 @@ a {
     top: -25px;
     left: 100%;
     cursor: pointer;
-    /* animation-name: opacity;
-    animation-duration: 1s; */
     display: none;
 }
 .Notice_modal2 {
@@ -270,9 +249,7 @@ a {
     background-color: var(--basic-white-color);
     border: 1px solid var(--border-color);
     padding: 30px;
-
-    /* animation-name: opacity;
-    animation-duration: 1s; */
+    position: relative;
 }
 .noticeTitle {
     display: flex;
@@ -285,19 +262,16 @@ a {
     /* border: 1px solid black; */
 }
 .noticeCont {
+	width: 490px;
+    height: 340px;
     display: flex;
-    align-items: center;
     justify-content: center;
     padding: 10px 0;
     margin-top: 10px;
-}
-.noticeCont p {
-    height: 330px;
-    font-size: 1.1rem;
-    font-weight: lighter;
     border-radius: 5px;
-    padding: 5px;
     border: 1px solid black;
+    font-size: 20px;
+    word-wrap:break-all;
 }
 .close_btn button{
     width: 100%;
@@ -311,7 +285,7 @@ a {
 }
 .close_btn {
 	position: relative;
-	top: 300px;
+	top: 25px;
 }
 .noticeCk {
 	cursor: pointer;
