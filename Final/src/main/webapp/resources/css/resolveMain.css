@@ -50,6 +50,9 @@
     position: relative;
     margin-right: 30px;
 }
+.search-txt:focus {
+    outline: 1px solid rgba(248, 58, 37, 0.9);
+}
 
 .search-box input[type="text"]{
     border: var(--teamlist-border);
@@ -82,6 +85,7 @@ input:-webkit-autofill {
     color: white;
     border-radius: var(--border-btn-radius);
     padding: 10px 20px;
+    cursor: pointer;
 }
 
 /* 전체 드롭다운 */
@@ -97,10 +101,18 @@ input:-webkit-autofill {
     background: var(--btn-color);
     border-radius: var(--border-btn-radius);
     color: white;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+
 }
+
 .Rmlist > select > option {
     background: white;
     color: black;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
 }
 
 /* 해결 게시판 */
@@ -264,5 +276,7 @@ html, body {
         
 .resolveCount {
 	margin-left : 30px;
-	font-size: 18px;
-}        
+}
+.resolveCount > span {
+    font-size: .8em;
+}

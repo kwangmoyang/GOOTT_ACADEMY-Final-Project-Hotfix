@@ -178,25 +178,7 @@
 
 
 <!-- 푸터 SLEEP 작업중 20221003-->
-<div class="common_footer">
-    <div class="common_footerTop">
-    	<ul>
-            <li>회사소개</li>
-            <li>인재채용</li>
-            <li>서비스 소개</li>
-            <li>이용약관</li>
-            <li>개인정보 처리방침</li>
-            <li onclick="">고객센터</li>
-        </ul>
-    </div>
-    <div class="common_footerBot">
-    	<p>핫픽스 주식회사 | 대표이사 양광모 | 고객센터 2060-1428 (평일 09:30~18:30 / 점심시간 13:30~14:30 / 주말 및 공휴일 휴무) <br>
-                     이메일주소 : kwangmoyang@gmail.com <br>
-                     주소 : 서울시 구로구 시흥대로163길 33 2층 <br>
-                     사업자등록번호 : 111-22-33333 <br>
-           Copyright© 핫픽스(주) All rights reserved.</p>
-    </div>
-</div>
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 
 </body>
 
