@@ -68,6 +68,7 @@
                     
                     <!-- 컨텍받지  못함 없어요 -->
                		<c:set var="name" value="${resolver2}" />
+               		해결내역 :${count}개
                 	<c:if test="${empty name}">   
                 		<p class="noPost">
                 			해결중인 게시글이 없어요!<br><br>
@@ -75,7 +76,7 @@
                 		</p>
                 	</c:if>
             
-                  	  해결내역 :${count}개
+                  	  
                   	
                     <!-- 해결 게시판 -->
                     <c:forEach var="row" items="${resolver2}" varStatus="vs">
@@ -131,13 +132,7 @@
 						</tr>
 
 					</table>
-
-
-
-
                 </div>
-
-
 
             </div>
 
