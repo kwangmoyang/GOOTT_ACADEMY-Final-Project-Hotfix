@@ -74,10 +74,10 @@ agree_btn.addEventListener('click',function(){
 })
 
 // 10-06 김양희  체크 추가
-clause.addEventListener('click', function(){
-	alert("서비스 이용약관을 클릭하여 동의 버튼을 눌러주세요.");
-	clause.checked = false;
-})
+//clause.addEventListener('click', function(){
+//	alert("서비스 이용약관을 클릭하여 동의 버튼을 눌러주세요.");
+//	clause.checked = false;
+//})
 
 
 //10-06 김양희 개인정보처리방침 추가
@@ -205,12 +205,59 @@ if(typeof(Storage)!== 'undefined'){
     // }
 }
 
+//아이디 중복 체크
+$('#hotID').keyup(function(){
+	let hotID = $('#hotID').val();
+	
+	$.ajax({
+		url : "/joinid",
+		type: "POST",
+		data :{hotID : hotID},
+		dataType: 'json',
+		success : function(result){
+			if(result == 1){
+				$("#hotID_alert").css('color','red');
+				$("#hotID_alert").html("이미 사용 중인 아이디입니다.");
+			}
+			
+		},
+		error : function(){
+			alert("서버요청실패");
+		}
+	})
+	
+})
+
+//닉네임 중복체크
+$('#hotNick').keyup(function(){
+	let hotNick = $('#hotNick').val();
+	
+	
+	$.ajax({
+		url : "/joinnick",
+		type: "POST",
+		data :{hotNick : hotNick},
+		dataType: 'json',
+		success : function(result){
+			if(result == 1){
+				$("#hotNK_alert").css('color','red');
+				$("#hotNK_alert").html("이미 사용 중인 닉네임입니다.");
+			}
+		},
+		error : function(){
+			alert("서버요청실패");
+		}
+	})
+})
+
 function joinForm_check() {
     // 유효성 조건 다 맞을 경우 제출됨
-    if (userID && userPW && userPWCK && userEM && userNM && userNC && userPH){
+    if (userID && userPW && userPWCK && userEM && userNM && userNC && userPH && clause.checked == true){
+    	console.log(clause);
         joinForm.submit();
         alert("회원가입을 축하드립니다!"); 
-    } else {
+    }
+    else {
         alert("공란 또는 이용약관 확인 후 가입해주세요!");
     }
     
@@ -230,21 +277,5 @@ function hotDomain() {
 }
 
 
-//아이디 중복 체크
-$('#hotID').keyup(function(){
-	let hotID = $('#hotID').val();
-	
-	$.ajax({
-		url : "/join",
-		type: "POST",
-		data :{hotID : hotID},
-		success : function(result){
-			
-		},
-		error : function(){
-			alert("서버요청실패");
-		}
-	})
-})
 
 

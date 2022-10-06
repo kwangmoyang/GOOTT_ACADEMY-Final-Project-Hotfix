@@ -3,11 +3,13 @@ package com.Final.Final1.comm.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Final.Final1.comm.model.JoinDTO;
@@ -50,13 +52,28 @@ public class JoinController {
 			return mv;
 			//return "join";
 		} else {
+			
 			mv.setViewName("login_etc/join");
-			mv.addObject("idfalse","중복된 아이디가 존재합니다.");
-			mv.addObject("nickfalse","중복된 닉네임이 존재합니다.");
 			return mv;
 		}
 		
 		
+	}
+	
+	//아이디 입력하는 동시에 경고글 뜨게하기 위해 추가한 아이디 중복 체크 controller
+	@RequestMapping(value="/joinid", method= RequestMethod.POST)
+	public @ResponseBody int idcheck(@RequestParam("hotID") String hotID) {
+		int result = loginService.idcheck(hotID);
+		
+		return result;
+	}
+	
+	//닉네임 중복체크
+	@RequestMapping(value="/joinnick", method= RequestMethod.POST)
+	public @ResponseBody int joinnick(@RequestParam("hotNick") String hotNick) {
+		int result = loginService.nicknamecheck(hotNick);
+		
+		return result;
 	}
 	
 }

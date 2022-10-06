@@ -114,7 +114,7 @@ public class Teamlistcontroller {
 				}
 				else if(teammakecheck3 != null) {
 					
-					entity = new ResponseEntity<String>("유저께서 이미 다른 팀신청을 하셨습니다.",HttpStatus.BAD_REQUEST);
+					entity = new ResponseEntity<String>("유저께서 이미 다른 팀에게 팀신청을 하셨습니다.",HttpStatus.BAD_REQUEST);
 
 					return entity;
 					
@@ -141,6 +141,9 @@ public class Teamlistcontroller {
 			
 
 			if(teamjoin_team == null) {
+				
+				//만약에 신청한 팀이 있으면
+				
 				
 				//그냥 팀관리페이지로 보내고 거기서 가입가능하게 && 여기서 팀가입신청 한번밖에 못하도록 되어있음
 				teamlistservice.teamjoinmessage(map);
