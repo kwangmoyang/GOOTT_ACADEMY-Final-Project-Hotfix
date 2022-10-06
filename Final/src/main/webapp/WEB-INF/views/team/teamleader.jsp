@@ -59,7 +59,7 @@
 					 	</div>
 					 
 					 
-					 	<div class="teammanage-twotitle">팀 정보수정</div>
+					 		<div class="teammanage-twotitle">팀 정보수정</div>
 						 	<div class="teammanage-box">
 						        <p>공지사항 수정</p>
 								 <form action="/teamnotice" method="POST">
@@ -69,19 +69,19 @@
 								  		</div>
 								 </form>
 					  		</div>
-					  	<div class="teammanage-box">
-					        <p>팀 이름 수정</p>
-					        <form action="/teamnamecor" method="POST">
-					        	<input type="text" value="${sessionScope.Team_name}" name="Team_name">
-					        	<div>
-					        		<input type="submit" value="수정" id="corbtn"/>
-					        	</div>
-					        </form>
-					  	</div>
-					    <div class="teammanage-box">
-					        <p>팀 로고 수정</p>
-					        <input type="file">
-					    </div>
+						  	<div class="teammanage-box">
+						        <p>팀 이름 수정</p>
+						        <form action="/teamnamecor" method="POST">
+						        	<input type="text" value="${sessionScope.Team_name}" name="Team_name">
+						        	<div>
+						        		<input type="submit" value="수정" id="corbtn"/>
+						        	</div>
+						        </form>
+						  	</div>
+						    <div class="teammanage-box">
+						        <p>팀 로고 수정</p>
+						        <input type="file">
+						    </div>
 					 
 					
 					    <div class="teammanage-twotitle">팀 회원관리</div>

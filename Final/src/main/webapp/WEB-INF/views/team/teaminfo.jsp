@@ -20,54 +20,66 @@
 			</div>
 		</c:forEach>
 	
-	<c:forEach var="row3" items="${map.teaminfo_notice}">
-		<div class="content-team-date">
-		    <p>팀 공지사항 : ${row3.Team_notice}</p>
-		</div>
-	</c:forEach>
+		<c:forEach var="row3" items="${map.teaminfo_notice}">
+			<div class="content-team-date">
+			    <p>팀 공지사항 : ${row3.Team_notice}</p>
+			</div>
+		</c:forEach>
 	
   
-	<div class="content-team-member">
-	    <table>
-	       <tr>
-	          <td>활동점수</td>
-	          <td>닉네임</td>
-	          <td>커미션</td>
-	          <td>이메일</td>
-	      </tr>
-	      <!-- foreach로 수정 -->
-	       <tr>
-	          <c:forEach var="row" items="${map.teamleader}">
-		          <td><i class="fa-solid fa-fire"></i>  ${row.User_score}</td>
-		          <td> 
-			          <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank"><i class="fa-solid fa-crown"></i>${row.User_nickname}</a>
-		          </td>
-		          <td>
-		             ${row.Teampoint}
-		          </td>
-		          <td>
-		          	${row.Email_address}
-		          </td>
-	          </c:forEach>
-	       </tr>
-	        
-	       <c:forEach var="row1" items="${map.teammembers}">
-		          <tr>
-		          	  <td><i class="fa-solid fa-fire"></i>  ${row1.User_score}</td>
-			          <td>
-				          <a href="/mypage_view?User_nickname=${row1.User_nickname}" target="_blank"><i class="fa-solid fa-user"></i></a> 
-				          <a href="/mypage_view?User_nickname=${row1.User_nickname}" target="_blank">${row1.User_nickname}</a>
+		<div class="content-team-member">
+		    <table>
+		       <tr>
+		          <td>활동점수</td>
+		          <td>닉네임</td>
+		          <td>커미션</td>
+		          <td>이메일</td>
+		      </tr>
+		       <tr>
+		          <c:forEach var="row" items="${map.teamleader}">
+			          <td><i class="fa-solid fa-fire"></i>  ${row.User_score}</td>
+			          <td> 
+			          	<c:choose>
+							<c:when test="${sessionScope.User_id == null}">
+					          <a target="_blank" onclick="alert('로그인 후 이용해주세요.')" style="cursor:pointer"><i class="fa-solid fa-crown"></i> ${row.User_nickname}</a>						
+							</c:when>
+							<c:otherwise>
+							  <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank"><i class="fa-solid fa-crown"></i> ${row.User_nickname}</a>
+							</c:otherwise>
+						</c:choose>
 			          </td>
 			          <td>
-			             ${row1.Teampoint}
+			             ${row.Teampoint}
 			          </td>
 			          <td>
-			          	${row1.Email_address}
+			          	${row.Email_address}
 			          </td>
-		          </tr>
-	        </c:forEach>
-	     </table>
-	 </div>
+		          </c:forEach>
+		       </tr>
+		        
+		       <c:forEach var="row1" items="${map.teammembers}">
+			          <tr>
+			          	  <td><i class="fa-solid fa-fire"></i>  ${row1.User_score}</td>
+				          <td>
+					          <c:choose>
+					          	<c:when test="${sessionScope.User_id == null}">
+					          		<a target="_blank" onclick="alert('로그인 후 이용해주세요.')" style="cursor:pointer"><i class="fa-solid fa-user"></i> ${row1.User_nickname}</a> 
+					          	</c:when>
+					          	<c:otherwise>
+					          		<a href="/mypage_view?User_nickname=${row1.User_nickname}" target="_blank"><i class="fa-solid fa-user"></i> ${row1.User_nickname}</a> 
+					          	</c:otherwise>
+					          </c:choose>
+				          </td>
+				          <td>
+				             ${row1.Teampoint}
+				          </td>
+				          <td>
+				          	${row1.Email_address}
+				          </td>
+			          </tr>
+		        </c:forEach>
+		     </table>
+		 </div>
 	
 </body>
 

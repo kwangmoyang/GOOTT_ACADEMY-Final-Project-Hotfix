@@ -288,68 +288,68 @@ function teamcheck2(a){
 	}
 
 };
-// ==========================팀탈퇴 모달========================
-
-const teamsecssionbtn = document.querySelector('.teamsecession-btn');
-const modaldiv4 = document.querySelector('.modal4-div');
-const xicon4 = document.querySelector('#xicon4');
-
-//팀탈퇴버튼 누르면 모달창 키기
-teamsecssionbtn.addEventListener('click', function(){
-    modaldiv4.style.display = 'flex';
-    xicon4.style.display = 'block';
-});
-
-// 모달창 끄기
-xicon4.addEventListener('click', function(){
-    modaldiv4.style.display = 'none';
-    xicon4.style.display = 'none';
-});
-
-//모달창 배경 눌러도 꺼질 수 있도록
-modaldiv4.addEventListener('click', function(e){    
-    if(e.target.className == 'modal4-div'){
-        modaldiv4.style.display = 'none';
-        xicon4.style.display = 'none';
-    }
-});
-
-function teamcheck3(a,b){
-	
-	if(a === null || a === ""){
-		alert("로그인이 필요합니다.");
-		//로그인페이지로 이동하도록
-		location.href = "/login";
-	}
-	else if(a != null || a != "")
-	{
-		if(!confirm("정말 탈퇴하시겠습니까?(팀리더 탈퇴 시 팀원이 있는 경우 후임 후 탈퇴 / 팀원없을 시 팀자체가 삭제)")){
-			return false;
-		}else{
-				let ssteamname = teamnameinfo.textContent; //클릭한 팀이름
-				let secessionteamname = b; //팀이름
-				let Usernickname = a; //유저 닉네임
-				
-				console.log("dddddd");
-				
-				if(ssteamname == secessionteamname){
-					console.log("dssdas");
-					$.ajax({
-						type:'POST',
-						data: {Usernickname: Usernickname, secessionteamname: secessionteamname},
-						url:"/teamsecession",
-						dataType:"text",
-						success: function(data){
-						alert("팀탈퇴가 완료되었습니다.");
-							location.href = "/teamlist";
-						}
-					});
-				}else if(secessionteamname == null || ssteamname != secessionteamname){
-					console.log(secessionteamname);
-					console.log(ssteamname);
-					alert("유저가 속한 팀이 아닙니다.");
-				}
-
-		}
-	}
-};
+//// ==========================팀탈퇴 모달========================
+//
+//const teamsecssionbtn = document.querySelector('.teamsecession-btn');
+//const modaldiv4 = document.querySelector('.modal4-div');
+//const xicon4 = document.querySelector('#xicon4');
+//
+////팀탈퇴버튼 누르면 모달창 키기
+//teamsecssionbtn.addEventListener('click', function(){
+//    modaldiv4.style.display = 'flex';
+//    xicon4.style.display = 'block';
+//});
+//
+//// 모달창 끄기
+//xicon4.addEventListener('click', function(){
+//    modaldiv4.style.display = 'none';
+//    xicon4.style.display = 'none';
+//});
+//
+////모달창 배경 눌러도 꺼질 수 있도록
+//modaldiv4.addEventListener('click', function(e){    
+//    if(e.target.className == 'modal4-div'){
+//        modaldiv4.style.display = 'none';
+//        xicon4.style.display = 'none';
+//    }
+//});
+//
+//function teamcheck3(a,b){
+//	
+//	if(a === null || a === ""){
+//		alert("로그인이 필요합니다.");
+//		//로그인페이지로 이동하도록
+//		location.href = "/login";
+//	}
+//	else if(a != null || a != "")
+//	{
+//		if(!confirm("정말 탈퇴하시겠습니까?(팀리더 탈퇴 시 팀원이 있는 경우 위임 후 탈퇴 / 팀원없을 시 팀자체가 삭제)")){
+//			return false;
+//		}else{
+//				let ssteamname = teamnameinfo.textContent; //클릭한 팀이름
+//				let secessionteamname = b; //팀이름
+//				let Usernickname = a; //유저 닉네임
+//				
+//				console.log("dddddd");
+//				
+//				if(ssteamname == secessionteamname){
+//					console.log("dssdas");
+//					$.ajax({
+//						type:'POST',
+//						data: {Usernickname: Usernickname, secessionteamname: secessionteamname},
+//						url:"/teamsecession",
+//						dataType:"text",
+//						success: function(data){
+//						alert("팀탈퇴가 완료되었습니다.");
+//							location.href = "/teamlist";
+//						}
+//					});
+//				}else if(secessionteamname == null || ssteamname != secessionteamname){
+//					console.log(secessionteamname);
+//					console.log(ssteamname);
+//					alert("유저가 속한 팀이 아닙니다.");
+//				}
+//
+//		}
+//	}
+//};

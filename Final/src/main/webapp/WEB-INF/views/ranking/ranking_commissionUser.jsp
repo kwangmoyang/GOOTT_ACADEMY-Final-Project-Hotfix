@@ -55,7 +55,14 @@
                                     </div>
                                     <div class="rank_content">
                                         <span class="rank_title">유저 이름</span>
-                                        <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
+                                        <c:choose>
+                                        	<c:when test="${sessionScope.User_id == null }">
+                                        		<a target="_blank" class="ranking_teaminfo" onclick="alert('로그인 후 이용해주세요.')"><span>${row.User_nickname}</span></a> <br>
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        		<a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
+                                        	</c:otherwise>
+                                        </c:choose>
                                         <span class="rank_title">유저 커미션</span><span>${row.commission}</span><br>
                                         <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span>
                                     </div>
@@ -70,7 +77,14 @@
                                     </div>
                                     <div class="rank_content">
                                         <span class="rank_title">유저 이름</span>
-                                        <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
+                                        <c:choose>
+                                        	<c:when test="${sessionScope.User_id == null }">
+                                        		<a target="_blank" class="ranking_teaminfo" onclick="alert('로그인 후 이용해주세요.')"><span>${row.User_nickname}</span></a> <br>
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        		<a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
+                                        	</c:otherwise>
+                                        </c:choose>
                                         <span class="rank_title">유저 커미션</span><span>${row.commission}</span><br>
                                         <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span>
                                     </div>
@@ -85,7 +99,14 @@
                                     </div>
                                     <div class="rank_content">
                                         <span class="rank_title">유저 이름</span>
-                                        <a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
+                                        <c:choose>
+                                        	<c:when test="${sessionScope.User_id == null }">
+                                        		<a target="_blank" class="ranking_teaminfo" onclick="alert('로그인 후 이용해주세요.')"><span>${row.User_nickname}</span></a> <br>
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        		<a href="/mypage_view?User_nickname=${row.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row.User_nickname}</span></a> <br>
+                                        	</c:otherwise>
+                                        </c:choose>
                                         <span class="rank_title">유저 커미션</span><span>${row.commission}</span><br>
                                         <span class="rank_title">유저 활동점수</span><span>${row.User_score}</span>
                                     </div>
@@ -104,7 +125,16 @@
 							<c:forEach var="row1" items="${RankingcommissionUser}" begin="3" end="9">
 		                       <tbody>
 		                           <td>${row1.rowNum} 위</td>
-		                           <td><a href="/mypage_view?User_nickname=${row1.User_nickname}" target="_blank" class="ranking_teaminfo">${row1.User_nickname}</a></td>
+		                           <td>		                           
+		                           <c:choose>
+                                        	<c:when test="${sessionScope.User_id == null }">
+                                        		<a target="_blank" class="ranking_teaminfo" onclick="alert('로그인 후 이용해주세요.')"><span>${row1.User_nickname}</span></a> <br>
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        		<a href="/mypage_view?User_nickname=${row1.User_nickname}" target="_blank" class="ranking_teaminfo"><span>${row1.User_nickname}</span></a> <br>
+                                        	</c:otherwise>
+                                   </c:choose>
+		                           </td>
 		                           <td>${row1.commission}</td>
 		                           <td>${row1.User_score}</td>
 		                       </tbody>

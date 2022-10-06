@@ -50,7 +50,9 @@ public class HotfixController {
 	//09.30 수근 작업 HOTFIX 
 	@RequestMapping(value = "/resolveMain", method = RequestMethod.GET)
 	public ModelAndView resolveMain(HttpServletRequest req, @RequestParam(defaultValue="1")int curPage,
-			@RequestParam(defaultValue ="new")String search_option) {
+			@RequestParam(defaultValue ="new")String search_option, HttpSession session) {
+		
+		String userid = (String)session.getAttribute("User_id");
 			
 		HotfixDTO dto = new HotfixDTO();
 		String keyword = req.getParameter("keyword");

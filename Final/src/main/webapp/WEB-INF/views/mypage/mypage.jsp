@@ -120,11 +120,11 @@
 					      		<input type="button" value="취소" onclick="teamnotmember();" class="teamnotmember_delete"/>
 					      	</form>
 					      </c:when>
-					      <c:when test="${sessionScope.Team_name == null } ">
+					      <c:otherwise>
 					      	<!-- 가입된 팀정보가 없을때 -->
 					      	<div>가입된 팀이없어요 ㅠ 팀에 속해 활동하면 더 높은 커미션을 받을수 있어요!</div>
 							<div><a href="/teamlist">팀 둘러보기<i class="uil uil-angle-right-b"></i></a></div>
-					      </c:when>
+					      </c:otherwise>
 					   </c:choose>
 					</div>
 

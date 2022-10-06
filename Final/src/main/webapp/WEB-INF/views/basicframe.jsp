@@ -14,7 +14,6 @@
     <link rel="icon" href="${Path}/resources/img/HotFavicon.png" type="image/png">
     <title>HOTFIX - Easy Solution For You</title>
 </head>
-
 <body>
 
      <!-- ======================== 헤더 ======================= -->
@@ -98,7 +97,7 @@
 
 </body>
 
+
 <script src="../resources/js/BasicFrame.js"></script>
 <!-- <script src="../resources/js/mypage_new_real.js"></script> -->
-
 </html>

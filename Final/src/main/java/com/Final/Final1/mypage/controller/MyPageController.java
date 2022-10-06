@@ -140,12 +140,13 @@ public class MyPageController {
 //		==================10-04 양희 추가==========================
 		//팀낫멤버 테이블에서 select ->
 		String User_nickname = (String) session.getAttribute("User_nickname");
+		String Team_name = (String) session.getAttribute("Team_name");
 		
 		Map<String, Object> teamnotmember =  mypageService.teamnotmember_select(User_nickname);
 		
-		System.out.println(teamnotmember);
 		
 		mv.addObject("teamnotmember",teamnotmember);
+		
 //		=============================================
 		
 		

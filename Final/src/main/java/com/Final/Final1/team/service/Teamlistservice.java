@@ -56,13 +56,13 @@ public interface Teamlistservice {
 
 	int Teamleader_update(Map<String, Object> map);
 
-	Map<String, Object> Teamleader_candidate(Map<String, Object> map);
+	String Teamleader_candidate(Map<String, Object> map);
 
-	int Teamleader_update2(Map<String, Object> map, Map<String, Object> teamleader_candidate);
+	int Teamleader_update2(String secessionteamname, String teamleader_candidate);
 
-	int Teammember_candidate_delete(Map<String, Object> teamleader_candidate);
+	int Teammember_candidate_delete(String teamleader_candidate);
 
-	int Teamcandidate_teamleader(Map<String, Object> map, Map<String, Object> teamleader_candidate);
+	int Teamcandidate_teamleader(String secessionteamname, String teamleader_candidate);
 
 
 	

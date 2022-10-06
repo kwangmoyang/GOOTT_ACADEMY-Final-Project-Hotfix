@@ -212,15 +212,33 @@ public class Teamlistcontroller {
 				
 				System.out.println("if_Teammember"+if_Teammember);
 				
-				if(if_Teammember == null) {
+				if(!if_Teammember.isEmpty()) {
+
+					//팀멤버 있으면 팀장 위임 후 탈퇴됨
 					
-					System.out.println("팀자체삭제됨"+if_Teammember);
+					System.out.println("들어옴");
 					
-					//팀자체 삭제됨
-					teamlistservice.teamsecession_teamleaderdelete(map);
-					
-					//원래 팀리더 유저테이블의 팀리더와 팀네임 제거
+					//원래 팀장 나감 -> 지금유저
+					teamlistservice.Teamleader_update(map);
 					teamlistservice.teamsecession(map);
+					//팀멤버중 1명 불러와서
+					String Teamleader_candidate = teamlistservice.Teamleader_candidate(map);
+					
+					System.out.println("Teamleader_candidate"+Teamleader_candidate);
+					
+					//걔를 team테이블의 팀리더에 박아놓고 update
+					teamlistservice.Teamleader_update2(secessionteamname, Teamleader_candidate);
+					
+					System.out.println("후보자를 team테이블의 팀리더에 박아놓고"+teamlistservice.Teamleader_update2(secessionteamname, Teamleader_candidate));
+					//걔 팀멤버테이블에서 삭제하고
+					teamlistservice.Teammember_candidate_delete(Teamleader_candidate);
+					
+					System.out.println("후보자 팀멤버테이블에서 삭제"+teamlistservice.Teammember_candidate_delete(Teamleader_candidate));
+					
+					//유저테이블의 팀리더와 팀네임 update
+					teamlistservice.Teamcandidate_teamleader(secessionteamname, Teamleader_candidate);
+					
+					System.out.println("유저테이블의 팀리더랑 팀네임"+teamlistservice.Teamcandidate_teamleader(secessionteamname, Teamleader_candidate));
 					
 					
 					
@@ -233,33 +251,16 @@ public class Teamlistcontroller {
 					mv.addObject("teamsecession", "팀삭제됨");
 					
 					return mv;
+				
 				}
 				else {
-					//팀멤버 있으면 팀장 위임 후 탈퇴됨
+					System.out.println("팀자체삭제됨"+if_Teammember);
 					
-					System.out.println("들어옴");
+					//팀자체 삭제됨
+					teamlistservice.teamsecession_teamleaderdelete(map);
 					
-					//원래 팀장 나감 -> 지금유저
-					teamlistservice.Teamleader_update(map);
+					//원래 팀리더 유저테이블의 팀리더와 팀네임 제거
 					teamlistservice.teamsecession(map);
-					//팀멤버중 1명 불러와서
-					Map<String, Object> Teamleader_candidate = teamlistservice.Teamleader_candidate(map);
-					
-					System.out.println("Teamleader_candidate"+Teamleader_candidate);
-					
-					//걔를 team테이블의 팀리더에 박아놓고 update
-					teamlistservice.Teamleader_update2(map, Teamleader_candidate);
-					
-					System.out.println("후보자를 team테이블의 팀리더에 박아놓고"+teamlistservice.Teamleader_update2(map, Teamleader_candidate));
-					//걔 팀멤버테이블에서 삭제하고
-					teamlistservice.Teammember_candidate_delete(Teamleader_candidate);
-					
-					System.out.println("후보자 팀멤버테이블에서 삭제"+teamlistservice.Teammember_candidate_delete(Teamleader_candidate));
-					
-					//유저테이블의 팀리더와 팀네임 update
-					teamlistservice.Teamcandidate_teamleader(map, Teamleader_candidate);
-					
-					System.out.println("유저테이블의 팀리더랑 팀네임"+teamlistservice.Teamcandidate_teamleader(map, Teamleader_candidate));
 					
 					
 					
