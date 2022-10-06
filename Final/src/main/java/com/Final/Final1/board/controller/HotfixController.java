@@ -4,6 +4,9 @@ import com.Final.Final1.board.model.BoardDTO;
 import com.Final.Final1.board.model.HotfixDTO;
 import com.Final.Final1.board.model.PageUtil;
 import com.Final.Final1.board.service.HotfixService;
+import com.Final.Final1.mypage.model.MypageDTO;
+import com.Final.Final1.mypage.service.MypageService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +32,10 @@ public class HotfixController {
 
 	@Autowired
 	HotfixService hotfixService;
+	
+	@Autowired
+	MypageService mypageService;
+	
 	
 	//10 04 HIKARI 채팅프로그램
 	@RequestMapping(value = "/chatting", method = RequestMethod.GET)
@@ -95,7 +102,7 @@ public class HotfixController {
 	// 마이페이지 해결 내역 
 	@RequestMapping("/mypage/result")
 	public ModelAndView mypageresult(HotfixDTO dto,HttpSession session,
-			@RequestParam(defaultValue="1")int curPage) {
+			@RequestParam(defaultValue="1")int curPage,MypageDTO dto2) {
 		
 		session.getId();
 		
@@ -110,6 +117,17 @@ public class HotfixController {
 		List<HotfixDTO> resolver2 = hotfixService.resolveZone(dto, start, end);
 		
 		ModelAndView mv = new ModelAndView();
+		
+		// 사진 업로드후 바로 프로필 적용
+		String name2 = (String)session.getAttribute("User_id");
+		dto2.setUser_id(name2);
+		String photo = "/"+mypageService.UserPhotoView(dto2);
+					        
+		File file2 = new File(photo);
+									
+		mv.addObject("photo", file2);
+		
+		
 		mv.addObject("count", count);
 		mv.addObject("page_info", page_info);
 		mv.addObject("resolver2", resolver2);
@@ -170,7 +188,7 @@ public class HotfixController {
 	@ResponseBody
 	@RequestMapping("/mypage/writer_request")
 	public ModelAndView mypageWriter(HotfixDTO dto, HttpSession session, 
-			@RequestParam(defaultValue="1")int curPage) {
+			@RequestParam(defaultValue="1")int curPage, MypageDTO dto2 ){
 		
 
 		// 세션 값 불러옴
@@ -186,6 +204,17 @@ public class HotfixController {
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
 		List<BoardDTO> list = hotfixService.myRequestlist(dto,start,end);
 		ModelAndView mv = new ModelAndView();
+		
+		// 사진 업로드후 바로 프로필 적용
+		String name2 = (String)session.getAttribute("User_id");
+		dto2.setUser_id(name2);
+		String photo = "/"+mypageService.UserPhotoView(dto2);
+					        
+		File file2 = new File(photo);
+								
+		mv.addObject("photo", file2);
+		
+		
 		
 		mv.addObject("list", list);
 		mv.addObject("count", count);
@@ -211,7 +240,8 @@ public class HotfixController {
 	
 	//해결자 선택하기
 	@RequestMapping("/choiceResolve")
-	public ModelAndView choiceResolve(HotfixDTO dto,HttpSession session,@RequestParam(defaultValue="1")int curPage) {
+	public ModelAndView choiceResolve(HotfixDTO dto,HttpSession session,
+			@RequestParam(defaultValue="1")int curPage,MypageDTO dto2) {
 		ModelAndView mv = new ModelAndView();
 		//ajax로 통해 전달받은 값을 쿼리에 넣어줌
 		
@@ -232,7 +262,18 @@ public class HotfixController {
 		
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
 		List<BoardDTO> list = hotfixService.myRequestlist(dto,start,end);
-		System.out.println(list);
+
+		// 사진 업로드후 바로 프로필 적용
+		String name2 = (String)session.getAttribute("User_id");
+		dto2.setUser_id(name2);
+		String photo = "/"+mypageService.UserPhotoView(dto2);
+							        
+		File file2 = new File(photo);
+										
+		mv.addObject("photo", file2);
+		
+		
+		
 		mv.addObject("list", list);
 		mv.addObject("count", count);
 		mv.addObject("page_info", page_info);
@@ -366,7 +407,7 @@ public class HotfixController {
 
 	//포기하기 버튼 클릭시
 	@RequestMapping({"/giveUpSolver","/giveUpSolver2"})
-	public ModelAndView giveUpSolver(HotfixDTO dto,@RequestParam("Request_code") int Request_code,
+	public ModelAndView giveUpSolver(HotfixDTO dto,MypageDTO dto2,@RequestParam("Request_code") int Request_code,
 			HttpSession session,@RequestParam(defaultValue="1")int curPage,HttpServletRequest request) {
 		
 		ModelAndView mv = new ModelAndView();
@@ -386,13 +427,18 @@ public class HotfixController {
 		
 		dto.setUser_nickname(name);
 		if(request.getServletPath().equals("/giveUpSolver")) {
-			System.out.println("1번링크");
 			hotfixService.Drop_Req_cnt(dto);//해결요청가 포기 했을경우 카운트 UP
 		}else if(request.getServletPath().equals("/giveUpSolver2")) {
-			System.out.println("2번링크");
 			hotfixService.Drop_Sol_cnt(dto);//해결자가 포기 했을경우 카운트 UP
 		}
-		
+		// 사진 업로드후 바로 프로필 적용
+		String name2 = (String)session.getAttribute("User_id");
+		dto2.setUser_id(name2);
+		String photo = "/"+mypageService.UserPhotoView(dto2);
+									        
+		File file2 = new File(photo);
+												
+		mv.addObject("photo", file2);
 		// 로그인한 유저가 해결요청한 게시글을 뽑아옴
 		List<BoardDTO> list = hotfixService.myRequestlist(dto,start,end);
 		mv.addObject("list", list);
@@ -406,15 +452,12 @@ public class HotfixController {
 	
 		//해결완료 버튼 클릭시
 		@RequestMapping("/CompletionResolve")
-		public ModelAndView CompletionResolve(HotfixDTO dto,@RequestParam("Requester") String Requester,
+		public ModelAndView CompletionResolve(HotfixDTO dto,MypageDTO dto2,@RequestParam("Requester") String Requester,
 				@RequestParam("Solver") String Solver,@RequestParam("Commission") int Commission,
 				@RequestParam("Request_code") int Request_code, HttpSession session,
 				@RequestParam(defaultValue="1")int curPage) {
 			
 			ModelAndView mv = new ModelAndView();
-			System.out.println(Commission);
-			System.out.println(Requester);
-			System.out.println(Solver);
 			
 			int count = hotfixService.count(dto);
 			PageUtil page_info = new PageUtil(count, curPage);
@@ -442,6 +485,15 @@ public class HotfixController {
 			// 로그인한 유저가 해결요청한 게시글을 뽑아옴
 			List<BoardDTO> list = hotfixService.myRequestlist(dto,start,end);
 			System.out.println(list);
+			
+			// 사진 업로드후 바로 프로필 적용
+			String name2 = (String)session.getAttribute("User_id");
+			dto2.setUser_id(name2);
+			String photo = "/"+mypageService.UserPhotoView(dto2);
+										        
+			File file2 = new File(photo);
+													
+			mv.addObject("photo", file2);
 			
 			mv.addObject("list", list);
 			mv.addObject("count", count);

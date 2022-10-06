@@ -23,6 +23,7 @@
 	</select>
 	
 	
+	
 	<!-- 회원정보중 일치하는 닉네임이 있는지? -->
 	<select id="User_nickname_Chk" resultType="hashMap">
 		select User_code, User_id, User_pw, User_name,User_nickname,User_score,

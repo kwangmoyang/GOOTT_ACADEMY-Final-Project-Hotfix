@@ -1,5 +1,6 @@
 package com.Final.Final1.comm.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -23,6 +24,7 @@ import com.Final.Final1.comm.service.EmailService;
 import com.Final.Final1.comm.service.LoginService;
 import com.Final.Final1.comm.service.MainService;
 import com.Final.Final1.mypage.model.MypageDTO;
+import com.Final.Final1.mypage.service.MypageService;
 
 @Controller
 public class LoginController {
@@ -35,7 +37,8 @@ public class LoginController {
 	LoginService loginService;
 	@Autowired
 	MainService mainService;
-
+	@Autowired
+	MypageService mypageService;
 	// 로그인페이지
 	@RequestMapping("/login")
 	public String login() {
@@ -127,7 +130,7 @@ public class LoginController {
 	
 
 	@RequestMapping("/loginChk")
-	public ModelAndView loginChk(LoginDTO dto, HttpSession session, @RequestParam Map<String, Object> map, MypageDTO mydto) {
+	public ModelAndView loginChk(LoginDTO dto,MypageDTO dto2, HttpSession session, @RequestParam Map<String, Object> map, MypageDTO mydto) {
 
 		ModelAndView mv = new ModelAndView();
 
@@ -148,7 +151,12 @@ public class LoginController {
 			session.setAttribute("User_id", UserOnlyId_Chk.get("User_id"));
 			// System.out.println("zzzzzzzzzzzzzzzzzzzzz"+UserOnlyId_Chk.get("admin_auth"));
 			session.setAttribute("admin_auth", UserOnlyId_Chk.get("admin_auth"));
-
+			
+			String photo = "/"+mypageService.UserPhotoView(dto2);
+			File file2 = new File(photo);
+			session.setAttribute("photo2", file2);
+			
+			mv.addObject("compare", "\\");
 			UserOnlyId_Chk.forEach((strKey, strValue) -> {
 				System.out.println("되냐?" + strKey + ":" + strValue);
 				session.setAttribute(strKey, strValue);

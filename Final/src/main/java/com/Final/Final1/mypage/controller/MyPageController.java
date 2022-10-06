@@ -124,7 +124,17 @@ public class MyPageController {
 
 		mypageService.updateUserPhoto(dto);
 		
-		mv.setViewName("/mypage/mypage");
+		// 사진 업로드후 바로 프로필 적용
+		String name2 = (String)session.getAttribute("User_id");
+		dto.setUser_id(name2);
+		String photo = "/"+mypageService.UserPhotoView(dto);
+        
+		File file2 = new File(photo);
+		
+		session.setAttribute("photo2", file2);
+		
+		mv.addObject("photo", file2);
+		mv.setViewName("/mypage/mypage_Set");
 		
 		return mv;
 	}
@@ -135,8 +145,6 @@ public class MyPageController {
 	@RequestMapping("/mypage/index")
 	public ModelAndView mypageIndex(MypageDTO dto,HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		String cwd = System.getProperty("user.dir");
-		System.out.println("내경로"+cwd);
 //		==================10-04 양희 추가==========================
 		//팀낫멤버 테이블에서 select ->
 		String User_nickname = (String) session.getAttribute("User_nickname");
@@ -144,42 +152,15 @@ public class MyPageController {
 		
 		Map<String, Object> teamnotmember =  mypageService.teamnotmember_select(User_nickname);
 		
-		
 		mv.addObject("teamnotmember",teamnotmember);
 		
 //		=============================================
 		
 		
-		String name = (String)session.getAttribute("User_id");
-		dto.setUser_id(name);
 		
-		String photo = "/"+mypageService.UserPhotoView(dto);
-		System.out.println(photo);
 		
-		ServletContext application = request.getSession().getServletContext();
-        String path = application.getRealPath("/resources/img/");
-        
-		File file = new File(photo);
-		ResponseEntity<byte[]> result = null;
-	
-//		try {
-//			HttpHeaders header = new HttpHeaders();
-//			header.add("Content-Type", Files.probeContentType(file.toPath()));
-//			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),
-//					header, HttpStatus.OK);
-//			mv.addObject("photo", result);
+		mv.setViewName("/mypage/mypage");
 			
-//			System.out.println("파일만tostring:"+result.toString());
-//			System.out.println("파일만tostring:"+file.toPath().toString());
-//			
-//			System.out.println("파일만:"+file);
-			
-			mv.addObject("photo", file);
-			mv.setViewName("/mypage/mypage");
-			
-//		} catch(IOException e) {
-//			e.printStackTrace();
-//		}
 
 		String Userid = (String)session.getAttribute("User_id") ;		
 		dto.setUser_id(Userid);
@@ -205,7 +186,14 @@ public class MyPageController {
 		double RequesterAvg = Math.round((double)(Req_cnt/RequesterAll)*100);
 		double SolverAvg = Math.round((double)(Sol_cnt/SolverAll)*100);
 		
-		
+		// 사진 업로드후 바로 프로필 적용
+		String name2 = (String)session.getAttribute("User_id");
+		dto.setUser_id(name2);
+		String photo = "/"+mypageService.UserPhotoView(dto);
+		        
+		File file2 = new File(photo);
+				
+		mv.addObject("photo", file2);		
 		
 		mv.addObject("RequesterAll", RequesterAll2);
 		mv.addObject("SolverAll", SolverAll2);
@@ -238,44 +226,27 @@ public class MyPageController {
 //	============================================
 	
 	
-	@ResponseBody
-	@RequestMapping("/mypage/index2")
-	public ResponseEntity<byte[]> mypageIndex2(MypageDTO dto,HttpSession session) {
-		String name = (String)session.getAttribute("User_id");
-		dto.setUser_id(name);
-		
-		
-		String photo = "\\"+mypageService.UserPhotoView(dto);
-		System.out.println(photo);
-		
-		File file = new File("C:\\Users\\광트북\\img"+photo);
-		ResponseEntity<byte[]> result = null;
-	
-		try {
-			HttpHeaders header = new HttpHeaders();
-			header.add("Content-Type", Files.probeContentType(file.toPath()));
-			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),
-					header, HttpStatus.OK);
-			
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		return result;
-	}
-	
 
 	// 留덉씠�럹�씠吏� �젙蹂� �닔�젙
 	@RequestMapping("/mypage/setUserInfo")
-	public String mypageSet() {
-		return "mypage/mypage_Set";
+	public ModelAndView mypageSet(HttpSession session,MypageDTO dto) {
+		ModelAndView mv = new ModelAndView();
+		// 사진 업로드후 바로 프로필 적용
+		String name2 = (String)session.getAttribute("User_id");
+		dto.setUser_id(name2);
+		String photo = "/"+mypageService.UserPhotoView(dto);
+						        
+		File file2 = new File(photo);
+								
+		mv.addObject("photo", file2);		
+		mv.setViewName("mypage/mypage_Set");
+		return mv;
 	}
 
 	// 수근 코드 
 		@RequestMapping("/mypage/writer")
 		public ModelAndView mypageWriter(MyWriterListDTO dto, HttpSession session,
-				@RequestParam(defaultValue="1")int curPage) {
+				@RequestParam(defaultValue="1")int curPage,MypageDTO dto2) {
 	
 			//세션 값 불러옴
 			String name = (String)session.getAttribute("User_nickname");
@@ -291,6 +262,17 @@ public class MyPageController {
 			ModelAndView mv = new ModelAndView();
 			
 			
+			// 사진 업로드후 바로 프로필 적용
+			String name2 = (String)session.getAttribute("User_id");
+			dto2.setUser_id(name2);
+			String photo = "/"+mypageService.UserPhotoView(dto2);
+			        
+			File file2 = new File(photo);
+					
+			mv.addObject("photo", file2);
+			
+			
+			
 			mv.addObject("list", list);
 			mv.addObject("count", count);
 			mv.addObject("page_info", page_info);
@@ -298,32 +280,12 @@ public class MyPageController {
 			mv.setViewName("/mypage/mypage_writer");
 			return mv;
 		}
-	
-	
-	//광모형 코드 
-	// 留덉씠�럹�씠吏� �옉�꽦�븳湲�
-//	@RequestMapping("/mypage/writer")
-//	public ModelAndView mypageWriter(MyWriterListDTO dto, HttpSession session) {
-//		ModelAndView mv = new ModelAndView();
-		//세션 값 불러옴
-//		String name = (String)session.getAttribute("User_nickname");
-//		dto.setPost_writer(name); // 불러온 세션값을 dto에 설정
-		//로그인한 유저가 해결요청한 게시글을 뽑아옴
-//		List<BoardDTO> list = mypageService.myRequestlist(dto);
-//		mv.setViewName("/mypage/mypage_writer");
-//		mv.addObject("list", list);
-//		System.out.println(list);
-//		return mv;
-//	}
 
-	
-	
-	
 
 	// 나의 작성 댓글
 	@RequestMapping("/mypage/comments")
 	public ModelAndView mypagecomments(MyCommentListDTO dto, HttpSession session,
-			@RequestParam(defaultValue="1")int curPage) {
+			@RequestParam(defaultValue="1")int curPage,MypageDTO dto2) {
 		
 		
 		//세션 값 불러옴
@@ -337,9 +299,24 @@ public class MyPageController {
 		int end = page_info.getPageEnd();
 		
 
+		
+		
+		
 		//로그인한 유저가 해결요청한 게시글을 뽑아옴
 		List<BoardDTO> list = mypageService.myCommentlist(dto, start ,end);
 		ModelAndView mv = new ModelAndView();
+		
+		// 사진 업로드후 바로 프로필 적용
+		String name2 = (String)session.getAttribute("User_id");
+		dto2.setUser_id(name2);
+		String photo = "/"+mypageService.UserPhotoView(dto2);
+				        
+		File file2 = new File(photo);
+						
+		mv.addObject("photo", file2);	
+		
+		
+		
 		mv.addObject("list", list);
 		mv.addObject("count", count);
 		mv.addObject("page_info", page_info);
@@ -356,7 +333,14 @@ public class MyPageController {
 	public ModelAndView mainIndex(MypageDTO dto, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
-//		session.setAttribute("User_point", dto.getUser_point());
+		// 사진 업로드후 바로 프로필 적용
+		String name2 = (String)session.getAttribute("User_id");
+		dto.setUser_id(name2);
+		String photo = "/"+mypageService.UserPhotoView(dto);
+				        
+		File file2 = new File(photo);
+						
+		mv.addObject("photo", file2);
 
 		mv.setViewName("/mypage/mypage_pay");
 
@@ -370,7 +354,18 @@ public class MyPageController {
 
 		mypageService.UserSetNickname(dto);
 		session.setAttribute("User_nickname", dto.getUser_nickname());
-
+		
+		// 사진 업로드후 바로 프로필 적용
+		String name2 = (String)session.getAttribute("User_id");
+		dto.setUser_id(name2);
+		String photo = "/"+mypageService.UserPhotoView(dto);
+			        
+		File file2 = new File(photo);
+							
+		mv.addObject("photo", file2);
+		
+		
+		
 		mv.setViewName("redirect:/mypage/setUserInfo");
 
 		return mv;
@@ -383,6 +378,15 @@ public class MyPageController {
 		mypageService.UserSetPhone_num(dto);
 		session.setAttribute("Phone_num", dto.getPhone_num());
 
+		// 사진 업로드후 바로 프로필 적용
+		String name2 = (String)session.getAttribute("User_id");
+		dto.setUser_id(name2);
+		String photo = "/"+mypageService.UserPhotoView(dto);
+			        
+		File file2 = new File(photo);
+									
+		mv.addObject("photo", file2);
+		
 		mv.setViewName("redirect:/mypage/setUserInfo");
 
 		return mv;
@@ -391,7 +395,10 @@ public class MyPageController {
 	@RequestMapping(value = "/mypage/UserSetEmail_address", method = RequestMethod.POST)
 	public ModelAndView UserSetEmail_address(MypageDTO dto, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-
+		
+		
+		
+		
 		mypageService.UserSetEmail_address(dto);
 		session.setAttribute("Email_address", dto.getEmail_address());
 		mv.setViewName("redirect:/mypage/setUserInfo");
@@ -453,7 +460,7 @@ public class MyPageController {
 		
 		//클릭한 유저의 정보 가져오기
 		Map<String, Object> mypageUserinfo = mypageService.mypageUserinfo(User_nickname);
-		
+		System.out.println(mypageUserinfo);
 		//각 해결카운트
 		String Userid = (String)session.getAttribute("User_id") ;		
 		dto.setUser_id(Userid);

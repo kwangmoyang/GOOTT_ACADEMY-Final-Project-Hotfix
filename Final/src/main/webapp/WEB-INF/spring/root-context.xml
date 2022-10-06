@@ -54,5 +54,12 @@
 			</props>
 		</property>
 	</bean>
+	
+	<!-- 파일 업로드 경로를 설정 -->
+	<bean id="uploadPath" class="java.lang.String">
+	  <constructor-arg value="C:\\Users\\광트북\\Documents\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Final\\resources\\img">
+	  </constructor-arg>
+	</bean>
+	
 
 </beans>
