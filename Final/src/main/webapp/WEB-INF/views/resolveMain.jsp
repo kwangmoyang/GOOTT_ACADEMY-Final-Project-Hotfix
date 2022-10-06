@@ -123,7 +123,7 @@
 
 								<div class="DetailModal"
 									onclick="document.getElementById('modal${vs.index}').style.display='block'">내용보기</div>
-							</div>
+								</div>
 						</div>
 
 					</c:forEach>
@@ -197,6 +197,7 @@
 			</div>
 		</form>
 	</c:forEach>
+	                
 	<!-- ==============모달공간============== -->
 
 </body>
