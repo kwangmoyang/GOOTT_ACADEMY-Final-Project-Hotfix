@@ -250,16 +250,17 @@
     height: 6vh;
     margin: 1vh 1vw 1vh 0;
 
-    border: 1px solid rgba(248, 58, 37, 0.9);
+    border: 1px solid rgba(248, 58, 37, .9);
     background-color: var(--main-white-color);
     border-radius: 10px;
     /* padding: 0 5px; */
     font-size: 0.6em;
     line-height: 6vh;
     text-align: center;
+    cursor: pointer;
 }
 .mainToLogin:hover{
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(245, 245, 245);
 }
 .mainToJoin {
     width: 8vw;
@@ -267,23 +268,24 @@
     margin: 1vh 0 1vh 1vw;
 
     /* border: 1px solid red; */
-    background-color: rgba(248, 58, 37, 0.9);
+    background-color: rgba(248, 58, 37, .9);
     border-radius: 10px;
     /* padding: 0 5px; */
     font-size: 0.6em;
     line-height: 6vh;
     text-align: center;
     margin: 0 4vw 0 0;
+    cursor: pointer;
 }
 .mainToJoin:hover {
-    background-color: rgba(234, 53, 31, 0.9);
+    background-color: rgba(239, 73, 54, 0.9);
 }
 
 .mainToLogin > a, .mainToJoin > a {
     text-decoration-line: none;
 }
 .mainToLogin > a {
-    color: rgba(248, 58, 37, 0.9);
+    color: rgba(248, 58, 37, .9);
 }
 .mainToJoin > a {
     color:var(--main-white-color);
@@ -310,9 +312,9 @@
 
 /* 메인섹션 */
 .main{
-    background-color: white;
+    background-color: rgba(255, 255, 255, 1);
     /*border: solid 2px var(--ex-border-color);*/
-    
+    border-radius: 5px;
     height: 100%; 
     width: 70%;
 }

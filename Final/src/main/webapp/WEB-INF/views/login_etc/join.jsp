@@ -21,7 +21,7 @@
     <div class="join_Container">
         <div class="join_Div">
             <div class="joinLogo">
-                <img src="resources/img/HOT.png" alt="" srcset="">
+                <img src="resources/img/HOT.png" alt="" srcset="" onclick="location.href='MainPage'">
             </div>
             <div class="join_header">
                 <h1>핫픽스에 오신것을 환영합니다.</h1>

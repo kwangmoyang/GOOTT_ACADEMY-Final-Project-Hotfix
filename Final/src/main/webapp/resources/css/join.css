@@ -54,9 +54,11 @@ p {
 }
 .joinLogo>img {
     height: 10vh;
+    cursor: pointer;
     /* border: 1px solid green; */
 }
 .join_header {
+    margin: 3vh 0 0 0;
     height: 5vh;
     display: flex;
     justify-content: center;
@@ -73,7 +75,12 @@ p {
     /* border: 2px solid violet; */
 }
 .join_Login > a {
-    color: rgb(234, 126, 18);
+    color: rgba(248, 58, 37, .9);
+    text-decoration: none;
+}
+.join_Login > a:hover {
+    color: rgba(239, 73, 54, .9);
+    text-decoration: underline;
 }
 
 /*========== 회원가입 영역 ==========*/
@@ -160,7 +167,7 @@ p {
 .join_consent > span {
     display: inline-block;
     margin: 0 10px 0 10px;
-    color: rgb(234, 126, 18);
+    color: rgba(248, 58, 37, .9);
     cursor: pointer;
 }
 .join_modal {

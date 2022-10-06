@@ -16,7 +16,7 @@
     <div class="find_Container">
         <div class="find_Div">
             <div class="findLogo">
-                <img src="/resource/img/HOT.png" alt="" srcset="">
+                <img src="/resource/img/HOT.png" alt="" srcset="" onclick="location.href='MainPage'">
             </div>
             <div class="find_header">
                 <h1>계정찾기</h1>

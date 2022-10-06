@@ -84,6 +84,9 @@
     position: relative;
     margin-right: 30px;
 }
+.search-txt:focus {
+    outline: 1px solid rgba(248, 58, 37, 0.9);
+}
 
 .search-box input[type="text"]{
     border: var(--teamlist-border);
@@ -150,6 +153,9 @@ input:-webkit-autofill {
 .board_view {
     float: right;
 }
+.board_view > span {
+    color: rgba(0,0,0, .5);
+}
 
 .board_content {
     height: 30px;
@@ -189,4 +195,11 @@ input:-webkit-autofill {
 }
 .board_info:hover{
 	color: tomato;
+}
+h3 > span {
+    font-size: 0.8em;
+}
+ion-icon{
+    font-size: 0.95em;
+    line-height: 3.8vh;
 }
