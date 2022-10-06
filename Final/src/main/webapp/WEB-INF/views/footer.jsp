@@ -3,7 +3,7 @@
   User: seoair
   Date: 2022/10/04
   Time: 20:19
-  To change this template use File | Settings | File Templates.
+  To change this template use File | Settings | File Templates. 
 --%> 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" conten t="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../resources/css/footer.css">
