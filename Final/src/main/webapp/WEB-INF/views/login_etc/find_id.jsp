@@ -30,7 +30,7 @@
             <form action="/find_user_idChk" method="POST">
             <div class="find_Email">
                 <h4>정보 입력</h4>
-                <input type="email" name="Email_address" id="" value="" placeholder="이메일을 입력해주세요">
+                <input type="email" name="Email_address" id="" value="" placeholder="가입시 등록한 이메일주소를 입력해주세요!"">
             </div>
             <p>${noJoinUser }</p>
             <div class="find_BtnId">

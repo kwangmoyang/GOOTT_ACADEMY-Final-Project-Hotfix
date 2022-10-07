@@ -15,12 +15,12 @@ textHover(adminList_Btn);
         param[i].addEventListener('mouseover',function(){
             textColor(param[i],"rgba(248,58,37,1)");
             transition(param[i],".5s");
-            console.log("ok");
+
     
             param[i].addEventListener('mouseout',function(){
             textColor(param[i],"rgba(25, 25, 25, 1)");
             transition(param[i],"1s");
-            console.log("ok");
+
             })
         })
     }
@@ -77,7 +77,7 @@ function textColor(param,textColor){
 	 });
 	 
 	 $("input[name='del_Abd']").click(function(){
-		 console.log($("input[name='del_Abd']:checked").length);
+
 		 if($("input[name='del_Abd']:checked").length == delCnt){
 			 $("input[name='admin_allChBox']")[0].checked = true;
 		 }
@@ -91,7 +91,7 @@ function textColor(param,textColor){
 	 let url = "/boardMemDelete;"; // Controller로 보내고자 하는 URL
 	 let valueArr = new Array();
 	 let list = $("input[name='del_Abd']");
-	 //console.log(list[0].dataset.adminbd);
+
 	 for(let i=0; i<list.length; i++){
 		 if(list[i].checked){
 			 valueArr.push(list[i].dataset.adminbd);
@@ -151,7 +151,7 @@ function textColor(param,textColor){
 			 VALUEArr.push(List[i].dataset.adminnt);
 		 }
 	 }
-	 console.log(VALUEArr);
+
 	 if (VALUEArr.length == 0){
 		 alert("선택된 글이 없습니다.");
 	 }

@@ -89,8 +89,6 @@
                     <span id="agree">&nbsp;서비스이용약관</span>| 
                     <span id="agree2">개인정보처리방침</span>
                     <p id="agreeRead"></p>
-                    <!-- <a href=""><span id="agree">&nbsp;서비스이용약관</span></a> |
-                    <a href=""><span>개인정보처리방침</span></a> -->
                 </div>
                 
                 <div>

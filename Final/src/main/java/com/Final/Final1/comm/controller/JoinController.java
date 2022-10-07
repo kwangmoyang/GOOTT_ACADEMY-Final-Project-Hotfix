@@ -19,13 +19,13 @@ import com.Final.Final1.comm.service.LoginService;
 
 @Controller
 public class JoinController {
-	// ModelAndView를 사용하기 위해 mv 객체 생성
 	
 	@Autowired
 	JoinService joinsvc;
 	@Autowired
 	LoginService loginService;
 	
+	// 회원가입 이동
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	private String join() {
 		return "login_etc/join";
@@ -46,11 +46,12 @@ public class JoinController {
 			Map<String, Object> map2 = new HashMap<>();
 			map.put("Email_address", map.get("Email_address")+"@"+map.get("hotEmail_Add"));
 			map.put("Phone_num", map.get("phone1")+""+map.get("phone2"));
-			System.out.println(map.toString());
+
 			joinsvc.join(map); // 서비스에 조인이라는 함수에 있는 파라미터로 전달
 			mv.setViewName("login_etc/login");
 			return mv;
-			//return "join";
+
+
 		} else {
 			
 			mv.setViewName("login_etc/join");

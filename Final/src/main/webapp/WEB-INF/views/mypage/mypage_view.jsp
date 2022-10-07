@@ -21,118 +21,118 @@
 </head>
 
 <body>
-<%@ include file="/WEB-INF/views/header/header.jsp" %>
 
-<div class="container">
-    <!-- ======================== 작업 섹션 ======================= -->
-    <div class="common_section">
-        <!-- 메인섹션 -->
-        <div class="main">
-            <!--
-            *22-08-22 HIKARI
-            *** 테스트시  <div class="main"> 하고 테스트 할 것
-        -->
-            <!-- ==============작업공간============== -->
-            <!-- 마이 페이지부분 -->
-            <!-- 마이 페이지부분 -->
-            <div class="myPage">
-                <p class="myPage_titleText">${mypageUserinfo.User_nickname} 님의 마이페이지 둘러보기</p>
-                <!-- 자기소개 -->
-                <p class="mypage_title">Introduce</p>
-                <div class="introduce">
-                    <!-- 사진&자기소개&팔로잉 -->
-                    <div class="userImg"><img alt="미등록" src="../resources/img/${mypageUserinfo.IMG_File_name }"/></div>
+	<%@ include file="/WEB-INF/views/header/header.jsp"%>
 
+	<div class="container">
+		<!-- ======================== 작업 섹션 ======================= -->
+		<div class="common_section">
+			<!-- 메인섹션 -->
+			<div class="main">
+				<!-- 
+                *22-08-22 HIKARI
+                *** 테스트시  <div class="main"> 하고 테스트 할 것
+            -->
+				<!-- ==============작업공간============== -->
+				<!-- 마이 페이지부분 -->
+				<!-- 마이 페이지부분 -->
+				<div class="myPage">
+					<p class="myPage_titleText">${mypageUserinfo.User_nickname} 님의 마이페이지 둘러보기</p>
+					<!-- 자기소개 -->
+					<p class="mypage_title">Introduce</p>
+					<div class="introduce">
+						<!-- 사진&자기소개&팔로잉 -->
+						<div class="userImg"><img alt="미등록" src="../resources/img/${mypageUserinfo.IMG_File_name }"/></div>
+						
+						
+						<div>
+						
+							<div class="introduce_nickname">
+								<div class="name">${mypageUserinfo.User_nickname }</div>
+							</div>
 
-                    <div>
+							<div class="introduce_text">${mypageUserinfo.User_introduce }</div>
+						</div>
+					</div>
 
-                        <div class="introduce_nickname">
-                            <div class="name">${mypageUserinfo.User_nickname }</div>
-                        </div>
+					<!-- 컨택트 -->
+					<p class="mypage_title">CONTACT</p>
+					<div class="contact">
+						<div>
+							<ul>
+								<button>
+									<a href="${mypageUserinfo.User_contact1 }" target="_blank"><i class="uil uil-home"></i></a>
+								</button>
+								<button>
+									<a href="${mypageUserinfo.User_contact2 }" target="_blank"><i class="uil uil-home"></i></a>
+								</button>
+								<button>
+									<a href="${mypageUserinfo.User_contact3 }" target="_blank"><i class="uil uil-home"></i></a>
+								</button>
+							</ul>
+						</div>
+						<div></div>
+					</div>
+					<!-- 커미션 -->
+					<p class="mypage_title">
+						님의 커미션 <i class="uil uil-question-circle"></i>
+					</p>
+					<div class="comition_1">
+						<div>${mypageUserinfo.commission } 픽스</div>
+						<div>
+							<a href="#" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a>
+						</div>
+					</div>
 
-                        <div class="introduce_text">${mypageUserinfo.User_introduce }</div>
-                    </div>
-                </div>
+					<!-- 나의 해결률 -->
+					<p class="mypage_title">해결요청 전적</p> 
+					<div class="myHistory">
+						<div>
+						 총 해결요청수 ${RequesterAll }건 해결요청 수락율${RequesterAvg }%
+						</div>
+					</div>
+					
+					<p class="mypage_title">해결내역 전적</p>
+          
+					<div class="myHistory">
+						<div>
+						총 해결수 ${SolverAll }건 해결율${SolverAvg }%
+						</div>
+					</div>
 
-                <!-- 컨택트 -->
-                <p class="mypage_title">CONTACT</p>
-                <div class="contact">
-                    <div>
-                        <ul>
-                            <button>
-                                <a href="${mypageUserinfo.User_contact1 }" target="_blank"><i class="uil uil-home"></i></a>
-                            </button>
-                            <button>
-                                <a href="${mypageUserinfo.User_contact2 }" target="_blank"><i class="uil uil-home"></i></a>
-                            </button>
-                            <button>
-                                <a href="${mypageUserinfo.User_contact3 }" target="_blank"><i class="uil uil-home"></i></a>
-                            </button>
-                        </ul>
-                    </div>
-                </div>
-                <!-- 커미션 -->
-                <p class="mypage_title">
-                    님의 커미션 <i class="uil uil-question-circle"></i>
-                </p>
-                <div class="comition_1">
-                    <div>${mypageUserinfo.commission } 픽스</div>
-                    <div>
-                        <a href="#" class="a_btn">확인<i class="uil uil-angle-right-b"></i></a>
-                    </div>
-                </div>
+					<!-- 나의 팀 -->
+					<p class="mypage_title">님의 팀정보</p>
+					<div class="myTeam">
+						
+						<c:choose>
+					      <c:when test="${mypageUserinfo.Team_name != null }">
+					      	<!-- 가입된 팀정보가 있을때 -->
+					      	<div class="mypage_teamname">${mypageUserinfo.Team_name }</div>
+							<div class="teaminfo_modal"><span onclick="teaminfoFuc('${mypageUserinfo.Team_name}')" class="a_btn">확인<i class="uil uil-angle-right-b"></i></span></div>
+					      </c:when>
+					      
+					      <c:otherwise>
+					      	<!-- 가입된 팀정보가 없을때 -->
+					      	<div>${mypageUserinfo.User_nickname}님은 가입된 팀이 없습니다.</div>
+					      </c:otherwise>
+					   </c:choose>
+					</div>
 
-                <!-- 나의 해결률 -->
-                <p class="mypage_title">해결요청 전적</p>
-                <div class="myHistory">
-                    <div>
-                        총 해결요청수 ${RequesterAll }건 해결요청 수락율${RequesterAvg }%
-                    </div>
-                </div>
+					<!-- 나의 활동점수 -->
+					<p class="mypage_title">님의 활동점수</p>
+					<div class="myScore">
+						<div>${mypageUserinfo.User_score } 점</div>
+					</div>
 
-                <p class="mypage_title">해결내역 전적</p>
+				</div>
+				<!-- ==============작업공간============== -->
+			</div>
 
-                <div class="myHistory">
-                    <div>
-                        총 해결수 ${SolverAll }건 해결율${SolverAvg }%
-                    </div>
-                </div>
+		</div>
 
-                <!-- 나의 팀 -->
-                <p class="mypage_title">님의 팀정보</p>
-                <div class="myTeam">
-
-                    <c:choose>
-                        <c:when test="${mypageUserinfo.Team_name != null }">
-                            <!-- 가입된 팀정보가 있을때 -->
-                            <div class="mypage_teamname">${mypageUserinfo.Team_name }</div>
-                            <div class="teaminfo_modal"><span onclick="teaminfoFuc('${mypageUserinfo.Team_name}')"
-                                                              class="a_btn">확인<i
-                                    class="uil uil-angle-right-b"></i></span></div>
-                        </c:when>
-
-                        <c:otherwise>
-                            <!-- 가입된 팀정보가 없을때 -->
-                            <div>${mypageUserinfo.User_nickname}님은 가입된 팀이 없습니다.</div>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-
-                <!-- 나의 활동점수 -->
-                <p class="mypage_title">님의 활동점수</p>
-                <div class="myScore">
-                    <div>${mypageUserinfo.User_score } 점</div>
-                </div>
-
-            </div>
-            <!-- ==============작업공간============== -->
-        </div>
-
-    </div>
-
-</div>
-<!-- 푸터 -->
-<%@ include file="/WEB-INF/views/footer.jsp" %>
+	</div>
+	<!-- 푸터 -->
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 
 
 <!-- ===================================================팀정보 모달=====================================================-->

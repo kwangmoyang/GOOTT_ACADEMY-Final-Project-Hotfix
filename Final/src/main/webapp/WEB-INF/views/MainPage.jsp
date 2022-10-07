@@ -43,8 +43,8 @@
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <!-- 일단 테스트 이미지고 향후 이벤트배너등으로 활용가능 -->
-                    <div class="swiper-slide"><img src="../resources/img/TestImage/TestImage1.png" alt=""></div>
-                    <div class="swiper-slide"><img src="../resources/img/TestImage/TestImage2.png" alt=""></div>
+                    <div class="swiper-slide"><img src="../resources/img/main2.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="../resources/img/main3.jpg" alt=""></div>
 <%--                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage3.jpeg" alt=""></div>--%>
 <%--                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage4.jpeg" alt=""></div>--%>
 <%--                    <div class="swiper-slide"><img src="../resources/img/TestImage/testImage5.jpeg" alt=""></div>--%>
@@ -58,14 +58,7 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-        <!-- <div id="big_preview">
-        <div id="hotfix_preview_title">
-            <img src="../resources/img/HOT.png" alt="" class="preview_logo">
-            <div>NEW HOTFIX</div>
-        </div>
-        <div id="hotfix_preview_content">
-        </div>
-    </div> -->
+  
 
         <!-- content_item은 보여줘야해서 늘려놓음 preview_content칸 안에서 6개들어감-->
         <div id="main_community_preview">
@@ -83,7 +76,7 @@
                                 <div class="item_info"><span><ion-icon name="timer-sharp"></ion-icon> ${Req_time_cut}</span></div>
                                 <div class="item_title"><span class="title_color" onclick="location.href='resolveMain'">${Req.Request_title}</span></div>
                                 <div class="item_info2">
-                                    <span><ion-icon name="people-sharp"></ion-icon>&nbsp;${Req.SolverReady_cnt}&nbsp;</span>
+                                   
                                 </div>
                             </div>
                         </c:forEach>
@@ -151,16 +144,7 @@
             </div>
         </div>
     </div>
-    <!-- 오른쪽 사이드 -->
-    <!-- <div class="sideRight">
-
-    </div> -->
-
-    <!-- 상단 스크롤 이동 -->
-    <!-- <div class="toTop"><i class="uil uil-arrow-circle-up"></i></div> -->
-
-    <!-- </div> -->
-
+  
 
 </div>
 

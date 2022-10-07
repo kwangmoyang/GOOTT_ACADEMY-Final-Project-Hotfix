@@ -125,9 +125,6 @@ public class LoginController {
 	}
 	
 	
-	
-	
-	
 
 	@RequestMapping("/loginChk")
 	public ModelAndView loginChk(LoginDTO dto,MypageDTO dto2, HttpSession session, @RequestParam Map<String, Object> map, MypageDTO mydto) {
@@ -149,7 +146,7 @@ public class LoginController {
 			mv.setViewName("redirect:/MainPage");
 			// 로그인 완료시 세션 생성
 			session.setAttribute("User_id", UserOnlyId_Chk.get("User_id"));
-			// System.out.println("zzzzzzzzzzzzzzzzzzzzz"+UserOnlyId_Chk.get("admin_auth"));
+
 			session.setAttribute("admin_auth", UserOnlyId_Chk.get("admin_auth"));
 			
 			String photo = "/"+mypageService.UserPhotoView(dto2);
@@ -158,7 +155,7 @@ public class LoginController {
 			
 			mv.addObject("compare", "\\");
 			UserOnlyId_Chk.forEach((strKey, strValue) -> {
-				System.out.println("되냐?" + strKey + ":" + strValue);
+
 				session.setAttribute(strKey, strValue);
 			});
 
@@ -187,7 +184,7 @@ public class LoginController {
 			if (Pw_Mistake_cnt >= 5) {
 				loginService.Change_User_pw(map); // 유저 PW 변경 (암호화 예정)
 				mv.addObject("forgotff", "5회 이상 틀려서 계정이 정지되었습니다. 관리자에게 문의하세요");
-				System.out.println("비번틀려서 관리자 문의");
+
 			}
 			mv.setViewName("/login_etc/login");
 
@@ -198,12 +195,11 @@ public class LoginController {
 			mv.addObject("notid", dto.getUser_id() + "는 존재하지 않는 아이디입니다.");
 			
 		}
-		
-				// 활동점수
-				//세션 값 불러옴
-				String name = (String)session.getAttribute("User_nickname");
-				mydto.setUser_nickname(name);
-				loginService.activeInsert(mydto);
+			// 활동점수
+			//세션 값 불러옴
+			String name = (String)session.getAttribute("User_nickname");
+			mydto.setUser_nickname(name);
+			loginService.activeInsert(mydto);
 				
 		return mv;
 	}

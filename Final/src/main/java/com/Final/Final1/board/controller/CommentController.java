@@ -70,7 +70,6 @@ public class CommentController {
 	  @ResponseBody
 	  @RequestMapping("comment/delete")
 	  public ModelAndView delete(@RequestBody Map<String, Object> map) {
-		 System.out.println(map);
 		  ModelAndView mv = new ModelAndView();
 		
 		  commentService.remove(map);

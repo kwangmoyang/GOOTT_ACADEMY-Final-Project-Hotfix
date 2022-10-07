@@ -41,7 +41,7 @@
 				<form method="post" action="/email/send">
 				<input type="hidden" name="senderName" value="${sessionScope.User_nickname }"><br>
 				<input type="hidden" name="senderMail" value="${sessionScope.Email_address }"><br>
-				<input type="hidden" name="receiveMail" value="zjqtm96@gmail.com"><br>
+				<input type="hidden" name="receiveMail" value="aba9533@gmail.com"><br>
 				<input name="subject" placeholder="문의 제목을 입력해주세요"><br><br>
 				<textarea rows="5" cols="80" name="message" placeholder="문의 내용"></textarea><br><br>
 				<input type="submit" value="전송">

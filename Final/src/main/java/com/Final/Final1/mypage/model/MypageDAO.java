@@ -64,5 +64,7 @@ public interface MypageDAO {
 
 	public List<TeamlistDTO> TeamPhotolist(MypageDTO dto);
 
+
+
 	
 }
