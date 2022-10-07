@@ -121,7 +121,6 @@ public class BoardController {
 	public ModelAndView updatePost(BoardDTO dto) {
 		ModelAndView mv = new ModelAndView();
 		int test = boardService.update(dto);
-		System.out.println("test = "+ test);
 		mv.setViewName("redirect:/list");
 		return mv;
 				

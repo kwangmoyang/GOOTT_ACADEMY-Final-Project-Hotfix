@@ -175,9 +175,6 @@
         <div class="ModalText">
             <h1>신청한 사람들!</h1>
             
-			<!--<c:forEach var="row" items="${resolver}" varStatus="vs">-->
-            
-            <!--</c:forEach>-->
         </div>
 	</div>
 	
@@ -240,7 +237,6 @@
     
     
     for (let i = 0; i < DetailModal.length; i++) {
-    	//Request_codeform.addEventListener('submit', function(e){
         DetailModal[i].addEventListener('click', function(e){
 
         	$.ajax({
@@ -252,8 +248,6 @@
                 //dataType:"text", 
                 success: function(data){
                 	console.dir(data);
-                   
-                    //setTimeout(modalOpen, 1000);
                     modalOpen();
                     
                     const RmModal_close = document.querySelector(".RmModal_close");
@@ -272,8 +266,7 @@
                     	code_input.setAttribute('name','Request_code');
                     	
                     	div.setAttribute('class','list');
-                    	input1.setAttribute('type','submit');
-                    	input1.setAttribute('value','전적보기');
+                    	
                     
                     	form1.setAttribute('method','post');
                     	form1.setAttribute('action','/choiceResolve');
@@ -281,16 +274,13 @@
                     	input2.setAttribute('type','submit');
                     	input2.setAttribute('value','컨택하기');
                     	
-                    	
-                    	//input2.setAttribute('onclick',"submit();");
-                    	
 
                     	nick_input.value = data[i].Solver_member;
                     	code_input.value = data[i].Request_code;
                     	div.append(h1);
                     	div.append(nick_input);
                     	div.append(code_input);
-                    	div.append(input1);
+                    	
                     	div.append(input2);
                     	form1.append(div);
                     	

@@ -54,11 +54,6 @@ public class MainController {
 		return "resolveMain";
 	}
 
-	//팀페이지
-//	@RequestMapping("/team/index")
-//	public String teamIndex() {
-//		return "/team/teamlist";
-//	}
 	//랭킹
 	@RequestMapping("/ranking/index")
 	public String rankingIndex() {
@@ -100,11 +95,13 @@ public class MainController {
 			@RequestParam(defaultValue="1")int curPage) throws IOException {
 			
 		ModelAndView mv = new ModelAndView();
+
 		
 //		Enumeration<String> attributes = request.getSession().getAttributeNames();
 //	      while (attributes.hasMoreElements()) {
 //	          String attribute = (String) attributes.nextElement();
 //	      }
+
 	    
 	    Integer admin_auth = (Integer)session.getAttribute("admin_auth");  
 

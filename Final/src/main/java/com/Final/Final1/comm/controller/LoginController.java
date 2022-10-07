@@ -125,6 +125,7 @@ public class LoginController {
 	}
 	
 	
+
 	@RequestMapping("/loginChk")
 	public ModelAndView loginChk(LoginDTO dto,MypageDTO dto2, HttpSession session, @RequestParam Map<String, Object> map, MypageDTO mydto) {
 
@@ -194,12 +195,11 @@ public class LoginController {
 			mv.addObject("notid", dto.getUser_id() + "는 존재하지 않는 아이디입니다.");
 			
 		}
-		
-				// 활동점수
-				//세션 값 불러옴
-				String name = (String)session.getAttribute("User_nickname");
-				mydto.setUser_nickname(name);
-				loginService.activeInsert(mydto);
+			// 활동점수
+			//세션 값 불러옴
+			String name = (String)session.getAttribute("User_nickname");
+			mydto.setUser_nickname(name);
+			loginService.activeInsert(mydto);
 				
 		return mv;
 	}

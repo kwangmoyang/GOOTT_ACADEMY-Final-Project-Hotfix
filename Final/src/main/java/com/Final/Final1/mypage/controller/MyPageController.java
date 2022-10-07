@@ -49,9 +49,8 @@ public class MyPageController {
 	MypageService mypageService;
 	
 	// 마이페이지 게시글 선택삭제
-		@ResponseBody
-		@RequestMapping(value = "/myBoardDelete", method = RequestMethod.POST)
-			//public String boardDelete(HttpServletRequest request) {
+	@ResponseBody
+	@RequestMapping(value = "/myBoardDelete", method = RequestMethod.POST)
 			public String boardDelete(int[] valueArr) {
 			int[] boardDeleteMsg = valueArr;
 			int size = boardDeleteMsg.length;
@@ -81,15 +80,11 @@ public class MyPageController {
 			HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String name = (String)session.getAttribute("User_id");
-		System.out.println(name);
 		dto.setUser_id(name); // 불러온 세션값을 dto에 설정
 		
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		long size = file.getSize(); //파일 사이즈
 		
-		System.out.println("파일명 : "  + fileRealName);
-		System.out.println("용량크기(byte) : " + size);
-		//서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
 		String uploadFolder = "\\Users\\광트북\\Documents\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Final\\resources\\img";
 		
@@ -102,18 +97,14 @@ public class MyPageController {
 		 */
 		
 		UUID uuid = UUID.randomUUID();
-		System.out.println(uuid.toString());
 		String[] uuids = uuid.toString().split("-");
 		
 		String uniqueName = uuids[0];
-		System.out.println("생성된 고유문자열" + uniqueName);
-		System.out.println("확장자명" + fileExtension);
 		
 		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
 		
 		File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
 		try {
-			System.out.println("저장완료됨");
 			file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
@@ -132,7 +123,6 @@ public class MyPageController {
 		}else if(request.getServletPath().equals("/fileTestTeam")) {
 			//팀 프로필 사진 세팅
 			String Teamleader = (String)session.getAttribute("User_nickname");
-			System.out.println(Teamleader);
 			dto.setTeam_leader(Teamleader);
 			dto.setTeam_ORG_File_name(uniqueName+fileExtension);
 			dto.setSTORED_File_name(uploadFolder+"\\"+uniqueName+fileExtension);
@@ -153,9 +143,6 @@ public class MyPageController {
 		mv.setViewName("/mypage/mypage_Set");
 		
 		
-		
-		
-		
 		return mv;
 	}
 	
@@ -172,16 +159,11 @@ public class MyPageController {
 		
 		Map<String, Object> teamnotmember =  mypageService.teamnotmember_select(User_nickname);
 		
+		
 		mv.addObject("teamnotmember",teamnotmember);
 		
 //		=============================================
-		
-		
-		
-		
-		mv.setViewName("/mypage/mypage");
 			
-
 		String Userid = (String)session.getAttribute("User_id") ;		
 		dto.setUser_id(Userid);
 		List<MypageDTO> Userinfolist =  mypageService.Userinfo(dto);
@@ -247,7 +229,7 @@ public class MyPageController {
 	
 	
 
-	// 留덉씠�럹�씠吏� �젙蹂� �닔�젙
+	// 유저 정보 수정페이지
 	@RequestMapping("/mypage/setUserInfo")
 	public ModelAndView mypageSet(HttpSession session,MypageDTO dto) {
 		ModelAndView mv = new ModelAndView();
@@ -319,9 +301,6 @@ public class MyPageController {
 		int end = page_info.getPageEnd();
 		
 
-		
-		
-		
 		//로그인한 유저가 해결요청한 게시글을 뽑아옴
 		List<BoardDTO> list = mypageService.myCommentlist(dto, start ,end);
 		ModelAndView mv = new ModelAndView();
@@ -385,7 +364,6 @@ public class MyPageController {
 		mv.addObject("photo", file2);
 		
 		
-		
 		mv.setViewName("redirect:/mypage/setUserInfo");
 
 		return mv;
@@ -415,8 +393,6 @@ public class MyPageController {
 	@RequestMapping(value = "/mypage/UserSetEmail_address", method = RequestMethod.POST)
 	public ModelAndView UserSetEmail_address(MypageDTO dto, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		
-		
 		
 		
 		mypageService.UserSetEmail_address(dto);
@@ -478,7 +454,6 @@ public class MyPageController {
 		
 		//클릭한 유저의 정보 가져오기
 		Map<String, Object> mypageUserinfo = mypageService.mypageUserinfo(User_nickname);
-		System.out.println(mypageUserinfo);
 		//각 해결카운트
 		String Userid = (String)session.getAttribute("User_id") ;		
 		dto.setUser_id(Userid);

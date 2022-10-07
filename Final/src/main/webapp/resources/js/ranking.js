@@ -47,8 +47,7 @@ for(let i=0; i<teamname.length; i++){
 function teaminfoFuc(a){
 
 	let teaminfo_teamname = a; //팀이름
-	
-	console.log(teaminfo_teamname);
+
 	
 	$.ajax({
 		method:"POST",
