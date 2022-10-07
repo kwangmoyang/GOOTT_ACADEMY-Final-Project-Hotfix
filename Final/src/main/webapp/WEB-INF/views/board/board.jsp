@@ -143,11 +143,8 @@
 							</c:choose>
                           </strong></span>
 
-                      <span class="Board_list_info">
-					             <fmt:parseDate value="${row.Post_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 
-					             <fmt:formatDate value="${date1}" pattern="MM-dd  HH:mm"/>
-					            </span>
-                               
+                      <span class="Board_list_info"> <fmt:parseDate value="${row.Post_cr_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="date1" type="both" /> 
+                       <fmt:formatDate value="${date1}" pattern="MM-dd HH:mm"/></span>
                         </div>
                         
                         <div class="board_view">
