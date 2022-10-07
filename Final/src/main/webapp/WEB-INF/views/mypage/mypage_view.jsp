@@ -112,7 +112,7 @@
 					      
 					      <c:otherwise>
 					      	<!-- 가입된 팀정보가 없을때 -->
-					      	<div>${sessionScope.User_nickname}님은 가입된 팀이 없습니다.</div>
+					      	<div>${mypageUserinfo.User_nickname}님은 가입된 팀이 없습니다.</div>
 					      </c:otherwise>
 					   </c:choose>
 					</div>
