@@ -21,12 +21,7 @@ import com.Final.Final1.comm.service.EmailService;
 public class EmailController {
 	@Inject
 	EmailService emailService;
-	
-//	@RequestMapping("write")
-//	public String write() {
-//		return "/email/write";
-//	}
-	
+		
 	@RequestMapping("/email/send")
 	public ModelAndView send(EmailDTO dto, Model model,
 			HttpServletResponse response) {
