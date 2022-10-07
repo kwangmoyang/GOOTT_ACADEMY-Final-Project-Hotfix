@@ -64,7 +64,7 @@
 	<select id="Userinfo" resultType="hashMap">
 		select User_code, User_id, User_pw, User_name,User_nickname,User_score,
 		User_point,commission,Phone_num,Email_address,Team_name,User_introduce,
-		User_contact1,User_contact2,User_contact3 from User where User_id=#{User_id};
+		User_contact1,User_contact2,User_contact3,leader_auth from User where User_id=#{User_id};
 	</select>
 	
 	<!-- 유저 전적 카운트 뽑아오기 -->

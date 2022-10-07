@@ -187,6 +187,8 @@ public class MypageDAOImpl implements MypageDAO {
 		return sqlSession.selectList("userinfo.TeamPhotolist",dto);
 	}
 
+
+
 	
 	
 	

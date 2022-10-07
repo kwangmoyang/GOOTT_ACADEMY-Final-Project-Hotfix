@@ -214,7 +214,6 @@ function teamcheck(usernickname,TeamName){
 	    			location.href = "/teamlist";
 	    		},
 	    		error:function(request, HttpStatus, jqXHR){
-	    			
 	    			alert(request.responseText);
 	    		}
 	    	});

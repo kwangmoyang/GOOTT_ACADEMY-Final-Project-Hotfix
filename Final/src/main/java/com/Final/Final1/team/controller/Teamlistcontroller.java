@@ -49,7 +49,7 @@ public class Teamlistcontroller {
 			List<TeamlistDTO> teamlist = teamlistservice.list(map,search_option, keyword, start, end); //팀목록 불러오기
 			List<Map<String, Object>> tags = teamlistservice.tags(map); //팀만들기 부분에 태그 전체 불러오기
 			
-			System.out.println(teamlist);
+			
 			Map<String, Object> map2 = new HashMap<>();
 			
 			map2.put("teamlist", teamlist); 

@@ -6,7 +6,7 @@
     --btn-hover-gray-color:rgb(190, 189, 189);
 
     --border-btn-radius: 5px;
-    --btn-color: rgba(255, 95, 47, 0.906);
+    --btn-color: rgba(248, 58, 37, .9);
 
 }
 /* a태그 기본 설정 */
@@ -50,7 +50,7 @@
 }
 .search-box form{
     width: 45%;
-    height: 95%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: right;
@@ -61,13 +61,14 @@
     border-radius: 50px;
     width: 80%;
     height: 100%;
-    padding: 0 20px;
+    padding:0 20px;
 }
+
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset;
  }
 .search-box form input[type="text"]:focus{
-    outline: none;
+    outline: 1px solid rgba(248, 58, 37, 0.9);
 }
 .searchbtn{
     position: relative;

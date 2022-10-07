@@ -64,6 +64,7 @@ public interface MypageService {
 	public String TeamPhotoView(MypageDTO dto);
 
 	public List<TeamlistDTO> TeamPhotolist(MypageDTO dto);
+
 	
 	
 	

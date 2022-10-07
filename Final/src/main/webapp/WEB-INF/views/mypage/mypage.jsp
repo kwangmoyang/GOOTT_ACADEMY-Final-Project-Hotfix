@@ -109,10 +109,10 @@
 					<div class="myTeam">
 						
 						<c:choose>
-					      <c:when test="${sessionScope.Team_name != null }">
+					      <c:when test="${Userinfolist[0].Team_name != null }">
 					      	<!-- 가입된 팀정보가 있을때 -->
 					      	<div class="mypage_teamname">${Userinfolist[0].Team_name }</div>
-							    <div class="teaminfo_modal"><span onclick="teaminfoFuc('${sessionScope.Team_name}')" class="a_btn">확인<i class="uil uil-angle-right-b"></i></span></div>
+							    <div class="teaminfo_modal"><span onclick="teaminfoFuc('${Userinfolist[0].Team_name}')" class="a_btn">확인<i class="uil uil-angle-right-b"></i></span></div>
 					      </c:when>
 					      <c:when test="${teamnotmember != null}">
 					      	<form action="/mypage/index" method="POST" id="teamnotmemberform1" class="teamnotmemberform">
