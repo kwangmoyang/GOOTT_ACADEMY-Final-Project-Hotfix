@@ -206,7 +206,7 @@
     width: 40%;
     height: 100%;
     border: solid 1px #ccc;
-    border-radius: var(--border-btn-radius);
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 3px 0px;
     text-align: center;
 }
@@ -249,18 +249,26 @@
     align-items: center;
 }
 .contact>div>ul>button{
-    border: solid 1px #ccc;
-    background: var(--main-red-color);
+    /*border: solid 1px #ccc;*/
+    background: rgba(248, 58, 37, .9);
 
     width: 100px;     
     height: 50px;
     border-radius: var(--border-btn-radius);
+    border: none;
+    outline: none;
 
     margin: 0 30px;
 
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+.contact>div>ul>button:hover {
+    background-color: rgba(239, 73, 54, .9);
+}
+.contact>div>ul>button>a>i {
+    color: rgba(255, 255, 255, 1);
 }
 
 

@@ -1,26 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 메인 프레임 연동-->
-<link rel="stylesheet" href="../../resources/css/BasicFrame.css?after">
-<link rel="stylesheet" href="../../resources/css/myPage_real.css?after">
-<!-- 폰트 불러올라고-->
-<link rel="stylesheet" href="../../resources/css/global.css">
- <!-- 폰트어썸 아이콘 사이트 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-<!-- 유니콘 아이콘 사이트 -->
-<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<title>HotFix</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 메인 프레임 연동-->
+    <link rel="stylesheet" href="../../resources/css/BasicFrame.css?after">
+    <link rel="stylesheet" href="../../resources/css/myPage_real.css?after">
+    <!-- 폰트 불러올라고-->
+    <link rel="stylesheet" href="../../resources/css/global.css">
+    <!-- 폰트어썸 아이콘 사이트 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- 유니콘 아이콘 사이트 -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <title>HotFix</title>
 </head>
 
 <body>
+
 	<%@ include file="/WEB-INF/views/header/header.jsp"%>
 
 	<div class="container">
@@ -136,19 +137,19 @@
 
 <!-- ===================================================팀정보 모달=====================================================-->
 
-	<div class="modal-div">
-	    <div id="teammodal-div">
-	        <div id="team-navbar">
-	            <div id="teamname">${mypageUserinfo.Team_name}</div>
-	            <div id="team-category">		
-	            </div>
-	        </div>
-	        <div id="team-content">
-				
-	        </div>
-	    </div>
-	    <ion-icon name="close-outline" id="xicon"></ion-icon>
-	</div>
+<div class="modal-div">
+    <div id="teammodal-div">
+        <div id="team-navbar">
+            <div id="teamname">${mypageUserinfo.Team_name}</div>
+            <div id="team-category">
+            </div>
+        </div>
+        <div id="team-content">
+
+        </div>
+    </div>
+    <ion-icon name="close-outline" id="xicon"></ion-icon>
+</div>
 
 </body>
 
