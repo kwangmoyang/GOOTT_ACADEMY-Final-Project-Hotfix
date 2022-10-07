@@ -72,9 +72,6 @@ public class MainController {
 	}
 
 
-
-	
-
 	//충전하기
 	@RequestMapping("/charge/index")
 	public String chargeIndex() {
@@ -107,11 +104,10 @@ public class MainController {
 //		Enumeration<String> attributes = request.getSession().getAttributeNames();
 //	      while (attributes.hasMoreElements()) {
 //	          String attribute = (String) attributes.nextElement();
-//	          System.out.println(attribute+" : "+request.getSession().getAttribute(attribute));
-//	      }  admin_auth 값 확인하기 위한것. 
+//	      }
 	    
 	    Integer admin_auth = (Integer)session.getAttribute("admin_auth");  
-	    System.out.println(admin_auth);
+
 	    if(!admin_auth.equals(1)) {
 	    	response.setContentType("text/html; charset=UTF-8");
 	    	PrintWriter out = response.getWriter();
@@ -123,7 +119,6 @@ public class MainController {
 		int start = page_info.getPageBegin();
 		int end = page_info.getPageEnd();
 		
-		System.out.println(dto.getUserCount());
 		mv.addObject("map", adminService.adminMemList(map, start, end));
 		mv.addObject("count", userCount);
 		mv.addObject("page_info", page_info);
@@ -134,11 +129,3 @@ public class MainController {
 
 
 }
-
-
-
-
-
-
-
-

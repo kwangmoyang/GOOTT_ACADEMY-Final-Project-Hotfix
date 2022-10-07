@@ -13,7 +13,7 @@ let pwalert = document.getElementById('pwalert');
 
 // 아이디 및 비밀번호 마우스오버시 효과
 hotID.addEventListener('mouseover', function () {
-    // console.log('인식');
+
     hotID.style.border = '1px solid rgb(234, 126, 18)';
 });
 hotID.addEventListener('mouseout', function () {
@@ -21,7 +21,7 @@ hotID.addEventListener('mouseout', function () {
 });
 
 hotPW.addEventListener('mouseover', function () {
-    // console.log('인식');
+
     hotPW.style.border = '1px solid rgb(234, 126, 18)';
 });
 hotPW.addEventListener('mouseout', function () {
@@ -50,7 +50,7 @@ loginSubmit.addEventListener('click',function(){
         return false;
     }
     else{
-//        location.href = "/loginChk";
+
     	login_Form.action = "/loginChk";
     	login_Form.submit();
         
@@ -58,35 +58,5 @@ loginSubmit.addEventListener('click',function(){
 })
 
 
-// loginSubmit.addEventListener('click', loginForm);
-
-
-// function loginForm() {
-
-//     if(hotID.value.length == 0){
-//         idalert.innerHTML = '<font color=red>&nbsp아이디를 입력해주세요.</font>';
-//         hotID.focus();
-//         test()는 문자열에서 일치하는 항목을 테스트. true 또는 false를 돌려줍니다
-//     } else if(ID_CHECK.test(hotID.value) == false){
-//         idalert.innerHTML = '<font color=red>&nbsp영문 및 숫자조합 7~15자 이내로 입력해주세요.</font>';
-//         hotID.select();
-//     } else if(ID_CHECK.test(hotID.value) == true){
-//         hotPW.focus();
-//         alert('테스트');
-//     } 
-    
-//     if(PW_CHECK.test(hotPW.value) == false){
-//         pwalert.innerHTML = '<font color=red>영문 대소문자,특수문자,숫자 조합 8자 이상 입력해주세요.</font>';
-//     } else {
-//         alert('로그인되었습니다');
-//     }
-    
-//     if(PW_CHECK.test(hotPW.value) != true){
-//         //pwalert.innerHTML = '<font color=red>대문자,특수문자,숫자 조합 8자 이상 입력해주세요.</font>';
-//         alert('테스트');
-//     } else {
-//         alert('로그인되었습니다');
-//     }
-// }
 
 

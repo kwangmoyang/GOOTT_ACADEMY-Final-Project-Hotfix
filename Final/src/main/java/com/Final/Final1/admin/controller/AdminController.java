@@ -39,12 +39,6 @@ public class AdminController {
 		return "/admin/admin_BoardMng";
 	}
 	
-	// 게시판관리에 공지사항페이지
-//	@RequestMapping("/admin/board_mng")
-//	public String adminBoardMng() {
-//		return "/admin/admin_BoardMng";
-//	}
-	
 	// 게시판관리에 공지사항 작성페이지
 	@RequestMapping("/admin/write")
 	public String adminBoardWrite() {
