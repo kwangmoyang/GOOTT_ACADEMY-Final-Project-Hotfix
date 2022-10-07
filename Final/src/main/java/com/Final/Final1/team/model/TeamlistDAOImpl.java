@@ -20,7 +20,7 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 
 	@Override
 	public List<TeamlistDTO> list(Map<String, Object> map, String search_option, String keyword, int start, int end) {
-		// TODO Auto-generated method stub
+	
 		Map<String, Object> map1 = new HashMap<>();
 		map1.put("keyword", keyword);
 		map1.put("search_option", search_option);
@@ -177,8 +177,7 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 		map2.put("secessionteamname",secessionteamname);
 		map2.put("teamleader_candidate",teamleader_candidate);
 		
-		System.out.println("Teamleader_update2dao"+secessionteamname);
-		System.out.println("Teamleader_update2dao"+teamleader_candidate);
+
 		
 		return sqlSessionTemplate.update("team.Teamleader_update2", map2);
 	}
@@ -200,8 +199,7 @@ public class TeamlistDAOImpl implements TeamlistDAO {
 		map2.put("secessionteamname",secessionteamname);
 		map2.put("teamleader_candidate",teamleader_candidate);
 		
-		System.out.println("secessionteamname"+secessionteamname);
-		System.out.println("Teamcandidate_teamleader"+teamleader_candidate);
+
 		
 		return sqlSessionTemplate.update("team.Teamcandidate_teamleader", map2);
 	}

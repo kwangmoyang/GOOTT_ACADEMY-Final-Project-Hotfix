@@ -104,29 +104,32 @@
                   </div>
                </div>
           
-               <!-- 나의 팀 -->
-               <p class="mypage_title">팀정보</p>
-               <div class="myTeam">
-                  
-                  <c:choose>
-                     <c:when test="${Userinfolist[0].Team_name != null }">
-                        <!-- 가입된 팀정보가 있을때 -->
-                        <div class="mypage_teamname">${Userinfolist[0].Team_name }</div>
-                         <div class="teaminfo_modal"><span onclick="teaminfoFuc('${Userinfolist[0].Team_name}')" class="a_btn">확인<i class="uil uil-angle-right-b"></i></span></div>
-                     </c:when>
-                     <c:when test="${teamnotmember != null}">
-                        <form action="/mypage/index" method="POST" id="teamnotmemberform1" class="teamnotmemberform">
-                           <div>${teamnotmember.Team_name} 팀 신청 취소하기</div>
-                           <input type="button" value="취소" onclick="teamnotmember();" class="teamnotmember_delete"/>
-                        </form>
-                     </c:when>
-                     <c:otherwise>
-                        <!-- 가입된 팀정보가 없을때 -->
-                        <div>가입된 팀이없어요 ㅠ 팀에 속해 활동하면 더 높은 커미션을 받을수 있어요!</div>
-                     <div><a href="/teamlist">팀 둘러보기<i class="uil uil-angle-right-b"></i></a></div>
-                     </c:otherwise>
-                  </c:choose>
-               </div>
+
+					<!-- 나의 팀 -->
+					<p class="mypage_title">팀정보</p>
+					<div class="myTeam">
+						
+						<c:choose>
+					      <c:when test="${Userinfolist[0].Team_name != null }">
+					      	<!-- 가입된 팀정보가 있을때 -->
+					      	<div class="mypage_teamname">${Userinfolist[0].Team_name }</div>
+							    <div class="teaminfo_modal"><span onclick="teaminfoFuc('${Userinfolist[0].Team_name}')" class="a_btn">확인<i class="uil uil-angle-right-b"></i></span></div>
+					      </c:when>
+					      <c:when test="${teamnotmember != null}">
+					      	<form action="/mypage/index" method="POST" id="teamnotmemberform1" class="teamnotmemberform">
+					      		<div>${teamnotmember.Team_name} 팀 신청 취소하기</div>
+					      		<input type="button" value="취소" onclick="teamnotmember();" class="teamnotmember_delete"/>
+					      	</form>
+					      </c:when>
+					      <c:otherwise>
+					      	<!-- 가입된 팀정보가 없을때 -->
+					      	<div>가입된 팀이없어요 ㅠ 팀에 속해 활동하면 더 높은 커미션을 받을수 있어요!</div>
+							<div><a href="/teamlist">팀 둘러보기<i class="uil uil-angle-right-b"></i></a></div>
+					      </c:otherwise>
+					   </c:choose>
+					</div>
+
+
 
                <!-- 나의 활동점수 -->
                <p class="mypage_title">활동점수</p>

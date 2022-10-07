@@ -159,11 +159,10 @@ public class MyPageController {
 		
 		Map<String, Object> teamnotmember =  mypageService.teamnotmember_select(User_nickname);
 		
+		
 		mv.addObject("teamnotmember",teamnotmember);
 		
 //		=============================================
-		
-		mv.setViewName("/mypage/mypage");
 			
 		String Userid = (String)session.getAttribute("User_id") ;		
 		dto.setUser_id(Userid);
